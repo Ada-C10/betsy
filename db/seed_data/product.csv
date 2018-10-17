@@ -12,7 +12,7 @@ id,name,cost,category,merchant_id,inventory,description,active,image_url
 11,Germany,2343,Europe,3,10,Let's drink a beer here,true,https://via.placeholder.com/200x200
 12,Kenya,2100,Africa,4,12,Let's go on a safari,true,https://via.placeholder.com/200x200
 13,Iceland,2001,Europe,3,10,Is there ice here? Let's find out,true,https://via.placeholder.com/200x200
-14,California,2000,North America,4,10,Holywood, here we come,true,https://via.placeholder.com/200x200
+14,California,2000,North America,4,10,Holywood here we come,true,https://via.placeholder.com/200x200
 15,Vancouver,100,North America,3,5,Weed is legal here now,true,https://via.placeholder.com/200x200
 16,Montreal,1000,North America,4,10,You can speak French if you want,true,https://via.placeholder.com/200x200
 17,Nepal,1000,Asia,3,13,Climb some mountains,true,https://via.placeholder.com/200x200
