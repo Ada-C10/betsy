@@ -34,7 +34,7 @@ CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
   product.merchant_id = row['merchant_id'].to_i
   product.inventory = row['inventory'].to_i
   product.description = row['description']
-  product.active = row['active']
+  product.image_url = row['image_url']
   successful = product.save
   if !successful
     product_failures << product
