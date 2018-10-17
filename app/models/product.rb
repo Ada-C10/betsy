@@ -8,4 +8,5 @@ class Product < ApplicationRecord
   validates :inventory, presence: true, numericality: { only_integer: true }
   validates :description, presence: true
   validates :active, inclusion: { in: [true, false] }
+  validates :image_url, presence: true
 end
