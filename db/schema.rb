@@ -10,9 +10,67 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2018_10_17_230521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "merchants", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "avatar_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orderitems", force: :cascade do |t|
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "product_id"
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_orderitems_on_order_id"
+    t.index ["product_id"], name: "index_orderitems_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.integer "cc_num"
+    t.date "exp_date"
+    t.string "email"
+    t.string "zip"
+    t.string "cvv"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status", default: "pending"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.float "cost"
+    t.string "category"
+    t.string "image_url"
+    t.integer "inventory"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "merchant_id"
+    t.boolean "active", default: true
+    t.index ["merchant_id"], name: "index_products_on_merchant_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "product_id"
+    t.index ["product_id"], name: "index_reviews_on_product_id"
+  end
+
+  add_foreign_key "orderitems", "orders"
+  add_foreign_key "orderitems", "products"
+  add_foreign_key "products", "merchants"
+  add_foreign_key "reviews", "products"
 end
