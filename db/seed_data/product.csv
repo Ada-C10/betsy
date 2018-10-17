@@ -1,0 +1,21 @@
+id,name,cost,category,merchant_id,inventory,description,active
+1,Brazil,1000,South America,1,10,trip to Brazil,true
+2,New York,1500,North America,2,5,trip to New York,true
+3,London,900,Europe,2,6,See London,true
+4,Tacoma,500,North America,3,11,Discover Tacoma,true
+5,Japan,1000,Asia,4,6,Travel Japan,true
+6,Florida,5309,North America,2,7,Swim with Aligators,true
+7,France,1330,Europe,1,9,Eat some cheese in France,true
+8,New Jersey,1000,North America,2,8,Travel the Turnpike,true
+9,Egypt,1500,Africa,1,6,Look at a Pyramid,true
+10,China,1342,Asia,2,9,We will go to the great wall,true
+11,Germany,2343,Europe,3,10,Let's drink a beer here, true
+12,Kenya,2100,Africa,4,12,Let's go on a safari, true
+13,Iceland,2001,Europe,3,10,Is there ice here? Let's find out,true
+14,California,2000,North America,4,10,Holywood, here we come,true
+15,Vancouver,100,North America,3,5,Weed is legal here now,true
+16,Montreal,1000,North America,4,10,You can speak French if you want,true
+17,Nepal,1000,Asia,3,13,Climb some mountains,true
+18,Texas,500,North America,5,3,Let's eat BBQ,true
+19,Russia,3000,Asia,5,10,We will go to Putin's house!,true
+20,Spain,1993,Europe,4,10,We will go to Barcelona!,true
