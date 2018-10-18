@@ -1,6 +1,5 @@
 class Merchant < ApplicationRecord
   has_many :products
-  has_and_belongs_to_many :orders
 
   validates :name, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
@@ -12,7 +11,7 @@ class Merchant < ApplicationRecord
    merchant.name = auth_hash['info']['name']
    merchant.email = auth_hash['info']['email']
 
-   
+
    return merchant
   end
  end
