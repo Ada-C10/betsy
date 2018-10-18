@@ -12,32 +12,46 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-sm bg-light">
-        <ul class="navbar-nav nav-tabs">
-          <li class="nav-item">
-            <%= link_to "All Products", products_path %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "All Merchants", merchants_path %>
-          </li>
-          <% if session[:user_id] %>
+        <div class="container-fluid">
+          <ul class="navbar-nav nav-tabs">
             <li class="nav-item">
-              <%= link_to "Add Product", new_merchant_product_path(session[:user_id]) %>
+              <%= link_to "All Products", products_path %>
             </li>
-          <% end %>
-          <li class="nav-item">
-            <%= link_to "All Categories", categories_path %>
-          </li>
-          <li class="nav-item">
-            <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, orders_path %>
-          </li>
-          <li class="nav-item">
-          <% if session[:user_id] %>
-          <%= link_to "Log out", logout_path, method: "delete"   %>
-          <% else %>
-          <%= link_to "Login with Github", "/auth/github" %>
-          <% end %>
-        </li>
-        </ul>
+            <li class="nav-item">
+              <%= link_to "All Merchants", merchants_path %>
+            </li>
+            <% if session[:user_id] %>
+              <li class="nav-item">
+                <%= link_to "Add Product", new_merchant_product_path(session[:user_id]) %>
+              </li>
+            <% end %>
+            <li class="nav-item">
+              <%= link_to "All Categories", categories_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, orders_path %>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if session[:user_id] %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  My Account
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Manage Products</a>
+                  <a class="dropdown-item" href="#">Order Fulfillment</a>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "Log out", logout_path, method: "delete", class: "dropdown-item" %>
+                </div>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Login with Github", "/auth/github" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </nav>
     </header>
     <%= yield %>
