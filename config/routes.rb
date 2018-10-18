@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :order_items, only: [:index, :show, :create, :update]
-
   end
 
   resources :merchants
