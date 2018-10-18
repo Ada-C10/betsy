@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   has_many :reviews
+  belongs_to :category
   belongs_to :merchant
 
   validates :name, presence: true, uniqueness: true
