@@ -12,3 +12,5 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: "sessions#create"
   delete "/logout", to: "sessions#destroy", as: "logout"
 end
+
+# do we want a join table between merchants and orders, or a nested route with index (order fulfillment) and show (individual order) via merchant 
