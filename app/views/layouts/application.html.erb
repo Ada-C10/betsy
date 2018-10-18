@@ -17,10 +17,13 @@
             <%= link_to "All Products", products_path %>
           </li>
           <li class="nav-item">
-            <%= link_to "Add a Product", new_product_path %>
-          <li class="nav-item">
             <%= link_to "All Merchants", merchants_path %>
           </li>
+          <% if session[:user_id] %>
+            <li class="nav-item">
+              <%= link_to "Add Product", new_merchant_product_path(session[:user_id]) %>
+            </li>
+          <% end %>
           <li class="nav-item">
             <%= link_to "All Categories", categories_path %>
           </li>

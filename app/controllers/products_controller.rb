@@ -1,3 +1,4 @@
+require 'pry'
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show]
   skip_before_action :require_login, only: [:index,:show]
@@ -13,14 +14,21 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    if params[:merchant_id]
+      @merchant_id = params[:merchant_id].to_i
+      @merchant = Merchant.find_by(id: @merchant_id)
+    end
   end
 
   def create
-    @product = Product.new(product_params)
-    if @product.save
-      redirect_to root_path
-    else
-      render :new
+    binding.pry
+    if product_params[:merchant_id]
+      @product = Product.new(product_params)
+      if @product.save
+        redirect_to root_path
+      else
+        render :new, status: :bad_request
+      end
     end
   end
 
@@ -37,11 +45,11 @@ class ProductsController < ApplicationController
   def find_product
     @product = Product.find_by(id: params[:id])
 
-    render_404 unless @product
+    render :notfound unless @product
     #add flash messages + redirect
   end
 
   def product_params
-    params.require(:product).permit(:name, :cost, :image_url, :inventory, :description, :active)
+    params.require(:product).permit(:name, :cost, :image_url, :inventory, :description, :active, :merchant_id)
   end
 end

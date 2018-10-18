@@ -28,8 +28,7 @@
       <br />
       <%= f.text_field :active %>
       <br /><br />
-      <!-- <%= f.hidden_field :merchant_id, :value => @merchant_id %> -->
-      <br />
+      <%= f.hidden_field :merchant_id, value: @merchant.id %>
       <%= f.submit %>
     <% end %>
   </section>
