@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  address: MyString
+  cc_num: 1
+  order_placed: 2018-10-18 12:57:30
+  status: MyString
+  zip: 1
+  name: MyString
+  cvv: 1
+  exp_date: 2018-10-18 12:57:30
+
+two:
+  email: MyString
+  address: MyString
+  cc_num: 1
+  order_placed: 2018-10-18 12:57:30
+  status: MyString
+  zip: 1
+  name: MyString
+  cvv: 1
+  exp_date: 2018-10-18 12:57:30
