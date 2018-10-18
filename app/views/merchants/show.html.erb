@@ -1,2 +1,9 @@
 <h1><%= link_to @merchant.name, merchant_path(@merchant.id) %></h1>
 <p><%= @merchant.email %></p>
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <%= product.name %>
+    </li>
+  <% end %>
+</ul>

@@ -4,7 +4,9 @@ class MerchantsController < ApplicationController
     @merchants = Merchant.all.order(:name)
   end
 
-  def show; end
+  def show
+    @products = @merchant.products
+  end
 
   def new
   end
