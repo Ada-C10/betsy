@@ -1,2 +1,2 @@
-<h1>Merchants#show</h1>
-<p>Find me in app/views/merchants/show.html.erb</p>
+<h1><%= link_to @merchant.name, merchant_path(@merchant.id) %></h1>
+<p><%= @merchant.email %></p>
