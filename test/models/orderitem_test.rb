@@ -1,5 +1,5 @@
 require "test_helper"
-
+#Sammi Joo
 describe Orderitem do
   let(:orderitem) { Orderitem.new }
 
@@ -17,7 +17,7 @@ describe "validations" do
 
   it "only allows quantity integers"
   end
-end   
+end
 
 
 

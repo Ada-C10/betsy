@@ -29,8 +29,8 @@ describe "validations" do
     end
 
   it "requires a email" do
-    dan = merchant(:dan)
-    dan.email.valid?.must_equal true
+    kiki = merchant(:kiki)
+    kiki.email.valid?.must_equal true
 
   end
 

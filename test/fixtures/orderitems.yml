@@ -1,10 +1,29 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-orderone:
+itemsone:
   quantity: 1
+  order: orderone
+  product: fannypack
+# fred
+# ordlegend
 
-ordertwo:
+itemstwo:
   quantity: 2
+  order: ordertwo
+  product: kilimanjaro
+# kiki
+# ordciara
 
-orderthree:
+itemsthree:
   quantity: 3
+  order: orderthree
+  product: fannypack
+# fred
+# ordrussell
+
+itemsfour:
+  quantity: 4
+  order: ordertwo
+  product: safari
+# sally
+# ordciara

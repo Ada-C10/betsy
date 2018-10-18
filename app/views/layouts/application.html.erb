@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Betsy</title>
+    <title>No Regretsy</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,21 @@
   </head>
 
   <body>
+    <header>
+      <nav class="navbar navbar-expand-sm bg-light">
+        <ul class="navbar-nav nav-tabs">
+          <li class="nav-item">
+            <%= link_to "All Products", products_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "All Merchants", merchants_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "All Categories", categories_path %>
+          </li>
+        </ul>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>
