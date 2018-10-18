@@ -6,9 +6,10 @@ puts "Loading raw merchant data from #{MERCHANT_FILE}"
 merchant_failures = []
 CSV.foreach(MERCHANT_FILE, :headers => true) do |row|
   merchant = Merchant.new
-  merchant.id = row['id'].to_i
+  merchant.uid = row['uid'].to_i
   merchant.name = row['name']
   merchant.email = row['email']
+  merchant.provider = row['provider']
   successful = merchant.save
   if !successful
     merchant_failures << merchant
@@ -31,7 +32,7 @@ CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
   product.name = row['name']
   product.cost = row['cost'].to_f
   product.category = row['category']
-  product.merchant_id = row['merchant_id'].to_i
+  product.merchant_uid = row['merchant_uid'].to_i
   product.inventory = row['inventory'].to_i
   product.description = row['description']
   product.image_url = row['image_url']
