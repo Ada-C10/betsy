@@ -1,3 +1,7 @@
 <h1><%= link_to @product.name, product_path(@product.id) %></h1>
+<% if session[:user_id] == @product.merchant_id %>
+  <%= link_to "Edit Product", edit_merchant_product_path(session[:user_id], @product.id) %>
+<% end %>
+<br /><br />
 <p><%= @product.description %></p>
 <p><%= image_tag @product.image_url %></p>

@@ -6,6 +6,8 @@ class MerchantsController < ApplicationController
 
   def show
     @products = @merchant.products
+    @merchant_id = params[:id].to_i
+    @merchant = Merchant.find_by(id: @merchant_id)
   end
 
   def new

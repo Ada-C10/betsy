@@ -20,11 +20,6 @@
             <li class="nav-item">
               <%= link_to "All Merchants", merchants_path %>
             </li>
-            <% if session[:user_id] %>
-              <li class="nav-item">
-                <%= link_to "Add Product", new_merchant_product_path(session[:user_id]) %>
-              </li>
-            <% end %>
             <li class="nav-item">
               <%= link_to "All Categories", categories_path %>
             </li>
@@ -39,7 +34,7 @@
                   My Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Manage Products</a>
+                  <%= link_to "Manage Products", merchant_path(session[:user_id]), class: "dropdown-item" %>
                   <a class="dropdown-item" href="#">Order Fulfillment</a>
                   <div class="dropdown-divider"></div>
                   <%= link_to "Log out", logout_path, method: "delete", class: "dropdown-item" %>

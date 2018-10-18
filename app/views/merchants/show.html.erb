@@ -1,5 +1,12 @@
 <h1><%= link_to @merchant.name, merchant_path(@merchant.id) %></h1>
 <p><%= @merchant.email %></p>
+
+<% if session[:user_id] == @merchant.id%>
+  <%= link_to "Add Product", new_merchant_product_path(@merchant.id) %>
+<% end %>
+
+<br /><br />
+
 <ul>
   <% @products.each do |product| %>
     <li>

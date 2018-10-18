@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:show]
+  before_action :find_product, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:index,:show]
   # update as we go with user permissions (this applies to every controller)
 
@@ -32,12 +32,28 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    if params[:merchant_id]
+      @merchant_id = params[:merchant_id].to_i
+      @merchant = Merchant.find_by(id: @merchant_id)
+    end
   end
 
   def update
+    if @product.update(product_params)
+      @merchant_id = product_params[:merchant_id].to_i
+      redirect_to merchant_path(@merchant_id)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    if !@product.nil?
+      @product.active = false
+      if @product.save
+        redirect_back(fallback_location: root_path)
+      end
+    end
   end
 
   private
