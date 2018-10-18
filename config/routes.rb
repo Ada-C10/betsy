@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   resources :merchants do
     resources :products, only: [:index, :show, :new]
-    resources :orders, only: [:index, :show]
   end
 
   resources :reviews, except: [:index, :show]
