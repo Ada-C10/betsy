@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :merchants
+  resources :sessions
 
   get '/home', to: 'products#homepage', as: 'home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
