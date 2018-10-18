@@ -24,7 +24,7 @@
       <br />
       <%= f.text_field :description %>
       <br /><br />
-      <%= f.hidden_field :merchant_id, value: @merchant.id %>
+      <%= f.hidden_field :merchant_id, value: session[:user_id] %>
       <%= f.submit %>
     <% end %>
   </section>

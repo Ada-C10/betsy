@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :reviews, except: [:index, :show]
   resources :orders
-  resources :products, only: [:index, :show, :update]
+  resources :products, only: [:index, :show, :update, :create]
   resources :categories, only: [:index, :show, :new, :create]
 
   get "/auth/:provider/callback", to: "sessions#create"

@@ -1,5 +1,6 @@
 class MerchantsController < ApplicationController
   before_action :find_merchant, only: [:show]
+  skip_before_action :require_login, only: [:index, :show]
   def index
     @merchants = Merchant.all.order(:name)
   end
@@ -30,7 +31,6 @@ class MerchantsController < ApplicationController
     @merchant = Merchant.find_by(id: params[:id])
 
     render_404 unless @merchant
-    #add flash messages + redirect
   end
 
   def merchant_params
