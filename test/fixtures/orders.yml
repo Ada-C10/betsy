@@ -30,11 +30,4 @@ orderthree:
   zip: 98144
   cvv: 232
 
-  validates :status, presence: true, inclusion: { in: STATUSES } pending paid complete cancelled
-  validates :name, presence: true
-  validates :email, presence: true
-  validates :address, presence: true
-  validates :cc_num, presence: true, numericality: { only_integer: true }, length: { is: 16 }
-  validates :cvv, presence: true, length: { in: 3..4 }
-  validate :expiration_date_cannot_be_in_the_past
-  validates :zip, presence: true
+  
