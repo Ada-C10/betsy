@@ -32,7 +32,6 @@ CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
   product.id = row['id'].to_i
   product.name = row['name']
   product.cost = row['cost'].to_f
-  product.category = row['category']
   product.merchant_id = row['merchant_id'].to_i
   product.inventory = row['inventory'].to_i
   product.description = row['description']

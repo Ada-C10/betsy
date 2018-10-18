@@ -1,21 +1,21 @@
-id,name,cost,category,merchant_id,inventory,description,image_url
-1,Brazil,1000,South America,1,10,trip to Brazil,https://via.placeholder.com/200x200
-2,New York,1500,North America,1,5,trip to New York,https://via.placeholder.com/200x200
-3,London,900,Europe,2,6,See London,https://via.placeholder.com/200x200
-4,Tacoma,500,North America,4,11,Discover Tacoma,https://via.placeholder.com/200x200
-5,Japan,1000,Asia,3,6,Travel Japan,https://via.placeholder.com/200x200
-6,Florida,5309,North America,3,7,Swim with Aligators,https://via.placeholder.com/200x200
-7,France,1330,Europe,4,9,Eat some cheese in France,https://via.placeholder.com/200x200
-8,New Jersey,1000,North America,3,8,Travel the Turnpike,https://via.placeholder.com/200x200
-9,Egypt,1500,Africa,1,6,Look at a Pyramid,https://via.placeholder.com/200x200
-10,China,1342,Asia,2,9,We will go to the great wall,https://via.placeholder.com/200x200
-11,Germany,2343,Europe,4,10,Let's drink a beer here,https://via.placeholder.com/200x200
-12,Kenya,2100,Africa,3,12,Let's go on a safari,https://via.placeholder.com/200x200
-13,Iceland,2001,Europe,1,10,Is there ice here? Let's find out,https://via.placeholder.com/200x200
-14,California,2000,North America,2,10,Holywood here we come,https://via.placeholder.com/200x200
-15,Vancouver,100,North America,3,5,Weed is legal here now,https://via.placeholder.com/200x200
-16,Montreal,1000,North America,3,10,You can speak French if you want,https://via.placeholder.com/200x200
-17,Nepal,1000,Asia,1,13,Climb some mountains,https://via.placeholder.com/200x200
-18,Texas,500,North America,4,3,Let's eat BBQ,https://via.placeholder.com/200x200
-19,Russia,3000,Asia,2,10,We will go to Putin's house!,https://via.placeholder.com/200x200
-20,Spain,1993,Europe,4,10,We will go to Barcelona!,https://via.placeholder.com/200x200
+id,name,cost,merchant_id,inventory,description,image_url
+1,Brazil,1000,1,10,trip to Brazil,https://via.placeholder.com/200x200
+2,New York,1500,1,5,trip to New York,https://via.placeholder.com/200x200
+3,London,900,2,6,See London,https://via.placeholder.com/200x200
+4,Tacoma,500,4,11,Discover Tacoma,https://via.placeholder.com/200x200
+5,Japan,1000,3,6,Travel Japan,https://via.placeholder.com/200x200
+6,Florida,5309,3,7,Swim with Aligators,https://via.placeholder.com/200x200
+7,France,1330,4,9,Eat some cheese in France,https://via.placeholder.com/200x200
+8,New Jersey,1000,3,8,Travel the Turnpike,https://via.placeholder.com/200x200
+9,Egypt,1500,1,6,Look at a Pyramid,https://via.placeholder.com/200x200
+10,China,1342,2,9,We will go to the great wall,https://via.placeholder.com/200x200
+11,Germany,2343,4,10,Let's drink a beer here,https://via.placeholder.com/200x200
+12,Kenya,2100,3,12,Let's go on a safari,https://via.placeholder.com/200x200
+13,Iceland,2001,1,10,Is there ice here? Let's find out,https://via.placeholder.com/200x200
+14,California,2000,2,10,Holywood here we come,https://via.placeholder.com/200x200
+15,Vancouver,100,3,5,Weed is legal here now,https://via.placeholder.com/200x200
+16,Montreal,1000,3,10,You can speak French if you want,https://via.placeholder.com/200x200
+17,Nepal,1000,1,13,Climb some mountains,https://via.placeholder.com/200x200
+18,Texas,500,4,3,Let's eat BBQ,https://via.placeholder.com/200x200
+19,Russia,3000,2,10,We will go to Putin's house!,https://via.placeholder.com/200x200
+20,Spain,1993,4,10,We will go to Barcelona!,https://via.placeholder.com/200x200
