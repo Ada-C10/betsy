@@ -1,21 +1,40 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  status: MyString
-  name: MyString
-  address: MyString
-  cc_num: 1
+orderone:
+  status: pending
+  name: Sara
+  address: 213th 15th St Seattle, WA
+  cc_num: 1234567890123456
   exp_date: 2018-10-17
-  email: MyString
-  zip: MyString
-  cvv: MyString
+  email: sara@gmail.com
+  zip: 98122
+  cvv: 232
 
-two:
-  status: MyString
-  name: MyString
-  address: MyString
-  cc_num: 1
+ordertwo:
+  status: paid
+  name: Fred
+  address: 213th 15th St Seattle, WA
+  cc_num: 1238475869584736
   exp_date: 2018-10-17
-  email: MyString
-  zip: MyString
-  cvv: MyString
+  email: fred@gmail.com
+  zip: 98144
+  cvv: 232
+
+orderthree:
+  status: complete
+  name: Dan
+  address: 133th 15th St Seattle, WA
+  cc_num: 1938472634857493
+  exp_date: 2018-10-17
+  email: dan@gmail.com
+  zip: 98144
+  cvv: 232
+
+  validates :status, presence: true, inclusion: { in: STATUSES } pending paid complete cancelled
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :address, presence: true
+  validates :cc_num, presence: true, numericality: { only_integer: true }, length: { is: 16 }
+  validates :cvv, presence: true, length: { in: 3..4 }
+  validate :expiration_date_cannot_be_in_the_past
+  validates :zip, presence: true
