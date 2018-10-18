@@ -1,31 +1,14 @@
 Rails.application.routes.draw do
-  get 'merchants/index'
-  get 'merchants/show'
-  get 'merchants/new'
-  get 'merchants/create'
-  get 'merchants/edit'
-  get 'merchants/update'
-  get 'merchants/destroy'
-  get 'reviews/new'
-  get 'reviews/create'
-  get 'reviews/edit'
-  get 'reviews/update'
-  get 'reviews/destroy'
-  get 'orders/index'
-  get 'orders/show'
-  get 'orders/new'
-  get 'orders/create'
-  get 'orders/edit'
-  get 'orders/update'
-  get 'orders/destroy'
-  get 'products/index'
-  get 'products/show'
-  get 'products/new'
-  get 'products/create'
-  get 'products/edit'
-  get 'products/update'
-  get 'products/destroy'
+  root 'products#root'
+
+  resources :merchants do
+    resources :products, only: [:index, :show, :new]
+  end
+
+  resources :reviews, except: [:index, :show]
+  resources :orders
+  resources :products
+
   get "/auth/:provider/callback", to: "sessions#create"
   delete "/logout", to: "sessions#destroy", as: "logout"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
