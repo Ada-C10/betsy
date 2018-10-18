@@ -1,10 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-orderone:
+itemsone:
   quantity: 1
+  order: orderone
+  product: fannypack
 
-ordertwo:
+itemstwo:
   quantity: 2
+  order: ordertwo
+  product: kilimanjaro
 
-orderthree:
+itemsthree:
   quantity: 3
+  order: orderthree
+  product: fannypack

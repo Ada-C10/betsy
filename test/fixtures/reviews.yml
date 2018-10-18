@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  rating: 1
-  description: MyString
+goodreview:
+  rating: 5
+  description: Thank u for making all my dreams come true I truly have no regretsies eleven out of ten would buy again.
+  product: fannypack
 
-two:
+badreview:
   rating: 1
-  description: MyString
+  description: no room service! no lemon water! shame on u!!!!
+  product: kilimanjaro

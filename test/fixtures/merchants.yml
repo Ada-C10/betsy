@@ -11,6 +11,6 @@ sally:
   avatar_url: https://via.placeholder.com/200x200
 
 dan:
-    name: Dan
-    email: dan@gmail.com
-    avatar_url: https://via.placeholder.com/200x200
+  name: Dan
+  email: dan@gmail.com
+  avatar_url: https://via.placeholder.com/200x200
