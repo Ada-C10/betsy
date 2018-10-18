@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+cpone:
+  category: africa
+  product: kilimanjaro
+
+cptwo:
+  category: bags
+  product: fannypack
+
+cpthree:
+  category: africa
+  product: safari
