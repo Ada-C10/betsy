@@ -1,0 +1,36 @@
+<section>
+  <section>
+    <h1><%= action_name %></h1>
+  </section>
+  <section>
+    <%= form_with model: @product do |f|%>
+      <%= f.label :name %>
+      <br />
+      <%= f.text_field :name %>
+      <br /><br />
+      <%= f.label :cost %>
+      <br />
+      <%= f.text_field :cost %>
+      <br /><br />
+      <%= f.label :image_url %>
+      <br />
+      <%= f.text_field :image_url%>
+      <br /><br />
+      <%= f.label :inventory%>
+      <br />
+      <%= f.text_field :inventory%>
+      <br /><br />
+      <%= f.label :description %>
+      <br />
+      <%= f.text_field :description %>
+      <br /><br />
+      <%= f.label :active %>
+      <br />
+      <%= f.text_field :active %>
+      <br /><br />
+      <!-- <%= f.hidden_field :merchant_id, :value => @merchant_id %> -->
+      <br />
+      <%= f.submit %>
+    <% end %>
+  </section>
+</section>
