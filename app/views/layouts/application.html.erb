@@ -17,6 +17,8 @@
             <%= link_to "All Products", products_path %>
           </li>
           <li class="nav-item">
+            <%= link_to "Add a Product", new_product_path %>
+          <li class="nav-item">
             <%= link_to "All Merchants", merchants_path %>
           </li>
           <li class="nav-item">
@@ -25,6 +27,13 @@
           <li class="nav-item">
             <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, orders_path %>
           </li>
+          <li class="nav-item">
+          <% if session[:user_id] %>
+          <%= link_to "Log out", logout_path, method: "delete"   %>
+          <% else %>
+          <%= link_to "Login with Github", "/auth/github" %>
+          <% end %>
+        </li>
         </ul>
       </nav>
     </header>

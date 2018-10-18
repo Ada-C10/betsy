@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show]
+  skip_before_action :require_login, only: [:index,:show]
 
   def root
   end
