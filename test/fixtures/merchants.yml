@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  email: MyString
-  avatar_url: MyString
+fred:
+  name: Fred
+  email: fred@gmail.com
+  avatar_url: https://via.placeholder.com/200x200
 
-two:
-  name: MyString
-  email: MyString
-  avatar_url: MyString
+sally:
+  name: Sally
+  email: sara@gmail.com
+  avatar_url: https://via.placeholder.com/200x200
+
+dan:
+    name: Dan
+    email: dan@gmail.com
+    avatar_url: https://via.placeholder.com/200x200
