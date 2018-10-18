@@ -1,7 +1,7 @@
-require 'pry'
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show]
   skip_before_action :require_login, only: [:index,:show]
+  # update as we go with user permissions (this applies to every controller)
 
   def root
   end
@@ -21,7 +21,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    binding.pry
     if product_params[:merchant_id]
       @product = Product.new(product_params)
       if @product.save
