@@ -25,8 +25,8 @@ class ProductsController < ApplicationController
         flash[:result_text] = "Successfully created #{@product.name}"
         redirect_back(fallback_location: root_path)
       else
-        flash[:status] = :failure
-        flash[:result_text] = "Could not create #{@product.name}"
+        flash.now[:status] = :failure
+        flash.now[:result_text] = "Could not create #{@product.name}"
         flash.now[:messages] = @product.errors.messages
         render :new, status: :bad_request
       end

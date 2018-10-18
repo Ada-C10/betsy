@@ -1,14 +1,13 @@
 class MerchantsController < ApplicationController
   before_action :find_merchant, only: [:show]
   skip_before_action :require_login, only: [:index, :show]
+
   def index
     @merchants = Merchant.all.order(:name)
   end
 
   def show
     @products = @merchant.products
-    @merchant_id = params[:id].to_i
-    @merchant = Merchant.find_by(id: @merchant_id)
   end
 
   def new
@@ -28,7 +27,8 @@ class MerchantsController < ApplicationController
 
   private
   def find_merchant
-    @merchant = Merchant.find_by(id: params[:id])
+    @merchant_id = params[:id].to_i
+    @merchant = Merchant.find_by(id: @merchant_id)
 
     render_404 unless @merchant
   end
