@@ -16,6 +16,7 @@
   <%= f.label :quantity, 'Quantity' %>
   <%= f.text_field :quantity, placeholder: 1, value: 1, required: true, maxlength: 3 %>
   <!-- add more features! -->
+  <%= f.hidden_field :product_id, value: @product.id %>
 
   <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
 <% end %>
