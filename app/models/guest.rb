@@ -1,5 +1,5 @@
 class Guest < ApplicationRecord
-  has_many :orders
+  has_one :order
 
   validates :name, presence: true
   validates :email, presence: true
