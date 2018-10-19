@@ -7,7 +7,6 @@ describe Merchant do
   it "must be valid" do
     expect(merchant).must_be :valid?
   end
-end
 
 describe "validations" do
   it "requires a name" do
@@ -19,7 +18,7 @@ describe "validations" do
 
     expect(valid).must_equal false
     expect(merchant.errors.messages).must_include :name
-    expect(merchant.errors.messages[:name]).must_equal ["Cannot be blank"]
+    expect(merchant.errors.messages[:name]).must_equal ["can't be blank"]
   end
 
   it "requires a unique name" do
@@ -40,11 +39,11 @@ describe "validations" do
 
     expect(valid).must_equal false
     expect(merchant.errors.messages).must_include :email
-    expect(merchant.errors.messages[:email]).must_equal ["Cannot be blank"]
+    expect(merchant.errors.messages[:email]).must_equal ["can't be blank"]
   end
 
   it "requires a unique email" do
-    other_merchant = merchants(:fred)
+    other_merchant = merchants(:kiki)
     other_merchant.email = merchant.email
 
     valid = other_merchant.valid?
@@ -52,4 +51,6 @@ describe "validations" do
     expect(valid).must_equal false
     expect(other_merchant.errors.messages).must_include :email
   end
+end
+
 end

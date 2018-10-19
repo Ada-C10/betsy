@@ -6,7 +6,6 @@ describe Category do
   it "must be valid" do
     expect(category).must_be :valid?
   end
-end
 
 describe "validations" do
 
@@ -17,6 +16,9 @@ describe "validations" do
     valid = category.save
     expect(valid).must_equal false
     expect(category.errors.messages).must_include :name
-    expect(category.errors.messages[:name]).must_equal ["Cannot be blank"]
+    expect(category.errors.messages[:name]).must_equal ["can't be blank"]
   end
+end
+
+
 end

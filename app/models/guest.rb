@@ -6,12 +6,12 @@ class Guest < ApplicationRecord
   validates :address, presence: true
   validates :cc_num, presence: true, numericality: { only_integer: true }, length: { is: 16 }
   validates :cvv, presence: true, length: { in: 3..4 }
-  validate :expiration_date_cannot_be_in_the_past
+  # validate :expiration_date_cannot_be_in_the_past
   validates :zip, presence: true
 
-  def expiration_date_cannot_be_in_the_past
-   if exp_date.present? && exp_date < Date.today
-     errors.add(:exp_date, 'can’t be in the past')
-   end
-  end
+  # def expiration_date_cannot_be_in_the_past
+  #  if exp_date.present? && exp_date < Date.today
+  #    errors.add(:exp_date, 'can’t be in the past')
+  #  end
+  # end
 end

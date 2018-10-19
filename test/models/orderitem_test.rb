@@ -1,12 +1,11 @@
 require "test_helper"
-#Sammi Joo
+
 describe Orderitem do
   let(:orderitem) { orderitems(:itemsone) }
 
   it "must be valid" do
     expect(orderitem).must_be :valid?
   end
-end
 
 describe "validations" do
   it "requires a quantity" do
@@ -28,4 +27,6 @@ describe "validations" do
     valid.must_equal true
     valid.must_be_instance_of Integer
   end
+end
+
 end

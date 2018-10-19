@@ -17,7 +17,7 @@ describe "validations" do
 
     expect(valid).must_equal false
     expect(review.errors.messages).must_include :rating
-    expect(review.errors.messages[:rating]).must_equal ["Cannot be blank"]
+    expect(review.errors.messages[:rating]).must_equal ["can't be blank"]
   end
 
   it "requires a description" do
@@ -28,5 +28,4 @@ describe "validations" do
 
     expect(valid).must_equal false
     expect(review.errors.messages).must_include :description
-    expect(review.errors.messages[:description]).must_equal ["Cannot be blank"]
-  end
+    expect(review.errors.messages[:description]).must_equal ["can't be blank"]

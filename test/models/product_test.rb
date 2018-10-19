@@ -82,9 +82,23 @@ describe "validations" do
   end
 
   it "requires a description" do
+    product = products(::kilimanjaro)
+    new_review.rating = nil
+
+    valid = new_review.save
+
+    expect(valid).must_equal false
+    expect(review.errors.messages).must_include :description
+    expect(review.errors.messages[:description]).must_equal ["Cannot be blank"]
   end
 
   it "active status can only be true or false" do
+      valid_statuses = ['true', 'false']
+      valid_statuses.each do |status|
+        product = Product.new(name: 'fanny pack', status: status)
+        order.valid?.must_equal true
+      end
+
   end
 
   it "requires a image" do
