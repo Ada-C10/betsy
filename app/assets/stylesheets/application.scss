@@ -16,3 +16,11 @@
 @import "bootstrap";
 /* Import scss content */
 @import "**/*";
+
+
+.site-nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  list-style-type: none;
+}

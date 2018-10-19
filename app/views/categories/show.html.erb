@@ -1,1 +1,18 @@
-<h1>This is the Category Show Page</h1>
+<h1><%= "#{@category.name}" %></h1>
+
+<% @category.products.each do |p|  %>
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src=" <%= p.img_file %> " alt="Image description">
+
+  <div class="card-body">
+    <h5 class="card-title"><%= p.name %></h5>
+    <p class="card-text"><%= p.description %></p>
+    <p class="card-text"><%= number_to_currency(p.price/100) %></p>
+    <a href=" <%= merchant_path(p.merchant.id) %>"><%= "#{p.merchant.name}" %></a>
+    <br>
+    <a href=" <%= product_path(p.id) %>  " class="btn btn-primary">Details</a>
+  </div>
+</div>
+
+  <% end %>
