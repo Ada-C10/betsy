@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Betsy</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Betsy</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
-</html>
+<ul class="nav app-header__merchant-nav-container">
+  <% if session[:user_id] %>
+  <li class="nav-item app-header__nav_item">
+    <%= link_to "Log out", logout_path, method: "delete", class: "btn btn-primary"  %>
+    <% else %>
+    <li class="nav-item app-header__nav_item">
+      <%= link_to "Login with Github", "/auth/github",class: "btn btn-primary" %>
+      <% end %>
+    </ul>
+
+    <body>
+      <%= yield %>
+    </body>
+
+
+
+
+    </html>
