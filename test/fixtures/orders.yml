@@ -2,40 +2,16 @@
 
 ordlegend:
   status: pending
-  name: john legend
-  address: 133rd 15th St Seattle, WA
-  cc_num: 1234567890123456
-  exp_date: <%= Date.parse(2018-10-17) %>
-  email: legend@gmail.com
-  zip: 98122
-  cvv: 232
+  guest_id: legend.id
 # fannypack, fred
 
 ordciara:
   status: paid
-  name: ciara
-  address: 213th 15th St Seattle, WA
-  cc_num: 1238475869584736
-  exp_date: <%= Date.parse(2018-10-17) %>
-  email: ciara@gmail.com
-  zip: 98144
-  cvv: 232
+  guest_id: ciara.id
 # kilimanjaro, kiki
 # safari, sally
 
 ordrussell:
   status: complete
-  name: russell
-  address: 213th 15th St Seattle, WA
-  cc_num: 1938472634857493
-  exp_date: <%= Date.parse(2018-10-17) %>
-  email: russell@gmail.com
-  zip: 98144
-<<<<<<< HEAD
-  cvv: 232
-
-  
-=======
-  cvv: 2322
+  guest_id: russell.id
 # fannypack, fred
->>>>>>> d27039f21552e13216d613489db64242d0cf1cae
