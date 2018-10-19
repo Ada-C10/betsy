@@ -10,50 +10,16 @@
   </head>
 
   <body>
-    <header>
-      <nav class="navbar navbar-expand-sm bg-light">
-        <div class="container-fluid">
-          <ul class="navbar-nav nav-tabs">
-            <li class="nav-item">
-              <%= link_to "All Products", products_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "All Merchants", merchants_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "All Categories", categories_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, orders_path %>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <% if session[:user_id] %>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  My Account
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <%= link_to "Manage Products", merchant_path(session[:user_id]), class: "dropdown-item" %>
-                  <a class="dropdown-item" href="#">Order Fulfillment</a>
-                  <div class="dropdown-divider"></div>
-                  <%= link_to "Log out", logout_path, method: "delete", class: "dropdown-item" %>
-                </div>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to "Login with Github", "/auth/github" %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </nav>
-    </header>
+    <% if current_page?(root_path) %>
+      <%= render 'layouts/home_header' %>
+    <% else %>
+        <%= render 'layouts/header' %>
+    <% end %>
 
-    <% if flash[:result_text] or flash[:messages] %>
+    <!-- <% if flash[:result_text] or flash[:messages] %>
       <section class="alert__container">
         <div class="alert alert-<%= flash[:status].to_s == 'failure' ? 'warning' : flash[:status] %>">
-          <span><%= flash[:status].to_s == "failure" ? "A problem occurred: " : "" %><%= flash[:result_text] %></span>
+        <span><%= flash[:status].to_s == "failure" ? "A problem occurred: " : "" %><%= flash[:result_text] %></span>
           <% if flash[:messages] %>
             <ul>
               <% flash[:messages].each do |name, problems| %>
@@ -65,10 +31,8 @@
           <% end %>
         </div>
       </section>
-    <% end %>
+    <% end %> -->
 
-    <main>
-      <%= yield %>
-    </main>
+    <%= yield %>
   </body>
 </html>

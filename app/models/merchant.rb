@@ -15,4 +15,4 @@ class Merchant < ApplicationRecord
 
    return merchant
   end
- end
+end

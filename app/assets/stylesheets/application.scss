@@ -18,6 +18,66 @@
 @import "**/*";
 @import "font-awesome";
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+.home-page,
+.view {
+  height: 100%;
+}
+
+.all-pages {
+  height: 20%;
+}
+
+.view {
+  background-image: image_url('ggbridge.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.pt-md-5, .py-md-5 {
+  padding-top: 18rem !important;
+}
+
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 100vw;
+  }
+
+  .pt-md-5, .py-md-5 {
+    padding-top: 15rem !important;
+  }
+}
+
+h1 {
+  letter-spacing: 8px;
+}
+
+h5 {
+  letter-spacing: 3px;
+}
+
+.hr-light {
+  border-top: 3px solid #fff;
+  width: 80px;
+}
+
+.home-page .navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+.all-pages .navbar-brand {
+    color: #4A4A4B;
+}
+
 .nav-item {
   padding: 1rem 1rem;
 }
@@ -25,3 +85,15 @@
 .navbar-right {
   padding-right: 1rem;
 }
+
+.home-content {
+  padding: 2rem;
+}
+
+.home-body {
+  padding-top: 50rem;
+}
+
+.spacer {
+   padding-bottom: 1rem;
+ }
