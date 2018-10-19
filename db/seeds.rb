@@ -32,7 +32,7 @@ puts "Added #{Merchant.count} merchant records"
 puts "#{merchant_failures.length} merchants failed to save"
 
 
-CATEGORY_FILE = Rails.root.join('db', 'seed_data', 'category.csv')
+CATEGORY_FILE = Rails.root.join('db', 'seed_data', 'categories.csv')
 puts "Loading raw category data from #{CATEGORY_FILE}"
 
 category_failures = []
