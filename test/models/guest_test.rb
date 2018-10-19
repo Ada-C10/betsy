@@ -48,13 +48,13 @@ it "requires a credit card number" do
 end
 
 it "requires ccv to contain 3 to 4 integers" do
-  guest = guests(:ordlegend)
-  guest.cvv = 232
+  guest_two = guest
+  guest_two.cvv = 232
 
-  valid = guest.save
+  valid = guest_two.save
 
   expect(valid).must_equal true
-  expect(valid.length).must_equal (2..3)
+  expect(valid.length).must_equal 2..3
 end
 #
 # it "requires an expiration date"
