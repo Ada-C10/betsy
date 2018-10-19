@@ -32,6 +32,27 @@ puts "Added #{Merchant.count} merchant records"
 puts "#{merchant_failures.length} merchants failed to save"
 
 
+CATEGORY_FILE = Rails.root.join('db', 'seed_data', 'category.csv')
+puts "Loading raw category data from #{CATEGORY_FILE}"
+
+category_failures = []
+CSV.foreach(CATEGORY_FILE, :headers => true) do |row|
+  category = Category.new
+  category.id = row['id']
+  category.name = row['name']
+  successful = category.save
+  if !successful
+    category_failures << category
+    puts "Failed to save category: #{category.inspect}"
+  else
+    puts "Created category: #{category.inspect}"
+  end
+end
+
+puts "Added #{Category.count} category records"
+puts "#{category_failures.length} categories failed to save"
+
+
 
 PRODUCT_FILE = Rails.root.join('db', 'seed_data', 'products.csv')
 puts "Loading raw product data from #{PRODUCT_FILE}"
@@ -58,50 +79,124 @@ puts "Added #{Product.count} product records"
 puts "#{product_failures.length} products failed to save"
 
 
+category1 = Category.find(1)
+products1 = Product.where(merchant_id: 1)
 
-CATEGORY_FILE = Rails.root.join('db', 'seed_data', 'category.csv')
-puts "Loading raw category data from #{CATEGORY_FILE}"
+products1.each do |product|
+    category1.products << product
+end
+successful = category1.save
 
-category_failures = []
-CSV.foreach(CATEGORY_FILE, :headers => true) do |row|
-  category = Category.new
-  category.id = row['id']
-  category.name = row['name']
-  successful = category.save
-  if !successful
-    category_failures << category
-    puts "Failed to save category: #{category.inspect}"
-  else
-    puts "Created category: #{category.inspect}"
-  end
+if !successful
+  puts "category1.products failed to save product."
+else
+  puts "category1.products successfully saved."
 end
 
-puts "Added #{Category.count} category records"
-puts "#{category_failures.length} categories failed to save"
 
-#Need this?
-# Can CategoryProduct.new??
 
-# CATEGORIES_PRODUCTS_FILE = Rails.root.join('db', 'seed_data', 'categories_products.csv')
-# puts "Loading raw category_product data from #{CATEGORIES_PRODUCTS_FILE}"
-#
-# categories_products_failures = []
-# CSV.foreach(CATEGORIES_PRODUCTS_FILE, :headers => true) do |row|
-#   categories_products = CategoryProduct.new
-#   categories_products.id = row['id']
-#   categories_products.category_id = row['category_id']
-#   categories_products.product_id = row['product_id']
-#   successful = categories_products.save
-#   if !successful
-#     categories_products_failures << categories_products
-#     puts "Failed to save categories_products: #{categories_products.inspect}"
-#   else
-#     puts "Created categories_products: #{categories_products.inspect}"
-#   end
-# end
-#
-# puts "Added #{CategoryProduct.count} categories_products records"
-# puts "#{categories_products_failures.length} categories_products failed to save"
+category2 = Category.find(2)
+products2 = Product.where(merchant_id: 2)
+
+products2.each do |product|
+    category2.products << product
+end
+successful = category2.save
+
+if !successful
+  puts "category2.products failed to save product."
+else
+  puts "category2.products successfully saved."
+end
+
+
+category3 = Category.find(3)
+products3 = Product.where(merchant_id: 3)
+
+products3.each do |product|
+    category3.products << product
+end
+successful = category3.save
+
+if !successful
+  puts "category3.products failed to save product."
+else
+  puts "category3.products successfully saved."
+end
+
+category4 = Category.find(4)
+products4 = Product.where(merchant_id: 4)
+
+products4.each do |product|
+    category4.products << product
+end
+successful = category4.save
+
+if !successful
+  puts "category4.products failed to save product."
+else
+  puts "category4.products successfully saved."
+end
+
+
+category5 = Category.find(5)
+products5 = Product.where(merchant_id: 5)
+
+products5.each do |product|
+    category5.products << product
+end
+successful = category5.save
+
+if !successful
+  puts "category5.products failed to save product."
+else
+  puts "category5.products successfully saved."
+end
+
+
+category6 = Category.find(6)
+products6 = Product.where(merchant_id: 6)
+
+products6.each do |product|
+    category6.products << product
+end
+successful = category6.save
+
+if !successful
+  puts "category6.products failed to save product."
+else
+  puts "category6.products successfully saved."
+end
+
+
+category7 = Category.find(7)
+products7 = Product.where(merchant_id: 7)
+
+products7.each do |product|
+    category7.products << product
+end
+successful = category7.save
+
+if !successful
+  puts "category7.products failed to save product."
+else
+  puts "category7.products successfully saved."
+end
+
+
+category8 = Category.find(8)
+products8 = Product.where(merchant_id: 8)
+
+products8.each do |product|
+    category8.products << product
+end
+successful = category8.save
+
+if !successful
+  puts "category8.products failed to save product."
+else
+  puts "category8.products successfully saved."
+end
 
 
 # Since we set the primary key (the ID) manually on each of the
