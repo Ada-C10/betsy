@@ -1,8 +1,11 @@
 class CategoriesController < ApplicationController
-  before_action :find_category
+  before_action :find_category, only:[:show]
 
-  def show
+  def new
+    @category = Category.new 
   end
+
+  def show; end
 
   def category_params
     return params.require(:category).permit(:name)
