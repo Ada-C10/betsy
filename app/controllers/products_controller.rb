@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      flash[:success] = "Congratulations - you successfully entered a piece of Media!"
+      flash[:success] = "Congratulations - you successfully entered a new product!"
       redirect_to products_path
     else
       flash.now[:error] = "The data you entered was not valid.  Please try again."
@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find_by(id: params[:id])
-    if @product.update(prodcut_params)
+    if @product.update(product_params)
       flash[:success] = "Successfully updated \"#{@product.name}\""
       redirect_to product_path(@proudct.id)
     else
@@ -49,10 +49,10 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find_by(id: params[:id])
     if @product.destroy
-      flash[:success] = "Successfully destroyed \"#{@product.name}\""
+      flash[:success] = "Successfully deleted \"#{@product.name}\" from the database."
       redirect_to products_path
     else
-      redirect_back(fallback_location: home_path)
+      redirect_back(fallback_location: products_path)
     end
   end
 
