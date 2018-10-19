@@ -1,54 +1,73 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <title>Fibonoshi</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Fibonoshi</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
+<body>
 
-    <header class="app-header">
-      <nav class="site-nav">
-        <ul>
+  <header class="app-header">
+    <nav class="site-nav">
+      <ul>
 
         <li>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Products
-          </button>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Products
+            </button>
 
-          <% @categories.each do |c| %>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href=" <%= category_path(c.id) %>"  ><%= "#{c.name.capitalize}" %></a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <% @categories.each do |c| %>
+              <a class="dropdown-item" href=" <%= category_path(c.id) %>"  ><%= "#{c.name.capitalize}" %></a>
+              <% end %>
+            </div>
           </div>
-          <% end %>
-        </div>
         </li>
 
-          <li> <%= link_to "Home" , root_path, class: "btn btn-secondary" %> </li>
-          <li> <%= link_to "Products", products_path, class: "btn btn-secondary" %> </li>
-          <li> <%= link_to "Merchants", merchants_path, class: "btn btn-secondary" %> </li>
-          <li> <%= link_to "Login", "/auth/github" , class: "btn btn-primary" %> </li>
-          <li>
-            <%= link_to "Log out", logout_path, method: "delete", class: "btn btn-primary"  %>
-          </li>
+        <li> <%= link_to "Home" , root_path, class: "btn btn-secondary" %> </li>
+        <li> <%= link_to "Products", products_path, class: "btn btn-secondary" %> </li>
+        <li> <%= link_to "Merchants", merchants_path, class: "btn btn-secondary" %> </li>
+        <li> <%= link_to "Login", "/auth/github" , class: "btn btn-primary" %> </li>
+        <li>
+          <%= link_to "Log out", logout_path, method: "delete", class: "btn btn-primary"  %>
+        </li>
 
+      </ul>
+    </nav>
+  </header>
+
+
+
+  <% if flash[:result_text] or flash[:messages] %>
+    <section class="alert__container">
+      <div class="alert alert-<%= flash[:status].to_s == 'failure' ? 'warning' : flash[:status] %>">
+        <span><%= flash[:status].to_s == "failure" ? "A problem occurred: " : "" %><%= flash[:result_text] %></span>
+        <% if flash[:messages] %>
+        <ul>
+          <% flash[:messages].each do |name, problems| %>
+          <% problems.each do |problem| %>
+          <li><%= name %>: <%= problem %></li>
+          <% end %>
+          <% end %>
         </ul>
-      </nav>
-    </header>
+        <% end %>
+      </div>
+    </section>
+    <% end %>
 
 
-    <main>
-      <%= yield %>
-    </main>
+  <main>
+    <%= yield %>
+  </main>
 
 
-    <footer></footer>
+  <footer></footer>
 
-  </body>
+</body>
 </html>
