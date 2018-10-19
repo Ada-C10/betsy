@@ -8,7 +8,9 @@ class ProductsController < ApplicationController
     @products = Product.all.order(:name)
   end
 
-  def show; end
+  def show
+    @orderitem = Orderitem.new
+  end
 
   def new
     @product = Product.new
