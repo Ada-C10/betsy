@@ -30,7 +30,9 @@ class MerchantsController < ApplicationController
     @merchant_id = params[:id].to_i
     @merchant = Merchant.find_by(id: @merchant_id)
 
-    render_404 unless @merchant
+    unless @merchant
+      render "layouts/notfound", status: :not_found
+    end
   end
 
   def merchant_params

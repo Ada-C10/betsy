@@ -6,6 +6,6 @@ class Guest < ApplicationRecord
   validates :address, presence: true
   validates :cc_num, presence: true
   validates :cvv, presence: true, length: { in: 3..4 }
-  validate :exp_date, presence: true
+  validates :exp_date, presence: true
   validates :zip, presence: true
 end
