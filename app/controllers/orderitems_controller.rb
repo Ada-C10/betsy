@@ -1,4 +1,6 @@
 class OrderitemsController < ApplicationController
+  skip_before_action :require_login, only: [:create]
+
   def index
   end
 
@@ -23,7 +25,7 @@ class OrderitemsController < ApplicationController
     if @orderitem.save
       redirect_to order_path(@order.id)
     else
-      render :notfound, status: :bad_request #Reconsider This
+      render "layouts/servererror", status: :internal_server_error
     end
   end
 

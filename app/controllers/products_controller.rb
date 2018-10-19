@@ -72,7 +72,7 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
 
     if @product.nil?
-      render :notfound, status: :not_found
+      render "layouts/notfound", status: :not_found
     end
   end
 
