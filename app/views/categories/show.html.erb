@@ -7,8 +7,8 @@
 
   <div class="card-body">
     <h5 class="card-title"><%= p.name %></h5>
-    <p class="card-text"><%= p.description %></p>
-    <p class="card-text"><%= number_to_currency(p.price/100) %></p>
+    <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(p.price/100) %></h6>
+    <p class="card-text"><%= p.description %></p>  
     <a href=" <%= merchant_path(p.merchant.id) %>"><%= "#{p.merchant.name}" %></a>
     <br>
     <a href=" <%= product_path(p.id) %>  " class="btn btn-primary">Details</a>
