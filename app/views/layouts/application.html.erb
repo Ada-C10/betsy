@@ -22,11 +22,11 @@
             Products
           </button>
 
-          <% @categories.each do |c| %>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% @categories.each do |c| %>
             <a class="dropdown-item" href=" <%= category_path(c.id) %>"  ><%= "#{c.name.capitalize}" %></a>
-          </div>
           <% end %>
+          </div>
         </div>
         </li>
 
