@@ -1,0 +1,14 @@
+<h1>All products sold by that merchant (Merchant Show page)</h1>
+
+
+<%= @merchant.name %>
+<%= @merchant.created_at %>
+<%= link_to "Add Product", new_product_path %>
+
+
+<%= @merchant.products.each do |product| %>
+<%= product.img_file %>
+<%= product.name %>
+<%= product.description %>
+<%= link_to product, product_path(product.id) %>
+<% end  %>
