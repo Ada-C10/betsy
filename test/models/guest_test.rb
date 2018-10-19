@@ -44,57 +44,18 @@ it "requires a credit card number" do
 
   expect(valid).must_equal false
   expect(guest.errors.messages).must_include :cc_num
-  expect(guest.errors.messages[:cc_num]).must_equal ["Must have a credit card number"]
+  expect(guest.errors.messages[:cc_num]).must_equal ["can't be blank"]
 end
-#
-# it "only accepts integers for a credit card"
-#   order = guests(:ordlegend)
-#   order.cc_num = 1238475869584736
-#
-#   expect(order).must_be_instance_of Integer
-# end
-#
-# it "requires a credit card to contain 16 integers"
-#   order = guests(:ordciara)
-#   order.cc_num = 1238225869584736
-#
-#   valid = order.save
-#
-#   expect(valid).must_equal true
-#   expect(valid.length).must_equal 16
-# end
-#
-# it "rejects credit card that does not contain 16 integers"
-#   order = guests(:ordciara)
-#   order.cc_num = 12382
-#
-#   valid = order.save
-#
-#   expect(valid.length).must_equal false
-#   expect(order.errors.messages).must_include :cc_num
-#   expect(order.errors.messages[:cc_num]).must_equal ["Credit card must have 16 numbers"]
-# end
-#
-# it "requires cvv number"
-#   order = guests(:ordciara)
-#   order.cvv = nil
-#
-#   valid = order.save
-#
-#   expect(valid).must_equal false
-#   expect(order.errors.messages).must_include :cvv
-#   expect(order.errors.messages[:cvv]).must_equal ["Cannot be blank"]
-# end
-#
-# it "requires ccv to contain 3 to 4 integers"
-#   guest = guests(:ordlegend)
-#   guest.cvv = 232
-#
-#   valid = guest.save
-#
-#   expect(valid).must_equal true
-#   expect(valid.length).must_equal (2..3)
-# end
+
+it "requires ccv to contain 3 to 4 integers" do
+  guest = guests(:ordlegend)
+  guest.cvv = 232
+
+  valid = guest.save
+
+  expect(valid).must_equal true
+  expect(valid.length).must_equal (2..3)
+end
 #
 # it "requires an expiration date"
 #   # date.parse
