@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_19_205152) do
+ActiveRecord::Schema.define(version: 2018_10_19_233045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,18 +26,6 @@ ActiveRecord::Schema.define(version: 2018_10_19_205152) do
     t.bigint "product_id"
     t.index ["category_id"], name: "index_categories_products_on_category_id"
     t.index ["product_id"], name: "index_categories_products_on_product_id"
-  end
-
-  create_table "guests", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "address"
-    t.string "zip"
-    t.string "cvv"
-    t.string "email"
-    t.string "cc_num"
-    t.string "exp_date"
   end
 
   create_table "merchants", force: :cascade do |t|
@@ -64,8 +52,12 @@ ActiveRecord::Schema.define(version: 2018_10_19_205152) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status", default: "pending"
-    t.bigint "guest_id"
-    t.index ["guest_id"], name: "index_orders_on_guest_id"
+    t.string "name"
+    t.string "address"
+    t.string "cc_num"
+    t.string "exp_date"
+    t.string "zip"
+    t.string "cvv"
   end
 
   create_table "products", force: :cascade do |t|
@@ -92,7 +84,6 @@ ActiveRecord::Schema.define(version: 2018_10_19_205152) do
 
   add_foreign_key "orderitems", "orders"
   add_foreign_key "orderitems", "products"
-  add_foreign_key "orders", "guests"
   add_foreign_key "products", "merchants"
   add_foreign_key "reviews", "products"
 end
