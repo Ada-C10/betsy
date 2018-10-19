@@ -9,45 +9,71 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="background">
     <header>
-      <nav class="navbar navbar-expand-sm bg-light">
-        <div class="container-fluid">
-          <ul class="navbar-nav nav-tabs">
-            <li class="nav-item">
-              <%= link_to "All Products", products_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "All Merchants", merchants_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "All Categories", categories_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, orders_path %>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <% if session[:user_id] %>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  My Account
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <%= link_to "Manage Products", merchant_path(session[:user_id]), class: "dropdown-item" %>
-                  <a class="dropdown-item" href="#">Order Fulfillment</a>
-                  <div class="dropdown-divider"></div>
-                  <%= link_to "Log out", logout_path, method: "delete", class: "dropdown-item" %>
-                </div>
-              </li>
-            <% else %>
+      <nav class="navbar navbar-dark navbar-expand-md fixed-top scrolling-navbar">
+        <div class="container">
+          <%= link_to '<i class="fa fa-home fa-2x"></i>'.html_safe, root_path, class: "navbar-brand" %>
+          <form class="form-inline">
+            <div class="md-form my-0">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </div>
+          </form>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <%= link_to "Login with Github", "/auth/github" %>
+                <%= link_to "Products", products_path, class: "nav-link" %>
               </li>
-            <% end %>
-          </ul>
+              <li class="nav-item">
+                <%= link_to "Merchants", merchants_path, class: "nav-link" %>
+              </li>
+              <!-- <li class="nav-item">
+                <%= link_to "Categories", categories_path, class: "nav-link" %>
+              </li> -->
+              <% if session[:user_id] %>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    My Account
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <%= link_to "Manage Products", merchant_path(session[:user_id]), class: "dropdown-item" %>
+                    <a class="dropdown-item" href="#">Order Fulfillment</a>
+                    <div class="dropdown-divider"></div>
+                    <%= link_to "Log out", logout_path, method: "delete", class: "dropdown-item" %>
+                  </div>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to "Login", "/auth/github", class: "nav-link"%>
+                </li>
+              <% end %>
+              <li class="nav-item">
+                <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, orders_path, class: "nav-link" %>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
+
+      <div class="view">
+        <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 mb-4 white-text text-center">
+                <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5">No Regretsy</h1>
+                <hr class="hr-light my-4">
+                <h5 class="text-uppercase mb-4 white-text"><strong>choose your adventure</strong></h5>
+                <a class="btn btn-outline-white">Products</a>
+                <a class="btn btn-outline-white">Categories</a>
+                <a class="btn btn-outline-white">Merchants</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
 
     <% if flash[:result_text] or flash[:messages] %>
@@ -66,9 +92,22 @@
         </div>
       </section>
     <% end %>
-
     <main>
-      <%= yield %>
+      <div class="container">
+        <!--Grid row-->
+        <div class="row py-5">
+          <!--Grid column-->
+          <div class="col-md-12 text-center">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+          </div>
+        </div>
+      </div>
     </main>
+
+
+    <%= yield %>
   </body>
 </html>
