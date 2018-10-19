@@ -31,11 +31,5 @@ ordrussell:
   exp_date: <%= Date.parse(2018-10-17) %>
   email: russell@gmail.com
   zip: 98144
-<<<<<<< HEAD
-  cvv: 232
-
-  
-=======
   cvv: 2322
 # fannypack, fred
->>>>>>> d27039f21552e13216d613489db64242d0cf1cae

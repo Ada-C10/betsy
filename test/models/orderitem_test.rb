@@ -1,26 +1,31 @@
 require "test_helper"
 #Sammi Joo
 describe Orderitem do
-  let(:orderitem) { Orderitem.new }
+  let(:orderitem) { orderitems(:itemsone) }
 
   it "must be valid" do
-    value(orderitem).must_be :valid?
+    expect(orderitem).must_be :valid?
   end
 end
 
 describe "validations" do
   it "requires a quantity" do
-    merchant = Merchant.new
-    merchant.valid?.must_equal false
-    merchant.errors.messages.must_include :name
+    order = orderitems(:itemsone)
+    order.quantity = nil
+
+    valid = order.save
+
+    expect(valid).must_equal false
+    expect(order.errors.messages).must_include :quantity
+    expect(order.errors.messages[:quantity]).must_equal ["Cannot be blank"]
   end
 
-  it "only allows quantity integers"
+  it "requires quanity to be integers"
+    order_thing = Orderitem.new(quantity: 1)
+
+    valid = order_thing.save
+
+    valid.must_equal true
+    valid.must_be_instance_of Integer
   end
 end
-
-
-
-
-
-  # validates :quantity, presence: true, numericality: { only_integer: true }

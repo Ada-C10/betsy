@@ -1,59 +1,55 @@
 require "test_helper"
 
 describe Merchant do
-  let(:merchant) { Merchant.new }
+  # pull from fixtures
+  let(:merchant) { merchants(:fred) }
 
   it "must be valid" do
-    value(merchant).must_be :valid?
+    expect(merchant).must_be :valid?
   end
 end
 
 describe "validations" do
   it "requires a name" do
-    merchant = Merchant.new
-    merchant.valid?.must_equal false
-    merchant.errors.messages.must_include :name
+    #use let for merchant, make name invalid
+    merchant = merchants(:fred)
+    merchant.name = nil
+
+    valid = merchant.save
+
+    expect(valid).must_equal false
+    expect(merchant.errors.messages).must_include :name
+    expect(merchant.errors.messages[:name]).must_equal ["Cannot be blank"]
   end
 
   it "requires a unique name" do
-      name = "test name"
-      merchant1 = Merchant.new(name: name)
+    other_merchant = merchants(:kiki)
+    other_merchant.name = merchant.name
 
-      # This must go through, so we use create!
-      merchant1.save!
+    valid = other_merchant.valid?
 
-      merchant2 = Merchant.new(name: name)
-      result = merchant2.save
-      result.must_equal false
-      merchant2.errors.messages.must_include :name
-    end
+    expect(valid).must_equal false
+    expect(other_merchant.errors.messages).must_include :name
+  end
 
-  it "requires a email" do
-    kiki = merchant(:kiki)
-    kiki.email.valid?.must_equal true
+  it "requires an email" do
+    merchant = merchants(:kiki)
+    merchant.email = nil
 
+    valid = merchant.save
+
+    expect(valid).must_equal false
+    expect(merchant.errors.messages).must_include :email
+    expect(merchant.errors.messages[:email]).must_equal ["Cannot be blank"]
   end
 
   it "requires a unique email" do
-    email = "test email"
-    user1 = Merchant.new(email: sally@yahoo.com)
+    other_merchant = merchants(:fred)
+    other_merchant.email = merchant.email
 
+    valid = other_merchant.valid?
 
-    # This must go through, so we use create!
-    user1.save!
-
-    user2 = Merchant.new(email: sally@yahoo.com)
-    result = merchant2.save
-    result.must_equal false
-    merchant2.errors.messages.must_include :email
+    expect(valid).must_equal false
+    expect(other_merchant.errors.messages).must_include :email
   end
 end
-
-
-# fred:
-#   name: Fred
-#   email: fred@gmail.com
-#   avatar_url: https://via.placeholder.com/200x200
-
-# validates :name, presence: true, uniqueness: true
-# validates :email, presence: true, uniqueness: true
