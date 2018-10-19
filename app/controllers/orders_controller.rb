@@ -1,12 +1,14 @@
 class OrdersController < ApplicationController
 
-  before_action :in_session?
+  before_action :has_cart?
 
   def index
   end
 
   def show
-  end
+    @order = Order.find_by(id: params[:id])
+    render_404 unless @order
+  end 
 
   def create
     @order = Order.new
@@ -15,7 +17,7 @@ class OrdersController < ApplicationController
 
     if @order.save
 
-      session[:user_id] = @order.id
+      session[:order_id] = @order.id
       order_item = Order_Item.new(order_item_params)
       order_item.order_id = @order.id
 
@@ -39,16 +41,31 @@ class OrdersController < ApplicationController
       flash[:messages] = @order.errors.messages
       redirect_back fallback_location: root_path
     end
-
   end
 
   def edit
+    @order = Order.find_by(id: params[:id])
   end
 
   def update
+    @order.update_attributes(order_params)
+    if @order.save
+      # flash[:status] = :success
+      # flash[:result_text] = "Order Complete"
+
+      # redirect_to confirmation_path(@order) <-- make this
+      session[:order_id] = nil
+      redirect_to root_path
+    else
+      flash.now[:status] = :failure
+      flash.now[:result_text] = "Could not complete order"
+      flash.now[:messages] = @order.errors.messages
+      render :edit, status: :bad_request
+    end
   end
 
   def confirmation
+    @order = Order.find_by(id: params[:id])
   end
 
   private
@@ -72,8 +89,8 @@ class OrdersController < ApplicationController
   end
 
 
-  def in_session?
-    return @in_session = session[:user_id]
+  def has_cart?
+    return @cart = session[:order_id]
   end
 
 end
