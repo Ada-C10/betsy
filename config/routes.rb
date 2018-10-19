@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'products#root'
+  root 'pages#home'
 
   resources :merchants do
     resources :products
