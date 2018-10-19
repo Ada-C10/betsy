@@ -8,9 +8,23 @@ class OrderitemsController < ApplicationController
   def new
   end
 
-  def create
+  def create # maybe rename this route
+    # Think about if things fail to save to DB
     @orderitem = Orderitem.new(orderitem_params)
-    @orderitem.product_id =
+
+    if session[:user_id] == nil
+      @guest = Guest.create(validate: false)
+      Order.create(guest_id: @guest.id)
+      session[:user_id] = @guest.id
+    end
+
+    @order = Order.find_by(guest_id: @guest.id)
+    @orderitem.order_id = @order.id
+    if @orderitem.save
+      redirect_to order_path(@order.id)
+    else
+      render :notfound, status: :bad_request #Reconsider This
+    end
   end
 
   def edit
