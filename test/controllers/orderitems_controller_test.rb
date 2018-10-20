@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe OrderitemsController do
-  let(:product) { products(:kilimanjaro) }
+  let(:product) { products(:fannypack) }
   let(:orderitem_hash) do
     {
       orderitem: {
@@ -39,15 +39,12 @@ describe OrderitemsController do
     # end
 
     it "will add orderitem to existing order when order exists" do
-      orderitem_hash[:order_item][:order_id] = order.id
+      order
+      orderitem_hash[:orderitem][:order_id] = order.id
 
-      start_count = order.orderitems.count
       expect {
         post orderitems_path, params: orderitem_hash
-      }.must_change "Orderitem.count", 1
-
-    end_count = order.orderitems.count
-    expect(end_count - start_count).must_equal 1
+      }.wont_change "Order.count"
 
     end
 
