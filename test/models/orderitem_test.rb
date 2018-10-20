@@ -6,27 +6,27 @@ describe Orderitem do
   it "must be valid" do
     expect(orderitem).must_be :valid?
   end
+  
+  describe "validations" do
+    it "requires a quantity" do
+      order = orderitems(:itemsone)
+      order.quantity = nil
 
-describe "validations" do
-  it "requires a quantity" do
-    order = orderitems(:itemsone)
-    order.quantity = nil
+      valid = order.save
 
-    valid = order.save
+      expect(valid).must_equal false
+      expect(order.errors.messages).must_include :quantity
+      expect(order.errors.messages[:quantity]).must_equal ["Cannot be blank"]
+    end
 
-    expect(valid).must_equal false
-    expect(order.errors.messages).must_include :quantity
-    expect(order.errors.messages[:quantity]).must_equal ["Cannot be blank"]
+    it "requires quanity to be integers"
+      order_thing = Orderitem.new(quantity: 1)
+
+      valid = order_thing.save
+
+      valid.must_equal true
+      valid.must_be_instance_of Integer
+    end
   end
-
-  it "requires quanity to be integers"
-    order_thing = Orderitem.new(quantity: 1)
-
-    valid = order_thing.save
-
-    valid.must_equal true
-    valid.must_be_instance_of Integer
-  end
-end
 
 end

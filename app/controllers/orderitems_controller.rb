@@ -6,8 +6,8 @@ class OrderitemsController < ApplicationController
     @orderitem = Orderitem.new(orderitem_params)
 
     if session[:order_id] == nil
-      @order = Order.new
-      @order.save(validate: false)
+      @order = Order.create
+      # @order.save(validate: false)
   # SJ: I might research a way to put the logic to skip certain validations
   # into the model, rather than here.
 
@@ -23,6 +23,9 @@ class OrderitemsController < ApplicationController
       # If orderitem product id is not unique within scope order,
       # redirect to patch order
     else
+      flash[:status] = :failure
+      flash[:result_text] = "Could not save"
+      flash[:messages] = @orderitem.errors.messages
       render "layouts/servererror", status: :internal_server_error
     end
 
