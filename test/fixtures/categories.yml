@@ -2,16 +2,16 @@
 
 atlantis:
   name: Atlantean
-  products: thyme, donut, sherbert, pickle
+  # products: thyme, donut, sherbert, pickle
 
 pandora:
   name: Pandoran
-  products: thyme, donut, sherbert, bread
+  # products: thyme, donut, sherbert, bread
 
 shangri:
   name: Shangri-La
-  products: sherbert, pickle
+  # products: sherbert, pickle
 
 asgard:
   name: Asgardian
-  products: butter, steak, sherbert, bread, taco
+  # products: butter, steak, sherbert, bread, taco
