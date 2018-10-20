@@ -6,7 +6,6 @@ describe ProductsController do
   describe "index" do
     it "succeeds when there are products" do
       get products_path
-
       must_respond_with :success
     end
 
@@ -14,6 +13,7 @@ describe ProductsController do
       products.each do |product|
         product.destroy
       end
+
 
       new_count = Product.all.count
       expect(new_count).must_equal 0
@@ -24,15 +24,15 @@ describe ProductsController do
     end
   end
 
-  describe "new" do
-    it "succeeds given merchant id" do
-
-      get "/auth/github"
-      get new_merchant_product_path(fred.id)
-
-      must_respond_with :success
-    end
-  end
+  # describe "new" do
+  #   it "succeeds given merchant id" do
+  #
+  #     get "/auth/github"
+  #     get new_merchant_product_path(fred.id)
+  #
+  #     must_respond_with :success
+  #   end
+  # end
 
   # describe "create" do
   #   it "creates a work with valid data for a real category" do

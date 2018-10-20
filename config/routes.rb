@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   # get "/layouts/"
   # Think about how to create empty cart layout
 
-  get "/auth/:provider/callback", to: "sessions#create"
+  get "/auth/:provider/callback", to: "sessions#create", as: "auth_callback"
   delete "/logout", to: "sessions#destroy", as: "logout"
 end
