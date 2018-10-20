@@ -35,7 +35,6 @@
               <%= link_to "Merchant Login", "/auth/github", class: "nav-link"%>
             </li>
           <% end %>
-          <% raise %>
           <% if session[:order_id] %>
             <li class="nav-item">
               <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, order_path(session[:order_id]), class: "nav-link d-inline-block" %>
