@@ -5,6 +5,7 @@ describe Category do
 
   # this was just to test that table data was valid
   it "must be valid" do
+    skip
     Category.all.each do |c|
       expect(c.valid?).must_equal true
     end
