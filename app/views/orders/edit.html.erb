@@ -1,2 +1,27 @@
-<h1>Orders#edit</h1>
-<p>Find me in app/views/orders/edit.html.erb</p>
+<h2>Checkout</h2>
+
+<%= form_with model: @order, class: "form-group" do |f|%>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %>
+
+  <%= f.label :email, "Email" %>
+  <%= f.text_field :email, class: "form-control" %>
+
+  <%= f.label :address, "Street Address" %>
+  <%= f.text_field :address, class: "form-control" %>
+
+  <%= f.label :zip, "Zip Code" %>
+  <%= f.text_field :zip, class: "form-control" %>
+
+  <%= f.label :cc_num, "Credit Card" %>
+  <%= f.text_field :cc_num, class: "form-control" %>
+
+  <%= f.label :exp_date, "Expiration" %>
+  <%= f.text_field :exp_date, class: "form-control" %>
+
+  <%= f.label :cvv, "Security Code" %>
+  <%= f.text_field :cvv, class: "form-control" %>
+
+  <%= f.submit "Complete Order", class: "product-button btn btn-primary", role: "button" %>
+<% end %>

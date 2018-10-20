@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show, :new, :create]
   resources :orderitems, only: [:create, :update, :destroy]
 
+  get "layouts/empty_cart", to: 'pages#empty_cart', as: 'empty_cart'
+
   get "/auth/:provider/callback", to: "sessions#create"
   delete "/logout", to: "sessions#destroy", as: "logout"
 end

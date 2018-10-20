@@ -19,7 +19,7 @@ class OrderitemsController < ApplicationController
     @order = Order.find_by(id: session[:order_id].to_i)
     @orderitem.order_id = @order.id
     if @orderitem.save
-      redirect_to order_path(@order)
+      redirect_to order_path(@order.id)
       # If orderitem product id is not unique within scope order,
       # redirect to patch order
     else
@@ -40,14 +40,14 @@ class OrderitemsController < ApplicationController
       flash.now[:messages] = @orderitem.errors.messages
       render "layouts/notfound", status: :not_found
     else
-      redirect_back(fallback_location: root_path))
+      redirect_back(fallback_location: root_path)
     end
   end
 
   def destroy
     @orderitem = Orderitem.find_by(id: params[:id])
     @orderitem.destroy
-    redirect_back(fallback_location: root_path))
+    redirect_back(fallback_location: root_path)
   end
 
   private
