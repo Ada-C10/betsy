@@ -17,7 +17,7 @@
         <td>
 
           <%= form_with model: orderitem, url: orderitem_path(orderitem), class: "cart-quantity-form", method: :patch do |f|%>
-            <%= f.text_field :quantity, value: orderitem.quantity, placeholder: orderitem.quantity, required: true, maxlength: 3 %>
+            <%= f.text_field :quantity, type: :number, value: orderitem.quantity, placeholder: orderitem.quantity, required: true, min: 1, max: orderitem.product.inventory, maxlength: 3 %>
             <%= f.hidden_field :product_id, value: orderitem.product.id %>
             <%= f.submit "Update Cart", class: "cart-quantity-button btn", role: "button" %>
           <% end %>
