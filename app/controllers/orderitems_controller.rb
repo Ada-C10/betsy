@@ -1,27 +1,22 @@
 class OrderitemsController < ApplicationController
+  before_action :find_orderitem, only: [:update, :destroy]
   skip_before_action :require_login, only: [:create, :update, :destroy]
 
-  def create # maybe rename this route
-    # Think about if things fail to save to DB
+  # Test #3 not done (regarding how to test sessions)
+  def create
     @orderitem = Orderitem.new(orderitem_params)
 
+    # if session[:user_id] exists, then can update @current_cart.name = merchant.name etc
+    # merchant edit view for checkout, autofill name, email
     if session[:order_id] == nil
       @order = Order.create
-      # @order.save(validate: false)
-  # SJ: I might research a way to put the logic to skip certain validations
-  # into the model, rather than here.
-
       session[:order_id] = @order.id
     end
-
-# Should we made a filter with @currentorder in ApplicationController?
 
     @order = Order.find_by(id: session[:order_id].to_i)
     @orderitem.order_id = @order.id
     if @orderitem.save
       redirect_to order_path(@order.id)
-      # If orderitem product id is not unique within scope order,
-      # redirect to patch order
     else
       flash[:status] = :failure
       flash[:result_text] = "Could not save"
@@ -32,23 +27,18 @@ class OrderitemsController < ApplicationController
   end
 
   def update
-    # if quantity = 0, redirect_to :destroy
-    # add validation: orderitem product_id must be unique within scope order
-
-    @orderitem = Orderitem.find_by(id: params[:id].to_i)
-    @orderitem.update_attributes(orderitem_params)
-    unless @orderitem.save
+    if @orderitem.update(orderitem_params)
+      redirect_back(fallback_location: root_path)
+    else
       flash.now[:status] = :failure
       flash.now[:result_text] = "Could not update your quantity"
       flash.now[:messages] = @orderitem.errors.messages
-      render "layouts/notfound", status: :not_found
-    else
-      redirect_back(fallback_location: root_path)
+      render :edit, status: :bad_request
     end
   end
 
+  # Test Done
   def destroy
-    @orderitem = Orderitem.find_by(id: params[:id])
     @orderitem.destroy
     redirect_back(fallback_location: root_path)
   end
@@ -56,5 +46,13 @@ class OrderitemsController < ApplicationController
   private
   def orderitem_params
     params.require(:orderitem).permit(:quantity, :product_id)
+  end
+
+  def find_orderitem
+    @orderitem = Orderitem.find_by(id: params[:id].to_i)
+
+    if @orderitem.nil?
+      render "layouts/notfound", status: :not_found
+    end
   end
 end
