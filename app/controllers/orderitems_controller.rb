@@ -3,18 +3,13 @@ class OrderitemsController < ApplicationController
 
   def create # maybe rename this route
     # Think about if things fail to save to DB
+
     @orderitem = Orderitem.new(orderitem_params)
 
     if session[:order_id] == nil
       @order = Order.create
-      # @order.save(validate: false)
-  # SJ: I might research a way to put the logic to skip certain validations
-  # into the model, rather than here.
-
       session[:order_id] = @order.id
     end
-
-# Should we made a filter with @currentorder in ApplicationController?
 
     @order = Order.find_by(id: session[:order_id].to_i)
     @orderitem.order_id = @order.id

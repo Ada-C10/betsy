@@ -31,14 +31,22 @@ describe OrderitemsController do
     it "should not save a new orderitem if given invalid data" do
       orderitem_hash[:orderitem][:quantity] = 0
 
+      expect {
+        post orderitems_path, params: orderitem_hash
+      }.wont_change "Orderitem.count"
+
+      expect(flash[:result_text]).must_equal "Could not save"
+    end
+
     it "will add orderitem to existing order when order exists" do
       order
       orderitem_hash[:orderitem][:order_id] = order.id
 
       expect {
         post orderitems_path, params: orderitem_hash
-      }.wont_change "Order.count"
+      }.wont_change "Order.count" # this test is failing because session[:order_id] is nil
 
+      expect(session[:order_id]).wont_be_nil
     end
 
     it "will create a session for current order" do
