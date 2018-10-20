@@ -18,6 +18,7 @@ class OrderitemsController < ApplicationController
     if @orderitem.save
       redirect_to order_path(@order.id)
     else
+      
       flash[:status] = :failure
       flash[:result_text] = "Could not save"
       flash[:messages] = @orderitem.errors.messages
@@ -33,7 +34,7 @@ class OrderitemsController < ApplicationController
       flash.now[:status] = :failure
       flash.now[:result_text] = "Could not update your quantity"
       flash.now[:messages] = @orderitem.errors.messages
-      render :edit, status: :bad_request
+      render "layouts/servererror", status: :internal_server_error
     end
   end
 

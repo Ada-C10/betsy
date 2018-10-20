@@ -39,25 +39,13 @@ describe OrderitemsController do
       expect(flash[:result_text]).must_equal "Could not save"
     end
 
-    # it "will add orderitem to existing order when order exists" do
-    #   orderitem_hash[:orderitem][:order_id] = order.id
-    #   binding.pry
-    #   start_count = order.orderitems.count
-    #   expect {
-    #     post orderitems_path, params: orderitem_hash
-    #   }.must_change "Orderitem.count", 1
-    #   binding.pry
-    #   end_count = order.orderitems.count
-    #   expect(end_count - start_count).must_equal 1
-    #
-    # end
-
     it "will create a session for current order" do
       post orderitems_path, params: orderitem_hash
 
       expect(session[:order_id]).wont_be_nil
     end
 
+    # should respond with a patch
     it "will not add duplicate orderitem to cart" do
        post orderitems_path, params: orderitem_hash
 
@@ -99,13 +87,20 @@ describe OrderitemsController do
 
       new_orderitem = Orderitem.find(id)
 
-      must_respond_with :bad_request
+      must_respond_with :internal_server_error
       expect(old_orderitem.quantity).must_equal new_orderitem.quantity
       expect(old_orderitem.product_id).must_equal new_orderitem.product_id
       expect(old_orderitem.order_id).must_equal new_orderitem.order_id
     end
 
     it "responds with not found for invalid orderitem ID" do
+      id = -1
+
+      expect {
+        patch orderitem_path(id), params: orderitem_hash
+      }.wont_change 'Orderitem.count'
+
+      must_respond_with :not_found
     end
   end
 
@@ -130,34 +125,3 @@ describe OrderitemsController do
     end
   end
 end
-
-#
-#       it "renders bad_request for bogus data" do
-#         work_hash[:work][:title] = nil
-#
-#         id = works(:poodr).id
-#         old_poodr = works(:poodr)
-#
-#         expect {
-#           patch work_path(id), params: work_hash
-#         }.wont_change 'Work.count'
-#
-#         new_poodr = Work.find(id)
-#
-#         must_respond_with :bad_request
-#         expect(old_poodr.title).must_equal new_poodr.title
-#         expect(old_poodr.creator).must_equal new_poodr.creator
-#         expect(old_poodr.description).must_equal new_poodr.description
-#         expect(old_poodr.publication_year).must_equal new_poodr.publication_year
-#         expect(old_poodr.category).must_equal new_poodr.category
-#       end
-#
-#       it "renders 404 not_found for a bogus work ID" do
-#         id = -1
-#
-#         expect {
-#           patch work_path(id), params: work_hash
-#         }.wont_change 'Work.count'
-#
-#         must_respond_with 404
-#       end
