@@ -6,6 +6,7 @@ ordlegend:
   exp_date: 0122
   zip: 98122
   cvv: 232
+  email: john@gmail.com
 # fannypack, fred
 
 ordciara:
@@ -16,6 +17,7 @@ ordciara:
   exp_date: 0122
   zip: 98144
   cvv: 232
+  email: ciara@gmail.com
 # kilimanjaro, kiki
 # safari, sally
 
@@ -27,4 +29,5 @@ ordrussell:
   exp_date: 0122
   zip: 98144
   cvv: 2322
+  email: russell@gmail.com
 # fannypack, fred
