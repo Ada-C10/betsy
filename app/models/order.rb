@@ -4,11 +4,11 @@ class Order < ApplicationRecord
   has_many :products, through: :orderitems
 
   validates :status, presence: true, inclusion: { in: STATUSES }
-  validates :name, presence: true
-  validates :email, presence: true
-  validates :address, presence: true
-  validates :cc_num, presence: true
-  validates :cvv, presence: true
-  validates :exp_date, presence: true
-  validates :zip, presence: true
+  validates :name, presence: true, on: :update
+  validates :email, presence: true, on: :update
+  validates :address, presence: true, on: :update
+  validates :cc_num, presence: true, on: :update
+  validates :cvv, presence: true, on: :update
+  validates :exp_date, presence: true, on: :update
+  validates :zip, presence: true, on: :update
 end

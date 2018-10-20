@@ -15,4 +15,8 @@ class Merchant < ApplicationRecord
 
    return merchant
   end
+
+  def readable_name
+    return self.name.split.map(&:capitalize).join(' ')
+  end
 end

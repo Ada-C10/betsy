@@ -8,7 +8,9 @@ class ProductsController < ApplicationController
     @products = Product.all.order(:name).where(active: true)
   end
 
-  def show; end
+  def show
+    @orderitem = Orderitem.new
+  end
 
   def new
     @product = Product.new
@@ -71,7 +73,7 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
 
     if @product.nil?
-      render :notfound, status: :not_found
+      render "layouts/notfound", status: :not_found
     end
   end
 

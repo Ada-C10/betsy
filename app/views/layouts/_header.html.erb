@@ -39,7 +39,14 @@
             </li>
           <% end %>
           <li class="nav-item">
-            <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, orders_path, class: "nav-link" %>
+            <% if session[:order_id] %>
+              <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, order_path(session[:order_id]), class: "nav-link d-inline-block" %>
+              <% if @current_order.orderitems.size > 0 %>
+                <span class="badge badge-info badge-pill d-inline-block"><%= @current_order.orderitems.size %></span>
+              <% end %>
+            <% else %>
+              <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, root_path, class: "nav-link" %>
+            <% end %>
           </li>
         </ul>
       </div>
