@@ -1,3 +1,6 @@
+gem "omniauth"
+gem "omniauth-github"
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -73,6 +76,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'guard'
   gem 'guard-minitest'
+  gem 'dotenv-rails'
 end
 
 group :test do

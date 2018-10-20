@@ -15,4 +15,10 @@ Rails.application.routes.draw do
 
   get '/home', to: 'products#homepage', as: 'home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+
+
+
+  get "/auth/:provider/callback", to: "merchants#create"
+  delete "/logout", to: "merchants#destroy", as: "logout"
 end
