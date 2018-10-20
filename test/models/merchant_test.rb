@@ -59,16 +59,16 @@ describe "Relationships" do
     kiki.must_respond_to :products
     kiki.products.each do |product|
       product.must_be_kind_of Product
+    end
   end
-end
 
-it "has a list of order items" do
-  kiki = merchants(:kiki)
-  kiki.must_respond_to :orderitems
-  kiki.orderitems.each do |item|
-    item.must_be_kind_of Orderitem
-end
-end
+  it "has a list of order items" do
+    kiki = merchants(:kiki)
+    kiki.must_respond_to :orderitems
+    kiki.orderitems.each do |item|
+      item.must_be_kind_of Orderitem
+    end
+  end
 
 
   end
