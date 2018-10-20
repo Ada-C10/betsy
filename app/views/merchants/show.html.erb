@@ -1,14 +1,17 @@
-<h1>All products sold by that merchant (Merchant Show page)</h1>
 
 
-<%= @merchant.name %>
-<%= @merchant.created_at %>
+<section>
+  <h1>All products sold by that merchant (Merchant Show page)</h1>
+<%= @merchant.name %> <br>
+<%= @merchant.created_at %><br>
 <%= link_to "Add Product", new_product_path %>
+<br>
 
-
-<%= @merchant.products.each do |product| %>
-<%= product.img_file %>
-<%= product.name %>
+<% @merchant.products.each do |product| %>
+<ul>
+<li><%= link_to product.name, product_path(product.id) %></li>
 <%= product.description %>
-<%= link_to product, product_path(product.id) %>
+<li><%= image_tag product.img_file, alt: product.description %></li>
+</ul>
 <% end  %>
+</section>
