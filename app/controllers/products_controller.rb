@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # update as we go with user permissions (this applies to every controller)
 
   def index
-    @products = Product.all.order(:name)
+    @products = Product.all.order(:name).where(active: true)
   end
 
   def show
@@ -20,13 +20,13 @@ class ProductsController < ApplicationController
     if product_params[:merchant_id]
       @product = Product.new(product_params)
       if @product.save
-        # flash[:status] = :success
-        # flash[:result_text] = "Successfully created #{@product.name}"
+        flash[:status] = :success
+        flash[:result_text] = "Successfully created #{@product.name}"
         redirect_back(fallback_location: root_path)
       else
-        # flash.now[:status] = :failure
-        # flash.now[:result_text] = "Could not create #{@product.name}"
-        # flash.now[:messages] = @product.errors.messages
+        flash.now[:status] = :failure
+        flash.now[:result_text] = "Could not create #{@product.name}"
+        flash.now[:messages] = @product.errors.messages
         render :new, status: :bad_request
       end
     end
@@ -37,15 +37,16 @@ class ProductsController < ApplicationController
   def update
     if @product.update(product_params)
       @merchant_id = product_params[:merchant_id].to_i
-      # flash[:status] = :success
-      # flash[:result_text] = "Successfully updated #{@product.name}"
+      flash[:status] = :success
+      flash[:result_text] = "Successfully updated #{@product.name}"
       redirect_to merchant_path(@merchant_id)
     else
-      # flash.now[:status] = :failure
-      # flash.now[:result_text] = "Could not update #{@product.name}"
-      # flash.now[:messages] = @product.errors.messages
+      flash.now[:status] = :failure
+      flash.now[:result_text] = "Could not update #{@product.name}"
+      flash.now[:messages] = @product.errors.messages
       render :edit, status: :bad_request
     end
+
   end
 
   def destroy
