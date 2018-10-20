@@ -1,7 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+atlantis:
+  name: Atlantean
+  products: thyme, donut, sherbert, pickle
 
-two:
-  name: MyString
+pandora:
+  name: Pandoran
+  products: thyme, donut, sherbert, bread
+
+shangri:
+  name: Shangri-La
+  products: sherbert, pickle
+
+asgard:
+  name: Asgardian
+  products: butter, steak, sherbert, bread, taco

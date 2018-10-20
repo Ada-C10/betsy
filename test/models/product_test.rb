@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe Product do
-  let(:product) { Product.new }
+  let(:product) { Product.first }
 
   it "must be valid" do
     value(product).must_be :valid?
