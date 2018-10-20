@@ -1,27 +1,27 @@
 itemsone:
   quantity: 1
-  order: orderone
+  order: ordlegend
   product: fannypack
 # fred
 # ordlegend
 
 itemstwo:
   quantity: 2
-  order: ordertwo
+  order: ordciara
   product: kilimanjaro
 # kiki
 # ordciara
 
 itemsthree:
   quantity: 3
-  order: orderthree
+  order: ordrussell
   product: fannypack
 # fred
 # ordrussell
 
 itemsfour:
   quantity: 4
-  order: ordertwo
+  order: ordciara
   product: safari
 # sally
 # ordciara

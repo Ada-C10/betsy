@@ -1,5 +1,5 @@
 require "test_helper"
-
+require 'pry'
 describe OrderitemsController do
   let(:product) { products(:kilimanjaro) }
   let(:orderitem_hash) do
@@ -13,7 +13,7 @@ describe OrderitemsController do
   let(:order){ orders(:ordlegend) }
 
   describe "create" do
-    it "should create a new orderitem" do
+    it "should create a new orderitem and order if one doesn't already exist" do
       start_count = Order.count
 
       expect {
@@ -28,26 +28,26 @@ describe OrderitemsController do
       must_redirect_to order_path(Orderitem.last.order_id)
     end
 
-    # it "should not save a new orderitem if given invalid data" do
-    #   orderitem_hash[:orderitem][:quantity] = 0
-    #
-    #   expect {
-    #     post orderitems_path, params: orderitem_hash
-    #   }.wont_change 'Orderitem.count'
-    #
-    #   must_respond_with :internal_server_error
-    # end
+    it "should not save a new orderitem if given invalid data" do
+      orderitem_hash[:orderitem][:quantity] = 0
+
+      expect {
+        post orderitems_path, params: orderitem_hash
+      }.wont_change 'Orderitem.count'
+
+      must_respond_with :internal_server_error
+    end
 
     it "will add orderitem to existing order when order exists" do
-      orderitem_hash[:order_item][:order_id] = order.id
-
+      orderitem_hash[:orderitem][:order_id] = order.id
+      binding.pry
       start_count = order.orderitems.count
       expect {
         post orderitems_path, params: orderitem_hash
       }.must_change "Orderitem.count", 1
-
-    end_count = order.orderitems.count
-    expect(end_count - start_count).must_equal 1
+      binding.pry
+      end_count = order.orderitems.count
+      expect(end_count - start_count).must_equal 1
 
     end
 
