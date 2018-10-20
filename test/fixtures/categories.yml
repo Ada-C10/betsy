@@ -1,5 +1,9 @@
 bags:
   name: bags
+  
 
 africa:
   name: Africa
+
+sale:
+  name: Sale

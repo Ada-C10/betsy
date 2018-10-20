@@ -53,4 +53,24 @@ describe "validations" do
   end
 end
 
+describe "Relationships" do
+  it "has a list of products" do
+    kiki = merchants(:kiki)
+    kiki.must_respond_to :products
+    kiki.products.each do |product|
+      product.must_be_kind_of Product
+  end
+end
+
+it "has a list of order items" do
+  kiki = merchants(:kiki)
+  kiki.must_respond_to :orderitems
+  kiki.orderitems.each do |item|
+    item.must_be_kind_of Orderitem
+end
+end
+
+
+  end
+
 end

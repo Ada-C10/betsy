@@ -6,6 +6,7 @@ fannypack:
   description: I've got the world on a sling...
   active: true
   merchant: fred
+
 # orderone
 # orderthree
 
@@ -17,6 +18,7 @@ kilimanjaro:
   description: Scatter ashes, or get engaged!
   active: true
   merchant: kiki
+
 # ordertwo
 
 safari:
@@ -27,4 +29,5 @@ safari:
   description: Ecological conservation education tour.
   active: true
   merchant: sally
+  
 # order two
