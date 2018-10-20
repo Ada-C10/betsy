@@ -15,7 +15,11 @@ class Product < ApplicationRecord
   def self.adjust_inventory(order_items)
     order_items.each do |item|
       item.product.inventory -= item.quantity
-      item.product.save
+      if item.product.inventory == 0
+        item.product.destroy
+      else
+        item.product.save
+      end
     end
   end
 end

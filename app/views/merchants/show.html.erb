@@ -1,18 +1,42 @@
-<h1><%= link_to @merchant.name, merchant_path(@merchant.id) %></h1>
+<h2><%= link_to @merchant.name, merchant_path(@merchant.id) %></h2>
 <p><%= @merchant.email %></p>
 
-<% if session[:user_id] == @merchant.id%>
-  <%= link_to "Add Product", new_merchant_product_path(@merchant.id) %>
-<% end %>
+<br /><br /><br />
 
-<br /><br />
+<h4>Current Products</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Description</th>
+      <th>Inventory</th>
+      <th>Price</th>
+      <th>Add to Cart</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product_path(product.id) %></td>
+        <td><%= product.description %></td>
+        <td><%= product.inventory %></td>
+        <td><%= readable_cost(product.cost) %></td>
+        <td>
+          <% if product.inventory == 0 %>
+            <p>Out of Stock</p>
+          <% else %>
+            <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
 
-<ul>
-  <% @products.each do |product| %>
-    <li>
-      <%= link_to product.name, product_path(product.id)%>
-    </li>
-  <% end %>
-</ul>
-<!--
-clean up this view by putting loop in partial -->
+              <%= f.label :quantity, 'Quantity' %>
+              <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: product.inventory, maxlength: 3 %>
+
+              <%= f.hidden_field :product_id, value: product.id %>
+
+              <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

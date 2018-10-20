@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :find_order, only: [:edit, :update]
-  skip_before_action :require_login, only: [:show, :edit, :update]
+  skip_before_action :require_login, only: [:show, :edit, :update, :confirmation]
 
   def index
   end
@@ -28,9 +28,7 @@ class OrdersController < ApplicationController
     Product.adjust_inventory(@order_items)
 
     if @order.update_attributes(order_params)
-      session[:order_id] = nil
-      # redirect_to confirmation page
-      redirect_to root_path
+      redirect_to confirmation_path
     else
       flash.now[:status] = :failure
       flash.now[:result_text] = "Could not complete order"
@@ -40,6 +38,18 @@ class OrdersController < ApplicationController
   end
 
   def destroy
+  end
+
+  def confirmation
+    @order = Order.find_by(id: session[:order_id])
+    
+    if @order.nil?
+      render "layouts/notfound", status: :not_found
+    elsif @order.status == "pending"
+    else
+      @orderitems = @order.orderitems
+      session[:order_id] = nil
+    end
   end
 
   private

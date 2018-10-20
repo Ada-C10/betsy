@@ -5,17 +5,20 @@
 <br /><br />
 <p><%= "Description: #{@product.description}" %></p>
 <p><%= image_tag @product.image_url %></p>
+<p>Sold by <%= readable_name(@product.merchant.name) %></p>
 <p><%= readable_cost(@product.cost) %></p>
 
-<p><%= "#{@product.inventory} in stock" %></p>
-<p>Sold by <%= readable_name(@product.merchant.name) %></p>
+<% if @product.inventory == 0 %>
+  <p>Out of Stock</p>
+<% else %>
+  <p><%= "#{@product.inventory} in stock" %></p>
+  <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
 
-<%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
+    <%= f.label :quantity, 'Quantity' %>
+    <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: @product.inventory, maxlength: 3 %>
 
-  <%= f.label :quantity, 'Quantity' %>
-  <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: @product.inventory, maxlength: 3 %>
+    <%= f.hidden_field :product_id, value: @product.id %>
 
-  <%= f.hidden_field :product_id, value: @product.id %>
-
-  <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
+    <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
+  <% end %>
 <% end %>

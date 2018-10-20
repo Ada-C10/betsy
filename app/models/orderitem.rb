@@ -2,7 +2,7 @@ require 'pry'
 class Orderitem < ApplicationRecord
   belongs_to :order
   belongs_to :product
-  has_many :merchants, through: :products
+  has_one :merchant, through: :product
 
   validates :product_id, uniqueness: { scope: :order_id, message: "has already added this item to the cart"}
 

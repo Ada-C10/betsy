@@ -1,11 +1,16 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:show, :edit, :update, :destroy]
+  before_action :find_product, only: [:show, :edit, :update, :status]
   before_action :find_merchant, only: [:new, :edit, :create]
   skip_before_action :require_login, only: [:index, :show]
   # update as we go with user permissions (this applies to every controller)
 
   def index
-    @products = Product.all.order(:name)
+    if params[:merchant_id]
+      @merchant = Merchant.find_by(id: params[:merchant_id])
+      @products = @merchant.products.order(:name).where(active: true).where("inventory > ?", 0)
+    else
+      @products = Product.all.order(:name).where(active: true).where("inventory > ?", 0)
+    end
   end
 
   def show
@@ -13,7 +18,11 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    if session[:user_id] == params[:id].to_i
+      @product = Product.new
+    else
+      render "layouts/notfound", status: :not_found
+    end
   end
 
   def create
@@ -22,7 +31,7 @@ class ProductsController < ApplicationController
       if @product.save
         # flash[:status] = :success
         # flash[:result_text] = "Successfully created #{@product.name}"
-        redirect_back(fallback_location: root_path)
+        redirect_to merchant_path(session[:user_id])
       else
         # flash.now[:status] = :failure
         # flash.now[:result_text] = "Could not create #{@product.name}"
@@ -32,7 +41,11 @@ class ProductsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    if session[:user_id] != params[:id].to_i
+      render "layouts/notfound", status: :not_found
+    end
+  end
 
   def update
     if @product.update(product_params)
@@ -48,9 +61,16 @@ class ProductsController < ApplicationController
     end
   end
 
-  def destroy
-    if !@product.nil?
+  def status
+    if @product.active
       @product.active = false
+      if @product.save
+        # flash[:status] = :success
+        # flash[:result_text] = "Successfully retired #{@product.name}"
+        redirect_back(fallback_location: root_path)
+      end
+    else
+      @product.active = true
       if @product.save
         # flash[:status] = :success
         # flash[:result_text] = "Successfully retired #{@product.name}"
