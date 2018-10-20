@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show, :update, :create]
   resources :categories, only: [:index, :show, :new, :create]
 
-  get "/auth/:provider/callback", to: "sessions#create"
+  get "/auth/:provider/callback", to: "sessions#create", as: "auth_callback"
   delete "/logout", to: "sessions#destroy", as: "logout"
 end
