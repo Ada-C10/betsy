@@ -1,14 +1,5 @@
 class OrderitemsController < ApplicationController
-  skip_before_action :require_login, only: [:create]
-
-  def index
-  end
-
-  def show
-  end
-
-  def new
-  end
+  skip_before_action :require_login, only: [:create, :update, :destroy]
 
   def create # maybe rename this route
     # Think about if things fail to save to DB
@@ -34,13 +25,24 @@ class OrderitemsController < ApplicationController
 
   end
 
-  def edit
-  end
-
   def update
+    @orderitem = Orderitem.find_by(id: params[:id].to_i)
+    @orderitem.update_attributes(orderitem_params)
+    if @orderitem.save
+      redirect_to order_path(session[:order_id])
+    else
+      flash.now[:status] = :failure
+      flash.now[:result_text] = "Could not update your quantity"
+      flash.now[:messages] = @orderitem.errors.messages
+      render :order_path(session[:order_id]), status: :not_found
+    end
+
   end
 
   def destroy
+    @orderitem = Orderitem.find_by(id: params[:id])
+    @orderitem.destroy
+    redirect_back(fallback_location: order_path(session[:order_id]))
   end
 
   private
