@@ -10,6 +10,7 @@ class OrderitemsController < ApplicationController
       @order.save(validate: false)
   # SJ: I might research a way to put the logic to skip certain validations
   # into the model, rather than here.
+
       session[:order_id] = @order.id
     end
 
@@ -19,6 +20,8 @@ class OrderitemsController < ApplicationController
     @orderitem.order_id = @order.id
     if @orderitem.save
       redirect_to order_path(@order)
+      # If orderitem product id is not unique within scope order,
+      # redirect to patch order
     else
       render "layouts/servererror", status: :internal_server_error
     end
@@ -26,23 +29,25 @@ class OrderitemsController < ApplicationController
   end
 
   def update
+    # if quantity = 0, redirect_to :destroy
+    # add validation: orderitem product_id must be unique within scope order
+
     @orderitem = Orderitem.find_by(id: params[:id].to_i)
     @orderitem.update_attributes(orderitem_params)
-    if @orderitem.save
-      redirect_to order_path(session[:order_id])
-    else
+    unless @orderitem.save
       flash.now[:status] = :failure
       flash.now[:result_text] = "Could not update your quantity"
       flash.now[:messages] = @orderitem.errors.messages
-      render :order_path(session[:order_id]), status: :not_found
+      render "layouts/notfound", status: :not_found
+    else
+      redirect_back(fallback_location: root_path))
     end
-
   end
 
   def destroy
     @orderitem = Orderitem.find_by(id: params[:id])
     @orderitem.destroy
-    redirect_back(fallback_location: order_path(session[:order_id]))
+    redirect_back(fallback_location: root_path))
   end
 
   private

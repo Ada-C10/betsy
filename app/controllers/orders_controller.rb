@@ -6,7 +6,11 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(id: params[:id])
-    @orderitems = @order.orderitems.order(created_at: :desc)
+    unless @order
+      render "layouts/notfound", status: :not_found
+    else
+      @orderitems = @order.orderitems.order(created_at: :desc)
+    end
   end
 
   def new
