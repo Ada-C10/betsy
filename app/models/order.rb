@@ -5,5 +5,4 @@ class Order < ApplicationRecord
   has_many :products, through: :orderitems
 
   validates :status, presence: true, inclusion: { in: STATUSES }
-
 end

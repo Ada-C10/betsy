@@ -29,3 +29,7 @@ describe "validations" do
     expect(valid).must_equal false
     expect(review.errors.messages).must_include :description
     expect(review.errors.messages[:description]).must_equal ["can't be blank"]
+  end
+end
+
+end 

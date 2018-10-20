@@ -15,9 +15,6 @@
           <li class="nav-item">
             <%= link_to "Products", products_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to "Merchants", merchants_path, class: "nav-link" %>
-          </li>
           <!-- <li class="nav-item">
             <%= link_to "Categories", categories_path, class: "nav-link" %>
           </li> -->
@@ -35,12 +32,19 @@
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "Login", "/auth/github", class: "nav-link"%>
+              <%= link_to "Merchant Login", "/auth/github", class: "nav-link"%>
             </li>
           <% end %>
-          <li class="nav-item">
-            <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, orders_path, class: "nav-link" %>
-          </li>
+          <% raise %>
+          <% if session[:order_id] %>
+            <li class="nav-item">
+              <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, order_path(session[:order_id]), class: "nav-link d-inline-block" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, empty_cart_path, class: "nav-link d-inline-block" %>
+            </li>
+          <% end %>
         </ul>
       </div>
     <!-- </div> -->
