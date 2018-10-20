@@ -1,15 +1,16 @@
 class OrdersController < ApplicationController
-  before_action :find_order, only: [:show, :edit, :update]
+  before_action :find_order, only: [:edit, :update]
   skip_before_action :require_login, only: [:show, :edit, :update]
 
   def index
   end
 
   def show
-    unless @order
-      render "layouts/notfound", status: :not_found
-    else
+    @order = Order.find_by(id: session[:order_id])
+    if session[:order_id]
       @orderitems = @order.orderitems.order(created_at: :desc)
+    else
+      @orderitems = []
     end
   end
 
