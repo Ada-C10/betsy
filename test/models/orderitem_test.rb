@@ -6,7 +6,7 @@ describe Orderitem do
   it "must be valid" do
     expect(orderitem).must_be :valid?
   end
-  
+
   describe "validations" do
     it "requires a quantity" do
       order = orderitems(:itemsone)
@@ -19,7 +19,7 @@ describe Orderitem do
       expect(order.errors.messages[:quantity]).must_equal ["Cannot be blank"]
     end
 
-    it "requires quanity to be integers"
+    it "requires quanity to be integers" do
       order_thing = Orderitem.new(quantity: 1)
 
       valid = order_thing.save
@@ -29,4 +29,12 @@ describe Orderitem do
     end
   end
 
+  describe "line_item_price" do
+    it "will return an accurate cost of an item with quantity" do
+      item = orderitems(:itemsfour)
+      cost = item.line_item_price
+
+      expect(cost).must_equal (101.0 * 4)
+    end
+  end
 end

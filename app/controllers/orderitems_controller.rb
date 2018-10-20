@@ -18,7 +18,7 @@ class OrderitemsController < ApplicationController
     if @orderitem.save
       redirect_to order_path(@order.id)
     else
-      
+
       flash[:status] = :failure
       flash[:result_text] = "Could not save"
       flash[:messages] = @orderitem.errors.messages

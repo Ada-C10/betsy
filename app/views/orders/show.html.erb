@@ -9,6 +9,7 @@
         <th>Product</th>
         <th>Product Description</th>
         <th>Quantity</th>
+        <th>Price</th>
         <th>Remove From Cart</th>
       </tr>
     </thead>
@@ -26,6 +27,7 @@
             <% end %>
 
           </td>
+          <td><%= readable_cost(orderitem.line_item_price) %></td>
           <td><%= link_to "X", orderitem_path(orderitem.id), method: :delete %></td>
         </tr>
       <% end %>

@@ -41,7 +41,6 @@
           <li class="nav-item">
             <% if session[:order_id] %>
               <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, order_path(session[:order_id]), class: "nav-link d-inline-block" %>
-              <% @current_order = Order.find_by(id: session[:order_id]) %>
               <% if @current_order.orderitems.size > 0 %>
                 <span class="badge badge-info badge-pill d-inline-block"><%= @current_order.orderitems.size %></span>
               <% end %>
