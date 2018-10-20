@@ -6,10 +6,10 @@ class OrderitemsController < ApplicationController
 
     @orderitem = Orderitem.new(orderitem_params)
 
-    if session[:order_id] == nil
-      @order = Order.create
-      session[:order_id] = @order.id
-    end
+    # if session[:order_id] == nil
+    #   @order = Order.create
+    #   session[:order_id] = @order.id
+    # end
 
     @order = Order.find_by(id: session[:order_id].to_i)
     @orderitem.order_id = @order.id

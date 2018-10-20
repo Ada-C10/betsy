@@ -1,33 +1,37 @@
 <h2>Your Cart</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Product Description</th>
-      <th>Quantity</th>
-      <th>Remove From Cart</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @orderitems.each do |orderitem| %>
+<% if @orderitems.size == 0 %>
+  <p>There are no items in your cart.</p>
+<% else %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= link_to orderitem.product.name, product_path(orderitem.product.id) %></td>
-        <td><%= orderitem.product.description %></td>
-        <td>
-
-          <%= form_with model: orderitem, url: orderitem_path(orderitem), class: "cart-quantity-form", method: :patch do |f|%>
-            <%= f.text_field :quantity, type: :number, value: orderitem.quantity, placeholder: orderitem.quantity, required: true, min: 1, max: orderitem.product.inventory, maxlength: 3 %>
-            <%= f.hidden_field :product_id, value: orderitem.product.id %>
-            <%= f.submit "Update Cart", class: "cart-quantity-button btn", role: "button" %>
-          <% end %>
-
-        </td>
-        <td><%= link_to "X", orderitem_path(orderitem.id), method: :delete %></td>
+        <th>Product</th>
+        <th>Product Description</th>
+        <th>Quantity</th>
+        <th>Remove From Cart</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @orderitems.each do |orderitem| %>
+        <tr>
+          <td><%= link_to orderitem.product.name, product_path(orderitem.product.id) %></td>
+          <td><%= orderitem.product.description %></td>
+          <td>
 
-<%= link_to "Checkout", edit_order_path(@order.id), class: "btn btn-secondary" %>
+            <%= form_with model: orderitem, url: orderitem_path(orderitem), class: "cart-quantity-form", method: :patch do |f|%>
+              <%= f.text_field :quantity, type: :number, value: orderitem.quantity, placeholder: orderitem.quantity, required: true, min: 1, max: orderitem.product.inventory, maxlength: 3 %>
+              <%= f.hidden_field :product_id, value: orderitem.product.id %>
+              <%= f.submit "Update Cart", class: "cart-quantity-button btn", role: "button" %>
+            <% end %>
+
+          </td>
+          <td><%= link_to "X", orderitem_path(orderitem.id), method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to "Checkout", edit_order_path(@order.id), class: "btn btn-secondary" %>
+<% end %>
 <%= link_to "Continue Shopping", products_path, class: "btn btn-secondary" %>
