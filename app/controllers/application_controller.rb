@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_order
+  before_action :current_order
 
   before_action :current_user
   before_action :require_login
@@ -25,5 +25,6 @@ class ApplicationController < ActionController::Base
     else
       Order.new
     end
+    @current_order ||= Order.find_by(id: session[:order_id])
   end
 end
