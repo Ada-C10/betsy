@@ -1,5 +1,5 @@
 require "test_helper"
-
+require 'pry'
 describe OrderitemsController do
   let(:product) { products(:kilimanjaro) }
   let(:orderitem_hash) do
@@ -16,12 +16,14 @@ describe OrderitemsController do
     it "should create a new orderitem" do
       start_count = Order.count
 
+
       expect {
         post orderitems_path, params: orderitem_hash
       }.must_change 'Orderitem.count', 1
 
       end_count = Order.count
-      expect(start_count).must_equal end_count
+
+      expect(end_count).must_equal (start_count + 1)
 
       must_respond_with :redirect
       must_redirect_to order_path(Orderitem.last.order_id)
@@ -51,6 +53,9 @@ describe OrderitemsController do
     end
 
     it "will create a session for current order" do
+      post orderitems_path, params: orderitem_hash
+      
+      expect(session[:order_id]).wont_be_nil
     end
 
   end
