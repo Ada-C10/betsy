@@ -13,6 +13,8 @@ class Order < ApplicationRecord
   validates :zip, presence: true, on: :update
 
   def total_cost
+    total_cost = self.orderitems.reduce(0) {|sum, item| sum + item.line_item_price}
     
+    return total_cost
   end
 end
