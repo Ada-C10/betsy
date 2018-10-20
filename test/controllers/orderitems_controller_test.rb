@@ -1,5 +1,5 @@
 require "test_helper"
-require 'pry'
+
 describe OrderitemsController do
   let(:product) { products(:kilimanjaro) }
   let(:orderitem_hash) do
@@ -14,7 +14,6 @@ describe OrderitemsController do
   describe "create" do
     it "should create a new orderitem" do
       start_count = Order.count
-
 
       expect {
         post orderitems_path, params: orderitem_hash
@@ -43,7 +42,7 @@ describe OrderitemsController do
 
     it "will create a session for current order" do
       post orderitems_path, params: orderitem_hash
-      
+
       expect(session[:order_id]).wont_be_nil
     end
 
