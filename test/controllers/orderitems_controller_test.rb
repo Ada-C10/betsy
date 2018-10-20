@@ -34,9 +34,9 @@ describe OrderitemsController do
 
       expect {
         post orderitems_path, params: orderitem_hash
-      }.wont_change 'Orderitem.count'
+      }.wont_change "Orderitem.count"
 
-      must_respond_with :internal_server_error
+      expect(flash[:result_text]).must_equal "Could not save"
     end
 
     # it "will add orderitem to existing order when order exists" do

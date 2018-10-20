@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+  before_action :current_order
   before_action :current_user
   before_action :require_login
-  before_action :current_cart
 
   private
 
@@ -17,7 +18,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_cart
-    @current_cart ||= Order.find(session[:order_id]) if session[:order_id]
+  def current_order
+    @current_order ||= Order.find_by(id: session[:order_id]) if session[:order_id]
   end
 end
