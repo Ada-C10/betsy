@@ -4,4 +4,5 @@ class Orderitem < ApplicationRecord
   has_many :merchants, through: :products
 
   validates :quantity, presence: true, numericality: { only_integer: true }
+
 end

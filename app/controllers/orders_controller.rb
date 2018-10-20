@@ -23,6 +23,9 @@ class OrdersController < ApplicationController
 
   def update
     @order.status = "paid"
+    @order_items = Orderitem.where(order_id: @order.id)
+    Product.adjust_inventory(@order_items)
+
     if @order.update_attributes(order_params)
       session[:order_id] = nil
       # redirect_to confirmation page
