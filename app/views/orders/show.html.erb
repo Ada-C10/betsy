@@ -13,15 +13,15 @@
   <tbody>
     <% @orderitems.each do |orderitem| %>
       <tr>
-        <td><%= orderitem.description %></td>
+        <td><%= orderitem.product.description %></td>
         <td><%= orderitem.quantity %></td>
         <td></td>
         <!-- ^ This column is for an edit Quantity form -->
-        <td><%= link_to "X", destroy_orderitem(orderitem), method: :delete %></td>
+        <td><%= link_to "X", orderitem_path(orderitem), method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to "Checkout", edit_order_path(orderitem.order), class: "btn btn-secondary" %>
+<%= link_to "Checkout", edit_order_path(@order), class: "btn btn-secondary" %>
 <%= link_to "Continue Shopping", :back, class: "btn btn-secondary" %>

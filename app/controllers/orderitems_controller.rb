@@ -14,19 +14,24 @@ class OrderitemsController < ApplicationController
     # Think about if things fail to save to DB
     @orderitem = Orderitem.new(orderitem_params)
 
-    if session[:user_id] == nil
-      @guest = Guest.create(validate: false)
-      Order.create(guest_id: @guest.id)
-      session[:user_id] = @guest.id
+    if session[:order_id] == nil
+      @order = Order.new
+      @order.save(validate: false)
+  # SJ: I might research a way to put the logic to skip certain validations
+  # into the model, rather than here.
+      session[:order_id] = @order.id
     end
 
-    @order = Order.find_by(guest_id: @guest.id)
+# Should we made a filter with @currentorder in ApplicationController?
+
+    @order = Order.find_by(id: session[:order_id].to_i)
     @orderitem.order_id = @order.id
     if @orderitem.save
-      redirect_to order_path(@order.id)
+      redirect_to order_path(@order)
     else
       render "layouts/servererror", status: :internal_server_error
     end
+
   end
 
   def edit

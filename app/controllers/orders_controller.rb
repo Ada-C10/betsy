@@ -5,6 +5,8 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find_by(id: params[:id])
+    @orderitems = @order.orderitems.order(created_at: :desc)
   end
 
   def new
