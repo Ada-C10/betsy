@@ -39,11 +39,10 @@ describe Orderitem do
   # end
 
   describe "relations" do
-    it "has a list of merchants" do
+    it "has a  merchant" do
       itemsone = orderitems(:itemsone)
-      itemsone.must_respond_to :merchants
-      itemsone.merchants.each do |merchant|
-        merchant.must_be_kind_of Merchant
+      itemsone.must_respond_to :merchant
+      itemsone.merchant.must_be_kind_of Merchant
       end
     end
     it "has a order" do
@@ -57,4 +56,3 @@ describe Orderitem do
       itemsone.product.must_be_kind_of Product
     end
   end
-end

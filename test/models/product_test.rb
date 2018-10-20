@@ -136,10 +136,17 @@ describe Product do
     end
     it "has a list of orders" do
       fannypack = products(:fannypack)
-      fannypack.must_respond_to :order
-      # fannypack.orders.each do |item|
-      #   item.must_be_kind_of Order
-      # end
+      fannypack.must_respond_to :orders
+      fannypack.orders.each do |item|
+        item.must_be_kind_of Order
+      end
+    end
+    it "has a list of categories" do
+      fannypack = products(:fannypack)
+      fannypack.must_respond_to :categories
+      fannypack.categories.each do |category|
+        category.must_be_kind_of Category
+      end
     end
   end
 end
