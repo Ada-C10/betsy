@@ -4,7 +4,6 @@ ordlegend:
   address: 133rd 15th St Seattle, WA
   cc_num: 1234567890123456
   exp_date: 0122
-  email: legend@gmail.com
   zip: 98122
   cvv: 232
 # fannypack, fred
@@ -15,7 +14,6 @@ ordciara:
   address: 213th 15th St Seattle, WA
   cc_num: 1238475869584736
   exp_date: 0122
-  email: ciara@gmail.com
   zip: 98144
   cvv: 232
 # kilimanjaro, kiki
@@ -27,7 +25,6 @@ ordrussell:
   address: 213th 15th St Seattle, WA
   cc_num: 1938472634857493
   exp_date: 0122
-  email: russell@gmail.com
   zip: 98144
   cvv: 2322
 # fannypack, fred

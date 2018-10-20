@@ -105,5 +105,4 @@ end
 #   valid = guests.save
 #
 #   expect(valid).must_equal true
-# end
-end
+ end
