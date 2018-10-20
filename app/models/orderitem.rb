@@ -1,3 +1,4 @@
+require 'pry'
 class Orderitem < ApplicationRecord
   belongs_to :order
   belongs_to :product
@@ -12,5 +13,10 @@ class Orderitem < ApplicationRecord
     if quantity > product.inventory
       errors.add(:quantity, "can't be greater than product inventory")
     end
+  end
+
+  def line_item_price
+    product = Product.find_by(id: self.product_id)
+    return self.quantity * product.cost
   end
 end
