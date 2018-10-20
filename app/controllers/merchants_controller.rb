@@ -10,6 +10,11 @@ class MerchantsController < ApplicationController
     @products = @merchant.products
   end
 
+  def account
+    @merchant = @current_user
+    @products = @merchant.products
+  end
+
   private
   def find_merchant
     @merchant = Merchant.find_by(id: params[:id].to_i)

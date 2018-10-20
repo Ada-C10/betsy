@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   skip_before_action :require_login, only: [:show, :edit, :update, :confirmation]
 
   def index
+    @orders = Order.find_by(id: session[:user_id])
   end
 
   def show
@@ -42,7 +43,7 @@ class OrdersController < ApplicationController
 
   def confirmation
     @order = Order.find_by(id: session[:order_id])
-    
+
     if @order.nil?
       render "layouts/notfound", status: :not_found
     elsif @order.status == "pending"

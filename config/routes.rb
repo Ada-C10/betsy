@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get "/empty_cart", to: 'orders#show', as: "empty_cart"
   patch '/merchants/:merchant_id/products/:id/status', to: 'products#status', as: 'products_status'
+  get "/account", to: "merchants#account", as: 'account'
   get "/confirmation", to: 'orders#confirmation', as: "confirmation"
   get "/auth/:provider/callback", to: "sessions#create", as: "auth_callback"
   delete "/logout", to: "sessions#destroy", as: "logout"

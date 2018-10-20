@@ -5,7 +5,7 @@
 <br /><br />
 <p><%= "Description: #{@product.description}" %></p>
 <p><%= image_tag @product.image_url %></p>
-<p>Sold by <%= readable_name(@product.merchant.name) %></p>
+<p>Sold by <%= link_to readable_name(@product.merchant.name), merchant_path(@product.merchant_id) %></p>
 <p><%= readable_cost(@product.cost) %></p>
 
 <% if @product.inventory == 0 %>
