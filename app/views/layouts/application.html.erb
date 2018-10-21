@@ -16,6 +16,9 @@
   <body>
 
 
+
+
+
   <header class="app-header">
 
     <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
@@ -53,10 +56,16 @@
 
         </ul>
 
+
+        <% if @logged_in_merchant %>
         <ul class="navbar-nav navbar-right">
+          <li class="nav-item"><a class="nav-link" href="<%= merchant_account_path(@logged_in_merchant) %>">My Account</a></li>
+          <li class="nav-item"><a class="nav-link" href="/logout" data-method="delete">Logout</a></li>
+          <% else %>
           <li class="nav-item"><a class="nav-link" href="/auth/github">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="<%= logout_path %>">Logout</a></li>
-          <li class="nav-itm">
+          <% end %>
+
+          <li class="nav-item">
             <a class="nav-link" href="<%= orders_path %>"><%= image_tag("shopping-cart.svg")%> <%= @order_items.count %></a>
           </li>
         </ul>
@@ -119,14 +128,7 @@
   </section>
   <% end %>
 
-  <% if @logged_in_merchant %>
-<li><%= link_to "My Account", merchant_account_path(@logged_in_merchant), method: :get, class: "btn btn-primary"%></li>
-<li>
-  <%= link_to "Log out", logout_path, method: "delete", class: "btn btn-primary"  %>
-</li>
-<% else %>
-<li> <%= link_to "Login", "/auth/github" , class: "btn btn-primary" %> </li>
-<% end %>
+
 
 
   <main>
