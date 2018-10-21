@@ -1,35 +1,62 @@
-<h1><%= link_to @product.name, product_path(@product.id) %></h1>
-<% if session[:user_id] == @product.merchant_id %>
-  <%= link_to "Edit Product", edit_merchant_product_path(session[:user_id], @product.id) %>
-<% end %>
+<div class="container">
+  <h2 class="display-4 text-center"><%= link_to @product.name, product_path(@product.id) %></h2>
+  <br />
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          Sold by <%= link_to readable_name(@product.merchant.name), merchant_path(@product.merchant_id) %>
+        </div>
+        <%= image_tag(@product.image_url, width: 500, alt: @product.name, class: "card-img-top") %>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to @product.name, product_path(@product.id) %></h5>
+          <p class="card-text"><%= "Description: #{@product.description}" %></p>
+          <p class="card-text"><%= readable_cost(@product.cost) %></p>
+          <% if session[:user_id] == @product.merchant_id %>
+            <%= link_to "Edit Product", edit_merchant_product_path(session[:user_id], @product.id) %>
+          <% end %>
+        </div>
+        <div class="card-footer text-muted">
+          <% if @product.inventory == 0 %>
+            <p>Out of Stock</p>
+          <% elsif @product.inventory <= 20 %>
+            <p>Hurry! Only a few left!</p>
+          <% end %>
 
-<div class="card" style="width: 18rem;">
-  <div class="card-header">
-    Sold by <%= link_to readable_name(@product.merchant.name), merchant_path(@product.merchant_id) %>
-  </div>
-  <%= image_tag(@product.image_url, width: 500, alt: @product.name, class: "card-img-top") %>
-  <div class="card-body">
-    <h5 class="card-title"><%= link_to @product.name, product_path(@product.id) %></h5>
-    <p class="card-text"><%= "Description: #{@product.description}" %></p>
-    <p class="card-text"><%= readable_cost(@product.cost) %></p>
-  </div>
-  <div class="card-footer text-muted">
-    <% if @product.inventory == 0 %>
-      <p>Out of Stock</p>
-    <% elsif @product.inventory <= 20 %>
-      <p>Hurry! Only a few left!</p>
-    <% end %>
+          <% if @product.inventory > 0 %>
+            <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
 
-    <% if @product.inventory > 0 %>
-      <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
+              <%= f.label :quantity, 'Quantity' %>
+              <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: @product.inventory, maxlength: 3 %>
 
-        <%= f.label :quantity, 'Quantity' %>
-        <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: @product.inventory, maxlength: 3 %>
+              <%= f.hidden_field :product_id, value: @product.id %>
 
-        <%= f.hidden_field :product_id, value: @product.id %>
-
-        <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
-      <% end %>
-    <% end %>
+              <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-7">
+      <h4 class="text-center">Reviews</h4>
+      <blockquote class="blockquote bg-light mb-5">
+        <p>"You need this experience!"</p>
+        <footer class="blockquote-footer">Alice</footer>
+      </blockquote>
+      <blockquote class="blockquote bg-light text-center mb-5">
+        <p>"The robot does all the things."</p>
+        <footer class="blockquote-footer">Alice</footer>
+      </blockquote>
+      <blockquote class="blockquote bg-light text-right mb-5">
+        <p>"Child not included."</p>
+        <footer class="blockquote-footer">Alice</footer>
+      </blockquote>
+      <!-- <%# @reviews.each do |review| %>
+        <blockquote class="bg-light">
+          <p><%#= review.description %></p>
+          <footer><%#= review.name %></footer>
+        </blockquote>
+      <%# end %> -->
+    </div>
   </div>
 </div>
