@@ -9,6 +9,6 @@
     <p class="card-text"><%= @product.description %></p>
     Sold by:<a href=" <%= merchant_path(@product.merchant.id) %>"><%= "#{@product.merchant.name}" %></a>
     <br>
-    <a href=" <%= product_path(@product.id) %>  " class="btn btn-primary">Details</a>
+    <a href=" <%= product_order_item_path(@product.id) %>  " class="btn btn-primary">Form to create new order_item, with quantity as part of the form?</a>
   </div>
 </div>

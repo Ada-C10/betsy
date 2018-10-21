@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 
+  #only signed in merchants can new, create, edit, update, and destroy
+
   def homepage
 
   end
@@ -24,7 +26,7 @@ class ProductsController < ApplicationController
 
     if @product.save
       flash[:success] = "Congratulations - you successfully entered a new product!"
-      redirect_to products_path
+      redirect_to product_path(@product.id)
     else
       flash.now[:error] = "The data you entered was not valid.  Please try again."
       render :new, status: :bad_request
@@ -63,7 +65,8 @@ class ProductsController < ApplicationController
       :name,
       :price,
       :description,
-      :img_file
+      :img_file,
+      :merchant_id
     )
   end
 
