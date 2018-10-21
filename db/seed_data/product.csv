@@ -6,7 +6,7 @@ id,name,cost,merchant_id,inventory,description,image_url
 5,Japan,1000,3,6,Travel Japan,5-japan.jpg
 6,Florida,5309,3,7,Swim with alligators,6-florida.jpg
 7,France,1330,4,2,Eat some cheese in France,7-France.jpg
-8,New Jersey,1000,4,8,Travel the Turnpike,8-new-jersey.jpg
+8,New Jersey,1000,4,8,Travel the Turnpike,7-France.jpg
 9,Egypt,1500,4,6,Look at a Pyramid,9-Egypt.jpg
 10,China,1342,4,9,We will go to the great wall,10-China.jpg
 11,Germany,2343,5,10,Let's drink a beer here,11-Germany.jpg
