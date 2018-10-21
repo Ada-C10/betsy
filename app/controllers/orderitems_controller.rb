@@ -8,14 +8,17 @@ class OrderitemsController < ApplicationController
 
     # if session[:user_id] exists, then can update @current_cart.name = merchant.name etc
     # merchant edit view for checkout, autofill name, email
+
     if session[:order_id] == nil
-      @current_order.save
-      session[:order_id] = @current_order.id
+      @order = Order.create
+      session[:order_id] = @order.id
+    else
+      @order = Order.find_by(id: session[:order_id])
     end
 
-    @orderitem.order_id = @current_order.id
+    @orderitem.order_id = @order.id
     if @orderitem.save
-      redirect_to order_path(@current_order.id)
+      redirect_to order_path(@order.id)
     else
 
       flash[:status] = :failure
