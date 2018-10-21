@@ -24,7 +24,7 @@ CSV.foreach(MERCHANT_FILE, :headers => true) do |row|
 end
 
 puts "Added #{Merchant.count} merchant records"
-puts "#{merchant_failures.length} merchant failed to save"
+puts "#{merchant_failures.length} merchants failed to save"
 
 PRODUCT_FILE = Rails.root.join('db', 'seed_data', 'product.csv')
 puts "Loading raw product data from #{PRODUCT_FILE}"
