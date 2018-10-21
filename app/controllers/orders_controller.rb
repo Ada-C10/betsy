@@ -26,7 +26,9 @@ class OrdersController < ApplicationController
         flash[:result_text] = "Added item to cart"
 
         redirect_to order_path(@order)
-        
+
+        # break
+
       else
         flash[:status] = :failure
         flash[:result_text] = "Could not add item to cart"
