@@ -1,0 +1,20 @@
+<!-- require 'pry' -->
+<h>Merchant's my account page</h>
+
+<p>
+  Merchant Summary
+  <%= @merchant.name %>
+  Date Joined:
+  <%= readable_date(@merchant.created_at) %> <br>
+  <%= link_to "Add Product", new_product_path %><br>
+  <%= link_to "Add Category", new_category_path %>
+
+</p>
+
+
+<h3>Products</h3>
+
+<% @merchant.products.each do |product| %>
+<%= product.name %>
+<%= product.price %>
+<% end  %>

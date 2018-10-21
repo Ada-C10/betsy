@@ -17,14 +17,105 @@
 /* Import scss content */
 @import "**/*";
 
+// Font-Family: 'Roboto', Sans-Serif;
+// Font-Size: 48px;
+// Font-Family: 'Lora', Serif;
+// Font-Size: 14px;
 
-.site-nav ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+
+// Header - Nav
+
+.navbar-custom {
+  background: white;
+}
+
+.navbar a {
+  color: #4f5d75 !important;
+  font-family: 'Roboto', Sans-Serif !important;
+}
+
+.nav-item ul {
   list-style-type: none;
 }
 
-.btn {
+
+// Header - Carousel
+
+.app-carousel-container {
+  width: 100%;
+  display: inline-block;
+}
+
+
+// Main
+
+main {
+  padding: 7rem;
+}
+
+h1 {
+  font-family: 'Roboto', Sans-Serif;
+  font-weight: bold;
+  font-size: 5rem;
+  color: #2d3142;
+  text-align: center;
+  padding-bottom: 5rem;
+}
+
+// Category - Products - Cards
+
+h5, h6, .card-title, .card-subtitle {
+  font-family: 'Lora', Serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: #2d3142;
+}
+
+.card-text {
+  font-family: 'Lora', Serif;
+  font-size: 14px;
+  color: #2d3142;
+  padding-top: 1rem;
+}
+
+.card a {
+  color: #4f5d75;
+}
+
+.card a:hover {
+  color: #ef8354;
+  text-decoration: none;
+}
+
+.card-merchant {
+  border-right: 2px solid #bfc0c0;
+  padding-right: 1rem;
+}
+
+.card-details {
+  padding-left: 1rem;
+}
+
+
+// Footer
+
+footer {
+  margin-top: 10rem;
+  width: 100%;
+}
+
+footer, .text-uppercase {
   background-color: #4f5d75;
+  color: #fff;
+  font-family: 'Roboto', Sans-Serif;
+}
+
+footer a, .footer-copyright {
+  color: #fff;
+  font-family: 'Lora', Sans-Serif;
+}
+
+footer a:hover {
+  color: #ef8354;
+  text-decoration: none;
 }

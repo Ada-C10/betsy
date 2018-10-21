@@ -1,13 +1,20 @@
-<!-- Note:  This code is for initial display only! -->
 
-<section>
-  <h1>All Products</h1>
-    <% @products.each do |product| %>
-      <ul>
-        <li><%= link_to product.name, product_path(product) %></li>
-        <li>Description: <%= product.description %></li>
-        <li>Price: <%= number_to_currency(product.price/100)%></li>
-        <li><%= image_tag product.img_file, alt: product.description %></li>
-      </ul>
-    <% end %>
-  </section>
+<h1>All Products</h1>
+
+<% @products.shuffle.each do |p| %>
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src=" <%= p.img_file %> " alt="Image description">
+
+  <div class="card-body">
+    <h5 class="card-title"><%= p.name %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(p.price/100) %></h6>
+    <p class="card-text"><%= p.description %></p>
+    Sold by: <a href=" <%= merchant_path(p.merchant.id) %>"><%= "#{p.merchant.name}" %></a>
+    <br>
+    <a href=" <%= product_path(p.id) %>  " class="btn btn-primary">Details</a>
+  </div>
+</div>
+
+
+<% end %>

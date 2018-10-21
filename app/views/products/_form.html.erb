@@ -1,1 +1,43 @@
-form helper product
+<section>
+  <%= form_with model: @product do |f| %>
+
+  <div class="form-group">
+    <%= f.label :merchant %>
+    <%= f.select :merchant_id, Merchant.all.map{ |merchant| [merchant.name, merchant.id] }, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :product_name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form_group">
+    <%= f.label :categories %>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |c| %>
+    <div class="collection-check-box">
+      <%= c.check_box %>
+      <%= c.label %>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price %>
+    <%= f.text_field :price, as: :currency, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image_http_address %>
+    <%= f.text_field :img_file, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+  <% end %>
+</section>
