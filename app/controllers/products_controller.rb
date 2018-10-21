@@ -29,15 +29,9 @@ class ProductsController < ApplicationController
     if product_params[:merchant_id]
       @product = Product.new(product_params)
       if @product.save
-<<<<<<< HEAD
-        # flash[:status] = :success
-        # flash[:result_text] = "Successfully created #{@product.name}"
-        redirect_to merchant_path(session[:user_id])
-=======
         flash[:status] = :success
         flash[:result_text] = "Successfully created #{@product.name}"
-        redirect_back(fallback_location: root_path)
->>>>>>> 9675e45d36cf36b74ed4f06f3144184c13264815
+        redirect_to merchant_path(session[:user_id])
       else
         flash.now[:status] = :failure
         flash.now[:result_text] = "Could not create #{@product.name}"

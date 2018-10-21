@@ -17,12 +17,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def new
-  end
-
-  def create
-  end
-
   def edit; end
 
   def update
@@ -40,18 +34,14 @@ class OrdersController < ApplicationController
     end
   end
 
-  def destroy
-  end
-
   def confirmation
     @order = Order.find_by(id: session[:order_id])
 
-    if @order.nil?
-      render "layouts/notfound", status: :not_found
-    elsif @order.status == "pending"
-    else
+    if !@order.nil? && @order.status == "paid"
       @orderitems = @order.orderitems
       session[:order_id] = nil
+    else
+      render "layouts/notfound", status: :not_found
     end
   end
 
