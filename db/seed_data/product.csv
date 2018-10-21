@@ -4,11 +4,11 @@ id,name,cost,merchant_id,inventory,description,image_url
 3,London,900,3,6,See London,3-london.jpg
 4,Tacoma,500,4,11,Discover Tacoma,4-Tacoma.jpg
 5,Japan,1000,5,6,Travel Japan,5-japan.jpg
-6,Florida,5309,6,7,Swim with alligators,6-flordia.jpg
+6,Florida,5309,6,7,Swim with alligators,6-florida.jpg
 7,France,1330,7,9,Eat some cheese in France,7-France.jpg
-8,New Jersey,1000,8,8,Travel the Turnpike,7-france(1).jpg
-9,Egypt,1500,9,6,Look at a Pyramid,9-Egypt1.jpg
-10,China,1342,10,9,We will go to the great wall,10-China1.jpg
+8,New Jersey,1000,8,8,Travel the Turnpike,8-new-jersey.jpg
+9,Egypt,1500,9,6,Look at a Pyramid,9-Egypt.jpg
+10,China,1342,10,9,We will go to the great wall,10-China.jpg
 11,Germany,2343,11,10,Let's drink a beer here,11-Germany.jpg
 12,Kenya,2100,12,3,Let's go on a safari,12-kenya.jpg
 13,Iceland,2001,13,10,Is there ice here? Let's find out,13-iceland.jpg
@@ -21,16 +21,16 @@ id,name,cost,merchant_id,inventory,description,image_url
 20,Spain,1993,20,10,We will go to Barcelona!,20-spain.jpg
 21,Adventure Boots,149,21,800,Don't go anywhere without these.,21-adventure-boots.jpg
 22,Black Zipper Jacket,85,22,200,It has decorative zippers!,22-black-zipper-jacket.jpg
-23,Clear Coat,165,23,500,See through this rain jacket, the way you see through all the BS.,23-clear-coat-swag.jpg
+23,Clear Coat,165,23,500,See through this rain jacket the way you see through all the BS.,23-clear-coat.jpg
 24,Fanny Pack,38,24,1000,Editor's choice (the editor is Katie!),24-fanny-pack.jpg
 25,Jean Jacket,55,25,100,Do you want to look super cool or not?,25-jean-jacket.jpg
-26,Panda Head,100,26,50,Choose one of four spectacular lining materials: sateen, crushed velvet, fleece, or vinyl. Weird.,26-panda-head.jpg
+26,Panda Head,100,26,50,Choose one of four spectacular lining materials: sateen; crushed velvet; fleece; or vinyl. Weird.,26-panda-head.jpg
 27,Cute Toast,5,27,100,You can eat it too.,27-cute-toast.jpg
 28,Kitschy Souvenir (Used),45,28,800,Perfect for your next white elephant.,28-kitschy-souvenir-(used).jpg
-29,Party Panther,80,29,10,Fake it till you make it.,29-party-panther.jpg
-30,Hot Air Balloon Tour,2000,30,2,Hot Air Balloon Tour,30-hot-air-balloon-tour.jpg
+29,Party Panther,80,29,10,Fake it til you make it.,29-party-panther.jpg
+30,Hot Air Balloon Tour,2000,30,2,This ain't Kansas anymore.,30-hot-air-balloon-tour.jpg
 31,Meet A Robot,50,31,40,Alice met this robot at the airport!,31-meet-a-robot.jpg
-32,Underwater Photoshoot,350,32,50,Take home sixty photos and a bloopblooper reel.,32-underwater-photoshoot.jpg
+32,Underwater Photoshoot,350,32,50,Take home 60 photos and a bloopblooper reel.,32-underwater-photoshoot.jpg
 33,Welding Class,2500,33,3,It's legit.,33-welding-class.jpg
-34,Lunar Adventure,10000,34,1,Step into the next world.,34-astronaut.jpg
+34,Lunar Adventure,10000,34,1,Step into the next world.,34-lunar-adventure.jpg
 35,A Day In The Life of an Ada Student,1000000,35,2,Priceless.,35-a-day-at-ada.jpg
