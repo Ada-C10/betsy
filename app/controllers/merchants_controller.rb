@@ -1,5 +1,6 @@
 class MerchantsController < ApplicationController
   before_action :find_merchant, only: [:show]
+  skip_before_action :require_login, only: [:index, :show]
 
   def index
     @merchants = Merchant.all.order(:name)
@@ -10,7 +11,7 @@ class MerchantsController < ApplicationController
     @products = @merchant.products
   end
 
-  def account
+  def fulfillment
     @merchant = @current_user
     @products = @merchant.products
   end

@@ -7,11 +7,13 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find_by(id: session[:order_id])
-    if session[:order_id]
-      @orderitems = @order.orderitems.order(created_at: :desc)
-    else
+    if params[:id] == "cart"
       @orderitems = []
+    else
+      @order = Order.find_by(id: session[:order_id])
+      if session[:order_id]
+        @orderitems = @order.orderitems.order(created_at: :desc)
+      end
     end
   end
 
