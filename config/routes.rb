@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   # Route to order dashboard page
   get "/dashboard", to: 'merchants#dashboard', as: "dashboard"
 
+  # Route for search
+  get '/search', to: 'search#search', as: "search"
+
   # Routes for OAuth
   get "/auth/:provider/callback", to: "sessions#create", as: "auth_callback"
   delete "/logout", to: "sessions#destroy", as: "logout"
