@@ -12,7 +12,7 @@
 
 
     <div class="card-columns">
-      <% @merchant.products.each do |product| %>
+      <% @logged_in_merchant.products.each do |product| %>
       <div class="card" style="width: 18rem;">
 
         <img class="card-img-top" src=" <%= product.img_file %> " alt="Snack Image">
@@ -22,10 +22,11 @@
           <p class="card-text"><%= product.description %></p>
         </div>
       </div>
-
       <% end %>
-
     </div>
 
+    <% if @logged_in_merchant.id == @merchant.id %>
+    <%= link_to "Add Product", new_product_path %>
+    <% end %>
 
   </section>
