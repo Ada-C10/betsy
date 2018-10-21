@@ -12,15 +12,20 @@ class OrderitemsController < ApplicationController
       @order = Order.find_by(id: session[:order_id])
     end
 
-    @orderitem.order_id = @order.id
-    if @orderitem.save
-      redirect_to order_path(@order.id)
-    else
-
+    if Orderitem.already_in_cart?(@orderitem, @order)
       flash[:status] = :failure
-      flash[:result_text] = "Could not save"
-      flash[:messages] = @orderitem.errors.messages
-      render "layouts/servererror", status: :internal_server_error
+      flash[:result_text] = "This item already exists in your cart."
+      redirect_to order_path(session[:order_id])
+    else
+      @orderitem.order_id = @order.id
+      if @orderitem.save
+        redirect_to order_path(@order.id)
+      else
+        flash[:status] = :failure
+        flash[:result_text] = "Could not save"
+        flash[:messages] = @orderitem.errors.messages
+        render "layouts/servererror", status: :internal_server_error
+      end
     end
   end
 
