@@ -1,18 +1,20 @@
 <h1><%= "#{@category.name}" %></h1>
 
-<% @category.products.each do |p|  %>
 
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src=" <%= p.img_file %> " alt="Image description">
+<div class="card-columns">
+  <% @category.products.each do |p|  %>
 
-  <div class="card-body">
-    <h5 class="card-title"><%= p.name %></h5>
-    <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(p.price/100) %></h6>
-    <p class="card-text"><%= p.description %></p>  
-    <a href=" <%= merchant_path(p.merchant.id) %>"><%= "#{p.merchant.name}" %></a>
-    <br>
-    <a href=" <%= product_path(p.id) %>  " class="btn btn-primary">Details</a>
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src=" <%= p.img_file %> " alt="Snack Image">
+    <div class="card-body">
+      <h5 class="card-title"><%= p.name %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(p.price/100) %></h6>
+      <p class="card-text"><%= p.description %></p>
+      <a class="card-merchant" href=" <%= merchant_path(p.merchant.id) %>"><%= "#{p.merchant.name}" %></a>
+      <a class="card-details" href=" <%= product_path(p.id) %>">Details</a>
+    </div>
   </div>
-</div>
 
   <% end %>
+
+</div>

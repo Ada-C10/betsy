@@ -1,19 +1,21 @@
 class ApplicationController < ActionController::Base
   before_action :find_home_category
   before_action :find_logged_in_merchant
+  before_action :find_merchants
 
   private
 
   def find_home_category
-    all_categories = Category.all
-
-    @categories = []
-
-    all_categories.each do |c|
-      @categories << c
-    end
+    @categories = Category.all.map
   end
 
+  def find_orders
+    @order_items = OrderItem.all
+  end
+
+  def find_merchants
+    @merchants = Merchant.all.map
+  end
 
 
   def find_logged_in_merchant

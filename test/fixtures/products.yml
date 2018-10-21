@@ -1,13 +1,65 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  price: 9.99
-  description: MyText
-  img_file: MyString
+thyme:
+  name: Thyme
+  price: 500
+  description: Thyme is money. Money is Thyme.
+  img_file: https://loremflickr.com/320/240/fruit
+  merchant: iron_chef
+  categories: atlantis, pandora
 
-two:
-  name: MyString
-  price: 9.99
-  description: MyText
-  img_file: MyString
+butter:
+  name: Butter
+  price: 500
+  description: You butter believe it.
+  img_file: https://loremflickr.com/320/240/fruit
+  merchant: hells
+  categories: asgard
+
+steak:
+  name: Steak
+  price: 1000
+  description: Nice to meat you.
+  img_file: https://loremflickr.com/320/240/fruit
+  merchant: bake_off
+  categories: asgard
+
+donut:
+  name: Donut
+  price: 500
+  description: Donut take us lightly!
+  img_file: https://loremflickr.com/320/240/fruit
+  merchant: ugly
+  categories: pandora, atlantis
+
+sherbert:
+  name: Sherbet
+  price: 700
+  description: Go shorty, it's sherbert day!
+  img_file: https://loremflickr.com/320/240/fruit
+  merchant: ugly
+  categories: pandora, shangri, atlantis, asgard
+
+bread:
+  name: bread
+  price: 500
+  description: The path of yeast resistance.
+  img_file: https://loremflickr.com/320/240/fruit
+  merchant: ugly
+  categories: asgard, pandora
+
+pickle:
+  name: Pickles
+  price: 850
+  description: I'm kind of a big dill.
+  img_file: https://loremflickr.com/320/240/fruit
+  merchant: hells
+  categories: atlantis, shangri
+
+taco:
+  name: Taco
+  price: 500
+  description: Wanna Taco bout it? It's nacho business!
+  img_file: https://loremflickr.com/320/240/fruit
+  merchant: iron_chef
+  categories: asgard
