@@ -3,10 +3,16 @@ require 'csv'
 
 CSV.open('db/seed_data/merchant.csv', "w", :write_headers=> true,
   :headers => ["id", "name", "email", "uid", "provider"]) do |csv|
-  35.times do |i|
+
+  csv << [1, "Sammi-Jo Lee", "sjlee3157@gmail.com", 29874466, "github"]
+  csv << [2, "Shelan Debesai", "shelan@uw.edu", 25810109, "github"]
+  csv << [3, "Katie Jahanmir", "katietj@gmail.com", 25754627, "github"]
+  csv << [4, "Alice Hsiao", "alice.hsiao87@gmail.com", 9450062, "github"]
+
+  3.times do |i|
     fake_user = Faker::Omniauth.github
 
-    id = i+1
+    id = i+5
     name = fake_user[:info][:name]
     email = fake_user[:info][:email]
     uid = fake_user[:uid]
@@ -39,7 +45,7 @@ CSV.open('db/seed_data/orderitem.csv', "w", :write_headers=> true,
   :headers => ["id", "quantity", "order_id", "product_id"]) do |csv|
   50.times do |i|
     id = i+1
-    quantity = rand(1..6)
+    quantity = rand(1..4)
     order_id = rand(1..20)
     product_id = rand(1..35)
     csv << [id, quantity, order_id, product_id]
