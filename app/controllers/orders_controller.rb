@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  before_action :has_cart?
+  # before_action :has_cart?, :logged_in_merchant?
 
   def index
   end
@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find_by(id: params[:id])
     render_404 unless @order
+    @cart = Order.find_by(id: 1)
   end
 
   def create
@@ -87,9 +88,12 @@ class OrdersController < ApplicationController
     )
   end
 
-
-  def has_cart?
-    return @cart = session[:order_id]
-  end
+  # def has_cart?
+  #   return @cart = session[:order_id]
+  # end
+  #
+  # def logged_in_merchant?
+  #   return @logged_in_merchant = session[:merchant_id]
+  # end
 
 end
