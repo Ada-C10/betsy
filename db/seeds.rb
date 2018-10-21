@@ -109,35 +109,35 @@ puts "done"
 puts "\n\n"
 
 #################################################################
-# puts "Loading raw orderitem data from #{ORDERITEM_FILE}"
-#
-# orderitem_failures = []
-# CSV.foreach(ORDERITEM_FILE, :headers => true) do |row|
-#   orderitem = Orderitem.new
-#   orderitem.id = row['id'].to_i
-#   orderitem.quantity = row['quantity'].to_i
-#   orderitem.order_id = row['order_id'].to_i
-#   orderitem.product_id = row['product_id'].to_i
-#   successful = orderitem.save
-#   if !successful
-#     orderitem_failures << orderitem
-#     puts "\n"
-#     puts "Failed to save orderitem id: #{orderitem.id}"
-#     puts "#{orderitem.inspect}"
-#     puts "Errors: #{orderitem.errors.full_messages}"
-#     puts "\n"
-#   else
-#     puts "Created orderitem: #{orderitem.inspect}"
-#   end
-# end
-#
-# puts "Added #{Orderitem.count} orderitem records"
-# puts "#{orderitem_failures.length} orderitems failed to save"
-#
-# puts "Manually resetting PK sequence on each table"
-# ActiveRecord::Base.connection.tables.each do |t|
-#   ActiveRecord::Base.connection.reset_pk_sequence!(t)
-# end
-#
-# puts "done"
-# puts "\n\n"
+puts "Loading raw orderitem data from #{ORDERITEM_FILE}"
+
+orderitem_failures = []
+CSV.foreach(ORDERITEM_FILE, :headers => true) do |row|
+  orderitem = Orderitem.new
+  orderitem.id = row['id'].to_i
+  orderitem.quantity = row['quantity'].to_i
+  orderitem.order_id = row['order_id'].to_i
+  orderitem.product_id = row['product_id'].to_i
+  successful = orderitem.save
+  if !successful
+    orderitem_failures << orderitem
+    puts "\n"
+    puts "Failed to save orderitem id: #{orderitem.id}"
+    puts "#{orderitem.inspect}"
+    puts "Errors: #{orderitem.errors.full_messages}"
+    puts "\n"
+  else
+    puts "Created orderitem: #{orderitem.inspect}"
+  end
+end
+
+puts "Added #{Orderitem.count} orderitem records"
+puts "#{orderitem_failures.length} orderitems failed to save"
+
+puts "Manually resetting PK sequence on each table"
+ActiveRecord::Base.connection.tables.each do |t|
+  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+end
+
+puts "done"
+puts "\n\n"
