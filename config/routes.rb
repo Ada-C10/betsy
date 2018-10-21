@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   # Route to order confirmation page
   get "/confirmation", to: 'orders#confirmation', as: "confirmation"
 
-  # Route to order fulfillment page
-  get "/fulfillment", to: 'merchants#fulfillment', as: "fulfillment"
+  # Route to order dashboard page
+  get "/dashboard", to: 'merchants#dashboard', as: "dashboard"
 
   # Routes for OAuth
   get "/auth/:provider/callback", to: "sessions#create", as: "auth_callback"

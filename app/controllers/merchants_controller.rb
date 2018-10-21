@@ -11,7 +11,7 @@ class MerchantsController < ApplicationController
     @products = @merchant.products
   end
 
-  def fulfillment
+  def dashboard
     @merchant = @current_user
     @products = @merchant.products
   end

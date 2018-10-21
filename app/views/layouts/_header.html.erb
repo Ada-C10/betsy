@@ -13,7 +13,7 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <%= link_to "Products", products_path, class: "nav-link" %>
+            <%= link_to "Shop", products_path, class: "nav-link" %>
           </li>
           <!-- <li class="nav-item">
             <%= link_to "Categories", categories_path, class: "nav-link" %>
@@ -21,18 +21,18 @@
           <% if session[:user_id] %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                My Account
+                My Seller Account
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <%= link_to "Manage Products", merchant_path(session[:user_id]), class: "dropdown-item" %>
-                <%= link_to "Order Fulfillment", fulfillment_path, class: "dropdown-item" %>
+                <%= link_to "View My Store", merchant_path(session[:user_id]), class: "dropdown-item" %>
+                <%= link_to "My Seller Dashboard", dashboard_path, class: "dropdown-item" %>
                 <div class="dropdown-divider"></div>
-                <%= link_to "Log out", logout_path, method: "delete", class: "dropdown-item" %>
+                <%= link_to "Log Out", logout_path, method: "delete", class: "dropdown-item" %>
               </div>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "Merchant Login", "/auth/github", class: "nav-link"%>
+              <%= link_to "Seller Login", "/auth/github", class: "nav-link"%>
             </li>
           <% end %>
           <% if session[:order_id] %>
