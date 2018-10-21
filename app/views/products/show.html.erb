@@ -7,9 +7,13 @@
     <h5 class="card-title"><%= @product.name %></h5>
     <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(@product.price/100) %></h6>
     <p class="card-text"><%= @product.description %></p>
-    
+    Categories go here
+    <br >
     Sold by: <a href=" <%= merchant_path(@product.merchant.id) %>"><%= "#{@product.merchant.name}" %></a>
+    <br >
+    Quantity currently available goes here
     <br>
-    <a href=" <%= product_order_item_path(@product.id) %>  " class="btn btn-primary">Form to create new order_item, with quantity as part of the form?</a>
+    Quantity dropdown goes here
+    <a href=" <%= product_order_item_path(@product.id) %>  " class="btn btn-primary">Add to cart</a>
   </div>
 </div>
