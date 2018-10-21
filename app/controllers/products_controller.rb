@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Work.find_by(id: params[:id])
+    @product = Product.find_by(id: params[:id])
     if @product.nil?
       head :not_found
     end
