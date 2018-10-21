@@ -29,13 +29,19 @@ class ProductsController < ApplicationController
     if product_params[:merchant_id]
       @product = Product.new(product_params)
       if @product.save
+<<<<<<< HEAD
         # flash[:status] = :success
         # flash[:result_text] = "Successfully created #{@product.name}"
         redirect_to merchant_path(session[:user_id])
+=======
+        flash[:status] = :success
+        flash[:result_text] = "Successfully created #{@product.name}"
+        redirect_back(fallback_location: root_path)
+>>>>>>> 9675e45d36cf36b74ed4f06f3144184c13264815
       else
-        # flash.now[:status] = :failure
-        # flash.now[:result_text] = "Could not create #{@product.name}"
-        # flash.now[:messages] = @product.errors.messages
+        flash.now[:status] = :failure
+        flash.now[:result_text] = "Could not create #{@product.name}"
+        flash.now[:messages] = @product.errors.messages
         render :new, status: :bad_request
       end
     end
@@ -50,15 +56,16 @@ class ProductsController < ApplicationController
   def update
     if @product.update(product_params)
       @merchant_id = product_params[:merchant_id].to_i
-      # flash[:status] = :success
-      # flash[:result_text] = "Successfully updated #{@product.name}"
+      flash[:status] = :success
+      flash[:result_text] = "Successfully updated #{@product.name}"
       redirect_to merchant_path(@merchant_id)
     else
-      # flash.now[:status] = :failure
-      # flash.now[:result_text] = "Could not update #{@product.name}"
-      # flash.now[:messages] = @product.errors.messages
+      flash.now[:status] = :failure
+      flash.now[:result_text] = "Could not update #{@product.name}"
+      flash.now[:messages] = @product.errors.messages
       render :edit, status: :bad_request
     end
+
   end
 
   def status
