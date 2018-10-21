@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :find_home_category
   before_action :find_logged_in_merchant
   before_action :find_merchants
+  before_action :find_orders
 
   private
 
