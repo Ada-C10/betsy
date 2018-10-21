@@ -8,7 +8,7 @@ class MerchantsController < ApplicationController
 
 
   def index
-    @merchants = Merchant.all
+    # @merchants = Merchant.all
   end
 
   def new
