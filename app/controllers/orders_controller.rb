@@ -2,22 +2,26 @@ class OrdersController < ApplicationController
   before_action :find_order, only: [:edit, :update]
   skip_before_action :require_login, only: [:show, :edit, :update, :confirmation]
 
-  def index
-    @orders = Order.find_by(id: session[:user_id])
-  end
+  def index; end
 
   def show
     if params[:id] == "cart"
       @orderitems = []
     else
       @order = Order.find_by(id: session[:order_id])
-      if session[:order_id]
+      if @order
         @orderitems = @order.orderitems.order(created_at: :desc)
       end
     end
   end
 
-  def edit; end
+  def edit
+    if @current_user
+      @order.name = @current_user.name
+      @order.email = @current_user.email
+      @order.save
+    end
+  end
 
   def update
     @order.status = "paid"
@@ -37,7 +41,7 @@ class OrdersController < ApplicationController
   def confirmation
     @order = Order.find_by(id: session[:order_id])
 
-    if !@order.nil? && @order.status == "paid"
+    if @order && @order.status == "paid"
       @orderitems = @order.orderitems
       session[:order_id] = nil
     else

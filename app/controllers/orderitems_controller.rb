@@ -2,12 +2,8 @@ class OrderitemsController < ApplicationController
   before_action :find_orderitem, only: [:update, :destroy]
   skip_before_action :require_login, only: [:create, :update, :destroy]
 
-  # Test #3 not done (regarding how to test sessions)
   def create
     @orderitem = Orderitem.new(orderitem_params)
-
-    # if session[:user_id] exists, then can update @current_cart.name = merchant.name etc
-    # merchant edit view for checkout, autofill name, email
 
     if session[:order_id] == nil
       @order = Order.create
@@ -26,7 +22,6 @@ class OrderitemsController < ApplicationController
       flash[:messages] = @orderitem.errors.messages
       render "layouts/servererror", status: :internal_server_error
     end
-
   end
 
   def update
