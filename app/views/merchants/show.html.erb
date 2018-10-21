@@ -1,14 +1,21 @@
-<h1>All products sold by that merchant (Merchant Show page)</h1>
+<!-- only have the option to add products from the myaccount page and to edit it from there?? Or can try to add a link for new product but should only be shown for merchant for their items only  -->
 
+<section>
+  <h1>All products sold by that merchant (Merchant Show page)</h1>
+  <%= @merchant.name %> <br>
+  <p> Date Joined:  <%= readable_date(@merchant.created_at) %><br>
 
-<%= @merchant.name %>
-<%= @merchant.created_at %>
-<%= link_to "Add Product", new_product_path %>
+    <%#  if @logged_in_merchant == @merchant.products.first.id
+    link_to "Add Product", new_product_path
+    end   %>
 
+    <!-- in this case the product.id is nil since I have not added any items yet, will have to come up with something for  nil -->
 
-<%= @merchant.products.each do |product| %>
-<%= product.img_file %>
-<%= product.name %>
-<%= product.description %>
-<%= link_to product, product_path(product.id) %>
-<% end  %>
+    <% @merchant.products.each do |product| %>
+    <ul>
+      <li><%= link_to product.name, product_path(product.id) %></li>
+      <%= product.description %>
+      <li><%= image_tag product.img_file, alt: product.description %></li>
+    </ul>
+    <% end  %>
+  </section>

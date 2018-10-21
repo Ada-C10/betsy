@@ -1,4 +1,11 @@
 class MerchantsController < ApplicationController
+  # add new_product path in the merchant show page ex (# <%= link_to "Add Product", new_product_path %>) add in Products controller: before_action :require_login --also need to add to application controller
+
+
+  def account
+    @merchant = Merchant.find_by(id: params[:id])
+  end
+
 
   def index
     @merchants = Merchant.all
@@ -50,7 +57,6 @@ class MerchantsController < ApplicationController
   def destroy
     session[:merchant_id] = nil
     flash[:success] = "Successfully logged out!"
-
     redirect_to root_path
   end
 
