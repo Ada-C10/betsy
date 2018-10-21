@@ -3,8 +3,14 @@ class MerchantsController < ApplicationController
 
 
   def account
-    @merchant = Merchant.find_by(id: params[:id])
+    @merchant = @logged_in_merchant
   end
+
+  def show
+    @merchant = Merchant.find_by(id: params[:id])
+     # @merchant = @logged_in_merchant
+  end
+
 
 
   def index
@@ -42,9 +48,6 @@ class MerchantsController < ApplicationController
 
   end
 
-  def show
-    @merchant = Merchant.find_by(id: params[:id])
-  end
 
   def edit
   end
