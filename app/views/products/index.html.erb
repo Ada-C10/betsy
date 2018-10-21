@@ -33,17 +33,22 @@
               <%= image_tag(product.image_url, width: 500, alt: product.name, class: "card-img-top") %>
             </div>
             <div class="modal-footer">
-              <div class="form-group">
-                <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
+              <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
 
-                  <%= f.label :quantity, 'Quantity'%>
-                  <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: product.inventory, maxlength: 3, class: "form-control" %>
-                  <%= f.hidden_field :product_id, value: product.id %>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Quantity</span>
+                </div>
+                <input type="number" class="form-control" aria-label="Quantity" aria-describedby="basic-addon1" value=1 required="true" maxlength=3 min=1 max=<%= product.inventory %>>
               </div>
+                <%# f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: product.inventory, maxlength: 3 %>
+                <%= f.hidden_field :product_id, value: product.id %>
                 <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
               <% end %>
+
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
+
           </div>
         </div>
       </div>
@@ -51,7 +56,6 @@
       <% end %>
     </div>
   </div>
-
 <% end %>
 
 
