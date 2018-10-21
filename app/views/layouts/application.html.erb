@@ -18,6 +18,7 @@
 
   <header class="app-header">
 
+<<<<<<< HEAD
     <header class="app-header">
 
       <nav class="site-nav">
@@ -35,6 +36,9 @@
           <% end %>
           </div>
 
+=======
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
+>>>>>>> 5537f1d55c89d8b335bc440601cd460ddd0f8614
 
       <a class="navbar-brand" href="<%= root_path %>">Fibonoshi</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,22 +74,13 @@
 
         </ul>
 
-<<<<<<< HEAD
         <ul class="navbar-nav navbar-right">
           <li class="nav-item"><a class="nav-link" href="/auth/github">Login</a></li>
           <li class="nav-item"><a class="nav-link" href="<%= logout_path %>">Logout</a></li>
           <li class="nav-itm">
-            <a class="nav-link" href="<%= orders_path %>"><%= image_tag("shopping-cart.svg")%> <%= @orders.count %></a>
+            <a class="nav-link" href="<%= orders_path %>"><%= image_tag("shopping-cart.svg")%> <%= @order_items.count %></a>
           </li>
         </ul>
-=======
-          <ul class="navbar-nav navbar-right">
-            <li class="nav-item"><a class="nav-link" href="/auth/github">Login</a></li>
-            <li class="nav-item"><a class="nav-link" href="<%= logout_path %>">Logout</a></li>
-            <li class="nav-itm">
-              <a class="nav-link" href="<%= orders_path %>"><%= image_tag("shopping-cart.svg")%> <%= @order_items.count %></a></li>
-          </ul>
->>>>>>> 81f843fa65894814cee01056f92221f08a3b8836
 
       </div>
     </nav>
@@ -112,6 +107,7 @@
             <img class="d-block w-100" src="/assets/lollipop-b462e9ff485a7fa98aa6eaf964f93445db930a39584cd3c5b08a62eda10c08f8.jpg" alt="Third slide">
           </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
@@ -128,6 +124,8 @@
 >>>>>>> ac71d376f8ffbf8060352ebbd31138d45cf64ab2
 >>>>>>> 81f843fa65894814cee01056f92221f08a3b8836
 >>>>>>> 3d2f518eaca7fc6fbfad15d592cb1f6bf2389550
+=======
+>>>>>>> 5537f1d55c89d8b335bc440601cd460ddd0f8614
         </div>
 
 
@@ -162,23 +160,21 @@
   </section>
   <% end %>
 
-<<<<<<< HEAD
-=======
-
   <% if @logged_in_merchant %>
-  <li><%= link_to "My Account", merchant_account_path(@logged_in_merchant), method: :get, class: "btn btn-primary"%></li>
-  <li>
-    <%= link_to "Log out", logout_path, method: "delete", class: "btn btn-primary"  %>
-  </li>
-  <% else %>
-  <li> <%= link_to "Login", "/auth/github" , class: "btn btn-primary" %> </li>
-  <% end %>
->>>>>>> 81f843fa65894814cee01056f92221f08a3b8836
+<li><%= link_to "My Account", merchant_account_path(@logged_in_merchant), method: :get, class: "btn btn-primary"%></li>
+<li>
+  <%= link_to "Log out", logout_path, method: "delete", class: "btn btn-primary"  %>
+</li>
+<% else %>
+<li> <%= link_to "Login", "/auth/github" , class: "btn btn-primary" %> </li>
+<% end %>
 
 
   <main>
     <%= yield %>
   </main>
+
+
 
 
   <footer class="page-footer font-small">
