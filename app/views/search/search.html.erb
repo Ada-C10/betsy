@@ -1,0 +1,43 @@
+<h2>Search Results</h2>
+
+<br /><br /><br />
+<% if @products.empty? && @merchants.empty? && @categories.empty?  %>
+  <p>
+    No matches for your search.
+  </p>
+<% else %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Products</h3>
+        <ul>
+          <% @products.each do |item| %>
+            <li>
+              <%= link_to item.name, product_path(item.id) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h3>Merchants</h3>
+        <ul>
+          <% @merchants.each do |item| %>
+            <li>
+              <%= link_to item.name, merchant_path(item.id) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h3>Categories</h3>
+        <ul>
+          <% @categories.each do |item| %>
+            <li>
+              <%= link_to item.name, category_path(item.id) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %>
