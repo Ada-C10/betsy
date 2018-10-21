@@ -7,36 +7,54 @@ describe Orderitem do
     expect(orderitem).must_be :valid?
   end
 
-  # describe "validations" do
-  #   it "requires a quantity" do
-  #     order = orderitems(:itemsone)
-  #     order.quantity = nil
-  #
-  #     valid = order.save
-  #
-  #     expect(valid).must_equal false
-  #     expect(order.errors.messages).must_include :quantity
-  #     expect(order.errors.messages[:quantity]).must_equal ["Cannot be blank"]
-  #   end
-  #
-  #   it "requires quanity to be integers" do
-  #     order_thing = Orderitem.new(quantity: 1)
-  #
-  #     valid = order_thing.save
-  #
-  #     valid.must_equal true
-  #     valid.must_be_instance_of Integer
-  #   end
-  # end
-  #
-  # describe "line_item_price" do
-  #   it "will return an accurate cost of an item with quantity" do
-  #     item = orderitems(:itemsfour)
-  #     cost = item.line_item_price
-  #
-  #     expect(cost).must_equal (101.0 * 4)
-  #   end
-  # end
+  describe "validations" do
+    it "requires a quantity" do
+      order = orderitems(:itemsone)
+      order.quantity = nil
+
+      valid = order.save
+
+      expect(valid).must_equal false
+      expect(order.errors.messages).must_include :quantity
+      expect(order.errors.messages[:quantity]).must_equal ["can't be blank", "is not a number"]
+    end
+
+    it "requires quanity to be integers" do
+      order = orderitems(:itemsone)
+      order.quantity = "string"
+       valid = order.save
+
+      expect(valid).must_equal false
+      expect(order.errors.messages).must_include :quantity
+    end
+
+    it "requires an integer that is greater than zero" do
+      order = orderitems(:itemsone)
+      order.quantity = 0
+       valid = order.save
+
+      expect(valid).must_equal false
+      expect(order.errors.messages).must_include :quantity
+
+    end
+    it "requires a unique product id " do
+      order = orderitems(:itemsone)
+
+
+
+    end
+  end
+
+
+  describe "line_item_price" do
+    it "will return an accurate cost of an item with quantity" do
+      item = orderitems(:itemsfour)
+      cost = item.line_item_price
+
+      expect(cost).must_equal (101.0 * 4)
+    end
+  end
+
 
   describe "relations" do
     it "has a  merchant" do
