@@ -1,8 +1,7 @@
 <!-- only have the option to add products from the myaccount page and to edit it from there?? Or can try to add a link for new product but should only be shown for merchant for their items only  -->
 
 <section>
-  <h1>All products sold by that merchant (Merchant Show page)</h1>
-  <%= @merchant.name %> <br>
+  <h5>All products sold by:   <%= @merchant.name %>  </h5>
   <p> Date Joined:  <%= readable_date(@merchant.created_at) %><br>
 
     <%#  if @logged_in_merchant == @merchant.products.first.id
