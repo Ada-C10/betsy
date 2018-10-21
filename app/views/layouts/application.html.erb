@@ -1,92 +1,124 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>Fibonoshi</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+  <head>
+    <title>Fibonoshi</title>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-  <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Lora|Roboto:400,700" rel="stylesheet">
-</head>
-
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+ href="https://fonts.googleapis.com/css?family=Lora|Roboto:400,700" rel="stylesheet">
+  </head>
 
 
+  <body>
 
-<body>
 
+  <header class="app-header">
+
+<<<<<<< HEAD
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
+=======
     <header class="app-header">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      <nav class="site-nav">
+        <ul>
 
-      <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
+        <li>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Products
+          </button>
 
-        <a class="navbar-brand" href="<%= root_path %>">Fibonoshi</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% @categories.each do |c| %>
+            <a class="dropdown-item" href=" <%= category_path(c.id) %>"  ><%= "#{c.name.capitalize}" %></a>
+          <% end %>
+          </div>
+=======
+>>>>>>> 81f843fa65894814cee01056f92221f08a3b8836
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Browse Countries
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <% @categories.each do |c| %>
-                <a class="dropdown-item" href="<%= category_path(c.id) %>"><%= "#{c.name.capitalize}" %></a>
-                <% end %>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Browse Merchants
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <% @merchants.each do |m| %>
-                <a class="dropdown-item" href="<%= merchant_path(m.id) %>"><%= "#{m.name.capitalize}" %></a>
-                <% end %>
-              </div>
-            </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<%= products_path%>"> All Products</a>
-              </li>
+      <a class="navbar-brand" href="<%= root_path %>">Fibonoshi</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-          </ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Browse Countries
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <% @categories.each do |c| %>
+              <a class="dropdown-item" href="<%= category_path(c.id) %>"><%= "#{c.name.capitalize}" %></a>
+              <% end %>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Browse Merchants
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <% @merchants.each do |m| %>
+              <a class="dropdown-item" href="<%= merchant_path(m.id) %>"><%= "#{m.name.capitalize}" %></a>
+              <% end %>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= products_path%>"> All Products</a>
+          </li>
+>>>>>>> 3d2f518eaca7fc6fbfad15d592cb1f6bf2389550
 
+        </ul>
+
+<<<<<<< HEAD
+        <ul class="navbar-nav navbar-right">
+          <li class="nav-item"><a class="nav-link" href="/auth/github">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="<%= logout_path %>">Logout</a></li>
+          <li class="nav-itm">
+            <a class="nav-link" href="<%= orders_path %>"><%= image_tag("shopping-cart.svg")%> <%= @orders.count %></a>
+          </li>
+        </ul>
+=======
           <ul class="navbar-nav navbar-right">
             <li class="nav-item"><a class="nav-link" href="/auth/github">Login</a></li>
             <li class="nav-item"><a class="nav-link" href="<%= logout_path %>">Logout</a></li>
             <li class="nav-itm">
               <a class="nav-link" href="<%= orders_path %>"><%= image_tag("shopping-cart.svg")%> <%= @order_items.count %></a></li>
           </ul>
+>>>>>>> 81f843fa65894814cee01056f92221f08a3b8836
 
-        </div>
-      </nav>
+      </div>
+    </nav>
 
-      <div class="app-carousel-container">
+    <div class="app-carousel-container">
 
-        <div id="app-slider" class="carousel slide" data-ride="carousel">
+      <div id="app-slider" class="carousel slide" data-ride="carousel">
 
-          <ol class="carousel-indicators">
-            <li data-target="#app-slider" data-slide-to="0" class="active"></li>
-            <li data-target="#app-slider" data-slide-to="1"></li>
-            <li data-target="#app-slider" data-slide-to="2"></li>
-          </ol>
+        <ol class="carousel-indicators">
+          <li data-target="#app-slider" data-slide-to="0" class="active"></li>
+          <li data-target="#app-slider" data-slide-to="1"></li>
+          <li data-target="#app-slider" data-slide-to="2"></li>
+        </ol>
 
 
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img class="d-block w-100" src="/assets/marshmallow-4ab4e766679fee16a12d850cfb1a74c9d2a6d649b877e5c0054243c90f5292c5.jpg" alt="First slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="/assets/gummyworm-81faeba9db63e987d0da4dac4dd7f34bfefd63c942ec15dc4ec0df23948a4cca.jpg" alt="Second slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="/assets/lollipop-b462e9ff485a7fa98aa6eaf964f93445db930a39584cd3c5b08a62eda10c08f8.jpg" alt="Third slide">
-            </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="/assets/marshmallow-4ab4e766679fee16a12d850cfb1a74c9d2a6d649b877e5c0054243c90f5292c5.jpg" alt="First slide">
           </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="/assets/gummyworm-81faeba9db63e987d0da4dac4dd7f34bfefd63c942ec15dc4ec0df23948a4cca.jpg" alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="/assets/lollipop-b462e9ff485a7fa98aa6eaf964f93445db930a39584cd3c5b08a62eda10c08f8.jpg" alt="Third slide">
+          </div>
+<<<<<<< HEAD
+=======
 
 
           <a class="carousel-control-prev" href="#app-slider" role="button" data-slide="prev">
@@ -97,12 +129,26 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
+<<<<<<< HEAD
+=======
+>>>>>>> ac71d376f8ffbf8060352ebbd31138d45cf64ab2
+>>>>>>> 81f843fa65894814cee01056f92221f08a3b8836
+>>>>>>> 3d2f518eaca7fc6fbfad15d592cb1f6bf2389550
         </div>
 
+
+        <a class="carousel-control-prev" href="#app-slider" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#app-slider" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
 
-    </header>
-
+    </div>
+  </header>
 
 
   <% if flash[:result_text] or flash[:messages] %>
@@ -122,6 +168,8 @@
   </section>
   <% end %>
 
+<<<<<<< HEAD
+=======
 
   <% if @logged_in_merchant %>
   <li><%= link_to "My Account", merchant_account_path(@logged_in_merchant), method: :get, class: "btn btn-primary"%></li>
@@ -131,6 +179,7 @@
   <% else %>
   <li> <%= link_to "Login", "/auth/github" , class: "btn btn-primary" %> </li>
   <% end %>
+>>>>>>> 81f843fa65894814cee01056f92221f08a3b8836
 
 
   <main>
@@ -138,12 +187,102 @@
   </main>
 
 
-  <footer></footer>
+  <footer class="page-footer font-small">
+    <div class="container text-center text-md-left">
+      <div class="row">
+
+        <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
+
+          <h5 class="font-weight-bold text-uppercase mb-4">FIBONOSHI</h5>
+          <p>Noshes around the world.</p>
+          <p> Chase the pig around the house if human is on laptop sit on the keyboard warm up laptop fart rainbows until owner yells pee in litter box hiss at cats</p>
+        </div>
+
+
+        <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
+          <h5 class="font-weight-bold text-uppercase mb-4">About</h5>
+
+            <ul class="list-unstyled">
+              <li>
+                <p>
+                  <a href="#!">CAREERS</a>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <a href="#!">BYTE SQUAD</a>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <a href="#!">BLOG</a>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <a href="#!">IN THE NEWS</a>
+                </p>
+              </li>
+            </ul>
+
+        </div>
+
+
+          <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+
+          <h5 class="font-weight-bold text-uppercase mb-4">Address</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <p>
+               Seattle, WA 98161
+             </p>
+            </li>
+            <li>
+              <p>
+                hello@fibonoshi.com
+              </p>
+            </li>
+            <li>
+              <p>
+              1 555 555 5555
+             </p>
+            </li>
+            <li>
+              <p>
+              1 555 555 5555
+             </p>
+            </li>
+          </ul>
+
+        </div>
 
 
 
+        <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
+
+          <h5 class="font-weight-bold text-uppercase mb-4">Follow Us</h5>
+
+          <a class="fb-link" href="https://facebook.com/"> <%= image_tag("facebook.svg") %> </a>
+
+          <a class="twitter-link" href="https://twitter.com/"> <%= image_tag("twitter.svg") %> </a>
+
+          <a class="insta-link" href="https://instagram.com/"> <%= image_tag("instagram.svg") %> </a>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href=" <%= root_path %> ">DanDeeLions</a>
+    </div>
+
+  </footer>
 
 
-</body>
+
+  </body>
 
 </html>

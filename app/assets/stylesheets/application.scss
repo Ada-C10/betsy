@@ -31,6 +31,7 @@
 
 .navbar a {
   color: #4f5d75 !important;
+  font-family: 'Roboto', Sans-Serif !important;
 }
 
 
@@ -89,4 +90,28 @@ h5, h6, .card-title, .card-subtitle {
 
 .card-details {
   padding-left: 1rem;
+}
+
+
+// Footer
+
+footer {
+  margin-top: 10rem;
+  width: 100%;
+}
+
+footer, .text-uppercase {
+  background-color: #4f5d75;
+  color: #fff;
+  font-family: 'Roboto', Sans-Serif;
+}
+
+footer a, .footer-copyright {
+  color: #fff;
+  font-family: 'Lora', Sans-Serif;
+}
+
+footer a:hover {
+  color: #ef8354;
+  text-decoration: none;
 }
