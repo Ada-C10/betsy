@@ -3,7 +3,7 @@
 <section>
   <h1>All products sold by that merchant (Merchant Show page)</h1>
 <%= @merchant.name %> <br>
-<%= @merchant.created_at %><br>
+<p> Date Joined:  <%= readable_date(@merchant.created_at) %></p><br>
 <%= link_to "Add Product", new_product_path %>
 <br>
 
