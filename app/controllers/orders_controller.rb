@@ -24,17 +24,24 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order.status = "paid"
     @order_items = Orderitem.where(order_id: @order.id)
-    Product.adjust_inventory(@order_items)
+    if Product.check_inventory(@order_items)
+      Product.adjust_inventory(@order_items)
 
-    if @order.update_attributes(order_params)
-      redirect_to confirmation_path
+      @order.status = "paid"
+
+      if @order.update_attributes(order_params)
+        redirect_to confirmation_path
+      else
+        flash.now[:status] = :failure
+        flash.now[:result_text] = "Could not complete order"
+        flash.now[:messages] = @order.errors.messages
+        render "layouts/notfound", status: :not_found
+      end
     else
-      flash.now[:status] = :failure
-      flash.now[:result_text] = "Could not complete order"
-      flash.now[:messages] = @order.errors.messages
-      render "layouts/notfound", status: :not_found
+      flash[:status] = :failure
+      flash[:result_text] = "Not enough inventory"
+      redirect_to order_path(@order.id)
     end
   end
 
