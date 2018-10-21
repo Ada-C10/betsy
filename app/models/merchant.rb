@@ -19,4 +19,8 @@ class Merchant < ApplicationRecord
   def readable_name
     return self.name.split.map(&:capitalize).join(' ')
   end
+
+  def total_revenue
+    return self.orderitems.reduce(0) {|sum, item| sum + item.line_item_price}
+  end
 end
