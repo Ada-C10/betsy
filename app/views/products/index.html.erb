@@ -1,10 +1,36 @@
 <h1>List of Products</h1>
-<ul>
-  <% @products.each do |product| %>
-   <li>
-     <%= link_to product.name, product_path(product.id) %>
-   </li>
-  <% end %>
-</ul>
+
+<% @products.each do |product| %>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    Sold by <%= link_to readable_name(product.merchant.name), merchant_path(product.merchant_id) %>
+  </div>
+  <%= image_tag(product.image_url, width: 500, alt: product.name, class: "card-img-top") %>
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to product.name, product_path(product.id) %></h5>
+    <p class="card-text"><%= "Description: #{product.description}" %></p>
+    <p class="card-text"><%= readable_cost(product.cost) %></p>
+  </div>
+  <div class="card-footer text-muted">
+    <% if product.inventory == 0 %>
+      <p>Out of Stock</p>
+    <% else %>
+      <p><%= "#{product.inventory} in stock" %></p>
+      <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
+
+        <%= f.label :quantity, 'Quantity' %>
+        <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: product.inventory, maxlength: 3 %>
+
+        <%= f.hidden_field :product_id, value: product.id %>
+
+        <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<% end %>
+
 
 <!-- clean up this view by putting loop in partial -->
