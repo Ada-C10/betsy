@@ -1,1 +1,12 @@
 <h2>Cancelled Orders</h2>
+<% cancelled_orders = @merchant.orders_by_status("cancelled") %>
+<% if cancelled_orders %>
+<% cancelled_orders.each do |order| %>
+<p>Order #<%= order.id %> : <%= order.orderitems.count %> Items : Placed on <%= readable_date(order.created_at) %> : Cancelled on <%= readable_date(order.updated_at) %></p>
+<% end %>
+<% else %>
+<p>You have no cancelled orders.</p>
+<% end %>
+
+
+<!-- NOTE: cannot update a cancelled order!!! Can only uncancel! -->

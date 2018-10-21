@@ -25,7 +25,7 @@ CSV.open('db/seed_data/order.csv', "w", :write_headers=> true,
   :headers => ["id", "status", "name", "address", "cc_num", "exp_date", "zip", "cvv", "email"]) do |csv|
   20.times do |i|
     id = i+1
-    status = %w(pending pending pending pending paid paid paid paid complete complete complete complete cancelled).sample
+    status = %w(pending pending paid paid complete complete cancelled).sample
     unless status == "pending"
       name = Faker::FunnyName.name
       address = Faker::Address.full_address

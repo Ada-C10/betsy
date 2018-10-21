@@ -16,7 +16,11 @@
             <%= link_to "Shop", products_path, class: "nav-link" %>
           </li>
           <!-- <li class="nav-item">
-            <%= link_to "Categories", categories_path, class: "nav-link" %>
+            <%# link_to "Sell", new_product_path, class: "nav-link"%>
+          </li> -->
+                    <!-- "Sell" should take a logged-in user to Add a new PRoduct, and a non logged-in user to a "sign up!" page -->
+          <!-- <li class="nav-item">
+            <%# link_to "Categories", categories_path, class: "nav-link" %>
           </li> -->
           <% if session[:user_id] %>
             <li class="nav-item dropdown">

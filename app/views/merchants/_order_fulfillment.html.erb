@@ -1,1 +1,10 @@
 <h2>Order Fulfillment</h2>
+<% paid_orders = @merchant.orders_by_status("paid") %>
+<% if paid_orders %>
+<h3>It's Time To Ship <%= paid_orders.size %> New Orders!</h3>
+<% paid_orders.each do |order| %>
+<p>Order #<%= order.id %> : <%= order.orderitems.count %> Items : Placed on <%= readable_date(order.created_at) %> (placed hh:mm ago) : Sales: <%= readable_cost(order.total_cost) %></p>
+<% end %>
+<% else %>
+<p>You're all caught up!</p>
+<% end %>

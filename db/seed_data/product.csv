@@ -20,7 +20,7 @@ id,name,cost,merchant_id,inventory,description,image_url
 19,Russia,3000,4,30,We will go to Putin's house!,19-russia.jpg
 20,Spain,1993,1,20,We will go to Barcelona!,20-spain.jpg
 21,Adventure Boots,149,3,800,Don't go anywhere without these.,21-adventure-boots.jpg
-22,Black Zipper Jacket,3,22,200,It has decorative zippers!,22-black-zipper-jacket.jpg
+22,Black Zipper Jacket,3,7,200,It has decorative zippers!,22-black-zipper-jacket.jpg
 23,Clear Coat,165,1,500,See through this rain jacket the way you see through all the BS.,23-clear-coat.jpg
 24,Fanny Pack,38,3,1000,Editor's choice (the editor is Katie!),24-fanny-pack.jpg
 25,Jean Jacket,55,1,100,Do you want to look super cool or not?,25-jean-jacket.jpg
