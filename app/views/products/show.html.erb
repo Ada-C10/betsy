@@ -16,7 +16,7 @@
   <div class="card-footer text-muted">
     <% if @product.inventory == 0 %>
       <p>Out of Stock</p>
-    <% elsif product.inventory <= 20 %>
+    <% elsif @product.inventory <= 20 %>
       <p>Hurry! Only a few left!</p>
     <% end %>
 
