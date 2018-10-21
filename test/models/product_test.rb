@@ -112,6 +112,28 @@ describe Product do
 
       expect(start_inventory - end_inventory).must_equal item.quantity
     end
+
+    describe "check_inventory" do
+      it "returns false if there is not enough inventory" do
+        item = orderitems(:itemstwo)
+        product.inventory = 0
+        product.save
+
+        order_items = []
+        order_items << item
+
+        expect(Product.check_inventory(order_items)).must_equal false
+      end
+
+      it "returns true if there is inventory" do
+        item = orderitems(:itemstwo)
+
+        order_items = []
+        order_items << item
+
+        expect(Product.check_inventory(order_items)).must_equal true
+      end
+    end
   end
 
   describe "relations" do

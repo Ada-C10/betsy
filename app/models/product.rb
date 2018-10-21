@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   belongs_to :merchant
   has_many :orderitems, dependent: :destroy
   has_many :orders, through: :orderitems
-  
+
   validates :name, presence: true, uniqueness: true
   validates :cost, presence: true, numericality: { greater_than: 0 }, allow_nil: true
   validates :inventory, presence: true, numericality: { only_integer: true }
@@ -15,11 +15,16 @@ class Product < ApplicationRecord
   def self.adjust_inventory(order_items)
     order_items.each do |item|
       item.product.inventory -= item.quantity
-      if item.product.inventory == 0
-        item.product.destroy
-      else
-        item.product.save
+      item.product.save
+    end
+  end
+
+  def self.check_inventory(order_items)
+    order_items.each do |item|
+      if item.product.inventory < item.quantity
+        return false
       end
     end
+    return true
   end
 end

@@ -2,56 +2,57 @@ class OrdersController < ApplicationController
   before_action :find_order, only: [:edit, :update]
   skip_before_action :require_login, only: [:show, :edit, :update, :confirmation]
 
-  def index
-    @orders = Order.find_by(id: session[:user_id])
-  end
+  def index; end
 
   def show
     if params[:id] == "cart"
       @orderitems = []
     else
       @order = Order.find_by(id: session[:order_id])
-      if session[:order_id]
+      if @order
         @orderitems = @order.orderitems.order(created_at: :desc)
       end
     end
   end
 
-  def new
-  end
-
-  def create
-  end
-
-  def edit; end
-
-  def update
-    @order.status = "paid"
-    @order_items = Orderitem.where(order_id: @order.id)
-    Product.adjust_inventory(@order_items)
-
-    if @order.update_attributes(order_params)
-      redirect_to confirmation_path
-    else
-      flash.now[:status] = :failure
-      flash.now[:result_text] = "Could not complete order"
-      flash.now[:messages] = @order.errors.messages
-      render "layouts/notfound", status: :not_found
+  def edit
+    if @current_user
+      @order.name = @current_user.name
+      @order.email = @current_user.email
+      @order.save
     end
   end
 
-  def destroy
+  def update
+    @order_items = Orderitem.where(order_id: @order.id)
+    if Product.check_inventory(@order_items)
+      Product.adjust_inventory(@order_items)
+
+      @order.status = "paid"
+
+      if @order.update_attributes(order_params)
+        redirect_to confirmation_path
+      else
+        flash.now[:status] = :failure
+        flash.now[:result_text] = "Could not complete order"
+        flash.now[:messages] = @order.errors.messages
+        render "layouts/notfound", status: :not_found
+      end
+    else
+      flash[:status] = :failure
+      flash[:result_text] = "Not enough inventory"
+      redirect_to order_path(@order.id)
+    end
   end
 
   def confirmation
     @order = Order.find_by(id: session[:order_id])
 
-    if @order.nil?
-      render "layouts/notfound", status: :not_found
-    elsif @order.status == "pending"
-    else
+    if @order && @order.status == "paid"
       @orderitems = @order.orderitems
       session[:order_id] = nil
+    else
+      render "layouts/notfound", status: :not_found
     end
   end
 

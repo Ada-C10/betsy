@@ -19,4 +19,14 @@ class Orderitem < ApplicationRecord
     product = Product.find_by(id: self.product_id)
     return self.quantity * product.cost
   end
+
+  def self.already_in_cart?(orderitem, order)
+    record = self.all.where(product_id: orderitem.product_id, order_id: order.id)
+
+    if record.empty?
+      return false
+    else
+      return true
+    end
+  end
 end

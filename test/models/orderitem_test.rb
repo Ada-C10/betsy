@@ -29,14 +29,28 @@ describe Orderitem do
   #   end
   # end
   #
-  # describe "line_item_price" do
-  #   it "will return an accurate cost of an item with quantity" do
-  #     item = orderitems(:itemsfour)
-  #     cost = item.line_item_price
-  #
-  #     expect(cost).must_equal (101.0 * 4)
-  #   end
-  # end
+  describe "Custom Methods" do
+    describe "line_item_price" do
+      it "will return an accurate cost of an item with quantity" do
+        item = orderitems(:itemsfour)
+        cost = item.line_item_price
+
+        expect(cost).must_equal (101.0 * 4)
+      end
+    end
+
+    describe "already_in_cart?" do
+      it "will return true if item is already in the cart" do
+        record = Orderitem.already_in_cart?(orderitem, orders(:ordlegend))
+        expect(record).must_equal true
+      end
+
+      it "will return false if item is not in the cart" do
+        record = Orderitem.already_in_cart?(orderitem, orders(:ordciara))
+        expect(record).must_equal false
+      end
+    end
+  end
 
   describe "relations" do
     it "has a  merchant" do
