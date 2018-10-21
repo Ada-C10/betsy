@@ -27,4 +27,19 @@ class Product < ApplicationRecord
     end
     return true
   end
+
+  def average_rating
+    sum = 0
+    count = self.reviews.count
+
+    if count == 0
+      return 0
+    else
+      self.reviews.each do |review|
+        sum += review.rating
+      end
+
+      return (sum / count)
+    end
+  end
 end

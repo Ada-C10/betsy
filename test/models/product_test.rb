@@ -134,6 +134,22 @@ describe Product do
         expect(Product.check_inventory(order_items)).must_equal true
       end
     end
+
+    describe "average_rating" do
+      it "calculates an accurate average rating for products with reviews" do
+        product = products(:fannypack)
+
+        average = product.average_rating
+        expect(average).must_equal 5
+      end
+
+      it "returns 0 for products with no ratings" do
+        product = products(:safari)
+
+        average = product.average_rating
+        expect(average).must_equal 0
+      end
+    end
   end
 
   describe "relations" do
