@@ -15,8 +15,11 @@
     <div class="card-footer text-muted">
       <% if product.inventory == 0 %>
         <p>Out of Stock</p>
-      <% else %>
-        <p><%= "#{product.inventory} in stock" %></p>
+      <% elsif product.inventory <= 20 %>
+        <p>Hurry! Only a few left!</p>
+      <% end %>
+
+      <% if product.inventory > 0 %>
 
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addToCart" data-whatever="@mdo">Add To Cart</button>
 

@@ -16,8 +16,11 @@
   <div class="card-footer text-muted">
     <% if @product.inventory == 0 %>
       <p>Out of Stock</p>
-    <% else %>
-      <p><%= "#{@product.inventory} in stock" %></p>
+    <% elsif product.inventory <= 20 %>
+      <p>Hurry! Only a few left!</p>
+    <% end %>
+
+    <% if @product.inventory > 0 %>
       <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
 
         <%= f.label :quantity, 'Quantity' %>
