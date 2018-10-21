@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/home', to: 'products#homepage', as: 'home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-
+  get '/merchants/:id/myaccount', to: 'merchants#account', as: 'merchant_account'
 
 
   get "/auth/:provider/callback", to: "merchants#create"
