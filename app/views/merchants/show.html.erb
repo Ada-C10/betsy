@@ -15,7 +15,7 @@
 
           <% if product.status %>
           <%= link_to "Inactivate",status_change_path , class: "btn btn-primary" %>
-          <% else product.status == false %>
+          <% else %>
           <%= link_to "Activate", status_change_path, class: "btn btn-primary" %>
 
           <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(product.price/100) %></h6>
