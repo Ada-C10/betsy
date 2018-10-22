@@ -6,9 +6,19 @@ class MerchantsController < ApplicationController
     @merchant = @logged_in_merchant
   end
 
+  def inactivate
+    @product = Product.find_by(id: params[:id])
+    if @product.status
+      @producut.status == false
+    else
+    end 
+  end
+
+
+
   def show
     @merchant = Merchant.find_by(id: params[:id])
-     # @merchant = @logged_in_merchant
+    # @merchant = @logged_in_merchant
   end
 
 
