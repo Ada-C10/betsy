@@ -9,7 +9,7 @@ class MerchantsController < ApplicationController
   def status_change
     @product = Product.find_by(id: params[:id])
     if @product.status
-      @producut.status == false
+      @product.status == false
       @product.save
     else
       @product.status == true
