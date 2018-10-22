@@ -73,13 +73,13 @@ describe OrdersController do
     it "succeeds for an existing order ID and logged in user" do
       order = orders(:ordfred)
       orderitem_hash =
-        {
-          orderitem: {
-            quantity: 9,
-            product_id: product.id,
-            order_id: order.id
-          }
+      {
+        orderitem: {
+          quantity: 9,
+          product_id: product.id,
+          order_id: order.id
         }
+      }
       post orderitems_path, params: orderitem_hash
       expect(session[:order_id]).wont_be_nil
 
@@ -94,19 +94,36 @@ describe OrdersController do
 
   describe "update" do
     it "succeeds for valid data and an extant product ID" do
-      #check that inventory gets adjusted
+      post orderitems_path, params: orderitem_hash
+      expect(session[:order_id]).wont_be_nil
+
+      patch order_path(order.id), params: order_hash
+
+      must_respond_with :redirect
+      must_respond_with :found
     end
 
     it "renders bad_request for invalid data" do
+      post orderitems_path, params: orderitem_hash
+      expect(session[:order_id]).wont_be_nil
+
+      order_hash[:order][:cvv] = nil
+      patch order_path(order.id), params: order_hash
+
+      must_respond_with :bad_request
     end
 
     it "responds with not found for an invalid order ID" do
+
+      orderitem_hash[:orderitem][:order_id] = nil
+
+      patch order_path(order.id), params: order_hash
+
+      must_respond_with :not_found
     end
 
-    it "responds with a redirect if there is not enough inventory" do
-    end
   end
-
+  
   describe "confirmation" do
     it "succeeds for an existing order whose status is paid" do
       post orderitems_path, params: orderitem_hash

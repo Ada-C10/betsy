@@ -34,6 +34,11 @@ describe CategoriesController do
     end
 
     it "should respond with not found if given an invalid id" do
+      id = -1
+
+      get category_path(id)
+
+      must_respond_with :notfound
     end
   end
 
