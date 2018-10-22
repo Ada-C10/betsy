@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
 
   def find_orders
     if @cart
-      @order_items = @cart.order_items.count
+      @order_items = @cart.order_items.sum do |o_items| o_items.quantity
+      end
     else
       @order_items = 0
     end

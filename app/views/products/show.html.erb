@@ -19,7 +19,7 @@
     <%= hidden_field_tag(:product_id, @product.id) %>
 
     <%= f.label :quantity %>
-    <%= f.number_field :quantity, placeholder: 1 %>
+    <%= f.number_field :quantity, value: 1 %>
 
     <%= f.submit "Add to cart" %>
     <% end %>
@@ -31,7 +31,7 @@
     <%= hidden_field_tag(:product_id, @product.id) %>
 
     <%= f.label :quantity %>
-    <%= f.number_field :quantity, placeholder: 1 %>
+    <%= f.number_field :quantity, value: 1 %>
 
     <%= f.submit "Add to cart" %>
     <% end %>
