@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
   end
 
   def find_orders
-    @order_items = @cart.order_items
+    if @cart
+      @order_items = @cart.order_items.count
+    else
+      @order_items = 0
+    end
   end
 
   def find_merchants
