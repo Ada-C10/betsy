@@ -2,8 +2,7 @@ class OrderItemsController < ApplicationController
   # TODO:
   # Pushpa (Update relations for Merchants)
   # has_many :order_items, through: products
-
-
+  
   def update
     if @order_item.update(order_items_params)
       flash[:success] = "Successfully updated order # #{@order_item.id}."
