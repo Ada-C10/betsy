@@ -24,6 +24,8 @@ class Merchant < ApplicationRecord
     return self.orderitems.reduce(0) {|sum, item| sum + item.line_item_price}
   end
 
+  
+
   def orders_by_status(status)
     orderitems = self.orderitems.select  {|oi| oi.order.status == status}
     orders = orderitems.map { |oi| oi.order }.uniq!
