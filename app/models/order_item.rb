@@ -8,4 +8,8 @@ class OrderItem < ApplicationRecord
     return [*1..self.product.inventory]
   end
 
+  def item_total
+    return self.quantity * self.product.price
+  end
+
 end
