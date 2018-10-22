@@ -34,7 +34,6 @@ class ProductsController < ApplicationController
 
     @product.merchant_id = @logged_in_merchant.id
 
-
     if @product.save
       flash[:success] = "Congratulations - you successfully entered a new product!"
       redirect_to product_path(@product.id)
@@ -85,8 +84,12 @@ class ProductsController < ApplicationController
       :img_file,
       :merchant_id,
       :inventory,
+<<<<<<< HEAD
       category_ids: []
 
+=======
+      category_ids: [],
+>>>>>>> bcc6fd2749831baf382fe6547ad0c25e144c378c
     )
   end
 
