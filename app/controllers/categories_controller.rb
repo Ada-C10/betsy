@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
   # Need to be logged in to create a new category
 
   def index
+    
   end
 
   def show
@@ -10,7 +11,7 @@ class CategoriesController < ApplicationController
 
   def new
   end
-  
+
   def create
   end
 end

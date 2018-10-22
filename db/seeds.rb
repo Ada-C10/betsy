@@ -4,6 +4,7 @@ MERCHANT_FILE = Rails.root.join('db', 'seed_data', 'merchant.csv')
 PRODUCT_FILE = Rails.root.join('db', 'seed_data', 'product.csv')
 ORDER_FILE = Rails.root.join('db', 'seed_data', 'order.csv')
 ORDERITEM_FILE = Rails.root.join('db', 'seed_data', 'orderitem.csv')
+CATEGORY_FILE = Rails.root.join('db', 'seed_data', 'category.csv')
 
 #################################################################
 puts "Loading raw merchant data from #{MERCHANT_FILE}"
@@ -32,6 +33,37 @@ puts "Added #{Merchant.count} merchant records"
 puts "#{merchant_failures.length} merchants failed to save"
 puts "\n\n"
 
+#################################################################
+puts "Loading raw order data from #{CATEGORY_FILE}"
+
+category_failures = []
+CSV.foreach(CATEGORY_FILE, :headers => true) do |row|
+  category = Category.new
+  category.id = row['id'].to_i
+  category.name = row['name']
+  successful = category.save
+  if !successful
+    category_failures << category
+    puts "\n"
+    puts "Failed to save category id: #{category.id}"
+    puts "#{category.inspect}"
+    puts "Errors: #{category.errors.full_messages}"
+    puts "\n"
+  else
+    puts "Created category: #{category.inspect}"
+  end
+end
+
+puts "Added #{Category.count} category records"
+puts "#{category_failures.length} categories failed to save"
+
+puts "Manually resetting PK sequence on each table"
+ActiveRecord::Base.connection.tables.each do |t|
+  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+end
+
+puts "done"
+puts "\n\n"
 
 #################################################################
 puts "Loading raw product data from #{PRODUCT_FILE}"
@@ -46,6 +78,7 @@ CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
   product.inventory = row['inventory'].to_i
   product.description = row['description']
   product.image_url = row['image_url']
+  product.category_ids = row['category_ids'].split(';')
   successful = product.save
   if !successful
     product_failures << product
