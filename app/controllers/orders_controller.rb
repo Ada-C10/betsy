@@ -52,8 +52,9 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
     @order.update_attributes(order_params)
     if @order.save
-      # flash[:status] = :success
-      # flash[:result_text] = "Order Complete"
+      @order.update_attribute(:order_placed, @order.updated_at)
+      flash[:status] = :success
+      flash[:result_text] = "Order Complete"
 
       # redirect_to confirmation_path(@order) <-- make this
       session[:order_id] = nil
@@ -82,7 +83,8 @@ class OrdersController < ApplicationController
       :cc_num,
       :cvv,
       :exp_date,
-      :zip
+      :zip,
+      :status
     )
   end
 
