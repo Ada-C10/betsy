@@ -40,6 +40,16 @@ class OrderitemsController < ApplicationController
     end
   end
 
+  def index
+    @orderitems =
+    @order =
+
+  end
+
+  def show
+
+  end
+
   # Test Done
   def destroy
     @orderitem.destroy

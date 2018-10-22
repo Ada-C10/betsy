@@ -20,26 +20,27 @@ class Merchant < ApplicationRecord
     return self.name.split.map(&:capitalize).join(' ')
   end
 
-  def total_revenue
-    return self.orderitems.reduce(0) {|sum, item| sum + item.line_item_price}
-  end
-
   def orders_by_status(status)
-    # this will change! (eager load instead)
     orderitems = self.orderitems.select  {|oi| oi.order.status == status}
     orders = orderitems.map { |oi| oi.order }.uniq!
     return orders
   end
 
-  def sales_by_status
-    # this will change! (eager load instead)
-    sales = Hash.new
+  def total_revenue
+    return self.orderitems.reduce(0) {|sum, item| sum + item.line_item_price}
+  end
 
-    STATUSES.each do |status|
-      orderitems_by_status = self.orderitems.select  {|oi| oi.order.status == status}
-      revenue_by_status = orderitems_by_status.reduce(0) {|sum, item| sum + item.line_item_price}
-      sales[status] = revenue_by_status
+  def sales_by_status
+    # SJL: This isn't as efficient as it could be, probably could
+    # do this all in SQL. Someday...
+    sales = orderitems.group_by do |oi|
+      oi.order.status
     end
+
+    sales.each do |status, items|
+      sales[status] = items.sum { |i| i.line_item_price }
+    end
+
     return sales
   end
 end

@@ -4,7 +4,6 @@ class Orderitem < ApplicationRecord
   belongs_to :product
   has_one :merchant, through: :product
 
-
   #I don't think that the below validation is valid, you should just have the method in question run when
   #something is added to a cart?
   # validates :quantity_cannot_be_greater_than_product_inventory
@@ -15,6 +14,9 @@ class Orderitem < ApplicationRecord
     if quantity > product.inventory
       errors.add(:quantity, "can't be greater than product inventory")
     end
+  end
+
+  def status
   end
 
   def line_item_price
