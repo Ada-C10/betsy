@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find_by(id: params[:id])
     render_404 unless @order
-    @cart = Order.find_by(id: 1)
   end
 
   def create
@@ -19,10 +18,12 @@ class OrdersController < ApplicationController
     if @order.save
 
       session[:order_id] = @order.id
-      order_item = Order_Item.new(order_item_params)
+      order_item = OrderItem.new(order_items_params)
       order_item.order_id = @order.id
+      order_item.product = Product.find_by(id: params[:product_id])
 
       if order_item.save
+        # raise
         flash[:status] = :success
         flash[:result_text] = "Added item to cart"
 
@@ -82,9 +83,10 @@ class OrdersController < ApplicationController
     )
   end
 
-  def order_item_params
+  def order_items_params
     params.require(:order_item).permit(
-      :quantity
+      :quantity,
+      :product_id
     )
   end
 

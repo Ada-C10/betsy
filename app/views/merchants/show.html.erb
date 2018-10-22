@@ -25,7 +25,7 @@
       <% end %>
     </div>
 
-    <% if @logged_in_merchant.id == @merchant.id %>
+    <% if @logged_in_merchant != nil && @logged_in_merchant.id == @merchant.id %>
     <%= link_to "Add Product", new_product_path %>
     <% end %>
 

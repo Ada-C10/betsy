@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :find_home_category
   before_action :find_logged_in_merchant
   before_action :find_merchants
-  before_action :find_orders, :has_cart?
+  before_action :has_cart?, :find_orders
 
   private
 
@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def find_orders
-    @order_items = OrderItem.where(order_id: @cart)
+    @order_items = @cart.order_items
   end
 
   def find_merchants
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def has_cart?
-    return @cart = session[:order_id]
+    return @cart = Order.find_by(id: session[:order_id])
   end
 
 
