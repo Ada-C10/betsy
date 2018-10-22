@@ -1,1 +1,45 @@
-<h1>This is the Order Edit page</h1>
+<h3>Checkout</h3>
+
+<section>
+  <%= form_with model: @order do |f| %>
+
+  <div class="form-group">
+    <%= f.label 'Credit Card Name' %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form_group">
+    <%= f.label 'Email Address' %>
+    <%= f.text_field :email, type: 'email', class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Address" %>
+    <%= f.text_field :address, placeholder: "ex. 1234 Snackelicious Dr. Yummy, WA 12345", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Credit Card Number' %>
+    <%= f.text_field :cc_num, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Billing Zip Code' %>
+    <%= f.text_field :zip, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'CVV' %>
+    <%= f.text_field :cvv, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Expiration Date' %>
+    <%= f.text_field :exp_date, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+  <% end %>
+</section>

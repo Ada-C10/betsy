@@ -1,6 +1,10 @@
 class Order < ApplicationRecord
   has_many :order_items
 
+  # validates_length_of :cc_num, numericality {on: :update
+  validates :cc_num, length: { is: 16, on: :update, message: "Credit Card number must be 16 digits"}
+
+
   TAX_RATE = 0.101
 
   def subtotal
