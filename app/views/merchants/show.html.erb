@@ -1,14 +1,8 @@
-<!-- only have the option to add products from the myaccount page and to edit it from there?? Or can try to add a link for new product but should only be shown for merchant for their items only  -->
 
 <section>
   <h5>All products sold by:   <%= @merchant.name %>  </h5>
   <p> Date Joined:  <%= readable_date(@merchant.created_at) %><br>
 
-    <%#  if @logged_in_merchant == @merchant.products.first.id
-    link_to "Add Product", new_product_path
-    end   %>
-
-    <!-- in this case the product.id is nil since I have not added any items yet, will have to come up with something for  nil -->
 
 
     <div class="card-columns">
@@ -25,8 +19,13 @@
       <% end %>
     </div>
 
-    <% if @logged_in_merchant != nil && @logged_in_merchant.id == @merchant.id %>
+    <% if @logged_in_merchant  %>
+    <% if @logged_in_merchant.id != nil &&  @logged_in_merchant.id ==  @merchant.id %>
     <%= link_to "Add Product", new_product_path %>
+    <% @logged_in_merchant.products.each do |product| %>
+    <%= link_to "Edit", edit_product_path(product.id) %>
+    <% end  %>
     <% end %>
+    <% end  %>
 
   </section>
