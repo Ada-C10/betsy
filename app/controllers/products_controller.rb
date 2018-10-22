@@ -25,9 +25,9 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.price *= 100
+  
     @product.merchant_id = @logged_in_merchant.id
-    @product.price *= 100
+
 
     if @product.save
       flash[:success] = "Congratulations - you successfully entered a new product!"
