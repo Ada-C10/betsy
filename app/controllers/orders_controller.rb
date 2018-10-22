@@ -48,7 +48,6 @@ class OrdersController < ApplicationController
 
   def confirmation
     @order = Order.find_by(id: session[:order_id])
-
     if @order && @order.status == "paid"
       @orderitems = @order.orderitems
       session[:order_id] = nil
