@@ -43,5 +43,19 @@ describe SessionsController do
     end
     end
 
+    describe "destroy" do
+      it "ends a session" do
+        merchant = merchants(:kiki)
+        perform_login(merchant)
+        expect{
+          delete logout_path(merchant)
+        }.wont_change ('Merchant.count')
+        must_redirect_to root_path
+
+        expect(session[:user_id]).must_be_nil
+
+      end
+    end
+
 
 end
