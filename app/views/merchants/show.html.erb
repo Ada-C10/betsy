@@ -4,15 +4,10 @@
   <h5>All products sold by:   <%= @merchant.name %>  </h5>
   <p> Date Joined:  <%= readable_date(@merchant.created_at) %><br>
 
-    <%#  if @logged_in_merchant == @merchant.products.first.id
-    link_to "Add Product", new_product_path
-    end   %>
-
-    <!-- in this case the product.id is nil since I have not added any items yet, will have to come up with something for  nil -->
-
+    <!-- had to switch line 10 back to @merchants as it was not loading the merchants if you were not logged in with @logged_in_merchant variable  -->
 
     <div class="card-columns">
-      <% @logged_in_merchant.products.each do |product| %>
+      <% @merchant.products.each do |product| %>
       <div class="card" style="width: 18rem;">
 
         <img class="card-img-top" src=" <%= product.img_file %> " alt="Snack Image">
@@ -25,8 +20,10 @@
       <% end %>
     </div>
 
-    <% if @logged_in_merchant.id == @merchant.id %>
+    <% if @logged_in_merchant.id != nil %>
+    <%= if @logged_in_merchant.id ==  @merchant.id %>
     <%= link_to "Add Product", new_product_path %>
     <% end %>
+    <% end  %>
 
   </section>
