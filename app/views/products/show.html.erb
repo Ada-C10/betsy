@@ -5,9 +5,14 @@
 
   <div class="card-body">
     <h5 class="card-title"><%= @product.name %></h5>
-    <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(@product.price/100) %></h6>
+    <h6 class="card-subtitle mb-2 text-muted"></h6>
+    <p class="card-subtitle mb-2 text-muted"> Description</p>
     <p class="card-text"><%= @product.description %></p>
-    Categories go here
+    <p class="card-subtitle mb-2 text-muted"> Categories:</p>
+    <% @product.categories.each do |category| %>
+
+      <p class="card-text"><%= category.name %></p>
+    <%end%>
     <br >
     Sold by: <a href=" <%= merchant_path(@product.merchant.id) %>"><%= "#{@product.merchant.name}" %></a>
     <br >
