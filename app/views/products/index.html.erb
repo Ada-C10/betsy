@@ -7,7 +7,7 @@
     <img class="card-img-top" src=" <%= p.img_file %> " alt="Image description">
     <div class="card-body">
       <h5 class="card-title"><%= p.name %></h5>
-      <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(p.price/100) %></h6>
+      <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(p.price)%></h6>
       <p class="card-text"><%= p.description %></p>
       Sold by: <a href=" <%= merchant_path(p.merchant.id) %>"><%= "#{p.merchant.name}" %></a>
       <br>
