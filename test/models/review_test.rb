@@ -25,7 +25,7 @@ describe Review do
 
       expect(valid).must_equal false
       expect(review.errors.messages).must_include :rating
-      expect(review.errors.messages[:rating]).must_equal ["can't be blank"]
+      expect(review.errors.messages[:rating]).must_equal ["can't be blank", "is not a number"]
     end
 
     it "requires a description" do

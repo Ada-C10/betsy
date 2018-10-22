@@ -4,16 +4,13 @@ class Orderitem < ApplicationRecord
   belongs_to :product
   has_one :merchant, through: :product
 
-<<<<<<< HEAD
-=======
-  validates :product_id, uniqueness: { scope: :order_id, message: "has already been added to the cart"}
->>>>>>> 65dd597cd103ac2b2651fab5677ae0e9da8b4540
 
   #I don't think that the below validation is valid, you should just have the method in question run when
   #something is added to a cart?
   # validates :quantity_cannot_be_greater_than_product_inventory
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :product_id, uniqueness: { scope: :order_id, message: "has already added this item to the cart"}
+
   def quantity_cannot_be_greater_than_product_inventory
     if quantity > product.inventory
       errors.add(:quantity, "can't be greater than product inventory")
