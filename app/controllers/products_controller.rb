@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
 
   def show
     @orderitem = Orderitem.new
+    @review = Review.new
     @reviews = @product.reviews
   end
 
