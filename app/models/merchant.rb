@@ -1,10 +1,9 @@
 class Merchant < ApplicationRecord
   has_many :products
-
   has_many :order_items, through: :products
 
-
-
+  validates :name, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 
 
   def self.build_from_github(merchant_hash)
@@ -25,6 +24,19 @@ class Merchant < ApplicationRecord
 
   end
 
+
+
+
+#will try and use this method instead of doing all the work that is now taking place in the show.html.erb
+  def logged_merchant
+    if @logged_in_merchant
+      if @logged_in_merchant.id != nil &&  @logged_in_merchant.id ==  @merchant.id
+        return true
+      end
+      return false
+    end
+    return false
+  end
 
 
 end
