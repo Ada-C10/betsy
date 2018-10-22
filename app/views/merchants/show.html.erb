@@ -1,8 +1,7 @@
 <!-- only have the option to add products from the myaccount page and to edit it from there?? Or can try to add a link for new product but should only be shown for merchant for their items only  -->
 
 <section>
-  <h1>All products sold by that merchant (Merchant Show page)</h1>
-  <%= @merchant.name %> <br>
+  <h5>All products sold by:   <%= @merchant.name %>  </h5>
   <p> Date Joined:  <%= readable_date(@merchant.created_at) %><br>
 
     <%#  if @logged_in_merchant == @merchant.products.first.id
@@ -11,11 +10,23 @@
 
     <!-- in this case the product.id is nil since I have not added any items yet, will have to come up with something for  nil -->
 
-    <% @merchant.products.each do |product| %>
-    <ul>
-      <li><%= link_to product.name, product_path(product.id) %></li>
-      <%= product.description %>
-      <li><%= image_tag product.img_file, alt: product.description %></li>
-    </ul>
-    <% end  %>
+
+    <div class="card-columns">
+      <% @merchant.products.each do |product| %>
+      <div class="card" style="width: 18rem;">
+
+        <img class="card-img-top" src=" <%= product.img_file %> " alt="Snack Image">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to product.name, product_path(product.id) %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(product.price/100) %></h6>
+          <p class="card-text"><%= product.description %></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+    <% if @logged_in_merchant != nil && @logged_in_merchant.id == @merchant.id %>
+    <%= link_to "Add Product", new_product_path %>
+    <% end %>
+
   </section>

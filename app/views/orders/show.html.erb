@@ -1,1 +1,38 @@
-<h1>This is the Order Show page</h1>
+<section>
+  <h3>Shopping Cart</h3>
+  <% if @cart %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Snack</th>
+        <th>Quantity</th>
+        <th>Remove from Cart</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart.order_items.each do |order_item| %>
+
+      <tr>
+        <td><%= link_to order_item.product.name, product_path(order_item.product.id) %></td>
+        <td>
+          <%= form_with model: order_item do |f| %>
+          <%= f.label :quantity %>
+          <!-- need an inventory column in products table -->
+          <%= f.select :quantity, ['1', '2', '3', '4', '5'], {}, { value: order_item.quantity, onchange: 'this.form.submit();' }%>
+          <% end %>
+        </td>
+        <td><%= link_to "Remove item", order_item_path(order_item), method: :delete, data: { confirm: "Are you sure you want to remove #{order_item.product.name} from the cart?" }, class: "btn btn-outline-danger" %>
+        </td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+
+  <% else %>
+  <p>
+    No snacks for you!
+  </p>
+
+  <% end %>
+
+</section>

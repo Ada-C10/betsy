@@ -12,6 +12,8 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find_by(id: params[:id])
+    @order_item = OrderItem.new
+    @order_item.product_id = @product.id
     if @product.nil?
       head :not_found
     end
@@ -23,6 +25,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @product.merchant_id = @logged_in_merchant.id
 
     if @product.save
       flash[:success] = "Congratulations - you successfully entered a new product!"
