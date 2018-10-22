@@ -41,15 +41,4 @@ describe CategoriesController do
       must_respond_with :notfound
     end
   end
-
-  describe "create" do
-    it "creates a category" do
-    end
-  end
-
-  describe "new" do
-    it "succeeds" do
-    end
-  end
-
 end

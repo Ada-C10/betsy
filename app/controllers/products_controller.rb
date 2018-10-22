@@ -1,3 +1,4 @@
+require 'pry'
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :status]
   before_action :find_merchant, only: [:new, :edit, :create]
@@ -29,6 +30,7 @@ class ProductsController < ApplicationController
   end
 
   def create
+    @categories = Category.all
     if product_params[:merchant_id]
       @product = Product.new(product_params)
 
