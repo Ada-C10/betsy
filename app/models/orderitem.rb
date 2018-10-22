@@ -9,6 +9,7 @@ class Orderitem < ApplicationRecord
   #something is added to a cart?
   # validates :quantity_cannot_be_greater_than_product_inventory
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :product_id, uniqueness: { message: "has already added this item to the cart"}
 
   def quantity_cannot_be_greater_than_product_inventory
     if quantity > product.inventory

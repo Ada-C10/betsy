@@ -11,9 +11,7 @@ class Order < ApplicationRecord
   validates :cvv, presence: true, on: :update
   validates :exp_date, presence: true, on: :update
   validates :zip, presence: true, on: :update
-  validates :product_id, uniqueness: { message: "has already added this item to the cart"}
-  #moved the above validation from order item, since we are actually checking if
-  #an order has duplicate product_id's
+  
   def total_cost
     total_cost = self.orderitems.reduce(0) {|sum, item| sum + item.line_item_price}
 

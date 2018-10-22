@@ -31,3 +31,14 @@ ordrussell:
   cvv: 2322
   email: russell@gmail.com
 # fannypack, fred
+
+
+ordfuture:
+  status: cancelled
+  name: future
+  address: 213th 15th St Seattle, WA
+  cc_num: 1938472634542434
+  exp_date: 0122
+  zip: 98144
+  cvv: 2322
+  email: future@gmail.com
