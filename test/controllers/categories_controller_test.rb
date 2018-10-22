@@ -33,17 +33,4 @@ describe CategoriesController do
 
     end
   end
-
-  describe "new" do
-    it "succeeds" do
-      get catergories_path
-      must_respond_with :success
-    end
-  end
-
-  describe "show" do
-    it "should show product's category" do
-    end
-  end
-
 end
