@@ -24,8 +24,8 @@ describe MerchantsController do
   describe "dashboard" do
     it "should get a merchant's dashboard" do
       id = merchants(:kiki).id
-      get merchant_path(id)
-      must_respond_with :success
+      get dashboard_path(id)
+      must_respond_with :found
     end
 
     it "should respond with not found if given a bad id" do
@@ -35,5 +35,5 @@ describe MerchantsController do
     end
 
   end
-  
+
 end

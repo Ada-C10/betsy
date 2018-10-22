@@ -21,16 +21,4 @@ describe CategoriesController do
       must_respond_with :success
     end
   end
-
-  describe "create" do
-    it "creates a category" do
-      category_hash = {
-        name:(South America)
-
-      expect{post catergories_path}
-
-
-
-    end
-  end
 end

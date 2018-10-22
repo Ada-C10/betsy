@@ -3,6 +3,7 @@ require 'pry'
 describe ProductsController do
   let(:fred) { merchants(:fred) }
   let(:category) { categories(:africa) }
+  let(:kiki) { merchants (:kiki) }
 
   describe "index" do
     it "succeeds when there are products" do
@@ -22,6 +23,12 @@ describe ProductsController do
 
       must_respond_with :success
     end
+
+    it "succeeds when there is a merchant id" do
+      perform_login(fred)
+      get products_path
+      must_respond_with :success
+    end
   end
 
   describe "new" do
@@ -31,6 +38,12 @@ describe ProductsController do
       get new_merchant_product_path(fred.id)
 
       must_respond_with :success
+    end
+
+    it "does not work without a merchant id" do
+      perform_login(kiki)
+      get new_merchant_product_path(fred.id)
+      must_respond_with :not_found
     end
   end
 
@@ -57,7 +70,7 @@ describe ProductsController do
 
       new_count = Category.all.count
       expect(new_count).must_equal (old_count + 1)
-      
+
       must_respond_with :redirect
 
       expect(Product.last.name).must_equal product_hash[:product][:name]
@@ -198,6 +211,30 @@ describe ProductsController do
       }.wont_change 'Product.count'
 
       must_respond_with :not_found
+
+    end
+  end
+
+  describe "status" do
+
+    it "can change status from true to false" do
+
+      perform_login(fred)
+      product = products(:fannypack)
+
+    expect{patch products_status_path(merchants(:fred).id,product.id)}.wont_change 'Product.count'
+
+    must_respond_with :redirect
+
+    end
+
+    it "can change status from false to true" do
+      perform_login(fred)
+      product = products(:fannypack)
+      product.active = false
+      expect{patch products_status_path(merchants(:fred).id,product.id)}.wont_change 'Product.count'
+
+      must_respond_with :redirect
 
     end
   end
