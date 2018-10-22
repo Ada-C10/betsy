@@ -12,7 +12,17 @@
         <img class="card-img-top" src=" <%= product.img_file %> " alt="Snack Image">
         <div class="card-body">
           <h5 class="card-title"><%= link_to product.name, product_path(product.id) %></h5>
+<<<<<<< HEAD
           <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(product.price) %></h6>
+=======
+
+          <% if product.status %>
+          <%= link_to "Inactivate", status_change_path, method: :post, class: "btn btn-primary" %>
+          <% else %>
+          <%= link_to "Activate", status_change_path, method: :post, class: "btn btn-primary" %>
+          <% end  %>
+          <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(product.price/100) %></h6>
+>>>>>>> 1d666934cfb825232dc15307c244247a67c21148
           <p class="card-text"><%= product.description %></p>
         </div>
       </div>

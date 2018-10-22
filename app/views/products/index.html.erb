@@ -2,7 +2,7 @@
 <h1>All Products</h1>
 
 <div class="card-columns">
-  <% @products.shuffle.each do |p| %>
+  <% @active_products.shuffle.each do |p| %>
   <div class="card" style="width: 18rem;">
     <img class="card-img-top" src=" <%= p.img_file %> " alt="Image description">
     <div class="card-body">

@@ -3,7 +3,7 @@
 
 <div class="card-columns">
   <% @category.products.each do |p|  %>
-
+  <% if p.status %>
   <div class="card" style="width: 18rem;">
     <img class="card-img-top" src=" <%= p.img_file %> " alt="Snack Image">
     <div class="card-body">
@@ -14,7 +14,7 @@
       <a class="card-details" href=" <%= product_path(p.id) %>">Details</a>
     </div>
   </div>
-
+  <% end  %>
   <% end %>
 
 </div>
