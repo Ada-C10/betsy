@@ -18,7 +18,7 @@ class MerchantsController < ApplicationController
         redirect_back fallback_location: root_path
       end
 
-    else
+    elsif @product == false
       @product.status = true
       if @product.save
         redirect_back fallback_location: root_path

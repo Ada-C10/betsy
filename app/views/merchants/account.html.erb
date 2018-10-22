@@ -21,8 +21,8 @@
 <%= product.inventory %>
 <%= link_to "Edit", edit_product_path(product.id) %>
 <% if product.status %>
-<%= link_to "Inactivate", status_change_path, method: :post, class: "btn btn-primary" %>
+<%= link_to "Inactivate", status_change_path(product.id), method: :post, class: "btn btn-primary" %>
 <% else %>
-<%= link_to "Activate", status_change_path, method: :post, class: "btn btn-primary" %>
+<%= link_to "Activate", status_change_path(product.id), method: :post, class: "btn btn-primary" %>
 <% end  %>
 <% end  %>
