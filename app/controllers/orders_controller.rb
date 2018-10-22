@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new
 
-    @order.status = 'pending'
+    # @order.status = 'pending'
 
     if @order.save
 

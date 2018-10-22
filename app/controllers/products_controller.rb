@@ -25,6 +25,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @product.price *= 100
     @product.merchant_id = @logged_in_merchant.id
 
     if @product.save
@@ -44,7 +45,7 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
     if @product.update(product_params)
       flash[:success] = "Successfully updated \"#{@product.name}\""
-      redirect_to product_path(@proudct.id)
+      redirect_to product_path(@product.id)
     else
       flash.now[:error] = "Invalid data"
       render :edit, status: :bad_request

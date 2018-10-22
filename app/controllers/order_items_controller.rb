@@ -22,11 +22,16 @@ class OrderItemsController < ApplicationController
   end
 
   def update
+    @order_item = OrderItem.find_by(id: params[:id])
+
     if @order_item.update(order_items_params)
-      flash[:success] = "Successfully updated order # #{@order_item.id}."
-      redirect_to orders_path
+      flash[:status] = :success
+      flash[:result_text] = "Successfully updated order # #{@order_item.id}."
+      redirect_to order_path(@cart)
     else
-      flash.now[:error] = "Something went wrong: Could not update order ##{@order_item.id}"
+      flash[:status] = :failure
+      flash[:result_text] = "Something went wrong: Could not update order ##{@order_item.id}"
+      flash[:messages] = @order_item.errors.messages
       redirect_back(fallback_location: orders_path)
     end
 
@@ -42,7 +47,7 @@ class OrderItemsController < ApplicationController
     order_item.destroy
 
     flash[:success] = "Successfully removed order # #{order_item.id}"
-    redirect_to orders_path
+    redirect_to order_path(@cart)
   end
 
   def order_items_params

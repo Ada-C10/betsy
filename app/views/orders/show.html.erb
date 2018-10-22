@@ -18,7 +18,7 @@
           <%= form_with model: order_item do |f| %>
           <%= f.label :quantity %>
           <!-- need an inventory column in products table -->
-          <%= f.select :quantity, ['1', '2', '3', '4', '5'], {}, { value: order_item.quantity, onchange: 'this.form.submit();' }%>
+          <%= f.select :quantity, order_item.available_stock, {}, { value: order_item.quantity, onchange: 'this.form.submit();' }%>
           <% end %>
         </td>
         <td><%= link_to "Remove item", order_item_path(order_item), method: :delete, data: { confirm: "Are you sure you want to remove #{order_item.product.name} from the cart?" }, class: "btn btn-outline-danger" %>
