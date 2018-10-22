@@ -17,6 +17,13 @@ describe Review do
   end
 
   describe "validations" do
+    it "requires a name" do
+      review.name = nil
+      review.valid?.must_equal false
+      expect(review.errors.messages).must_include :name
+      expect(review.errors.messages[:name]).must_equal ["can't be blank"]
+    end
+
     it "requires a rating" do
       review = reviews(:kilreview)
       review.rating = nil

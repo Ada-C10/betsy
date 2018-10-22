@@ -1,29 +1,43 @@
 require "test_helper"
 
 describe ReviewsController do
-  it "should get new" do
-    get reviews_new_url
-    value(response).must_be :success?
+  let(:product){ products(:kilimanjaro) }
+  let(:review_hash) do
+    {
+      review: {
+        name: "Ciara",
+        description: "Wonderful product!",
+        product_id: product.id,
+        rating: 4
+      }
+    }
   end
 
-  it "should get create" do
-    get reviews_create_url
-    value(response).must_be :success?
-  end
+  describe "create" do
+    it "creates a review given valid data" do
+      expect {
+        post reviews_path, params: review_hash
+      }.must_change 'Review.count', 1
 
-  it "should get edit" do
-    get reviews_edit_url
-    value(response).must_be :success?
-  end
+      review = Review.find_by(name: "Ciara")
+      expect(flash[:status]).must_equal :success
+      expect(flash[:result_text]).must_equal "Successfully created your review!"
 
-  it "should get update" do
-    get reviews_update_url
-    value(response).must_be :success?
-  end
+      must_respond_with :redirect
+      must_redirect_to product_path(review.product_id)
+    end
 
-  it "should get destroy" do
-    get reviews_destroy_url
-    value(response).must_be :success?
-  end
+    it "render bad_request and does not update the DB for invalid data" do
+      review_hash[:review][:name] = nil
 
+      expect {
+        post reviews_path, params: review_hash
+      }.wont_change 'Review.count'
+
+      expect(flash[:status]).must_equal :failure
+      expect(flash[:result_text]).must_equal "Could not create your review."
+
+      must_respond_with :bad_request
+    end
+  end
 end

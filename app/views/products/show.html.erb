@@ -42,7 +42,7 @@
       <% if @product.reviews.count == 0 %>
         <p class="text-center">No reviews yet!</p>
       <% else %>
-        <p>Average rating: <%= @product.average_rating %></p>
+        <p class="text-center">Average rating: <%= @product.average_rating %></p>
       <% end %>
       <% @reviews.each do |review| %>
         <blockquote class="blockquote bg-light mb-5 text-right">

@@ -1,9 +1,11 @@
 fanreview:
+  name: fanny
   rating: 5
   description: Thank u for making all my dreams come true I truly have no regretsies eleven out of ten would buy again.
   product: fannypack
 
 kilreview:
+  name: kili
   rating: 1
   description: no room service! no lemon water! shame on u!!!!
   product: kilimanjaro
