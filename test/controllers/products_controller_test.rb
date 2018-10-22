@@ -28,7 +28,7 @@ describe ProductsController do
 
       perform_login(fred)
       get new_merchant_product_path(fred.id)
-      
+
       must_respond_with :success
     end
   end
@@ -37,49 +37,44 @@ describe ProductsController do
     it "creates a work with valid data" do
       perform_login(fred)
       product_hash = {
-      product: {
-        name: "Peru",
-        cost: 1890,
-        image_url: "image",
-        inventory: 3,
-        description: "The owls are not what they seem.",
-        active: true,
-        merchant_id: fred.id
+        product: {
+          name: "Peru",
+          cost: 1890,
+          image_url: "image",
+          inventory: 3,
+          description: "The owls are not what they seem.",
+          active: true,
+          merchant_id: fred.id
+         }
+       }
+      expect{
+        post products_path, params: product_hash
+      }.must_change 'Product.count', 1
+      must_respond_with :redirect
 
-      }
-    }
-
-    expect{
-      post products_path, params: product_hash}.must_change 'Product.count', 1
-
-
-    must_respond_with :redirect
-
-    expect(Product.last.name).must_equal product_hash[:product][:name]
-    expect(Product.last.cost).must_equal product_hash[:product][:cost]
-    expect(Product.last.image_url).must_equal product_hash[:product][:image_url]
-    expect(Product.last.inventory).must_equal product_hash[:product][:inventory]
-    expect(Product.last.description).must_equal product_hash[:product][:description]
-    expect(Product.last.active).must_equal product_hash[:product][:active]
-    expect(Product.last.merchant_id).must_equal product_hash[:product][:merchant_id]
-
-
-  end
+      expect(Product.last.name).must_equal product_hash[:product][:name]
+      expect(Product.last.cost).must_equal product_hash[:product][:cost]
+      expect(Product.last.image_url).must_equal product_hash[:product][:image_url]
+      expect(Product.last.inventory).must_equal product_hash[:product][:inventory]
+      expect(Product.last.description).must_equal product_hash[:product][:description]
+      expect(Product.last.active).must_equal product_hash[:product][:active]
+      expect(Product.last.merchant_id).must_equal product_hash[:product][:merchant_id]
+    end
 
     it "renders bad_request and does not update the DB for bogus data" do
       perform_login(fred)
       product_hash = {
-      product: {
-        name: "Peru",
-        cost: 1890,
-        image_url: "image",
-        inventory: 3,
-        description: "The owls are not what they seem.",
-        active: true,
-        merchant_id: fred
-
+        product: {
+          name: "Peru",
+          cost: 1890,
+          image_url: "image",
+          inventory: 3,
+          description: "The owls are not what they seem.",
+          active: true,
+          merchant_id: fred
+        }
       }
-    }
+
       product_hash[:product][:name] = nil
 
       expect {
@@ -87,16 +82,13 @@ describe ProductsController do
       }.wont_change 'Product.count'
 
       expect(flash[:status]).must_equal :failure
-
-
       must_respond_with :bad_request
     end
-
-
+  end
 
   describe "show" do
     it "succeeds for an extant product ID" do
-      get products_path(products(:safari).id)
+      get product_path(products(:safari).id)
 
       must_respond_with :success
     end
@@ -201,5 +193,4 @@ describe ProductsController do
 
     end
   end
-end
 end

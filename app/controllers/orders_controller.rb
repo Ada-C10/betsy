@@ -1,8 +1,7 @@
+require 'pry'
 class OrdersController < ApplicationController
   before_action :find_order, only: [:edit, :update]
   skip_before_action :require_login, only: [:show, :edit, :update, :confirmation]
-
-  def index; end
 
   def show
     if params[:id] == "cart"
@@ -11,6 +10,8 @@ class OrdersController < ApplicationController
       @order = Order.find_by(id: session[:order_id])
       if @order
         @orderitems = @order.orderitems.order(created_at: :desc)
+      else
+        render "layouts/notfound", status: :not_found
       end
     end
   end
@@ -36,7 +37,7 @@ class OrdersController < ApplicationController
         flash.now[:status] = :failure
         flash.now[:result_text] = "Could not complete order"
         flash.now[:messages] = @order.errors.messages
-        render "layouts/notfound", status: :not_found
+        render :edit, status: :bad_request
       end
     else
       flash[:status] = :failure
