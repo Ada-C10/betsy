@@ -2,7 +2,25 @@ class OrderItemsController < ApplicationController
   # TODO:
   # Pushpa (Update relations for Merchants)
   # has_many :order_items, through: products
-  
+  def create
+    order_item = OrderItem.new(order_items_params)
+    order_item.order_id = @cart.id
+    order_item.product = Product.find_by(id: params[:product_id])
+
+    if order_item.save
+      flash[:status] = :success
+      flash[:result_text] = "Added item to cart"
+
+      redirect_to order_path(@cart)
+    else
+      flash[:status] = :failure
+      flash[:result_text] = "Could not add item to cart"
+      flash[:messages] = order_item.errors.messages
+      redirect_back fallback_location: root_path
+      # render :new, status: :bad_request
+    end
+  end
+
   def update
     if @order_item.update(order_items_params)
       flash[:success] = "Successfully updated order # #{@order_item.id}."
