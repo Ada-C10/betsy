@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
   end
 
   def status
-    if @product.active
+     if @product.active
       @product.active = false
       if @product.save
         # flash[:status] = :success

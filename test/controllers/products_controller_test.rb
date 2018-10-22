@@ -21,6 +21,10 @@ describe ProductsController do
 
       must_respond_with :success
     end
+
+    it "succeeds when there is a merchant id" do
+
+    end
   end
 
   describe "new" do
@@ -190,6 +194,30 @@ describe ProductsController do
       }.wont_change 'Product.count'
 
       must_respond_with :not_found
+
+    end
+  end
+
+  describe "status" do
+
+    it "can change status from true to false" do
+
+      perform_login(fred)
+      product = products(:fannypack)
+
+    expect{patch products_status_path(merchants(:fred).id,product.id)}.wont_change 'Product.count'
+
+    must_respond_with :redirect
+
+    end
+
+    it "can change status from false to true" do
+      perform_login(fred)
+      product = products(:fannypack)
+      product.active = false
+      expect{patch products_status_path(merchants(:fred).id,product.id)}.wont_change 'Product.count'
+
+      must_respond_with :redirect
 
     end
   end
