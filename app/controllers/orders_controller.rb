@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
         flash.now[:messages] = @order.errors.messages
         render :edit, status: :bad_request
       end
-     end
+    end
   end
 
   def confirmation

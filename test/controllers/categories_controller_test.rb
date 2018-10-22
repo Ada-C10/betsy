@@ -38,7 +38,7 @@ describe CategoriesController do
 
       get category_path(id)
 
-      must_respond_with :notfound
+      must_respond_with :not_found
     end
   end
 end
