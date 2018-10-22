@@ -18,7 +18,7 @@
 
     <header class="app-header">
 
-      <nav class="site-nav">
+      <!-- <nav class="site-nav">
         <ul>
 
         <li>
@@ -31,7 +31,7 @@
             <% @categories.each do |c| %>
             <a class="dropdown-item" href=" <%= category_path(c.id) %>"  ><%= "#{c.name.capitalize}" %></a>
           <% end %>
-          </div>
+          </div> -->
 
     <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
 
@@ -44,7 +44,7 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Browse Countries
+              Browse by Countries
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <% @categories.each do |c| %>
@@ -54,7 +54,7 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Browse Merchants
+              Browse by Merchants
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <% @merchants.each do |m| %>
