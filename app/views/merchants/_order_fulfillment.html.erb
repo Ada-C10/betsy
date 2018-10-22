@@ -16,20 +16,30 @@
     <h3>It's Time To Ship <%= paid_orders.size %> New Orders!</h3>
   </div>
 
+  <p>Print shipping labels dropdown</p>
+
   <div class="btn-group-vertical" role="group" aria-label="eachOrder">
     <% paid_orders.each do |order| %>
-
-    <button type="button" class="btn">Order #<%= order.id %>
+  <div class="container order my-1">
+    <a class="btn btn-light" role="button" href="<%= orderitems_path %>">Order #<%= order.id %>  ➡️
+      <div class="container checkbox ml-auto d-inline">
+        <small>Mark as shipped!</small>
+        <!-- There's no toggler gem installed to make this toggle :( couldn't figure it out -->
+        <input type="checkbox" name="my-checkbox" data-toggle="toggle" checked>
+      </div>
       <div class="progress">
         <div class="progress-bar bg-danger" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
-    </button>
+    </a>
+
+
 
     <div class="collapse" id="collapseOrderDetails">
       <div class="card card-body d-block">
         <%= order.orderitems.count %> Items : Placed on <%= readable_date(order.created_at) %> (placed hh:mm ago) : Sales: <%= readable_cost(order.total_cost) %>
       </div>
     </div>
+  </div>
     <% end %>
   </div>
 

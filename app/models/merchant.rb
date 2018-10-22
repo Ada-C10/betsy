@@ -25,12 +25,14 @@ class Merchant < ApplicationRecord
   end
 
   def orders_by_status(status)
+    # this will change! (eager load instead)
     orderitems = self.orderitems.select  {|oi| oi.order.status == status}
     orders = orderitems.map { |oi| oi.order }.uniq!
     return orders
   end
 
   def sales_by_status
+    # this will change! (eager load instead)
     sales = Hash.new
 
     STATUSES.each do |status|
