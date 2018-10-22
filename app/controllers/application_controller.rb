@@ -32,5 +32,8 @@ class ApplicationController < ActionController::Base
     return @cart = Order.find_by(id: session[:order_id])
   end
 
+def find_active_products
+  @active_products = Product.all.where(status: true)
+end
 
 end

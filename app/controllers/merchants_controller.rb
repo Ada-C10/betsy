@@ -6,12 +6,15 @@ class MerchantsController < ApplicationController
     @merchant = @logged_in_merchant
   end
 
-  def inactivate
+  def status_change
     @product = Product.find_by(id: params[:id])
     if @product.status
       @producut.status == false
+      @product.save
     else
-    end 
+      @product.status == true
+      @product.save
+    end
   end
 
 
