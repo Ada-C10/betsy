@@ -1,3 +1,4 @@
+require 'pry'
 class MerchantsController < ApplicationController
   # add new_product path in the merchant show page ex (# <%= link_to "Add Product", new_product_path %>) add in Products controller: before_action :require_login --also need to add to application controller
 
@@ -8,12 +9,20 @@ class MerchantsController < ApplicationController
 
   def status_change
     @product = Product.find_by(id: params[:id])
+    # binding.pry
     if @product.status
-      @product.status == false
-      @product.save
+      @product.status = false
+
+      if @product.save
+        # binding.pry
+        redirect_back fallback_location: root_path
+      end
+
     else
-      @product.status == true
-      @product.save
+      @product.status = true
+      if @product.save
+        redirect_back fallback_location: root_path
+      end
     end
   end
 
