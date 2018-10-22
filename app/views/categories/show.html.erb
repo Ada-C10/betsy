@@ -1,0 +1,8 @@
+<h1>Browse by Categories</h1>
+<h2><%= @categories.name %></h2>
+<ul>
+    <% @categories.each do |category| %>
+      <li><%= category.name %>
+      </li>
+    <% end %>
+</ul>
