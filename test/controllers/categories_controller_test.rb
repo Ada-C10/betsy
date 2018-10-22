@@ -1,8 +1,6 @@
 require "test_helper"
 
 describe CategoriesController do
-  let(:category) { categories(:africa) }
-
   describe "index" do
     it "suceeds when there are categories" do
       get categories_path
@@ -24,31 +22,27 @@ describe CategoriesController do
     end
   end
 
-  describe "show" do
-    it "should get a category's show page" do
-      id = category.id
-
-      get category_path(id)
-
-      must_respond_with :success
-    end
-
-    it "should respond with not found if given an invalid id" do
-      id = -1
-
-      get category_path(id)
-
-      must_respond_with :notfound
-    end
-  end
-
   describe "create" do
     it "creates a category" do
+      category_hash = {
+        name:(South America)
+
+      expect{post catergories_path}
+
+
+
     end
   end
 
   describe "new" do
     it "succeeds" do
+      get catergories_path
+      must_respond_with :success
+    end
+  end
+
+  describe "show" do
+    it "should show product's category" do
     end
   end
 

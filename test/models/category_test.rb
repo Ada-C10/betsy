@@ -20,10 +20,13 @@ describe Category do
     end
   end
 
-
-
-
+  describe "relationships" do
+    it "has a list of products" do
+      africa = categories(:africa)
+      africa.must_respond_to :products
+      africa.products.each do |product|
+        product.must_be_kind_of Product
+      end
+    end
   end
-
-
 end
