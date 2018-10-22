@@ -39,11 +39,7 @@ class OrdersController < ApplicationController
         flash.now[:messages] = @order.errors.messages
         render :edit, status: :bad_request
       end
-    else
-      flash[:status] = :failure
-      flash[:result_text] = "Not enough inventory"
-      redirect_to order_path(@order.id)
-    end
+     end
   end
 
   def confirmation
