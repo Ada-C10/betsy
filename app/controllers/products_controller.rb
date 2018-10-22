@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-    if session[:user_id] == params[:id].to_i
+    if session[:user_id] == params[:merchant_id].to_i
       @product = Product.new
     else
       render "layouts/notfound", status: :not_found
@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    if session[:user_id] != params[:id].to_i
+    if session[:user_id] != params[:merchant_id].to_i
       render "layouts/notfound", status: :not_found
     end
   end

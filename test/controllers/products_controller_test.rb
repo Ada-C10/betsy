@@ -1,5 +1,5 @@
 require "test_helper"
-
+require 'pry'
 describe ProductsController do
   let(:fred) { merchants(:fred) }
 
@@ -28,7 +28,7 @@ describe ProductsController do
 
       perform_login(fred)
       get new_merchant_product_path(fred.id)
-
+      
       must_respond_with :success
     end
   end
@@ -201,38 +201,5 @@ describe ProductsController do
 
     end
   end
-
-
-  describe "destroy" do
-    it "succeeds for an extant product ID" do
-      perform_login(fred)
-      product = products(:fannypack)
-      expect {
-        delete merchant_product_path(merchants(:fred),products(:fannypack).id)
-      }.wont_change 'Product.count'
-
-      must_respond_with :redirect
-      must_redirect_to root_path
-
-
-      expect(Product.find_by(id: product.id).active).must_equal false
-    end
-  end
-
-    it "renders 404 not_found and does not update the DB for a bogus work ID" do
-      perform_login(fred)
-      product = products(:fannypack)
-      product.id = -1
-
-      expect {
-        delete merchant_product_path(merchants(:fred),products(:fannypack).id)
-      }.wont_change 'Product.count'
-
-
-      must_respond_with 404
-    end
-  end
-
-
-
+end
 end
