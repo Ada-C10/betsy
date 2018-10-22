@@ -12,7 +12,16 @@
 }
 
 
-.merchant_account ul {
+.merchant_name  {
+  padding-bottom: 0;
+
+}
+
+
+.merchant_date  {
   display: flex;
+  list-style-type: none;
   justify-content: center;
+  padding-bottom: 5rem;
+
 }
