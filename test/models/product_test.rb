@@ -18,19 +18,17 @@ describe Product do
         item.must_be_kind_of OrderItem
       end
     end
+
+    it "is associated with a merchant" do
+      product = products(:thyme)
+      product.must_respond_to :order_items
+      product.order_items.each do |item|
+        item.must_be_kind_of OrderItem
+      end
+    end
   end
 end
 
-
-#
-#   describe "relations" do
-#     it "has a list of votes" do
-#        album = works(:album)
-#        album.must_respond_to :votes
-#        album.votes.each do |vote|
-#          vote.must_be_kind_of Vote
-#        end
-#     end
 #
 #     it "has a list of voting users" do
 #       album = works(:album)
