@@ -38,9 +38,12 @@ describe Orderitem do
 
     end
     it "requires a unique product id " do
-      order = orderitems(:itemsone)
+      orderrepeat = orderitems(:itemstwo)
+      orderrepeat.order = orders(:ordlegend)
+      orderrepeat.product = products(:fannypack)
 
-
+      expect(orderrepeat.valid?).must_equal false
+      expect(orderrepeat.errors.messages).must_include :product_id
 
     end
   end
