@@ -2,6 +2,7 @@ require "test_helper"
 require 'pry'
 describe ProductsController do
   let(:fred) { merchants(:fred) }
+  let (:kiki) {merchants (:kiki)}
 
   describe "index" do
     it "succeeds when there are products" do
@@ -23,7 +24,9 @@ describe ProductsController do
     end
 
     it "succeeds when there is a merchant id" do
-
+      perform_login(fred)
+      get products_path
+      must_respond_with :success
     end
   end
 
@@ -34,6 +37,12 @@ describe ProductsController do
       get new_merchant_product_path(fred.id)
 
       must_respond_with :success
+    end
+
+    it "does not work without a merchant id" do
+      perform_login(kiki)
+      get new_merchant_product_path(fred.id)
+      must_respond_with :not_found
     end
   end
 
