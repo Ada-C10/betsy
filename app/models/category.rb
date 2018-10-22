@@ -3,7 +3,6 @@ class Category < ApplicationRecord
 
   validates :name, presence: true
 
-
 # This is from MediaRanker-Revisited - it might be helpful. -sj
   # This is called a model filter, and is very similar to a controller filter.
   # We want to fixup the category *before* we validate, because
