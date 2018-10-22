@@ -1,47 +1,46 @@
 <h1><%= "#{@product.name}" %></h1>
+  <div class="card" style="width: 30rem">
+    <img class="card-img-top" src=" <%= @product.img_file %> " alt="Image description">
 
-<div class="card">
-  <img class="card-img-top" src=" <%= @product.img_file %> " alt="Image description">
-
-  <div class="card-body">
-    <h5 class="card-title"><%= @product.name %></h5>
-    <h6 class="card-subtitle mb-2 text-muted"></h6>
-    <p class="card-subtitle mb-2 text-muted"> Description</p>
-    <p class="card-text"><%= @product.description %></p>
-    <p class="card-subtitle mb-2 text-muted"> Categories:</p>
-    <% @product.categories.each do |category| %>
+    <div class="card-body" >
+      <h2 class="card-title"><%= @product.name %></h2>
+      <h6 class="card-subtitle mb-2 text-muted"></h6>
+      <h6 class="card-subtitle mb-2 text-muted"> Description</h6>
+      <p class="card-text"><%= @product.description %></p>
+      <h6 class="card-subtitle mb-2 text-muted"> Country of Origin:</h6>
+      <% @product.categories.each do |category| %>
 
       <p class="card-text"><%= category.name %></p>
-    <%end%>
-    <br >
-    Sold by: <a href=" <%= merchant_path(@product.merchant.id) %>"><%= "#{@product.merchant.name}" %></a>
-    <br >
-    <%= @product.inventory %> currently in stock
-    <br>
-    <!-- <a href=" <%= product_order_item_path(@product.id) %>  " class="btn btn-primary">Add to cart</a> -->
-    <% if @cart %>
-    <%= form_with model: @order_item, url: order_items_path, method: :post do |f| %>
-    <%= hidden_field_tag(:product_id, @product.id) %>
+      <%end%>
+      <br >
+      Sold by: <a href=" <%= merchant_path(@product.merchant.id) %>"><%= "#{@product.merchant.name}" %></a>
+      <br >
+      <%= @product.inventory %> currently in stock
+      <br>
+      <!-- <a href=" <%= product_order_item_path(@product.id) %>  " class="btn btn-primary">Add to cart</a> -->
+      <% if @cart %>
+      <%= form_with model: @order_item, url: order_items_path, method: :post do |f| %>
+      <%= hidden_field_tag(:product_id, @product.id) %>
 
-    <%= f.label :quantity %>
-    <%= f.number_field :quantity, value: 1 %>
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity, value: 1 %>
 
-    <%= f.submit "Add to cart" %>
-    <% end %>
-    <!-- create an order_item and add to existing cart -->
-    <% else %>
+      <%= f.submit "Add to cart" %>
+      <% end %>
+      <!-- create an order_item and add to existing cart -->
+      <% else %>
 
 
-    <%= form_with model: @order_item, url: orders_path, method: :post do |f| %>
-    <%= hidden_field_tag(:product_id, @product.id) %>
+      <%= form_with model: @order_item, url: orders_path, method: :post do |f| %>
+      <%= hidden_field_tag(:product_id, @product.id) %>
 
-    <%= f.label :quantity %>
-    <%= f.number_field :quantity, value: 1 %>
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity, value: 1 %>
 
-    <%= f.submit "Add to cart" %>
-    <% end %>
+      <%= f.submit "Add to cart" %>
+      <% end %>
 
-    <% end %>
+      <% end %>
 
+    </div>
   </div>
-</div>
