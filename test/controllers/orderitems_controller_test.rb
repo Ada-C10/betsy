@@ -45,7 +45,6 @@ describe OrderitemsController do
       expect(session[:order_id]).wont_be_nil
     end
 
-    # should respond with a patch
     it "will not add duplicate orderitem to cart" do
        post orderitems_path, params: orderitem_hash
 
@@ -53,7 +52,7 @@ describe OrderitemsController do
          post orderitems_path, params: orderitem_hash
        }.wont_change 'Orderitem.count'
 
-       must_respond_with :internal_server_error
+       must_respond_with :redirect
     end
   end
 

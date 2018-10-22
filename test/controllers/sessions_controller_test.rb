@@ -38,7 +38,7 @@ describe SessionsController do
       }.wont_change('Merchant.count')
 
 
-      expect(session[:user_id]).must_equal nil
+      expect(session[:user_id]).must_be_nil
 
     end
     end
