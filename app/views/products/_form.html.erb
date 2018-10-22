@@ -2,8 +2,8 @@
   <%= form_with model: @product do |f| %>
 
   <div class="form-group">
-    <%= f.label :merchant %>
-    <%= f.select :merchant_id, Merchant.all.map{ |merchant| [merchant.name, merchant.id] }, class: "form-control" %>
+
+    <%= hidden_field_tag(:merchant_id, @logged_in_merchant.id) %>
   </div>
 
   <div class="form-group">
