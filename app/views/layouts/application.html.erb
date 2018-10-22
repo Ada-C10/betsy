@@ -66,7 +66,12 @@
           <% end %>
 
           <li class="nav-item">
-            <a class="nav-link" href="<%= orders_path %>"><%= image_tag("shopping-cart.svg")%> <%= @order_items.count %></a>
+            <% if @cart %>
+            <a class="nav-link" href="<%= order_path(@cart) %>"><%= image_tag("shopping-cart.svg")%> <%= @order_items.count %></a>
+            <% else %>
+            <!-- direct to empty cart page, TODO: make this page -->
+            <a class="nav-link" href="<%= root_path %>"><%= image_tag("shopping-cart.svg")%> </a>
+            <% end %>
           </li>
         </ul>
 
