@@ -45,7 +45,13 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find_by(id: params[:id])
+    if @logged_in_merchant
+      @product = Product.find_by(id: params[:id])
+    else
+      flash[:status] = :failure
+      flash[:result_text] = "Sign in as a merchant to access this page."
+        redirect_back fallback_location: root_path
+    end
   end
 
   def update
