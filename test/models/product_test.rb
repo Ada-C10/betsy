@@ -1,13 +1,74 @@
 require "test_helper"
 describe Product do
+
   let(:kilimanjaro) { products(:kilimanjaro) }
   let (:fannypack) {products(:fannypack)}
   let (:safari) {products(:safari)}
-  it "must be valid" do
-    expect(kilimanjaro).must_be :valid?
+
+
+  describe "custom methods" do
+      let(:product) { products(:kilimanjaro) }
+    it "adjust_inventory" do
+      item = orderitems(:itemsone)
+
+      order_items = []
+      order_items << item
+
+      product = Product.find_by(id: item.product.id)
+      start_inventory = product.inventory
+
+      Product.adjust_inventory(order_items)
+
+      product = Product.find_by(id: item.product.id)
+      end_inventory = product.inventory
+
+      expect(start_inventory - end_inventory).must_equal item.quantity
+    end
+
+    describe "check_inventory" do
+      it "returns false if there is not enough inventory" do
+        item = orderitems(:itemstwo)
+        product.inventory = 0
+        product.save
+
+        order_items = []
+        order_items << item
+
+        expect(Product.check_inventory(order_items)).must_equal false
+      end
+
+      it "returns true if there is inventory" do
+        item = orderitems(:itemstwo)
+
+        order_items = []
+        order_items << item
+
+        expect(Product.check_inventory(order_items)).must_equal true
+      end
+    end
+
+    describe "average_rating" do
+      it "calculates an accurate average rating for products with reviews" do
+        product = products(:fannypack)
+
+        average = product.average_rating
+        expect(average).must_equal 5
+      end
+
+      it "returns 0 for products with no ratings" do
+        product = products(:safari)
+
+        average = product.average_rating
+        expect(average).must_equal 0
+      end
+    end
   end
 
   describe "validations" do
+
+    it "must be valid" do
+      expect(kilimanjaro).must_be :valid?
+    end
     it "requires a name" do
       kilimanjaro.name = nil
       valid = kilimanjaro.save

@@ -4,6 +4,10 @@ class Orderitem < ApplicationRecord
   belongs_to :product
   has_one :merchant, through: :product
 
+<<<<<<< HEAD
+=======
+  validates :product_id, uniqueness: { scope: :order_id, message: "has already been added to the cart"}
+>>>>>>> 65dd597cd103ac2b2651fab5677ae0e9da8b4540
 
   #I don't think that the below validation is valid, you should just have the method in question run when
   #something is added to a cart?
@@ -19,5 +23,15 @@ class Orderitem < ApplicationRecord
   def line_item_price
     product = Product.find_by(id: self.product_id)
     return self.quantity * product.cost
+  end
+
+  def self.already_in_cart?(orderitem, order)
+    record = self.all.where(product_id: orderitem.product_id, order_id: order.id)
+
+    if record.empty?
+      return false
+    else
+      return true
+    end
   end
 end

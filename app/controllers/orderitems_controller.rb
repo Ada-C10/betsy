@@ -2,28 +2,31 @@ class OrderitemsController < ApplicationController
   before_action :find_orderitem, only: [:update, :destroy]
   skip_before_action :require_login, only: [:create, :update, :destroy]
 
-  # Test #3 not done (regarding how to test sessions)
   def create
     @orderitem = Orderitem.new(orderitem_params)
 
-    # if session[:user_id] exists, then can update @current_cart.name = merchant.name etc
-    # merchant edit view for checkout, autofill name, email
     if session[:order_id] == nil
-      @current_order.save
-      session[:order_id] = @current_order.id
-    end
-
-    @orderitem.order_id = @current_order.id
-    if @orderitem.save
-      redirect_to order_path(@current_order.id)
+      @order = Order.create
+      session[:order_id] = @order.id
     else
-
-      flash[:status] = :failure
-      flash[:result_text] = "Could not save"
-      flash[:messages] = @orderitem.errors.messages
-      render "layouts/servererror", status: :internal_server_error
+      @order = Order.find_by(id: session[:order_id])
     end
 
+    if Orderitem.already_in_cart?(@orderitem, @order)
+      flash[:status] = :failure
+      flash[:result_text] = "This item already exists in your cart."
+      redirect_to order_path(session[:order_id])
+    else
+      @orderitem.order_id = @order.id
+      if @orderitem.save
+        redirect_to order_path(@order.id)
+      else
+        flash[:status] = :failure
+        flash[:result_text] = "Could not save"
+        flash[:messages] = @orderitem.errors.messages
+        render "layouts/servererror", status: :internal_server_error
+      end
+    end
   end
 
   def update

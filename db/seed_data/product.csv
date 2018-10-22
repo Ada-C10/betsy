@@ -1,21 +1,36 @@
 id,name,cost,merchant_id,inventory,description,image_url
-1,Brazil,1000,1,10,trip to Brazil,https://via.placeholder.com/200x200
-2,New York,1500,1,5,trip to New York,https://via.placeholder.com/200x200
-3,London,900,2,6,See London,https://via.placeholder.com/200x200
-4,Tacoma,500,4,11,Discover Tacoma,https://via.placeholder.com/200x200
-5,Japan,1000,3,6,Travel Japan,https://via.placeholder.com/200x200
-6,Florida,5309,3,7,Swim with Aligators,https://via.placeholder.com/200x200
-7,France,1330,4,9,Eat some cheese in France,https://via.placeholder.com/200x200
-8,New Jersey,1000,3,8,Travel the Turnpike,https://via.placeholder.com/200x200
-9,Egypt,1500,1,6,Look at a Pyramid,https://via.placeholder.com/200x200
-10,China,1342,2,9,We will go to the great wall,https://via.placeholder.com/200x200
-11,Germany,2343,4,10,Let's drink a beer here,https://via.placeholder.com/200x200
-12,Kenya,2100,3,12,Let's go on a safari,https://via.placeholder.com/200x200
-13,Iceland,2001,1,10,Is there ice here? Let's find out,https://via.placeholder.com/200x200
-14,California,2000,2,10,Holywood here we come,https://via.placeholder.com/200x200
-15,Vancouver,100,3,5,Weed is legal here now,https://via.placeholder.com/200x200
-16,Montreal,1000,3,10,You can speak French if you want,https://via.placeholder.com/200x200
-17,Nepal,1000,1,13,Climb some mountains,https://via.placeholder.com/200x200
-18,Texas,500,4,3,Let's eat BBQ,https://via.placeholder.com/200x200
-19,Russia,3000,2,10,We will go to Putin's house!,https://via.placeholder.com/200x200
-20,Spain,1993,4,10,We will go to Barcelona!,https://via.placeholder.com/200x200
+1,Brazil,1000,3,25,Trip to Brazil,1-brazil.jpg
+2,New York,1500,2,25,trip to New York,2-new-york.jpg
+3,London,900,2,26,See London,3-london.jpg
+4,Tacoma,500,1,21,Discover Tacoma,4-Tacoma.jpg
+5,Japan,1000,1,26,Travel Japan,5-japan.jpg
+6,Florida,5309,3,27,Swim with alligators,6-florida.jpg
+7,France,1330,3,22,Eat some cheese in France,7-France.jpg
+8,New Jersey,1000,4,28,Travel the Turnpike,7-France.jpg
+9,Egypt,1500,2,26,Look at a Pyramid,9-Egypt.jpg
+10,China,1342,1,29,We will go to the great wall,10-China.jpg
+11,Germany,2343,2,20,Let's drink a beer here,11-Germany.jpg
+12,Kenya,2100,5,23,Let's go on a safari,12-kenya.jpg
+13,Iceland,2001,1,20,Is there ice here? Let's find out,13-iceland.jpg
+14,California,2000,5,20,Hollywood here we come,14-California.jpg
+15,Vancouver,100,2,25,Weed is legal here now,15-Vancouver.jpg
+16,Montreal,1000,1,20,You can speak French if you want,16-Montreal.jpg
+17,Nepal,1000,1,27,Climb some mountains,17-Nepal.jpg
+18,Texas,500,3,23,Let's eat BBQ,18-Texas.jpg
+19,Russia,3000,4,30,We will go to Putin's house!,19-russia.jpg
+20,Spain,1993,1,20,We will go to Barcelona!,20-spain.jpg
+21,Adventure Boots,149,3,800,Don't go anywhere without these.,21-adventure-boots.jpg
+22,Black Zipper Jacket,3,7,200,It has decorative zippers!,22-black-zipper-jacket.jpg
+23,Clear Coat,165,1,500,See through this rain jacket the way you see through all the BS.,23-clear-coat.jpg
+24,Fanny Pack,38,3,1000,Editor's choice (the editor is Katie!),24-fanny-pack.jpg
+25,Jean Jacket,55,1,100,Do you want to look super cool or not?,25-jean-jacket.jpg
+26,Panda Head,100,3,50,Choose one of four spectacular lining materials: sateen; crushed velvet; fleece; or vinyl. Weird.,26-panda-head.jpg
+27,Cute Toast,5,4,100,You can eat it too.,27-cute-toast.jpg
+28,Kitschy Souvenir (Used),45,1,800,Perfect for your next white elephant.,28-kitschy-souvenir-(used).jpg
+29,Party Panther,80,3,20,Fake it til you make it.,29-party-panther.jpg
+30,Hot Air Balloon Tour,2000,4,20,This ain't Kansas anymore.,30-hot-air-balloon-tour.jpg
+31,Meet A Robot,50,4,40,Alice met this robot at the airport!,31-meet-a-robot.jpg
+32,Underwater Photoshoot,350,3,50,Take home 60 photos and a bloopblooper reel.,32-underwater-photoshoot.jpg
+33,Welding Class,2500,1,30,It's legit.,33-welding-class.jpg
+34,Lunar Adventure,10000,2,100,Step into the next world.,34-lunar-adventure.jpg
+35,A Day In The Life of an Ada Student,1000000,3,48,Priceless.,35-a-day-at-ada.jpg

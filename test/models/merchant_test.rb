@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe Merchant do
-  
+
   let(:merchant) { merchants(:fred) }
 
   it "must be valid" do
@@ -54,6 +54,7 @@ describe Merchant do
   end
 
   describe "Relationships" do
+
     it "has a list of products" do
       kiki = merchants(:kiki)
       kiki.must_respond_to :products
@@ -70,7 +71,9 @@ describe Merchant do
       end
     end
 
-
+  describe "Custom Methods" do
+    it "should return an accurate calculation of total revenue" do
+      expect(merchant.total_revenue).must_equal 62
+    end
   end
-
 end

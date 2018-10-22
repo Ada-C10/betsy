@@ -1,16 +1,21 @@
 class ReviewsController < ApplicationController
-  def new
-  end
-
+  skip_before_action :require_login, only: [:create]
   def create
+    @review = Review.new(review_params)
+    if @review.save
+      flash[:status] = :success
+      flash[:result_text] = "Successfully created your review"
+      redirect_to product_path(@review.product_id)
+    else
+      flash.now[:status] = :failure
+      flash.now[:result_text] = "Could not create your review."
+      flash.now[:messages] = @product.errors.messages
+      render :new, status: :bad_request
+    end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
+  private
+  def review_params
+    params.permit(:name, :description, :product_id, :rating)
   end
 end

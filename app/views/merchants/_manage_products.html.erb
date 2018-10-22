@@ -1,0 +1,63 @@
+<h2>Manage My Products</h2>
+<% if @products %>
+<% @products.each do |product| %>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    Sold by <%= link_to readable_name(product.merchant.name), merchant_path(product.merchant_id) %>
+  </div>
+  <%= image_tag(product.image_url, width: 500, alt: product.name, class: "card-img-top") %>
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to product.name, product_path(product.id) %></h5>
+    <p class="card-text"><%= "Description: #{product.description}" %></p>
+    <p class="card-text"><%= readable_cost(product.cost) %></p>
+  </div>
+  <div class="card-footer text-muted">
+    <% if product.inventory == 0 %>
+      <p>Out of Stock</p>
+    <% else %>
+      <p><%= "#{product.inventory} in stock" %></p>
+    <% end %>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProduct" data-whatever="@mdo">Edit Item</button>
+
+    <div class="modal fade" id="editProduct" tabindex="-1" role="dialog" aria-labelledby="editProductLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editProductLabel"><%=product.name %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= image_tag(product.image_url, width: 500, alt: product.name, class: "card-img-top") %>
+          </div>
+          <div class="modal-footer">
+            <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Quantity</span>
+              </div>
+              <input type="number" class="form-control" aria-label="Quantity" aria-describedby="basic-addon1" value=1 required="true" maxlength=3 min=1 max=<%= product.inventory %>>
+            </div>
+              <%# f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: product.inventory, maxlength: 3 %>
+              <%= f.hidden_field :product_id, value: product.id %>
+              <%= f.submit "Save Edits", class: "product-button btn btn-primary", role: "button" %>
+            <% end %>
+
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<% end %>
+
+<% else %>
+<p>You have no products! Click Sell to begin selling.</p>
+<% end %>

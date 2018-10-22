@@ -16,7 +16,7 @@
         <%= render 'layouts/header' %>
     <% end %>
 
-    <!-- <% if flash[:result_text] or flash[:messages] %>
+    <% if flash[:result_text] or flash[:messages] %>
       <section class="alert__container">
         <div class="alert alert-<%= flash[:status].to_s == 'failure' ? 'warning' : flash[:status] %>">
         <span><%= flash[:status].to_s == "failure" ? "A problem occurred: " : "" %><%= flash[:result_text] %></span>
@@ -31,8 +31,9 @@
           <% end %>
         </div>
       </section>
-    <% end %> -->
+    <% end %>
 
     <%= yield %>
+
   </body>
 </html>

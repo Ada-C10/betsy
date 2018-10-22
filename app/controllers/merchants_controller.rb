@@ -7,28 +7,18 @@ class MerchantsController < ApplicationController
   end
 
   def show
+    @orderitem = Orderitem.new
     @products = @merchant.products
   end
 
-  def new
-  end
-
-  def create
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
+  def dashboard
+    @merchant = @current_user
+    @products = @merchant.products
   end
 
   private
   def find_merchant
-    @merchant_id = params[:id].to_i
-    @merchant = Merchant.find_by(id: @merchant_id)
+    @merchant = Merchant.find_by(id: params[:id].to_i)
 
     unless @merchant
       render "layouts/notfound", status: :not_found

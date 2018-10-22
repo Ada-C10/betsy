@@ -1,0 +1,5 @@
+<h2>My Stats</h2>
+
+<h3>Total Sales: <%= readable_cost(@merchant.total_revenue) %></h3>
+<% @merchant.sales_by_status.each do |status, sales| %>
+<h4><%= "Sales - #{status.capitalize} Orders: " %><%= readable_cost(sales) %></h4><% end %>

@@ -1,0 +1,27 @@
+<h2>Order Confirmation Page</h2>
+
+<p>Created: <%= readable_date(@order.created_at) %></p>
+<p>Order status: <%= @order.status.capitalize %></p>
+<p>Total Cost: <%= readable_cost(@order.total_cost) %></p>
+
+<br />
+<table class="table">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Product Description</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orderitems.each do |orderitem| %>
+      <tr>
+        <td><%= link_to orderitem.product.name, product_path(orderitem.product.id) %></td>
+        <td><%= orderitem.product.description %></td>
+        <td><%= orderitem.quantity %></td>
+        <td><%= readable_cost(orderitem.line_item_price) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
