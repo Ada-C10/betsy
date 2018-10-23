@@ -9,7 +9,7 @@ class MerchantsController < ApplicationController
 
   def account_order
     @merchant = Merchant.find_by(id: params[:id])
-    @order_items = @merchant.order_items
+    @items = @merchant.order_items
   end
 
 

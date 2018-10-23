@@ -18,7 +18,7 @@
 
   <tbody>
     <% total = 0 %>
-    <% @order_items.each do |order_item| %>
+    <% @items.each do |order_item| %>
     <tr>
       <td><img src="<%= find_image_for(order_item.product) %>" alt="snack image", height="100", width="100"></td>
       <td><%= order_item.product_name %></td>
