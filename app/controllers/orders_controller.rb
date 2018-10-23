@@ -51,6 +51,11 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find_by(id: params[:id])
     @order.update_attributes(order_params)
+
+    if @order.status = 'pending'
+      @order.update_attribute(:status, 'paid')
+    end
+
     if @order.save
       @order.update_attribute(:order_placed, @order.updated_at)
       flash[:status] = :success
@@ -84,7 +89,6 @@ class OrdersController < ApplicationController
       :cvv,
       :exp_date,
       :zip,
-      :status
     )
   end
 
