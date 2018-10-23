@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Betsy
   class Application < Rails::Application
+    config.time_zone = 'Pacific Time (US & Canada)'
   config.generators do |g|
     # Force new test files to be generated in the minitest-spec style
     g.test_framework :minitest, spec: true
