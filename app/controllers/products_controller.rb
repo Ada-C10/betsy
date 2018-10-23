@@ -84,12 +84,7 @@ class ProductsController < ApplicationController
       :img_file,
       :merchant_id,
       :inventory,
-<<<<<<< HEAD
       category_ids: []
-
-=======
-      category_ids: [],
->>>>>>> bcc6fd2749831baf382fe6547ad0c25e144c378c
     )
   end
 
