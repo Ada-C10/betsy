@@ -14,7 +14,6 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
     @order_item = OrderItem.new
     @order_item.product_id = @product.id
-    @average_rating = @product.reviews.average(:rating)
     @reviews = @product.reviews
     @review = Review.new
 

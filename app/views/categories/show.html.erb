@@ -9,6 +9,11 @@
     <div class="card-body">
       <h5 class="card-title"><%= p.name %></h5>
       <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(p.price) %></h6>
+      <% if p.average_rating %>
+        <h6><%= "Average rating: #{p.average_rating}"  %></h6>
+      <% else %>
+        <h6><%= "No reviews yet" %></h6>
+      <% end %>
       <p class="card-text"><%= p.description %></p>
       <a class="card-merchant" href=" <%= merchant_path(p.merchant.id) %>"><%= "#{p.merchant.name}" %></a>
       <a class="card-details" href=" <%= product_path(p.id) %>">Details</a>
