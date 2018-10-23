@@ -7,6 +7,13 @@ class MerchantsController < ApplicationController
     @merchant = @logged_in_merchant
   end
 
+  def account_order
+    @merchant = Merchant.find_by(id: params[:id])
+    @order_items = @merchant.order_items
+  end
+
+
+
   def status_change
     @product = Product.find_by(id: params[:id])
 
@@ -79,5 +86,9 @@ class MerchantsController < ApplicationController
     flash[:success] = "Successfully logged out!"
     redirect_to root_path
   end
+
+
+
+
 
 end

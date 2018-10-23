@@ -12,4 +12,16 @@ class OrderItem < ApplicationRecord
     return self.quantity * self.product.price
   end
 
+
+
+  def product_name
+    return self.product.name
+  end
+
+def order_status
+  return self.order.status
+end
+
+
+
 end

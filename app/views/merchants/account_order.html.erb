@@ -1,0 +1,31 @@
+
+<h3 class=merchant_title>Order fulfillment for Merchant: <%= @merchant.name %></h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Total Quantity</th>
+      <th scope="col">Purchase Date</th>
+      <th scope="col">Order Status</th>
+      <th scope="col">Item Revenue</th>
+
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order_items.each do |order_item| %>
+    <tr>
+      <td><img src="<%= find_image_for(order_item.product) %>" alt="snack image", height="100", width="100"></td>
+      <td><%= order_item.product_name %></td>
+      <td><%= order_item.quantity %></td>
+      <td><%= readable_date(order_item.created_at) %></td>
+      <td><%= order_item.order_status %></td>
+      <td>$<%= order_item.product.price %></td>
+    </tr>
+    <% end  %>
+  </tbody>
+</table>
