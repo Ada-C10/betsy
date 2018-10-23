@@ -4,14 +4,17 @@
 
     <% if @orderitems["paid"] %>
       <p class="d-inline-block ml-auto mr-5">
-        <button class="btn btn-primary shadow-lg p-3 mb-5 bg-primary rounded" type="button" data-toggle="collapse" data-target="#collapseOrderDetails" aria-expanded="false" aria-controls="collapseOrderDetails">
+        <button class="btn btn-primary shadow-lg bg-primary rounded" type="button" data-toggle="collapse" data-target="#collapseOrderDetails" aria-expanded="false" aria-controls="collapseOrderDetails">
           Toggle Order Details
         </button>
       </p>
   </div>
 
   <div class="row">
-    <h3>It's Time To Ship <%= @paiditems.count %> New Orders!</h3>
+    <h3><%= "Woohoo! You have #{@paiditems.count} New Orders!" %></h3>
+  </div>
+  <div class="row">
+    <h3>It's time to ship.</h3>
   </div>
 
   <p>Print shipping labels dropdown</p>

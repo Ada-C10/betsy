@@ -15,3 +15,7 @@
 <% @orderitems.each do |status, items| %>
 <p><%= "Items - #{status.capitalize} Orders: #{items.count} items" %></p>
 <% end %>
+
+<h3>Total (Active) Products: <%= @activeproducts.count %> products currently in stock</h3>
+<p><%= "Products - Out Of Stock Products: #{@soldout.count} products currently out of stock" %></p>
+<p><%= "Products - Archived (Inactive) Products: #{@inactive.count} products archived" %></p>
