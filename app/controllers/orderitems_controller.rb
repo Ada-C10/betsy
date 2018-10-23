@@ -40,7 +40,6 @@ class OrderitemsController < ApplicationController
     end
   end
 
-  # Test Done
   def destroy
     @orderitem.destroy
     redirect_back(fallback_location: root_path)
