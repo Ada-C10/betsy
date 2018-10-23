@@ -25,7 +25,6 @@ class SessionsController < ApplicationController
     end
 
     session[:user_id] = merchant.id
-    # raise
     redirect_to root_path
   end
 

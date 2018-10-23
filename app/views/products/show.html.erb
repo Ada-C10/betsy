@@ -16,25 +16,31 @@
             <%= link_to "Edit Product", edit_merchant_product_path(session[:user_id], @product.id) %>
           <% end %>
         </div>
-        <div class="card-footer text-muted">
-          <% if @product.inventory == 0 %>
-            <p>Out of Stock</p>
-          <% elsif @product.inventory <= 20 %>
-            <p>Hurry! Only a few left!</p>
-          <% end %>
-
-          <% if @product.inventory > 0 %>
-            <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
-
-              <%= f.label :quantity, 'Quantity' %>
-              <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: @product.inventory, maxlength: 3 %>
-
-              <%= f.hidden_field :product_id, value: @product.id %>
-
-              <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
+        <% if @product.active %>
+          <div class="card-footer text-muted">
+            <% if @product.inventory == 0 %>
+              <p>Out of Stock</p>
+            <% elsif @product.inventory <= 20 %>
+              <p>Hurry! Only a few left!</p>
             <% end %>
-          <% end %>
-        </div>
+
+            <% if @product.inventory > 0 %>
+              <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
+
+                <%= f.label :quantity, 'Quantity' %>
+                <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: @product.inventory, maxlength: 3 %>
+
+                <%= f.hidden_field :product_id, value: @product.id %>
+
+                <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
+              <% end %>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="card-footer text-muted">
+            Product No Longer Available
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="col-sm-7">
