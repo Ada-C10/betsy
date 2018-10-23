@@ -1,12 +1,8 @@
 require "test_helper"
 
 describe MerchantsController do
-  # it "must be a real test" do
-  #   flunk "Need real tests"
-  # end
 
   it "can successfully log in with github as an existing merchant" do
-
     iron_chef = merchants(:iron_chef)
 
     perform_login(iron_chef)
@@ -15,6 +11,20 @@ describe MerchantsController do
     must_redirect_to root_path
     expect(session[:merchant_id]).must_equal iron_chef.id
     # expect(flash[:status]).must_equal "Logged in as returning merchant #{merchant.name}"
+  end
+
+  it "can successfully log in with github as new merchant" do
+    start_count = Merchant.count
+    merchant = Merchant.new(provider: "github", uid: 293, name: "New Merchant", email: "new123@gmail.com")
+
+    perform_login(merchant)
+    get merchant_callback_path(:github)
+
+    must_redirect_to root_path
+
+    Merchant.count.must_equal start_count + 1
+
+    session[:merchant_id].must_equal Merchant.last.id
   end
 
 
@@ -34,7 +44,20 @@ describe MerchantsController do
     expect( Merchant.count ).must_equal start_count
   end
 
+  describe "Logged in merchcants" do
+
+    before do
+      perform_login(merchants(:hells))
+    end
 
 
+
+
+
+
+
+
+
+  end
 
 end

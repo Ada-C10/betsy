@@ -37,9 +37,9 @@ class MerchantsController < ApplicationController
 
 
 
-  def index
-    @merchants = Merchant.all
-  end
+  # def index
+  #   @merchants = Merchant.all
+  # end
 
   def new
     @merchant = Merchant.new
