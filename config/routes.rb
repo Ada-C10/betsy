@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   root 'products#homepage'
 
   resources :order_items
-  get '/orders/confirmation', to: 'orders#confirmation', as: 'confirmation'
-  put 'orders/finalize', to: 'orders#finalize', as: 'finalize'
+  put '/orders/confirmation', to: 'orders#confirmation', as: 'confirmation'
+  get 'orders/:id/finalize', to: 'orders#finalize', as: 'finalize'
   resources :orders
   resources :categories
 

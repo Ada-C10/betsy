@@ -45,7 +45,21 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @order = Order.find_by(id: params[:id])
+    #TODO: display generic 'It looks like you don't have any snacks in your cart. Add some to get noshin'!' IF no session id
+
+    if @cart && @cart.id == params[:id].to_i
+      # puts "Params id is #{params[:id]}"
+      # puts params[:id].class
+      # puts "Cart id is #{@cart.id}"
+      # puts @cart.id.class
+      # puts @cart.id.to_i == params[:id].to_i
+      @order = Order.find_by(id: params[:id])
+    else
+      flash.now[:status] = :failure
+      flash.now[:result_text] = "Cannot edit nonexistent order"
+      render :nosnacks, status: :bad_request
+    end
+
   end
 
   def update
@@ -59,10 +73,8 @@ class OrdersController < ApplicationController
     if @order.save
       @order.update_attribute(:order_placed, @order.updated_at)
       flash[:status] = :success
-      flash[:result_text] = "Order Complete"
-
-      # redirect_to confirmation_path(@order) <-- make this
-      redirect_to confirmation_path
+      flash[:result_text] = "Order Information Saved"
+      redirect_to finalize_path(@order)
     else
       flash.now[:status] = :failure
       flash.now[:result_text] = "Could not complete order"
@@ -71,8 +83,26 @@ class OrdersController < ApplicationController
     end
   end
 
+  def finalize
+    #TODO: display generic 'It looks like you don't have any snacks in your cart. Add some to get noshin'!' IF no session id
+    unless @cart && @cart.id == params[:id].to_i
+      flash.now[:status] = :failure
+      flash.now[:result_text] = "Cannot finalize nonexistent order"
+      render :nosnacks, status: :bad_request
+    end
+
+  end
+
   def confirmation
-    # @order = Order.find_by(id: params[:id])
+    #TODO: display generic 'It looks like you don't have any snacks in your cart. Add some to get noshin'!' IF no session id
+    if @cart
+      @order = @cart
+      @order.update_attribute(:status, 'paid')
+      session[:order_id] = nil
+    else
+      render :nosnacks, status: :bad_request
+    end
+
   end
 
   private
@@ -96,13 +126,5 @@ class OrdersController < ApplicationController
       :product_id
     )
   end
-
-  # def has_cart?
-  #   return @cart = session[:order_id]
-  # end
-  #
-  # def logged_in_merchant?
-  #   return @logged_in_merchant = session[:merchant_id]
-  # end
 
 end
