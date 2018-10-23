@@ -5,7 +5,7 @@
 
     <h2 ><%= "#{@product.name}" %></h2>
     <div class="card-title" style="width: 30rem">
-      <img class="card-img-top" src=" <%= @product.img_file %> " alt="Image description">
+      <img class="card-img-top" src=" <%= find_image_for(@product) %> " alt="Image description">
 
       <div class="card-subtitle mb-2 text-muted" >
         <h3> <%= @product.description %></h3>

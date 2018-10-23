@@ -9,7 +9,7 @@
       <% @merchant.products.each do |product| %>
       <div class="card" style="width: 18rem;">
 
-        <img class="card-img-top" src=" <%= product.img_file %> " alt="Snack Image">
+        <img class="card-img-top" src=" <%= find_image_for(product) %> " alt="Snack Image">
         <div class="card-body">
           <h5 class="card-title"><%= link_to product.name, product_path(product.id) %></h5>
           <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(product.price) %></h6>

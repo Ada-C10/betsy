@@ -15,7 +15,6 @@
   </ul>
 </div>
 
-
 <table class="table">
   <thead>
     <tr>
@@ -31,7 +30,8 @@
 
     <% @merchant.products.each do |product| %>
     <tr>
-      <td><%= product.img_file %></td>
+
+      <td><img src="<%= find_image_for(product) %>" alt="snack image", height="100", width="100"></td>
       <td><%= product.name %></td>
       <td><%= product.price %></td>
       <td><%= product.inventory %></td>
