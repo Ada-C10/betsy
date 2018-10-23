@@ -1,8 +1,6 @@
 <div class="card-deck">
 
   <div class="card">
-
-
     <h2 ><%= "#{@product.name}" %></h2>
     <div class="card-title" style="width: 30rem">
       <img class="card-img-top" src=" <%= find_image_for(@product) %> " alt="Image description">
@@ -54,3 +52,44 @@
     </div>
   </div>
 </div>
+
+
+<h2>Reviews</h2>
+
+<% if @reviews %>
+  <% @reviews.each do |r| %>
+   <ul>
+     <li><%= "Rating: #{r.rating}" %></li>
+     <li><%= "Description #{r.description}" %></li>
+   </ul>
+   <% end %>
+
+   <%= "Average Rating: " %>
+   <%= @average_rating %>
+
+<% else %>
+  <%= "No reviews yet for this product. Leave a review!" %>
+<% end %>
+
+
+
+<%= form_with model: @review, url: reviews_path(@product.id), method: :post do |f| %>
+<%= hidden_field_tag(:product_id, @product.id) %>
+    <div class="form_group">
+      <%= f.label :rating %>
+      <%= f.number_field :rating,value: 1 %>
+    </div>
+
+    </div>
+
+    <br>
+    <div class="form_group">
+    <%= f.label :description %>
+    <br>
+    <%= f.text_area :description, cols: 15, rows: 5 %>
+    <br>
+
+  <%= f.submit "Leave Review" %>
+  </div>
+
+    <% end %>

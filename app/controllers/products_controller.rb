@@ -14,6 +14,9 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
     @order_item = OrderItem.new
     @order_item.product_id = @product.id
+    @average_rating = @product.reviews.average(:rating)
+    @reviews = @product.reviews
+
     if @product.nil?
       head :not_found
     end
@@ -84,12 +87,7 @@ class ProductsController < ApplicationController
       :img_file,
       :merchant_id,
       :inventory,
-<<<<<<< HEAD
       category_ids: [],
-=======
-      category_ids: []
-
->>>>>>> 1637090de2e391768f2571dc1ce7d95f6e2ddf93
     )
   end
 
