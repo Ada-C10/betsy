@@ -40,22 +40,22 @@ class OrderitemsController < ApplicationController
     end
   end
 
-  def index
-    if params[:merchant_id]
-      @merchant = Merchant.find_by(id: params[:merchant_id])
-      @orderitems = @merchant.orderitems
-    end
-  end
-
-  def show
-    if params[:merchant_id]
-      @merchant = Merchant.find_by(id: params[:merchant_id])
-      @orderitems = Merchant.items_by_orderid(@merchant.orderitems)
-
-      @orderitem = @orderitems[params[:id]]
-      @order = @orderitem.order(:name)
-    end
-  end
+  # def index
+  #   if params[:merchant_id]
+  #     @merchant = Merchant.find_by(id: params[:merchant_id])
+  #     @orderitems = @merchant.orderitems
+  #   end
+  # end
+  # 
+  # def show
+  #   if params[:merchant_id]
+  #     @merchant = Merchant.find_by(id: params[:merchant_id])
+  #     @orderitems = Merchant.items_by_orderid(@merchant.orderitems)
+  #
+  #     @orderitem = @orderitems[params[:id]]
+  #     @order = @orderitem.order(:name)
+  #   end
+  # end
 
   # Test Done
   def destroy
