@@ -28,7 +28,7 @@ describe MerchantsController do
   end
 
 
-  it "does not create a new user when logging in with a new invalid merchant" do
+  it "does not create a new merchant when logging in with a invalid data" do
     start_count = Merchant.count
 
     invalid_new_merchant = Merchant.new(name: nil, email: nil)
@@ -47,13 +47,40 @@ describe MerchantsController do
   describe "Logged in merchcants" do
 
     before do
-      perform_login(merchants(:hells))
+      @hells = merchants(:hells)
+      perform_login(@hells)
+    end
+
+    it "shows my account page for a logged in merchant" do
+
+      get merchant_path(@hells.id)
+      must_respond_with :success
     end
 
 
+    # it "should respond with not found for non-exsiting merchant" do
+    #
+    #   merchants(:hells).destroy
+    #   get merchant_path(@hells.id)
+    #
+    #   must_respond_with :missing
+    # end
 
 
 
+    it "logged in merchant can successfully add a product" do
+
+
+    end
+
+
+    it "logged in merchant can successfully add a category" do
+
+    end
+
+    it "logged in merchant can view their account orders" do
+
+    end
 
 
 
