@@ -75,21 +75,21 @@ class ProductsController < ApplicationController
   end
 
   def status
-     if @product.active
-      @product.active = false
-      if @product.save
-        # flash[:status] = :success
-        # flash[:result_text] = "Successfully retired #{@product.name}"
-        redirect_back(fallback_location: root_path)
-      end
-    else
-      @product.active = true
-      if @product.save
-        # flash[:status] = :success
-        # flash[:result_text] = "Successfully retired #{@product.name}"
-        redirect_back(fallback_location: root_path)
-      end
+   if @product.active
+    @product.active = false
+    if @product.save
+      # flash[:status] = :success
+      # flash[:result_text] = "Successfully retired #{@product.name}"
+      redirect_back(fallback_location: root_path)
     end
+  else
+    @product.active = true
+    if @product.save
+      # flash[:status] = :success
+      # flash[:result_text] = "Successfully retired #{@product.name}"
+      redirect_back(fallback_location: root_path)
+    end
+   end
   end
 
   private
