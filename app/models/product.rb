@@ -11,5 +11,4 @@ class Product < ApplicationRecord
     return self.reviews.average(:rating)
   end
 
-
 end
