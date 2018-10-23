@@ -15,6 +15,10 @@ class MerchantsController < ApplicationController
     @merchant = @current_user
     @products = @merchant.products
     @orderitems = @merchant.items_by_status("all")
+    @pendingitems = Merchant.items_by_orderid(@orderitems["pending"])
+    @paiditems = Merchant.items_by_orderid(@orderitems["paid"])
+    @completeitems = Merchant.items_by_orderid(@orderitems["complete"])
+    @cancelleditems = Merchant.items_by_orderid(@orderitems["cancelled"])
   end
 
   private

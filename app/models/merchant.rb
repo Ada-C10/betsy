@@ -22,7 +22,7 @@ class Merchant < ApplicationRecord
 
   def items_by_status(status)
     items = self.orderitems.group_by { |oi| oi.order.status }
-    if status = "all"
+    if status == "all"
       return items
     else
       return items[status]
@@ -35,18 +35,27 @@ class Merchant < ApplicationRecord
   end
 
   def total_revenue
-    return self.orderitems.sum { |oi| oi.line_item_price }
+    revenue_paid = self.items_by_status("paid").sum { |oi| oi.line_item_price }
+    revenue_complete = self.items_by_status("complete").sum { |oi| oi.line_item_price }
+    return revenue_paid + revenue_complete
   end
 
-  def sales_by_status
-    # SJL: This isn't as efficient as it could be, probably could
-    # do this all in SQL. Someday...
-
-    sales = self.items_by_status("all")
-    sales.each do |status, items|
-      sales[status] = items.sum { |item| item.line_item_price }
-    end
-
-    return sales
+  def revenue_by_status
+    revenue = Hash.new
+    revenue["paid"] = self.items_by_status("paid").sum { |oi| oi.line_item_price }
+    revenue["complete"] = self.items_by_status("complete").sum { |oi| oi.line_item_price }
+    return revenue
   end
+#### this is defunct!
+  # def sales_by_status
+  #   # SJL: This isn't as efficient as it could be, probably could
+  #   # do this all in SQL. Someday...
+  #
+  #   sales = self.items_by_status("all")
+  #   sales.each do |status, items|
+  #     sales[status] = items.sum { |item| item.line_item_price }
+  #   end
+  #
+  #   return sales
+  # end
 end

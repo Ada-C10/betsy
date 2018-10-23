@@ -1,16 +1,17 @@
 <h2>My Stats</h2>
 
 <h3>Total Sales: <%= readable_cost(@merchant.total_revenue) %></h3>
-<% @merchant.sales_by_status.each do |status, sales| %>
-<p><%= "Sales - #{status.capitalize} Orders: " %><%= readable_cost(sales) %></p>
+<% @merchant.revenue_by_status.each do |status, sales| %>
+<p><%= "Sales - #{status.capitalize} Orders: "%><%= readable_cost(sales) %></p>
 <% end %>
 
-<h3>Total Orders: <%= @merchant.orderitems.count %></h3>
-<% @orderitems.each do |status, items| %>
-<p><%= "Orders - #{status.capitalize}: " %><%= items.count %></p>
-<% end %>
+<h3>Total Orders: <%= Merchant.items_by_orderid(@merchant.orderitems).count %></h3>
+<p><%= "Orders - Pending (Cart) Orders: #{@pendingitems.count} orders" %></p>
+<p><%= "Orders - Paid (Unshipped) Orders: #{@paiditems.count} orders" %></p>
+<p><%= "Orders - Complete (Shipped) Orders: #{@completeitems.count} orders" %></p>
+<p><%= "Orders - Cancelled Orders: #{@cancelleditems.count} orders" %></p>
 
-<h3>Total Orders: <%= @merchant.orderitems.count %></h3>
+<h3>Total Items: <%= @merchant.orderitems.count %></h3>
 <% @orderitems.each do |status, items| %>
-<h4><%= "Orders - #{status.capitalize}: " %><%= items.count %></h4>
+<p><%= "Items - #{status.capitalize} Orders: #{items.count} items" %></p>
 <% end %>

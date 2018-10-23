@@ -2,10 +2,7 @@
   <div class="row">
     <h2 class="d-flex justify-content-center">Order Fulfillment</h2>
 
-    <% paid_items = @orderitems["paid"] %>
-
-    <% if paid_items %>
-      <% paid_items = Merchant.items_by_orderid(paid_items) %>
+    <% if @orderitems["paid"] %>
       <p class="d-inline-block ml-auto mr-5">
         <button class="btn btn-primary shadow-lg p-3 mb-5 bg-primary rounded" type="button" data-toggle="collapse" data-target="#collapseOrderDetails" aria-expanded="false" aria-controls="collapseOrderDetails">
           Toggle Order Details
@@ -14,13 +11,13 @@
   </div>
 
   <div class="row">
-    <h3>It's Time To Ship <%= paid_items.count %> New Orders!</h3>
+    <h3>It's Time To Ship <%= @paiditems.count %> New Orders!</h3>
   </div>
 
   <p>Print shipping labels dropdown</p>
 
   <div class="btn-group-vertical" role="group" aria-label="eachOrder">
-    <% paid_items.each do |order_id, items| %>
+    <% @paiditems.each do |order_id, items| %>
     <% order = Order.find_by(id: order_id) %>
   <div class="container order my-1">
     <a class="btn btn-light" role="button" href="<%= "#" %>">Order #<%= order_id %>  ➡️
