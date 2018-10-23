@@ -2,8 +2,8 @@ class ReviewsController < ApplicationController
 
   def create
     review = Review.new(review_params)
-    @product = Product.find_by(id: params[:id])
-    review.product = @product
+    product = Product.find_by(id: params[:id])
+    review.product = product
 
     if review.save
       flash[:status] = :success

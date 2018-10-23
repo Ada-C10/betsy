@@ -26,5 +26,4 @@ Rails.application.routes.draw do
 
   post 'products/:id/reviews', to: 'reviews#create', as: 'create_review'
 
-  # resources :reviews
 end
