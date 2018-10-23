@@ -29,9 +29,9 @@
 
             <% if product.inventory > 0 %>
 
-            <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
+            <%= form_with model: product.orderitems.new, class: "product-form" do |f|%>
               <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: product.inventory, maxlength: 3 %>
-              <%= f.hidden_field :product_id, value: product.id %>
+              <%= f.hidden_field :product_id %>
               <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
             <% end %>
 

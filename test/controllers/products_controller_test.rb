@@ -245,6 +245,7 @@ describe ProductsController do
       perform_login(fred)
       product = products(:fannypack)
       product.active = false
+      product.save
       expect{patch products_status_path(merchants(:fred).id,product.id)}.wont_change 'Product.count'
 
       must_respond_with :redirect
