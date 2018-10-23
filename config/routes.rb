@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get '/merchants/:id/myaccount', to: 'merchants#account', as: 'merchant_account'
 
 
-  get "/auth/:provider/callback", to: "merchants#create"
+  get "/auth/:provider/callback", to: "merchants#create", as: 'merchant_callback'
   delete "/logout", to: "merchants#destroy", as: "logout"
   post "/products/:id", to: "merchants#status_change", as: 'status_change'
 end
