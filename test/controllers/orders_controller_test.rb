@@ -63,7 +63,7 @@ describe OrdersController do
 
     end
 
-    it 'is renders bad request on update if missing credit card information' do
+    it 'renders bad request on update if missing credit card information' do
 
       order.valid?.must_equal true
       order.save
@@ -79,7 +79,7 @@ describe OrdersController do
 
     end
 
-    it 'is renders bad request on update if credit card number length is not 16' do
+    it 'renders bad request on update if credit card number length is not 16' do
 
       order.valid?.must_equal true
       order.save
@@ -104,7 +104,7 @@ describe OrdersController do
 
     end
 
-    it 'is renders bad request on update if missing name' do
+    it 'renders bad request on update if missing name' do
 
       order.valid?.must_equal true
       order.save
@@ -120,7 +120,7 @@ describe OrdersController do
 
     end
 
-    it 'is renders bad request on update if missing email' do
+    it 'renders bad request on update if missing email' do
 
       order.valid?.must_equal true
       order.save
@@ -136,7 +136,7 @@ describe OrdersController do
 
     end
 
-    it 'is renders bad request on update if missing address' do
+    it 'renders bad request on update if missing address' do
 
       order.valid?.must_equal true
       order.save
@@ -152,7 +152,7 @@ describe OrdersController do
 
     end
 
-    it 'is renders bad request on update if missing zip' do
+    it 'renders bad request on update if missing zip' do
 
       order.valid?.must_equal true
       order.save
@@ -168,7 +168,7 @@ describe OrdersController do
 
     end
 
-    it 'is renders bad request on update if missing cvv' do
+    it 'renders bad request on update if missing cvv' do
 
       order.valid?.must_equal true
       order.save
@@ -184,7 +184,7 @@ describe OrdersController do
 
     end
 
-    it 'is renders bad request on update if exp_year is before the current_year' do
+    it 'renders bad request on update if exp_year is before the current_year' do
 
       order.valid?.must_equal true
       order.save
@@ -197,10 +197,11 @@ describe OrdersController do
 
       must_respond_with :bad_request
       expect(order.exp_year).must_be_nil
+      expect( flash[:messages] ).must_include :exp_year
 
     end
 
-    it 'is renders bad request on update if exp_year and exp_month correlate to an expired card' do
+    it 'renders bad request on update if exp_year and exp_month correlate to an expired card' do
 
       order.valid?.must_equal true
       order.save
@@ -215,6 +216,33 @@ describe OrdersController do
       must_respond_with :bad_request
       expect(order.exp_year).must_be_nil
       expect(order.exp_month).must_be_nil
+      expect( flash[:messages] ).must_include :exp_month
+
+    end
+
+    it 'raises an error if exp_year is nil' do
+
+      order.valid?.must_equal true
+      order.save
+
+      order_data[:order][:exp_year] = nil
+
+      expect {
+        patch order_path(order), params: order_data
+      }.must_raise ArgumentError 
+
+    end
+
+    it 'raises an error if exp_year is nil' do
+
+      order.valid?.must_equal true
+      order.save
+
+      order_data[:order][:exp_month] = nil
+
+      expect {
+        patch order_path(order), params: order_data
+      }.must_raise ArgumentError
 
     end
 

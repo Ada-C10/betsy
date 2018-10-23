@@ -55,34 +55,62 @@ describe Order do
     it 'is valid on create with only id and status recorded' do
       order.valid?.must_equal true
     end
-
-    it 'is valid on update with properly formatted and completed fields: name, email, address, zip, cvv, exp_month, exp_year, and cc_num' do
-      order_test = Order.new(order_data[:order])
-
-      order_test.must_be :valid?, "Order data was invalid. Engineer, please fix this test."
-      # binding.pry
-
-      get root_path
-            must_respond_with :success
-
-      # expect {
-      #   put order_path(Order.first.id), params: order_data
-      # }.wont_change('Order.count')
-
-      # must_respond_with :redirect
-      # must_redirect_to work_path(existing_id)
-      #
-      # work = Work.find_by(id: existing_id)
-      # expect(work.title).must_equal work_data[:work][:title]
-      # expect(work.category).must_equal work_data[:work][:category]
-
-
-    end
-
-    it 'is invalid on update if missing credit card information' do
-
-    end
-
   end
 
+  describe 'subtotal method' do
+    it 'returns the sum of all of the order items of this order' do
+      order = Order.first
+
+      sum = 0
+      order.order_items.each do |o_item|
+        sum += o_item.product.price * o_item.quantity
+      end
+
+      order.subtotal.must_be_kind_of BigDecimal
+      order.subtotal.must_equal sum
+    end
+  end
+
+  describe 'Class method: tax_rate' do
+    it 'returns the constant TAX_RATE formatted to at most the 100ths place' do
+
+      Order.tax_rate.must_be_close_to 10.1
+
+    end
+  end
+
+  describe 'total method' do
+    it 'returns the sum + tax for this order' do
+      order = Order.first
+
+      sum = 0
+      order.order_items.each do |o_item|
+        sum += o_item.product.price * o_item.quantity
+      end
+      sum *= (1 + 0.101)
+
+      order.total.must_be_kind_of BigDecimal
+      order.total.must_equal sum
+    end
+  end
+
+  describe 'Class method: months' do
+    it 'returns an array from 1 through 12' do
+      expected_array = [*1..12]
+
+      Order.months.must_equal expected_array
+
+    end
+  end
+
+  describe 'Class method: years' do
+    it 'returns an array of 30 years starting from the current year' do
+      result = Order.years
+
+      result.first.must_equal Date.today.year
+      result.last.must_equal Date.today.year + 29
+      result.length.must_equal 30
+
+    end
+  end
 end

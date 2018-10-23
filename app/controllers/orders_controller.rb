@@ -13,8 +13,6 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new
 
-    # @order.status = 'pending'
-
     if @order.save
 
       session[:order_id] = @order.id
@@ -23,7 +21,6 @@ class OrdersController < ApplicationController
       order_item.product = Product.find_by(id: params[:product_id])
 
       if order_item.save
-        # raise
         flash[:status] = :success
         flash[:result_text] = "Added item to cart"
 
@@ -34,6 +31,7 @@ class OrdersController < ApplicationController
         flash[:messages] = order_item.errors.messages
         redirect_back fallback_location: root_path
         # render :new, status: :bad_request
+        #TODO: create a bad request page?
       end
 
     else

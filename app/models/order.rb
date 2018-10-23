@@ -31,7 +31,7 @@ class Order < ApplicationRecord
 
   def self.years
     current_year = get_current_year
-    return [*current_year..( current_year + 30 )]
+    return [*current_year..( current_year + 29 )]
   end
 
   def self.get_current_month
@@ -43,10 +43,14 @@ class Order < ApplicationRecord
   end
 
   def cant_be_expired
-    if exp_year < Order.get_current_year
-      errors.add(:exp_year, "Credit Card expired in #{exp_year}")
-    elsif exp_year == Order.get_current_year && exp_month < Order.get_current_month
-      errors.add(:exp_month, "Credit Card is expired")
+    if exp_year == nil || exp_month == nil
+      raise ArgumentError, "Expiration Month and Year cannot be nil"
+    else
+      if exp_year < Order.get_current_year
+        errors.add(:exp_year, "Credit Card expired in #{exp_year}")
+      elsif exp_year == Order.get_current_year && exp_month < Order.get_current_month
+        errors.add(:exp_month, "Credit Card is expired")
+      end
     end
   end
 
