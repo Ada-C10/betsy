@@ -64,12 +64,17 @@
 </ul>
 <% end %>
 
-<%= "Average Rating: " %>
-<%= @product.average_rating %>
+<p><%= "Average rating:" %></p>
+  <% @product.average_rating.to_i.times do %>
+    <i class="fa fa-cookie-bite"></i>
+  <% end %>
 <% else %>
-<%= "No reviews yet for #{@product.name}. Leave a review below!" %>
+  <p><%= "No reviews yet" %></p>
 <% end %>
 
+<br>
+<br>
+<br>
 
 <%= form_with model: @review, url: create_review_path, method: :post do |f| %>
 
@@ -119,7 +124,7 @@
 </div>
 
 <div class="form_group">
-  <%= f.submit "Leave Review" %>
+  <%= f.submit "Submit Review" %>
 </div>
 
 <% end %>

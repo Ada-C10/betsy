@@ -1,9 +1,5 @@
-
-<section>
   <h5>All products sold by:   <%= @merchant.name %>  </h5>
   <p> Date Joined:  <%= readable_date(@merchant.created_at) %><br>
-
-
 
     <div class="card-columns">
       <% @merchant.products.each do |product| %>
@@ -13,6 +9,14 @@
         <div class="card-body">
           <h5 class="card-title"><%= link_to product.name, product_path(product.id) %></h5>
           <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(product.price) %></h6>
+          <% if product.average_rating %>
+          <p><%= "Average rating:" %></p>
+            <% product.average_rating.to_i.times do %>
+              <i class="fa fa-cookie-bite"></i>
+            <% end %>
+          <% else %>
+            <p><%= "No reviews yet" %></p>
+          <% end %>
           <p class="card-text"><%= product.description %></p>
         </div>
       </div>
@@ -27,5 +31,3 @@
     <% end  %>
     <% end %>
     <% end  %>
-
-  </section>
