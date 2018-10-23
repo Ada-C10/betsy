@@ -23,15 +23,13 @@
     <% @paiditems.each do |order_id, items| %>
     <% order = Order.find_by(id: order_id) %>
   <div class="container order my-1">
-    <a class="btn btn-light" role="button" href="<%= "#" %>">Order #<%= order_id %>  ➡️
+    <a class="btn btn-light" role="button" href=<%= merchant_customer_path(@merchant.id, order_id) %> Order #<%= order_id %>  ➡️  >
       <div class="container checkbox ml-auto d-inline">
-        <small>Mark as shipped!</small>
-        <!-- There's no toggler gem installed to make this toggle :( couldn't figure it out -->
-        <form method="patch" id="shipItForm" action= "/merchants/ship">
+        <form method="patch" id="shipItForm" action= <%= merchant_ship_path %> >
           <% order.status == "complete" ? status = "checked" : status = nil %>
           <input type="hidden" id="ordID" name="ordID" value=<%= order.id %>>
-          <input type="checkbox" name="ship-it-checkbox" data-toggle="toggle" onclick="mark-order-complete()"  id="shipItCheckbox" <%= status %>>
-          <input type="submit" value="Submit">
+          <input type="checkbox" name="ship-it-checkbox" onclick="mark-order-complete()" id="shipItCheckbox" <%= status %>>
+          <input type="submit" value="Mark As Shipped!">
         </form>
 
         <%# form_with model: this_model, url: url, method: method, class:"form" , id:"form1" do |f| %>
@@ -60,7 +58,7 @@
 
     <div class="collapse" id="collapseOrderDetails">
       <div class="card card-body d-block">
-        <%= items.count %> Items : Placed on <%= readable_date(order.created_at) %> (placed hh:mm ago) : Sales: <%= readable_cost(order.total_cost) %>
+        <p><%= items.count %> Items : Placed on <%= readable_date(order.created_at) %> (placed hh:mm ago) : Sales: <%= readable_cost(order.total_cost) %></p>
       </div>
     </div>
   </div>

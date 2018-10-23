@@ -24,10 +24,16 @@ class MerchantsController < ApplicationController
     @inactive = @products.order(:name).where(active: false)
   end
 
+  def customer
+    @order = Order.find_by(id: params[:order_id])
+    @merchant = Merchant.find_by(id: params[:merchant_id])
+    @orderitems = Merchant.items_by_orderid(@merchant.orderitems)[@order.id]
+  end
+
   def ship
     binding.pry
     @order = Order.find_by(id: params[:id])
-    
+
   end
 
   private

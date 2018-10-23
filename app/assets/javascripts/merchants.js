@@ -15,15 +15,6 @@ $(document).ready(() => {
     }, 400);
   }
 
-  $('a[data-toggle="tab"]').on("click", function() {
-    let newUrl;
-    const hash = $(this).attr("href");
-    newUrl = url.split("#")[0] + hash;
-    newUrl += "/";
-    history.replaceState(null, null, newUrl);
-  });
-});
-
 // Marking the order as shipped will submit the form
 $('#shipItCheckbox').change(function()
 {

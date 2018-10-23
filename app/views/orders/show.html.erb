@@ -1,11 +1,7 @@
 <% if @orderitems.size == 0 %>
   <h2>Your Cart</h2>
   <p>There are no items in your cart.</p>
-<<<<<<< HEAD
-<% elsif !session[:order_id].nil? %>
-=======
 <% elsif !session[:order_id].nil? && @order.status == "pending" %>
->>>>>>> master
   <h2>Your Cart</h2>
   <table class="table">
     <thead>

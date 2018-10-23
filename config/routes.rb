@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :orderitems, only: [:create, :update, :destroy]
 
 
+  # Route for merchant to view customer information and print shipping label
+  get '/merchants/:merchant_id/:order_id', to: 'merchants#customer', as: 'merchant_customer'
+
   # Route for merchant to change status of their order (ship it)
   patch '/merchants/ship', to: 'merchants#ship', as: 'merchant_ship'
 
