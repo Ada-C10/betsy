@@ -4,7 +4,7 @@
 <div class="card-columns">
   <% @active_products.shuffle.each do |p| %>
   <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src=" <%= p.img_file %> " alt="Image description">
+    <img class="card-img-top" src=" <%= find_image_for(p) %> " alt="Image description">
     <div class="card-body">
       <h5 class="card-title"><%= p.name %></h5>
       <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(p.price)%></h6>

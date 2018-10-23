@@ -1,24 +1,44 @@
 require "test_helper"
 
 describe Category do
-  let(:category) { Category.first }
+  describe "relations" do
 
-  # this was just to test that table data was valid
-  it "must be valid" do
-    skip
-    Category.all.each do |c|
-      expect(c.valid?).must_equal true
+    it "has a list of products" do
+      category = categories(:atlantis)
+      category.must_respond_to :products
+      category.products.each do |product|
+        product.must_be_kind_of Product
+      end
+    end
+
+    it "is included in a list of products" do
+      category = categories(:atlantis)
+      product = products(:thyme)
+      category.must_respond_to :products
+      product.categories.each do |category|
+        category.must_be_kind_of Category
+      end
     end
   end
 
-  # this was just to test that the has-many-and-belongs relationship works
-  it "can access products through join table relations" do
-    skip
-    expect(category.products).must_respond_to :each
-
-    category.products.each do |p|
-      expect(p).must_be_instance_of Product
+  describe "validations" do
+    it "requires a name" do
+      category = Category.new
+      category.valid?.must_equal false
+      category.errors.messages.must_include :name
     end
 
+    it "requires a unique name" do
+      category1 = Category.new(name: "fake")
+      category1.save!
+      category2 = Category.new(name: "fake")
+
+      category2.valid?.must_equal false
+      category2.errors.messages.must_include :name
+    end
   end
 end
+
+# has_and_belongs_to_many :products
+#
+# validates :name, uniqueness: true

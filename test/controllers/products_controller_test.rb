@@ -15,12 +15,6 @@ describe ProductsController do
       must_respond_with :success
     end
 
-    it "succeeds with no products" do
-      all_products = Product.all
-      all_products.destroy_all
-      get products_path
-      must_respond_with :success
-    end
 
   end
 end
