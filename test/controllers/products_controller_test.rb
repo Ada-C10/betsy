@@ -27,8 +27,8 @@ describe ProductsController do
         must_respond_with :success
       end
 
-      TODO # I think this failure has something to do with single-use
-      
+      # I think this failure has something to do with single-use
+
       it "logged in merchants cannot access the show page for a product that doesn't exist" do
         product_id = Product.first.id + 1
 
@@ -86,7 +86,7 @@ describe ProductsController do
           must_respond_with :success
         end
 
-        TODO #help!
+         #help!
 
         it "renders 404 not_found for product that doesn't exist" do
           product = Product.first
@@ -97,6 +97,7 @@ describe ProductsController do
       end
 
       describe "update" do
+
       end
     end
   end
@@ -120,7 +121,7 @@ describe ProductsController do
         must_respond_with :success
       end
 
-      TODO # I think this failure has something to do with single-use
+      # I think this failure has something to do with single-use
       it "guest users cannot access the show page for a product that doesn't exist" do
         # product_id = Product.first.id + 1
         #

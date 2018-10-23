@@ -7,6 +7,7 @@ thyme:
   img_file: https://loremflickr.com/320/240/fruit
   merchant: iron_chef
   categories: atlantis, pandora
+  inventory: 10
 
 butter:
   name: Butter
@@ -15,6 +16,7 @@ butter:
   img_file: https://loremflickr.com/320/240/fruit
   merchant: hells
   categories: asgard
+  inventory: 10
 
 steak:
   name: Steak
@@ -23,6 +25,7 @@ steak:
   img_file: https://loremflickr.com/320/240/fruit
   merchant: bake_off
   categories: asgard
+  inventory: 10
 
 donut:
   name: Donut
@@ -31,6 +34,7 @@ donut:
   img_file: https://loremflickr.com/320/240/fruit
   merchant: ugly
   categories: pandora, atlantis
+  inventory: 10
 
 sherbert:
   name: Sherbet
@@ -39,6 +43,7 @@ sherbert:
   img_file: https://loremflickr.com/320/240/fruit
   merchant: ugly
   categories: pandora, shangri, atlantis, asgard
+  inventory: 10
 
 bread:
   name: bread
@@ -47,6 +52,7 @@ bread:
   img_file: https://loremflickr.com/320/240/fruit
   merchant: ugly
   categories: asgard, pandora
+  inventory: 10
 
 pickle:
   name: Pickles
@@ -55,6 +61,7 @@ pickle:
   img_file: https://loremflickr.com/320/240/fruit
   merchant: hells
   categories: atlantis, shangri
+  inventory: 10
 
 taco:
   name: Taco
@@ -63,3 +70,4 @@ taco:
   img_file: https://loremflickr.com/320/240/fruit
   merchant: iron_chef
   categories: asgard
+  inventory: 10
