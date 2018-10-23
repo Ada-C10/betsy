@@ -75,7 +75,17 @@ ActiveRecord::Schema.define(version: 2018_10_23_004607) do
     t.index ["merchant_id"], name: "index_products_on_merchant_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "product_id"
+    t.index ["product_id"], name: "index_reviews_on_product_id"
+  end
+
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "products", "merchants"
+  add_foreign_key "reviews", "products"
 end
