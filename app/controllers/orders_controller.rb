@@ -78,8 +78,6 @@ class OrdersController < ApplicationController
 
   private
 
-  # <ActionController::Parameters {"name"=>"a", "email"=>"test@email.com", "address"=>"123", "cc_num"=>"a", "cvv"=>"1", "exp_date"=>"1", "zip"=>"1"} permitted: true>
-
   def order_params
     params.require(:order).permit(
       :name,
@@ -87,7 +85,8 @@ class OrdersController < ApplicationController
       :address,
       :cc_num,
       :cvv,
-      :exp_date,
+      :exp_month,
+      :exp_year,
       :zip,
     )
   end
