@@ -1,52 +1,48 @@
 <header class="home-page">
   <nav class="navbar navbar-dark navbar-expand-md fixed-top scrolling-navbar">
-    <!-- <div class="container"> -->
-      <%= link_to '<i class="fa fa-home fa-lg"></i>'.html_safe, root_path, class: "navbar-brand" %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <%= link_to "Shop", products_path, class: "nav-link" %>
-          </li>
-          <!-- <li class="nav-item">
-            <%# link_to "Sell", new_product_path, class: "nav-link"%>
-          </li> -->
-                    <!-- "Sell" should take a logged-in user to Add a new PRoduct, and a non logged-in user to a "sign up!" page -->
-          <!-- <li class="nav-item">
-            <%# link_to "Categories", categories_path, class: "nav-link" %>
-          </li> -->
-          <% if session[:user_id] %>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                My Seller Account
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <%= link_to "View My Store", merchant_products_path(session[:user_id]), class: "dropdown-item" %>
-                <%= link_to "My Seller Dashboard", dashboard_path, class: "dropdown-item" %>
-                <div class="dropdown-divider"></div>
+    <%= link_to '<i class="fa fa-home fa-lg"></i>'.html_safe, root_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to "Shop", products_path, class: "nav-link" %>
+        </li>
+        <% if session[:user_id] %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              My Seller Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "View My Store", merchant_products_path(session[:user_id]), class: "dropdown-item" %>
+              <%= link_to "My Seller Dashboard", dashboard_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <% if session[:order_id] %>
+                <%= link_to "Log Out", logout_path, method: "delete", class: "dropdown-item", data: {confirm: "Are you sure? You will lose all items in your cart."} %>
+              <% else %>
                 <%= link_to "Log Out", logout_path, method: "delete", class: "dropdown-item" %>
-              </div>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "Seller Login", "/auth/github", class: "nav-link"%>
-            </li>
-          <% end %>
-          <li class="nav-item">
-            <% if session[:order_id] %>
-              <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, order_path(session[:order_id]), class: "nav-link" %>
-            <% else %>
-              <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, order_path("cart"), class: "nav-link" %>
-            <% end %>
+              <% end %>
+            </div>
           </li>
-        </ul>
-      </div>
-    <!-- </div> -->
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Seller Login", "/auth/github", class: "nav-link"%>
+          </li>
+        <% end %>
+        <% if session[:order_id] %>
+          <li class="nav-item">
+            <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, order_path(session[:order_id]), class: "nav-link d-inline-block" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, order_path("cart"), class: "nav-link d-inline-block" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </nav>
 
-  <!-- <% if params[:controller] == "pages" %> -->
   <div class="view">
     <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
       <div class="container">
@@ -65,5 +61,4 @@
       </div>
     </div>
   </div>
-  <!-- <% end%> -->
 </header>
