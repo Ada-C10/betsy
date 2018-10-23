@@ -59,6 +59,7 @@ class ProductsController < ApplicationController
   end
 
   def update
+    @categories = Category.all
     if @product.update(product_params)
       @merchant_id = product_params[:merchant_id].to_i
       flash[:status] = :success
