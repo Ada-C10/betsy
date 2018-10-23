@@ -12,9 +12,11 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
     @order_item = OrderItem.new
     @order_item.product_id = @product.id
+
     if @product.nil?
       head :not_found
     end
+
   end
 
   def new
@@ -63,15 +65,16 @@ class ProductsController < ApplicationController
     end
   end
 
-  def destroy
-    @product = Product.find_by(id: params[:id])
-    if @product.destroy
-      flash[:success] = "Successfully deleted \"#{@product.name}\" from the database."
-      redirect_to products_path
-    else
-      redirect_back(fallback_location: products_path)
-    end
-  end
+# We never destroy - just inactivate
+  # def destroy
+  #   @product = Product.find_by(id: params[:id])
+  #   if @product.destroy
+  #     flash[:success] = "Successfully deleted \"#{@product.name}\" from the database."
+  #     redirect_to products_path
+  #   else
+  #     redirect_back(fallback_location: products_path)
+  #   end
+  # end
 
   private
 
