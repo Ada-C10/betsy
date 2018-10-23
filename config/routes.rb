@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :orderitems, only: [:create, :update, :destroy]
 
+  # Route to order dashboard page
+  get "/dashboard", to: 'merchants#dashboard', as: "dashboard"
 
   # Route for merchant to view customer information and print shipping label
   get '/merchants/:merchant_id/:order_id', to: 'merchants#customer', as: 'merchant_customer'
@@ -20,9 +22,6 @@ Rails.application.routes.draw do
 
   # Route for merchants to change status of their product
   patch '/merchants/:merchant_id/products/:id/status', to: 'products#status', as: 'products_status'
-
-  # Route to order dashboard page
-  get "/dashboard", to: 'merchants#dashboard', as: "dashboard"
 
   # Route for search
   get '/search', to: 'search#search', as: "search"

@@ -24,10 +24,10 @@
     <% order = Order.find_by(id: order_id) %>
   <div class="container order my-1">
     <div class="container checkbox ml-auto d-inline">
-      <form method="patch" id="shipItForm" action= <%= merchant_ship_path %> >
+      <form method="patch" action= "/merchants/ship" id="shipItForm">
         <% order.status == "complete" ? status = "checked" : status = nil %>
-        <input type="hidden" id="ordID" value=<%# order.id %>>
-        <input type="checkbox" onclick="mark-order-complete()" id="shipItCheckbox" <%= status %>>
+        <input type="hidden" name="order[id]" id="ordID" value=<%# order.id %>>
+        <input type="checkbox" name="order[complete]" onclick="mark-order-complete()" id="shipItCheckbox" <%= status %>>
         <input type="submit" value="Mark As Shipped!">
       </form>
     </div>

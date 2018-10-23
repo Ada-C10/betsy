@@ -27,6 +27,7 @@ describe MerchantsController do
   describe "dashboard" do
     it "should get a merchant's dashboard" do
       perform_login(fred)
+      expect(session[:user_id]).wont_be_nil
       get dashboard_path
       must_respond_with :success
     end
@@ -67,11 +68,18 @@ describe MerchantsController do
     before do
       perform_login(fred)
     end
+    let(:params){
+      {
+        order: {
+        merchant_id: merchant.id,
+        order_id: order.id
+        }
+      }
+    }
 
     it "can change status from paid to complete" do
       my_order = order.dup
       expect(my_order.status).must_equal "paid"
-      params = {merchant_id: merchant.id, order_id: order.id}
       expect{patch merchant_ship_path(params)}.wont_change 'Order.count'
       expect(my_order.status).must_equal "complete"
       must_respond_with :success
@@ -80,21 +88,20 @@ describe MerchantsController do
     it "can change status from complete to paid" do
       my_order = orders(:ordrussell).dup
       expect(my_order.status).must_equal "complete"
-      params = {merchant_id: merchant.id, order_id: order.id}
       expect{patch merchant_ship_path(params)}.wont_change 'Order.count'
       expect(my_order.status).must_equal "paid"
       must_respond_with :success
     end
 
     it "will redirect to not found if there's no order" do
-      params = {merchant_id: merchant.id, order_id: order.id}
       expect{patch merchant_ship_path(params)}.wont_change 'Order.count'
       must_respond_with :not_found
     end
 
+# authorization test
     it "should redirect to the root path if user is not logged in" do
-      get dashboard_path
-
+      patch merchant_ship_path(params)
+      expect(@current_user).must_be_nil
       must_respond_with :redirect
       must_redirect_to root_path
     end

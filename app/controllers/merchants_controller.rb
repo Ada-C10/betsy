@@ -1,6 +1,6 @@
 class MerchantsController < ApplicationController
-  before_action :find_merchant, only: [:show, :dashboard]
-  before_action :find_products, only: [:show, :dashboard]
+  before_action :find_merchant, only: [:show]
+  before_action :find_products, only: [:show]
   skip_before_action :require_login, only: [:index, :show]
 
   def index
@@ -12,15 +12,16 @@ class MerchantsController < ApplicationController
   end
 
   def dashboard
-    @merchant = Merchant.find_by(id:session[:user_id])
+    @merchant = Merchant.find_by(id: session[:user_id])
     unless @merchant
-      render "layouts/notfound", status: :not_found
+      return render "layouts/notfound", status: :not_found
     end
     @orderitems = @merchant.items_by_status("all")
     @pendingitems = Merchant.items_by_orderid(@orderitems["pending"])
     @paiditems = Merchant.items_by_orderid(@orderitems["paid"])
     @completeitems = Merchant.items_by_orderid(@orderitems["complete"])
     @cancelleditems = Merchant.items_by_orderid(@orderitems["cancelled"])
+    @products = @merchant.products
     @activeproducts = @products.order(:name).where(active: true).where("inventory > ?", 0)
     @soldout = @products.order(:name).where(active: true).where(inventory: 0)
     @inactive = @products.order(:name).where(active: false)
