@@ -38,6 +38,13 @@ describe Product do
       product.errors.messages.must_include :price
     end
 
+    it "requires a price greater than 0" do
+      product = Product.new(name: "fake", price: 0)
+      product.valid?.must_equal false
+      product.errors.messages.must_include :price
+    end
+
+
     it "requires a unique name" do
       product1 = Product.new(name: "fake", merchant: merchants(:iron_chef), price: 1)
       product1.save!
@@ -58,5 +65,9 @@ describe Product do
 
 end
 
+# has_and_belongs_to_many :categories
+# belongs_to :merchant
+# has_many :order_items
+#
 # validates :name, presence: true, uniqueness: true
 # validates :price, presence: true, numericality: {greater_than: 0}
