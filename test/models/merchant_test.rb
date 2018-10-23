@@ -75,6 +75,15 @@ describe Merchant do
     it "should return an accurate calculation of total revenue" do
       expect(merchant.total_revenue).must_equal 62
     end
+
+    it "returns a readable name" do
+      expect(merchant.readable_name).must_equal "Fred"
+    end
+
+    end
+
   end
-end
-end
+
+    
+
+    end

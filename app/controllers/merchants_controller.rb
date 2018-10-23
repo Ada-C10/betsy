@@ -25,7 +25,5 @@ class MerchantsController < ApplicationController
     end
   end
 
-  def merchant_params
-    params.require(:merchant).permit(:name, :email, :avatar_url, :uid, :provider)
-  end
+  
 end
