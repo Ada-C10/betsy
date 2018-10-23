@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   root 'products#homepage'
 
   resources :order_items
@@ -31,5 +32,7 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: "merchants#create", as: 'merchant_callback'
   delete "/logout", to: "merchants#destroy", as: "logout"
   post "/products/:id", to: "merchants#status_change", as: 'status_change'
+
+  post '/products/:id/reviews', to: 'reviews#create', as: 'create_review'
 
 end
