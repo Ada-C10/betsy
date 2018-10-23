@@ -1,5 +1,6 @@
 class MerchantsController < ApplicationController
-  before_action :find_merchant, only: [:show]
+  before_action :find_merchant, only: [:show, :dashboard]
+  before_action :find_products, only: [:show, :dashboard]
   skip_before_action :require_login, only: [:index, :show]
 
   def index
@@ -8,7 +9,6 @@ class MerchantsController < ApplicationController
 
   def show
     @orderitem = Orderitem.new
-    @products = @merchant.products
   end
 
   def dashboard
@@ -21,7 +21,6 @@ class MerchantsController < ApplicationController
     @paiditems = Merchant.items_by_orderid(@orderitems["paid"])
     @completeitems = Merchant.items_by_orderid(@orderitems["complete"])
     @cancelleditems = Merchant.items_by_orderid(@orderitems["cancelled"])
-    @products = @merchant.products
     @activeproducts = @products.order(:name).where(active: true).where("inventory > ?", 0)
     @soldout = @products.order(:name).where(active: true).where(inventory: 0)
     @inactive = @products.order(:name).where(active: false)
@@ -51,5 +50,7 @@ class MerchantsController < ApplicationController
     end
   end
 
-
+  def find_products
+    @products = @merchant.products
+  end
 end

@@ -50,6 +50,40 @@ describe OrdersController do
 
       must_respond_with :not_found
     end
+
+    it "succeeds for an existing order whose status is paid" do
+      get order_path(order.id)
+
+      must_respond_with :success
+    end
+
+    it "succeeds for a pending order" do
+      order = orders(:ordfred)
+      id = "cart"
+
+      orderitem_hash =
+        {
+          orderitem: {
+            quantity: 9,
+            product_id: products(:safari).id,
+            order_id: order.id
+          }
+        }
+
+      post orderitems_path, params: orderitem_hash
+      expect(session[:order_id]).wont_be_nil
+
+      get order_path(id)
+
+      must_respond_with :success
+    end
+
+    # it "renders not found for an order with an invalid ID" do
+    #   # session[:order_id] = nil since no order was created
+    #   get confirmation_path
+    #
+    #   must_respond_with :not_found
+    # end
   end
 
   describe "edit" do
@@ -122,40 +156,5 @@ describe OrdersController do
       must_respond_with :not_found
     end
 
-  end
-  
-  describe "confirmation" do
-    it "succeeds for an existing order whose status is paid" do
-      post orderitems_path, params: orderitem_hash
-      expect(session[:order_id]).wont_be_nil
-
-      patch order_path(order.id), params: order_hash
-
-      get confirmation_path
-
-      expect(session[:order_id]).must_be_nil
-
-      must_respond_with :success
-    end
-
-    it "renders not found for a pending order" do
-      orderitem_hash[:orderitem][:order_id] = orders(:ordfred).id
-
-      post orderitems_path, params: orderitem_hash
-      expect(session[:order_id]).wont_be_nil
-
-      get confirmation_path
-
-      expect(session[:order_id]).wont_be_nil
-
-      must_respond_with :not_found
-    end
-
-    it "renders not found for an order with an invalid ID" do
-      # session[:order_id] = nil since no order was created
-      get confirmation_path
-
-      must_respond_with :not_found
-    end
   end
 end

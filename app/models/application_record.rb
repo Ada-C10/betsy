@@ -5,7 +5,7 @@ class ApplicationRecord < ActiveRecord::Base
     if query.present?
       return search(query)
     else
-      return scoped
+      return []
     end
   end
 end
