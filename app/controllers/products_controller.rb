@@ -1,9 +1,7 @@
-require 'pry'
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :status]
   before_action :find_merchant, only: [:new, :edit, :create]
   skip_before_action :require_login, only: [:index, :show]
-  # update as we go with user permissions (this applies to every controller)
 
   def index
     if params[:merchant_id]
@@ -98,6 +96,10 @@ class ProductsController < ApplicationController
     if params[:merchant_id]
       @merchant_id = params[:merchant_id].to_i
       @merchant = Merchant.find_by(id: @merchant_id)
+
+      if @merchant.nil?
+        render "layouts/notfound", status: :not_found
+      end  
     end
   end
 

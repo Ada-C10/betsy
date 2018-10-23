@@ -1,6 +1,6 @@
 class OrderitemsController < ApplicationController
   before_action :find_orderitem, only: [:update, :destroy]
-  skip_before_action :require_login, only: [:create, :update, :destroy]
+  skip_before_action :require_login
 
   def create
     @orderitem = Orderitem.new(orderitem_params)
@@ -33,10 +33,9 @@ class OrderitemsController < ApplicationController
     if @orderitem.update(orderitem_params)
       redirect_back(fallback_location: root_path)
     else
-      flash.now[:status] = :failure
-      flash.now[:result_text] = "Could not update your quantity"
-      flash.now[:messages] = @orderitem.errors.messages
-      render "layouts/servererror", status: :internal_server_error
+      flash[:status] = :failure
+      flash[:result_text] = "Could not update your quantity"
+      redirect_back(fallback_location: root_path)
     end
   end
 

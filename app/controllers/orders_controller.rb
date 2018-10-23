@@ -1,7 +1,6 @@
-require 'pry'
 class OrdersController < ApplicationController
   before_action :find_order, only: [:edit, :update]
-  skip_before_action :require_login, only: [:show, :edit, :update, :confirmation]
+  skip_before_action :require_login
 
   def show
     id = params[:id]
@@ -48,16 +47,6 @@ class OrdersController < ApplicationController
       end
     end
   end
-
-  # def confirmation
-  #   @order = Order.find_by(id: session[:order_id])
-  #   if @order && @order.status == "paid"
-  #     @orderitems = @order.orderitems
-  #     session[:order_id] = nil
-  #   else
-  #     render "layouts/notfound", status: :not_found
-  #   end
-  # end
 
   private
 
