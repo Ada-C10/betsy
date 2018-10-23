@@ -14,6 +14,7 @@ class MerchantsController < ApplicationController
   def dashboard
     @merchant = @current_user
     @products = @merchant.products
+    @orderitems = @merchant.items_by_status("all")
   end
 
   private

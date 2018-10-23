@@ -1,7 +1,9 @@
 <h2>Cancelled Orders</h2>
-<% cancelled_orders = @merchant.orders_by_status("cancelled") %>
-<% if cancelled_orders %>
-<% cancelled_orders.each do |order| %>
+<% cancelled_items = @orderitems["cancelled"] %>
+<% if cancelled_items %>
+<% cancelled_items = Merchant.items_by_orderid(cancelled_items) %>
+<% cancelled_items.each do |order_id, items| %>
+<% order = Order.find_by(id: order_id) %>
 <p>Order #<%= order.id %> : <%= order.orderitems.count %> Items : Placed on <%= readable_date(order.created_at) %> : Cancelled on <%= readable_date(order.updated_at) %></p>
 <% end %>
 <% else %>

@@ -1,7 +1,9 @@
 <h2>Orders History</h2>
-<% past_orders = @merchant.orders_by_status("complete") %>
-<% if past_orders %>
-  <% past_orders.each do |order| %>
+<%  past_items = @orderitems["complete"] %>
+<% if past_items %>
+<% past_items = Merchant.items_by_orderid(past_items) %>
+  <% past_items.each do |order_id, items| %>
+    <% order = Order.find_by(id: order_id) %>
   <p>Order #<%= order.id %> : <%= order.orderitems.count %> Items : Placed on <%= readable_date(order.created_at) %> : Sales: <%= readable_cost(order.total_cost) %> : (Reviews)</p>
   <% end %>
 <% else %>

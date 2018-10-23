@@ -20,25 +20,31 @@ class Merchant < ApplicationRecord
     return self.name.split.map(&:capitalize).join(' ')
   end
 
-  def orders_by_status(status)
-    orderitems = self.orderitems.select  {|oi| oi.order.status == status}
-    orders = orderitems.map { |oi| oi.order }.uniq!
-    return orders
+  def items_by_status(status)
+    items = self.orderitems.group_by { |oi| oi.order.status }
+    if status = "all"
+      return items
+    else
+      return items[status]
+    end
+  end
+
+  def self.items_by_orderid(items)
+    items = items.group_by {|oi| oi.order.id}
+    return items
   end
 
   def total_revenue
-    return self.orderitems.reduce(0) {|sum, item| sum + item.line_item_price}
+    return self.orderitems.sum { |oi| oi.line_item_price }
   end
 
   def sales_by_status
     # SJL: This isn't as efficient as it could be, probably could
     # do this all in SQL. Someday...
-    sales = orderitems.group_by do |oi|
-      oi.order.status
-    end
 
+    sales = self.items_by_status("all")
     sales.each do |status, items|
-      sales[status] = items.sum { |i| i.line_item_price }
+      sales[status] = items.sum { |item| item.line_item_price }
     end
 
     return sales
