@@ -10,6 +10,15 @@ describe Category do
         product.must_be_kind_of Product
       end
     end
+
+    it "is included in a list of products" do
+      category = categories(:atlantis)
+      product = products(:thyme)
+      category.must_respond_to :products
+      product.categories.each do |category|
+        category.must_be_kind_of Category
+      end
+    end
   end
 
   describe "validations" do

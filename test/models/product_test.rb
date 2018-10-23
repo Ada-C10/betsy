@@ -11,6 +11,15 @@ describe Product do
        end
     end
 
+    it "is included in a list of categories" do
+      category = categories(:atlantis)
+      product = products(:thyme)
+      category.must_respond_to :products
+      category.products.each do |product|
+        product.must_be_kind_of Product
+      end
+    end
+
     it "has a list of order_items" do
       product = products(:thyme)
       product.must_respond_to :order_items
