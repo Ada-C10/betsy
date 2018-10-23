@@ -10,7 +10,6 @@ describe SessionsController do
     end
 
     describe "destroy" do
-
       it "ends a session" do
         merchant = merchants(:kiki)
         expect{
@@ -18,20 +17,25 @@ describe SessionsController do
         }.wont_change ('Merchant.count')
         must_redirect_to root_path
         expect(session[:user_id]).must_be_nil
-
       end
     end
 
+    describe "log in" do
+      it "will redirect to root path if trying to re-access login path" do
+        perform_login(merchants(:fred))
+
+        must_redirect_to root_path
+      end
+    end
   end
 
   describe "guest users" do
 
     describe "destroy" do
-      it " cannot end a session" do
-        merchant = merchants(:fred)
+      it "cannot end a session" do
 
         expect{
-          delete logout_path(merchant)
+          delete logout_path
         }.wont_change ('Merchant.count')
         must_redirect_to root_path
 
@@ -39,6 +43,7 @@ describe SessionsController do
 
       end
     end
+
     describe "auth_callback" do
       it "Can log in an existing merchant" do
         merchant = merchants(:kiki)
@@ -50,7 +55,6 @@ describe SessionsController do
 
         must_redirect_to root_path
         expect(session[:user_id]).must_equal merchant.id
-
       end
 
       it "can log in a new merchant with good data" do
@@ -61,8 +65,6 @@ describe SessionsController do
 
         Merchant.count.must_equal start_count + 1
         expect(session[:user_id]).must_equal Merchant.last.id
-
-
       end
 
       it "rejects a user with invalid data" do
@@ -75,16 +77,8 @@ describe SessionsController do
 
         }.wont_change('Merchant.count')
 
-
         expect(session[:user_id]).must_be_nil
-
       end
     end
   end
-
-
-
-
-
-
 end
