@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "merchants#destroy", as: "logout"
   post "/products/:id", to: "merchants#status_change", as: 'status_change'
 
-  post 'products/:id/reviews', to: 'reviews#create', as: 'create_review'
+  post '/products/:id/reviews', to: 'reviews#create', as: 'create_review'
 
+  # resources :reviews
 end

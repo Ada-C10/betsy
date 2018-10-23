@@ -56,7 +56,7 @@
 
 <h2>Reviews</h2>
 
-<% if @reviews %>
+<% if @reviews.count > 0 %>
   <% @reviews.each do |r| %>
    <ul>
      <li><%= "Rating: #{r.rating}" %></li>
@@ -67,7 +67,7 @@
    <%= "Average Rating: " %>
    <%= @average_rating %>
 <% else %>
-  <%= "No reviews yet for this product. Leave a review!" %>
+  <%= "No reviews yet for this product. Leave a review below!" %>
 <% end %>
 
 
