@@ -12,6 +12,8 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
     @order_item = OrderItem.new
     @order_item.product_id = @product.id
+    @reviews = @product.reviews
+    @review = Review.new
 
     if @product.nil?
       head :not_found
@@ -31,8 +33,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-
-
     @product.merchant_id = @logged_in_merchant.id
 
     if @product.save

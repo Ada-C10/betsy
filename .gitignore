@@ -28,3 +28,4 @@
 
 #ignore .env file with keys from github
 .env
+coverage
