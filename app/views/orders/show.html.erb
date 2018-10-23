@@ -1,8 +1,8 @@
-<h2>Your Cart</h2>
-
 <% if @orderitems.size == 0 %>
+  <h2>Your Cart</h2>
   <p>There are no items in your cart.</p>
-<% else %>
+<% elsif !session[:order_id].nil? && @order.status == "pending" %>
+  <h2>Your Cart</h2>
   <table class="table">
     <thead>
       <tr>
@@ -35,5 +35,33 @@
   </table>
 
   <%= link_to "Checkout", edit_order_path(@order.id), class: "btn btn-secondary" %>
+  <%= link_to "Continue Shopping", products_path, class: "btn btn-secondary" %>
+<% else %>
+  <h2>Order Confirmation Page</h2>
+
+  <p>Created: <%= readable_date(@order.created_at) %></p>
+  <p>Order status: <%= @order.status.capitalize %></p>
+  <p>Total Cost: <%= readable_cost(@order.total_cost) %></p>
+
+  <br />
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Product Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orderitems.each do |orderitem| %>
+        <tr>
+          <td><%= link_to orderitem.product.name, product_path(orderitem.product.id) %></td>
+          <td><%= orderitem.product.description %></td>
+          <td><%= orderitem.quantity %></td>
+          <td><%= readable_cost(orderitem.line_item_price) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
-<%= link_to "Continue Shopping", products_path, class: "btn btn-secondary" %>
