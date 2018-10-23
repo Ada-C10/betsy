@@ -26,7 +26,10 @@ describe ProductsController do
 
     it "succeeds when there is a merchant id" do
       perform_login(fred)
-      get products_path
+      merchant_params = {
+        merchant_id: fred.id
+      }
+      get products_path, params: merchant_params
       must_respond_with :success
     end
   end
@@ -138,6 +141,16 @@ describe ProductsController do
       get edit_merchant_product_path(merchants(:fred),products(:safari).id)
 
       must_respond_with 404
+    end
+
+    it "renders 404 not_found if current user is not merchant, i.e. the products owner" do
+      perform_login(fred)
+      merchant = merchants(:sally)
+      product = products(:safari)
+
+      edit_merchant_product_path(merchant, product.id)
+
+      must_respond_with :not_found
     end
   end
 

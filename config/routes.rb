@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   # Route for merchants to change status of their product
   patch '/merchants/:merchant_id/products/:id/status', to: 'products#status', as: 'products_status'
 
-
   # Route to order dashboard page
   get "/dashboard", to: 'merchants#dashboard', as: "dashboard"
 

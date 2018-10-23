@@ -24,6 +24,4 @@ class MerchantsController < ApplicationController
       render "layouts/notfound", status: :not_found
     end
   end
-
-  
 end

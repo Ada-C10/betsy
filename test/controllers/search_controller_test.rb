@@ -21,5 +21,11 @@ describe SearchController do
 
       must_respond_with :success
     end
+
+    it "suceeds when nothing is entered into the search" do
+      get search_path
+
+      must_respond_with :success
+    end
   end
 end

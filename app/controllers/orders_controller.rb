@@ -11,11 +11,9 @@ class OrdersController < ApplicationController
       @order = Order.find_by(id: session[:order_id])
       if @order
         @orderitems = @order.orderitems.order(created_at: :desc)
-      else
-        render "layouts/notfound", status: :not_found
       end
     else
-      @order = Order.find_by(id: params[:id])
+      @order = Order.find_by(id: id.to_i)
       if @order && @order.status != "pending"
         @orderitems = @order.orderitems.order(created_at: :desc)
       else
@@ -38,6 +36,7 @@ class OrdersController < ApplicationController
       Product.adjust_inventory(@order_items)
 
       @order.status = "paid"
+      session[:order_id] = nil
 
       if @order.update_attributes(order_params)
         redirect_to order_path(@order.id)
@@ -50,15 +49,15 @@ class OrdersController < ApplicationController
     end
   end
 
-  def confirmation
-    @order = Order.find_by(id: session[:order_id])
-    if @order && @order.status == "paid"
-      @orderitems = @order.orderitems
-      session[:order_id] = nil
-    else
-      render "layouts/notfound", status: :not_found
-    end
-  end
+  # def confirmation
+  #   @order = Order.find_by(id: session[:order_id])
+  #   if @order && @order.status == "paid"
+  #     @orderitems = @order.orderitems
+  #     session[:order_id] = nil
+  #   else
+  #     render "layouts/notfound", status: :not_found
+  #   end
+  # end
 
   private
 
