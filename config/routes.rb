@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   resources :merchants do
     resources :products
-    resources :orderitems, only: [:index, :show]
   end
 
   resources :reviews, except: [:index, :show]
@@ -16,7 +15,7 @@ Rails.application.routes.draw do
   patch '/merchants/:merchant_id/products/:id/status', to: 'products#status', as: 'products_status'
 
   # Route to order confirmation page
-  get "/confirmation", to: 'orders#confirmation', as: "confirmation"
+  get "/confirmation", to: 'orders#confirmation', as: "confirmation_path"
 
   # Route to order dashboard page
   get "/dashboard", to: 'merchants#dashboard', as: "dashboard"

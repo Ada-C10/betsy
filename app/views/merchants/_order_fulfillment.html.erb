@@ -23,7 +23,7 @@
     <% paid_items.each do |order_id, items| %>
     <% order = Order.find_by(id: order_id) %>
   <div class="container order my-1">
-    <a class="btn btn-light" role="button" href="<%= merchant_orderitem_path(id: order_id, merchant_id: @merchant.id) %>">Order #<%= order_id %>  ➡️
+    <a class="btn btn-light" role="button" href="<%= "#" %>">Order #<%= order_id %>  ➡️
       <div class="container checkbox ml-auto d-inline">
         <small>Mark as shipped!</small>
         <!-- There's no toggler gem installed to make this toggle :( couldn't figure it out -->
