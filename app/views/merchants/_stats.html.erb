@@ -9,3 +9,8 @@
 <% @orderitems.each do |status, items| %>
 <p><%= "Orders - #{status.capitalize}: " %><%= items.count %></p>
 <% end %>
+
+<h3>Total Orders: <%= @merchant.orderitems.count %></h3>
+<% @orderitems.each do |status, items| %>
+<h4><%= "Orders - #{status.capitalize}: " %><%= items.count %></h4>
+<% end %>
