@@ -66,30 +66,28 @@
 
    <%= "Average Rating: " %>
    <%= @average_rating %>
-
 <% else %>
   <%= "No reviews yet for this product. Leave a review!" %>
 <% end %>
 
 
-
-<%= form_with model: @review, url: reviews_path(@product.id), method: :post do |f| %>
-<%= hidden_field_tag(:product_id, @product.id) %>
+<%= form_with model: @review, url: create_review_path, method: :post do |f| %>
     <div class="form_group">
       <%= f.label :rating %>
-      <%= f.number_field :rating,value: 1 %>
-    </div>
-
+      <%= f.number_field :rating, value: 1 %>
     </div>
 
     <br>
+
     <div class="form_group">
     <%= f.label :description %>
     <br>
     <%= f.text_area :description, cols: 15, rows: 5 %>
     <br>
+    </div>
 
-  <%= f.submit "Leave Review" %>
-  </div>
+    <div class="form_group">
+    <%= f.submit "Leave Review" %>
+    </div>
 
     <% end %>

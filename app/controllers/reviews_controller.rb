@@ -1,15 +1,15 @@
 class ReviewsController < ApplicationController
 
   def create
+    review = Review.new(review_params)
     @product = Product.find_by(id: params[:id])
-    @review = Review.new(review_params)
-    @review.product = @product
+    review.product = @product
 
-    if @review.save
+    if review.save
       flash[:status] = :success
-      flash[:result_text] = "Review added to product"
+      flash[:result_text] = "Thanks for your review!"
 
-      redirect_to product_path(@product.id)
+      redirect_to product_path(product.id)
     else
       flash[:status] = :failure
       flash[:result_text] = "There was a problem saving your review"
@@ -21,10 +21,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    return params.require(:review).permit(
-      :rating,
-      :description,
-    )
+    params.require(:review).permit(:rating, :description)
   end
 
 
