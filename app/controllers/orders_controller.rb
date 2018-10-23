@@ -4,9 +4,10 @@ class OrdersController < ApplicationController
   skip_before_action :require_login, only: [:show, :edit, :update, :confirmation]
 
   def show
-    if params[:id] == "cart"
+    id = params[:id]
+    if id == "cart" && session[:order_id] == nil
       @orderitems = []
-    elsif !session[:order_id].nil?
+    elsif id == "cart" || session[:order_id] == id.to_i
       @order = Order.find_by(id: session[:order_id])
       if @order
         @orderitems = @order.orderitems.order(created_at: :desc)
@@ -39,7 +40,7 @@ class OrdersController < ApplicationController
       @order.status = "paid"
 
       if @order.update_attributes(order_params)
-        redirect_to confirmation_path
+        redirect_to order_path(@order.id)
       else
         flash.now[:status] = :failure
         flash.now[:result_text] = "Could not complete order"

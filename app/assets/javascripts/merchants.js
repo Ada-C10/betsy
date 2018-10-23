@@ -1,6 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
+// Tabbed partials will be included in the URI (/uri/#partial/)
 $(document).ready(() => {
   let url = location.href.replace(/\/$/, "");
 
@@ -22,3 +23,12 @@ $(document).ready(() => {
     history.replaceState(null, null, newUrl);
   });
 });
+
+// Marking the order as shipped will submit the form
+$('#shipItCheckbox').change(function()
+{
+  if(this.checked == true)
+  {
+  $('#shipItForm').submit();
+  }
+}

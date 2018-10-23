@@ -24,6 +24,12 @@ class MerchantsController < ApplicationController
     @inactive = @products.order(:name).where(active: false)
   end
 
+  def ship
+    binding.pry
+    @order = Order.find_by(id: params[:id])
+    
+  end
+
   private
   def find_merchant
     @merchant = Merchant.find_by(id: params[:id].to_i)
@@ -33,7 +39,5 @@ class MerchantsController < ApplicationController
     end
   end
 
-  def merchant_params
-    params.require(:merchant).permit(:name, :email, :avatar_url, :uid, :provider)
-  end
+
 end

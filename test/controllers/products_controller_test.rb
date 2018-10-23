@@ -2,6 +2,8 @@ require "test_helper"
 require 'pry'
 describe ProductsController do
   let(:fred) { merchants(:fred) }
+  let(:category) { categories(:africa) }
+  let(:kiki) { merchants (:kiki) }
 
   describe "index" do
     it "succeeds when there are products" do
@@ -23,7 +25,9 @@ describe ProductsController do
     end
 
     it "succeeds when there is a merchant id" do
-
+      perform_login(fred)
+      get products_path
+      must_respond_with :success
     end
   end
 
@@ -35,10 +39,16 @@ describe ProductsController do
 
       must_respond_with :success
     end
+
+    it "does not work without a merchant id" do
+      perform_login(kiki)
+      get new_merchant_product_path(fred.id)
+      must_respond_with :not_found
+    end
   end
 
   describe "create" do
-    it "creates a work with valid data" do
+    it "creates a product with valid data" do
       perform_login(fred)
       product_hash = {
         product: {
@@ -48,12 +58,19 @@ describe ProductsController do
           inventory: 3,
           description: "The owls are not what they seem.",
           active: true,
-          merchant_id: fred.id
+          merchant_id: fred.id,
+          category: "South America"
          }
        }
+
+      old_count = Category.all.count
       expect{
         post products_path, params: product_hash
       }.must_change 'Product.count', 1
+
+      new_count = Category.all.count
+      expect(new_count).must_equal (old_count + 1)
+
       must_respond_with :redirect
 
       expect(Product.last.name).must_equal product_hash[:product][:name]

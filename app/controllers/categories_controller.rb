@@ -9,18 +9,11 @@ class CategoriesController < ApplicationController
   def show
     id = params[:id].to_i
     @category = Category.find_by(id: id)
-    @products = @category.products
 
     if @category.nil?
      render "layouts/notfound", status: :not_found
+    else
+     @products = @category.products
     end
-  end
-
-  def new
-
-  end
-
-  def create
-    
   end
 end

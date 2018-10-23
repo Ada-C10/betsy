@@ -11,11 +11,12 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show, :new, :create]
   resources :orderitems, only: [:create, :update, :destroy]
 
+
+  # Route for merchant to change status of their order (ship it)
+  patch '/merchants/ship', to: 'merchants#ship', as: 'merchant_ship'
+
   # Route for merchants to change status of their product
   patch '/merchants/:merchant_id/products/:id/status', to: 'products#status', as: 'products_status'
-
-  # Route to order confirmation page
-  get "/confirmation", to: 'orders#confirmation', as: "confirmation_path"
 
   # Route to order dashboard page
   get "/dashboard", to: 'merchants#dashboard', as: "dashboard"

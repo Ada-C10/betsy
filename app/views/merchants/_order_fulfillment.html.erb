@@ -27,7 +27,29 @@
       <div class="container checkbox ml-auto d-inline">
         <small>Mark as shipped!</small>
         <!-- There's no toggler gem installed to make this toggle :( couldn't figure it out -->
-        <input type="checkbox" name="my-checkbox" data-toggle="toggle" checked>
+        <form method="patch" id="shipItForm" action= "/merchants/ship">
+          <% order.status == "complete" ? status = "checked" : status = nil %>
+          <input type="hidden" id="ordID" name="ordID" value=<%= order.id %>>
+          <input type="checkbox" name="ship-it-checkbox" data-toggle="toggle" onclick="mark-order-complete()"  id="shipItCheckbox" <%= status %>>
+          <input type="submit" value="Submit">
+        </form>
+
+        <%# form_with model: this_model, url: url, method: method, class:"form" , id:"form1" do |f| %>
+          <%# f.label field_one_text_field, field_one_label, class: "name"%>
+          <%# f.text_field field_one_text_field, placeholder: field_one_placeholder, required: true, class: "feedback-input", id: "name"%>
+          <%# f.label field_two_text_field, field_two_label, class: "phone"%>
+          <%# f.text_field field_two_text_field, placeholder: field_two_placeholder, required: true, maxlength: field_two_maxlength, pattern: field_two_pattern, class: "feedback-input", id: icon_image %>
+          <%# f.submit button_text, id: "button-orange"  %>
+        <%# end %>
+
+
+
+
+
+
+
+
+
       </div>
       <div class="progress">
         <div class="progress-bar bg-danger" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>

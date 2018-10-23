@@ -1,3 +1,4 @@
+require 'pry'
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :status]
   before_action :find_merchant, only: [:new, :edit, :create]
@@ -22,14 +23,21 @@ class ProductsController < ApplicationController
   def new
     if session[:user_id] == params[:merchant_id].to_i
       @product = Product.new
+      @categories = Category.all.order(:name)
     else
       render "layouts/notfound", status: :not_found
     end
   end
 
   def create
+    @categories = Category.all
     if product_params[:merchant_id]
       @product = Product.new(product_params)
+
+      if params[:product][:category]
+        @product.categories << Category.create(name: params[:product][:category])
+      end
+
       if @product.save
         flash[:status] = :success
         flash[:result_text] = "Successfully created #{@product.name}"
@@ -44,12 +52,14 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @categories = Category.all
     if session[:user_id] != params[:merchant_id].to_i
       render "layouts/notfound", status: :not_found
     end
   end
 
   def update
+    @categories = Category.all
     if @product.update(product_params)
       @merchant_id = product_params[:merchant_id].to_i
       flash[:status] = :success
@@ -65,21 +75,21 @@ class ProductsController < ApplicationController
   end
 
   def status
-     if @product.active
-      @product.active = false
-      if @product.save
-        # flash[:status] = :success
-        # flash[:result_text] = "Successfully retired #{@product.name}"
-        redirect_back(fallback_location: root_path)
-      end
-    else
-      @product.active = true
-      if @product.save
-        # flash[:status] = :success
-        # flash[:result_text] = "Successfully retired #{@product.name}"
-        redirect_back(fallback_location: root_path)
-      end
+   if @product.active
+    @product.active = false
+    if @product.save
+      # flash[:status] = :success
+      # flash[:result_text] = "Successfully retired #{@product.name}"
+      redirect_back(fallback_location: root_path)
     end
+  else
+    @product.active = true
+    if @product.save
+      # flash[:status] = :success
+      # flash[:result_text] = "Successfully retired #{@product.name}"
+      redirect_back(fallback_location: root_path)
+    end
+   end
   end
 
   private
@@ -100,6 +110,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :cost, :image_url, :inventory, :description, :active, :merchant_id)
+    params.require(:product).permit(:name, :cost, :image_url, :inventory, :description, :active, :merchant_id, category_ids: [])
   end
 end
