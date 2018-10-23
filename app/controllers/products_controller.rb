@@ -31,11 +31,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-<<<<<<< HEAD
 
-    @product.merchant_id = @logged_in_merchant.id
-=======
->>>>>>> bcc6fd2749831baf382fe6547ad0c25e144c378c
 
     @product.merchant_id = @logged_in_merchant.id
 
@@ -89,12 +85,7 @@ class ProductsController < ApplicationController
       :img_file,
       :merchant_id,
       :inventory,
-<<<<<<< HEAD
       category_ids: []
-
-=======
-      category_ids: [],
->>>>>>> bcc6fd2749831baf382fe6547ad0c25e144c378c
     )
   end
 
