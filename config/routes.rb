@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   root 'products#homepage'
 
   resources :order_items
@@ -25,4 +26,10 @@ Rails.application.routes.draw do
   delete "/logout", to: "merchants#destroy", as: "logout"
   post "/products/:id", to: "merchants#status_change", as: 'status_change'
 
+<<<<<<< HEAD
+=======
+  post '/products/:id/reviews', to: 'reviews#create', as: 'create_review'
+
+  # resources :reviews
+>>>>>>> image-de
 end
