@@ -18,6 +18,11 @@ describe Category do
       expect(category.errors.messages).must_include :name
       expect(category.errors.messages[:name]).must_equal ["can't be blank"]
     end
+
+    it "requires a image" do
+      africa = categories(:africa)
+      africa.valid?.must_equal true
+    end
   end
 
   describe "relationships" do

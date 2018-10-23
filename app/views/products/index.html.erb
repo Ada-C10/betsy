@@ -9,7 +9,7 @@
 <% @products.each_slice(3) do |row| %>
   <div class="row">
     <% row.each do |product| %>
-      <div class="col-sm-4 mb-5 text-center d-flex justify-content-around">
+      <div class="col-sm-4 mb-4 text-center d-flex justify-content-around">
         <div class="card" style="width: 18rem;">
           <div class="card-header">
             Sold by <%= link_to readable_name(product.merchant.name), merchant_products_path(product.merchant_id) %>
@@ -29,8 +29,14 @@
 
             <% if product.inventory > 0 %>
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addToCart" data-whatever="@mdo">Add To Cart</button>
+            <%= form_with model: product.orderitems.new, class: "product-form" do |f|%>
+              <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: product.inventory, maxlength: 3 %>
+              <%= f.hidden_field :product_id %>
+              <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
+            <% end %>
 
+
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addToCart" data-whatever="@mdo">Add To Cart</button>
             <div class="modal fade" id="addToCart" tabindex="-1" role="dialog" aria-labelledby="addToCartLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -45,7 +51,6 @@
                   </div>
                   <div class="modal-footer">
                     <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
-
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">Quantity</span>
@@ -56,13 +61,11 @@
                       <%= f.hidden_field :product_id, value: product.id %>
                       <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
                     <% end %>
-
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   </div>
-
                 </div>
               </div>
-            </div>
+            </div> -->
             <% end %>
           </div>
         </div>

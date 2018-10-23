@@ -61,8 +61,48 @@ h1 {
   letter-spacing: 8px;
 }
 
+h3 {
+  align-self: center;
+}
+
 h5 {
   letter-spacing: 3px;
+}
+
+h6, h6 a {
+  font-weight: bold;
+  font-size: 50px;
+  color: white;
+}
+
+h6 {
+  margin:0;
+  padding:0;
+  vertical-align:middle; /*middle centred*/
+  display:table-cell; /*acts like a table cell*/
+}
+
+.card {
+  border: none;
+}
+.jumbotron{
+    background: url("jumotron.jpg") no-repeat center center;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+    font-weight: bold;
+    font-size: 50px;
+    color: white;
+    font-stretch: expanded;
+
+}
+
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .hr-light {
@@ -77,6 +117,7 @@ h5 {
 .all-pages .navbar-brand {
     color: #4A4A4B;
 }
+
 
 .nav-item {
   padding: 1rem 1rem;

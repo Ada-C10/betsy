@@ -1,1 +1,12 @@
-<h1>Orders#index</h1>
+<div class="container">
+  <div class="jumbotron text-center"> <%#grey box%>
+      <h2>List of Orders</h2>
+  </div>
+</div>
+<br>
+<ul class="list-group">
+  <% @orders.each do |order| %>
+  <li class="list-group-item text-center d-inline-block"><%= link_to link_to order.name, merchant_path(merchant.id) %></li>
+  <% end %>
+</ul>
+</div>

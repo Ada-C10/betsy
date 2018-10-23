@@ -12,9 +12,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <%= link_to "Shop", products_path, class: "nav-link" %>
-          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Shop
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "View all products", products_path, class: "dropdown-item" %>
+              <%= link_to "View by category", categories_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "View by seller", merchants_path, class: "dropdown-item" %>
+            </div>
           <!-- <li class="nav-item">
             <%# link_to "Sell", new_product_path, class: "nav-link"%>
           </li> -->
