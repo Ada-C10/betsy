@@ -6,9 +6,16 @@ class OrdersController < ApplicationController
   def show
     if params[:id] == "cart"
       @orderitems = []
-    else
+    elsif !session[:order_id].nil?
       @order = Order.find_by(id: session[:order_id])
       if @order
+        @orderitems = @order.orderitems.order(created_at: :desc)
+      else
+        render "layouts/notfound", status: :not_found
+      end
+    else
+      @order = Order.find_by(id: params[:id])
+      if @order && @order.status != "pending"
         @orderitems = @order.orderitems.order(created_at: :desc)
       else
         render "layouts/notfound", status: :not_found
