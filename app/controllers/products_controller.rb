@@ -1,7 +1,5 @@
 class ProductsController < ApplicationController
 
-  #only signed in merchants can new, create, edit, update, and destroy
-
   def homepage
 
   end
