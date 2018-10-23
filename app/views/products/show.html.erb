@@ -57,37 +57,74 @@
 <h2>Reviews</h2>
 
 <% if @reviews.count > 0 %>
-  <% @reviews.each do |r| %>
-   <ul>
-     <li><%= "Rating: #{r.rating}" %></li>
-     <li><%= "Description #{r.description}" %></li>
-   </ul>
-   <% end %>
-
-   <%= "Average Rating: " %>
-   <%= @average_rating %>
-<% else %>
-  <%= "No reviews yet for this product. Leave a review below!" %>
+<% @reviews.each do |r| %>
+<ul>
+  <li><%= "Rating: #{r.rating}" %></li>
+  <li><%= "#{r.description}" %></li>
+</ul>
 <% end %>
 
+<p><%= "Average rating:" %></p>
+  <% @product.average_rating.to_i.times do %>
+    <i class="fa fa-cookie-bite"></i>
+  <% end %>
+<% else %>
+  <p><%= "No reviews yet" %></p>
+<% end %>
+
+<br>
+<br>
+<br>
 
 <%= form_with model: @review, url: create_review_path, method: :post do |f| %>
-    <div class="form_group">
-      <%= f.label :rating %>
-      <%= f.number_field :rating, value: 1 %>
-    </div>
 
-    <br>
+<div class="review-form-container">
 
-    <div class="form_group">
-    <%= f.label :description %>
-    <br>
-    <%= f.text_area :description, cols: 15, rows: 5 %>
-    <br>
-    </div>
+  <label class="star radio-inline" for="review_rating">
+    <i class="fa fa-cookie-bite"></i>
+  </label>
+  <input required="required" type="radio" value="1" name="review[rating]" id="review_rating_1">
 
-    <div class="form_group">
-    <%= f.submit "Leave Review" %>
-    </div>
+  <label class="star radio-inline" for="review_rating">
+    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-cookie-bite"></i>
+  </label>
+  <input required="required" type="radio" value="2" name="review[rating]" id="review_rating_2">
 
-    <% end %>
+  <label class="star radio-inline" for="review_rating">
+    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-cookie-bite"></i>
+  </label>
+  <input required="required" type="radio" value="3" name="review[rating]" id="review_rating_3">
+
+  <label class="star radio-inline" for="review_rating">
+    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-cookie-bite"></i>
+  </label>
+  <input required="required" type="radio" value="4" name="review[rating]" id="review_rating_4">
+
+  <label class="star radio-inline" for="review_rating">
+    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-cookie-bite"></i>
+  </label>
+  <input required="required" type="radio" value="5" name="review[rating]" id="review_rating_5">
+</div>
+
+<div class="form_group">
+  <%= f.label :Leave_a_review %>
+  <br>
+  <%= f.text_area :description, cols: 25, rows: 5 %>
+  <br>
+</div>
+
+<div class="form_group">
+  <%= f.submit "Submit Review" %>
+</div>
+
+<% end %>

@@ -20,21 +20,13 @@ Rails.application.routes.draw do
   get '/home', to: 'products#homepage', as: 'home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-
   get '/myaccount/:id', to: 'merchants#account_order', as: 'merchant_order'
 
   get '/myaccount', to: 'merchants#account', as: 'merchant_account'
-
-
-
-
-
 
   get "/auth/:provider/callback", to: "merchants#create", as: 'merchant_callback'
   delete "/logout", to: "merchants#destroy", as: "logout"
   post "/products/:id", to: "merchants#status_change", as: 'status_change'
 
   post '/products/:id/reviews', to: 'reviews#create', as: 'create_review'
-
-
 end

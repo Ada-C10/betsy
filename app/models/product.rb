@@ -7,4 +7,8 @@ class Product < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true, numericality: {greater_than: 0}
 
+  def average_rating
+    return self.reviews.average(:rating)
+  end
+
 end
