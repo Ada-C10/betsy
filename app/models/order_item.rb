@@ -18,9 +18,9 @@ class OrderItem < ApplicationRecord
     return self.product.name
   end
 
-def order_status
-  return self.order.status
-end
+  def order_status
+    return self.order.status
+  end
 
 
 

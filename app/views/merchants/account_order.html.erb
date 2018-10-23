@@ -17,6 +17,7 @@
   </thead>
 
   <tbody>
+    <% total = 0 %>
     <% @order_items.each do |order_item| %>
     <tr>
       <td><img src="<%= find_image_for(order_item.product) %>" alt="snack image", height="100", width="100"></td>
@@ -25,7 +26,10 @@
       <td><%= readable_date(order_item.created_at) %></td>
       <td><%= order_item.order_status %></td>
       <td>$<%= order_item.product.price %></td>
+      <% total = total + order_item.product.price %>
     </tr>
     <% end  %>
   </tbody>
 </table>
+
+<p class="end">Total Revenue: $<%= total %></td>
