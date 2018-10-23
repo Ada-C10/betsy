@@ -1,5 +1,5 @@
 class MerchantsController < ApplicationController
-  before_action :find_merchant, only: [:show]
+  before_action :find_merchant, only: [:show, :dashboard]
   before_action :find_products, only: [:show, :dashboard]
   skip_before_action :require_login, only: [:index, :show]
 
