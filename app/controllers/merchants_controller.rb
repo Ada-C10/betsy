@@ -1,5 +1,6 @@
 class MerchantsController < ApplicationController
   before_action :find_merchant, only: [:show]
+  before_action :find_products, only: [:show, :dashboard]
   skip_before_action :require_login, only: [:index, :show]
 
   def index
@@ -8,12 +9,10 @@ class MerchantsController < ApplicationController
 
   def show
     @orderitem = Orderitem.new
-    @products = @merchant.products
   end
 
   def dashboard
     @merchant = @current_user
-    @products = @merchant.products
   end
 
   private
@@ -25,7 +24,7 @@ class MerchantsController < ApplicationController
     end
   end
 
-  def merchant_params
-    params.require(:merchant).permit(:name, :email, :avatar_url, :uid, :provider)
+  def find_products
+    @products = @merchant.products
   end
 end

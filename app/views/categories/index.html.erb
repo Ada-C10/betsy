@@ -8,7 +8,7 @@
 <% @categories.each_slice(2) do |row| %>
 <div class="row">
   <% row.each do |category| %>
-  <div class="col-sm-6 mb-3 text-center d-flex justify-content-around">
+  <div class="col-sm-6 mb-4 text-center d-flex justify-content-around">
     <div class="card" style="width: 35rem; height: 25rem">
       <%= image_tag(category.image_url, width: 600, alt: category.name, class: "card-img-top") %>
       <div class="card-img-overlay">

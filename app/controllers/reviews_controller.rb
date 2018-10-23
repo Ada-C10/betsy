@@ -1,6 +1,6 @@
-require 'pry'
 class ReviewsController < ApplicationController
-  skip_before_action :require_login, only: [:create]
+  skip_before_action :require_login
+
   def create
     @review = Review.new(review_params)
     if @review.save
@@ -8,10 +8,10 @@ class ReviewsController < ApplicationController
       flash[:result_text] = "Successfully created your review!"
       redirect_to product_path(@review.product_id)
     else
-      flash.now[:status] = :failure
-      flash.now[:result_text] = "Could not create your review."
-      flash.now[:messages] = @review.errors.messages
-      render :new, status: :bad_request
+      flash[:status] = :failure
+      flash[:result_text] = "Could not create your review."
+      flash[:messages] = @review.errors.messages
+      redirect_back(fallback_location: root_path)
     end
   end
 

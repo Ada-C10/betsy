@@ -25,7 +25,6 @@ class SessionsController < ApplicationController
     end
 
     session[:user_id] = merchant.id
-    # raise
     redirect_to root_path
   end
 
@@ -33,7 +32,9 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     # flash[:status] = :success
     # flash[:result_text] = "Successfully logged out"
-
+    if session[:order_id]
+      session[:order_id] = nil
+    end
     redirect_to root_path
   end
 end

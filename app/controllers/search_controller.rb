@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  skip_before_action :require_login, only: [:search]
+  skip_before_action :require_login
 
   def search
     @products = Product.text_search(params[:search])

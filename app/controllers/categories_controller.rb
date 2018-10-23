@@ -1,14 +1,12 @@
 class CategoriesController < ApplicationController
-  skip_before_action :require_login, only: [:index, :show]
-  # Need to be logged in to create a new category
+  skip_before_action :require_login
 
   def index
     @categories = Category.all.order(:name)
   end
 
   def show
-    id = params[:id].to_i
-    @category = Category.find_by(id: id)
+    @category = Category.find_by(id: params[:id].to_i)
 
     if @category.nil?
      render "layouts/notfound", status: :not_found
