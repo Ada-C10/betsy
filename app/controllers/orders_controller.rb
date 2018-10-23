@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
-
-  # before_action :has_cart?, :logged_in_merchant?
+  include ApplicationHelper
 
   def index
   end
@@ -96,6 +95,7 @@ class OrdersController < ApplicationController
     if @cart
       @order = @cart
       @order.update_attribute(:status, 'paid')
+      update_products(@order)
       session[:order_id] = nil
     else
       render :nosnacks, status: :bad_request
