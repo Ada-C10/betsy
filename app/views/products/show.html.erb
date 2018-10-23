@@ -26,25 +26,25 @@
           <br>
           <!-- <a href=" <%= product_order_item_path(@product.id) %>  " class="btn btn-primary">Add to cart</a> -->
           <% if @cart %>
-          <%= form_with model: @order_item, url: order_items_path, method: :post do |f| %>
-          <%= hidden_field_tag(:product_id, @product.id) %>
+            <%= form_with model: @order_item, url: order_items_path, method: :post do |f| %>
+            <%= hidden_field_tag(:product_id, @product.id) %>
 
-          <%= f.label :quantity %>
-          <%= f.number_field :quantity, value: 1 %>
+            <%= f.label :quantity %>
+            <%= f.number_field :quantity, value: 1 %>
 
-          <%= f.submit "Add to cart" %>
-          <% end %>
+            <%= f.submit "Add to cart" %>
+            <% end %>
           <!-- create an order_item and add to existing cart -->
           <% else %>
 
 
-          <%= form_with model: @order_item, url: orders_path, method: :post do |f| %>
-          <%= hidden_field_tag(:product_id, @product.id) %>
+            <%= form_with model: @order_item, url: orders_path, method: :post do |f| %>
+            <%= hidden_field_tag(:product_id, @product.id) %>
 
-          <%= f.label :quantity %>
-          <%= f.number_field :quantity, value: 1 %>
+            <%= f.label :quantity %>
+            <%= f.number_field :quantity, value: 1 %>
 
-          <%= f.submit "Add to cart" %>
+            <%= f.submit "Add to cart" %>
           <% end %>
 
           <% end %>
