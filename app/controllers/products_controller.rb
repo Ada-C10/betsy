@@ -53,8 +53,7 @@ class ProductsController < ApplicationController
 
   def edit
     @categories = Category.all
-    binding.pry # try logging in as a merchant, 302 triggered by require login
-    if session[:user_id] != params[:merchant_id].to_i
+    if (session[:user_id] != params[:merchant_id].to_i) || (@product.merchant_id != session[:user_id])
       render "layouts/notfound", status: :not_found
     end
   end

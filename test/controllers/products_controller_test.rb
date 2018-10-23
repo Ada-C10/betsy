@@ -129,7 +129,7 @@ describe ProductsController do
   describe "edit" do
     it "succeeds for an extant product ID" do
       perform_login(fred)
-      get edit_merchant_product_path(merchants(:fred),products(:safari).id)
+      get edit_merchant_product_path(merchants(:fred),products(:fannypack).id)
 
       must_respond_with :success
     end
@@ -148,7 +148,7 @@ describe ProductsController do
       merchant = merchants(:sally)
       product = products(:safari)
 
-      edit_merchant_product_path(merchant, product.id)
+      get edit_merchant_product_path(merchant, product.id)
 
       must_respond_with :not_found
     end
