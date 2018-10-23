@@ -9,7 +9,8 @@ order_one:
   zip: 12345
   name: Mrs. Buttersworth
   cvv: 123
-  exp_date: 2020-10-18 12:57:30
+  exp_month: 10
+  exp_year: 2080
 
 order_two:
   email: email@email.com
@@ -20,7 +21,9 @@ order_two:
   zip: 12345
   name: Pepper Potts
   cvv: 123
-  exp_date: 2022-10-18 12:57:30
+  exp_month: 10
+  exp_year: 2080
+
 
 order_three:
   email: email@email.com
@@ -31,4 +34,5 @@ order_three:
   zip: 12345
   name: Mighty Oprah
   cvv: 123
-  exp_date: 2022-10-18 12:57:30
+  exp_month: 10
+  exp_year: 2080
