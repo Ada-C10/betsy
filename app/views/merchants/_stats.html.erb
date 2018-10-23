@@ -2,5 +2,10 @@
 
 <h3>Total Sales: <%= readable_cost(@merchant.total_revenue) %></h3>
 <% @merchant.sales_by_status.each do |status, sales| %>
-<h4><%= "Sales - #{status.capitalize} Orders: " %><%= readable_cost(sales) %></h4>
+<p><%= "Sales - #{status.capitalize} Orders: " %><%= readable_cost(sales) %></p>
+<% end %>
+
+<h3>Total Orders: <%= @merchant.orderitems.count %></h3>
+<% @orderitems.each do |status, items| %>
+<p><%= "Orders - #{status.capitalize}: " %><%= items.count %></p>
 <% end %>
