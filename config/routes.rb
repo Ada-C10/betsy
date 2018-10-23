@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
-  resources :merchants do
+  resources :merchants, only: [:index, :show] do
     resources :products
   end
 

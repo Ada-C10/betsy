@@ -12,7 +12,10 @@ class MerchantsController < ApplicationController
   end
 
   def dashboard
-    @merchant = @current_user
+    @merchant = Merchant.find_by(id:session[:user_id])
+    unless @merchant
+      render "layouts/notfound", status: :not_found
+    end
     @orderitems = @merchant.items_by_status("all")
     @pendingitems = Merchant.items_by_orderid(@orderitems["pending"])
     @paiditems = Merchant.items_by_orderid(@orderitems["paid"])
@@ -27,13 +30,16 @@ class MerchantsController < ApplicationController
   def customer
     @order = Order.find_by(id: params[:order_id])
     @merchant = Merchant.find_by(id: params[:merchant_id])
+    unless @merchant && @order
+      return render "layouts/notfound", status: :not_found
+    end
     @orderitems = Merchant.items_by_orderid(@merchant.orderitems)[@order.id]
   end
 
   def ship
-    binding.pry
-    @order = Order.find_by(id: params[:id])
-
+    # @order = Order.find_by(id: params[:id])
+# updates the Order status to complete
+# rendeer not found
   end
 
   private

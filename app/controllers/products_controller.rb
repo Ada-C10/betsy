@@ -1,4 +1,3 @@
-require 'pry'
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :status]
   before_action :find_merchant, only: [:new, :edit, :create]

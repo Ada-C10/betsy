@@ -72,18 +72,53 @@ describe Merchant do
     end
 
   describe "Custom Methods" do
-    it "should return an accurate calculation of total revenue" do
-      expect(merchant.total_revenue).must_equal 62
+    describe "items_by_status" do
+      it "if arg is 'all', returns a collection of orderitems as a hash" do
+      # expect(merchant.total_revenue).must_equal 62
+      end
+
+      it "if arg is valid status, returns a collection of orderitems as an array" do
+      # expect(merchant.total_revenue).must_equal 62
+      end
+
+      it "if merchant has no items of that status" do
+        #expect empty collection
+      end
+
     end
 
-    it "returns a readable name" do
-      expect(merchant.readable_name).must_equal "Fred"
+    describe "self.items_by_orderid(items)" do
+      it "returns items as a hash grouped by orderid" do
+      # loop in items, check that order id is all different
+        # loop in items.first, check that order is is all same
+        # check that all items in every array belong to the merchant
+      {1=> [], 2=> []}
+      end
+
+      it "if arg is empty collection, it returns empty collection" do
+        params = []
+        expect .empty? == true
+      end
     end
 
+    describe "total_revenue" do
+      it "should return an accurate calculation of total revenue" do
+      # expect(merchant.total_revenue).must_equal 62
+      end
+
+      it "if there are no items of given status, it returns 0" do
+
+      end
+    end
+
+    describe "revenue_by_status" do
+      it "should return a hash with status keys and total revenue of all items" do
+      # expect(merchant.total_revenue).must_equal 62
+      end
+
+      it "if there are no items of given status, it returns 0" do
+
+      end
     end
 
   end
-
-    
-
-    end

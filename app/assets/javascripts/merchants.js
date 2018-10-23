@@ -15,11 +15,11 @@ $(document).ready(() => {
     }, 400);
   }
 
-// Marking the order as shipped will submit the form
-$('#shipItCheckbox').change(function()
-{
-  if(this.checked == true)
-  {
-  $('#shipItForm').submit();
-  }
-}
+// // Marking the order as shipped will submit the form
+// $('#shipItCheckbox').change(function()
+// {
+//   if(this.checked == true)
+//   {
+//   $('#shipItForm').submit();
+//   }
+// }

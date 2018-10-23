@@ -16,10 +16,6 @@ class Merchant < ApplicationRecord
    return merchant
   end
 
-  def readable_name
-    return self.name.split.map(&:capitalize).join(' ')
-  end
-
   def items_by_status(status)
     items = self.orderitems.group_by { |oi| oi.order.status }
     if status == "all"
@@ -30,32 +26,51 @@ class Merchant < ApplicationRecord
   end
 
   def self.items_by_orderid(items)
+    if items.nil? || items.empty?
+      return []
+    end
     items = items.group_by {|oi| oi.order.id}
     return items
   end
 
+
   def total_revenue
-    revenue_paid = self.items_by_status("paid").sum { |oi| oi.line_item_price }
-    revenue_complete = self.items_by_status("complete").sum { |oi| oi.line_item_price }
+    paid_items = self.items_by_status("paid")
+    complete_items = self.items_by_status("complete")
+
+    if paid_items.nil?
+      revenue_paid = 0
+    else
+      revenue_paid = paid_items.sum { |oi| oi.line_item_price }
+    end
+
+    if complete_items.nil?
+      revenue_complete = 0
+    else
+      revenue_complete = complete_items.sum { |oi| oi.line_item_price }
+    end
+
     return revenue_paid + revenue_complete
   end
 
   def revenue_by_status
     revenue = Hash.new
-    revenue["paid"] = self.items_by_status("paid").sum { |oi| oi.line_item_price }
-    revenue["complete"] = self.items_by_status("complete").sum { |oi| oi.line_item_price }
+    paid_items = self.items_by_status("paid")
+    complete_items = self.items_by_status("complete")
+
+    if paid_items.nil?
+      revenue["paid"] = 0
+    else
+      revenue["paid"] = paid_items.sum { |oi| oi.line_item_price }
+    end
+
+    if complete_items.nil?
+      revenue["complete"] = 0
+    else
+      revenue["complete"] = complete_items.sum { |oi| oi.line_item_price }
+    end
+
     return revenue
   end
-#### this is defunct!
-  # def sales_by_status
-  #   # SJL: This isn't as efficient as it could be, probably could
-  #   # do this all in SQL. Someday...
-  #
-  #   sales = self.items_by_status("all")
-  #   sales.each do |status, items|
-  #     sales[status] = items.sum { |item| item.line_item_price }
-  #   end
-  #
-  #   return sales
-  # end
+
 end
