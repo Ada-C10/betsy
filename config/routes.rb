@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'products#homepage'
 
   resources :order_items
+  get '/orders/confirmation', to: 'orders#confirmation', as: 'confirmation'
+  put 'orders/finalize', to: 'orders#finalize', as: 'finalize'
   resources :orders
   resources :categories
 
@@ -22,4 +24,5 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: "merchants#create"
   delete "/logout", to: "merchants#destroy", as: "logout"
   post "/products/:id", to: "merchants#status_change", as: 'status_change'
+
 end

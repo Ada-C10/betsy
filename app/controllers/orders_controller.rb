@@ -53,7 +53,7 @@ class OrdersController < ApplicationController
     @order.update_attributes(order_params)
 
     if @order.status = 'pending'
-      @order.update_attribute(:status, 'paid')
+      @order.update_attribute(:status, 'awaiting confirmation')
     end
 
     if @order.save
@@ -62,8 +62,7 @@ class OrdersController < ApplicationController
       flash[:result_text] = "Order Complete"
 
       # redirect_to confirmation_path(@order) <-- make this
-      session[:order_id] = nil
-      redirect_to root_path
+      redirect_to confirmation_path
     else
       flash.now[:status] = :failure
       flash.now[:result_text] = "Could not complete order"
@@ -73,7 +72,7 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
-    @order = Order.find_by(id: params[:id])
+    # @order = Order.find_by(id: params[:id])
   end
 
   private
