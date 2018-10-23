@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
   before_action :has_cart?, :find_orders
   before_action :find_active_products
 
+  def nosnacks
+  end
+
   private
 
   def find_home_category

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :order_items
   put '/orders/confirmation', to: 'orders#confirmation', as: 'confirmation'
+  get 'orders/nosnacks', to: 'orders#nosnacks', as: 'nosnacks'
   get 'orders/:id/finalize', to: 'orders#finalize', as: 'finalize'
   resources :orders
   resources :categories
@@ -27,5 +28,6 @@ Rails.application.routes.draw do
   post "/products/:id", to: "merchants#status_change", as: 'status_change'
 
   post '/products/:id/reviews', to: 'reviews#create', as: 'create_review'
+
 
 end

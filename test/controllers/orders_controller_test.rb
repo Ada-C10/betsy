@@ -11,10 +11,77 @@ describe OrdersController do
     must_respond_with :success
   end
 
-  describe 'validations on update action' do
-    let(:order) {
-      Order.new
+  describe 'show action' do
+
+    let(:existing_order) {Order.first}
+
+    it "succeeds for an extant order ID" do
+      get order_path(existing_order)
+
+      must_respond_with :success
+    end
+
+    it 'renders nosnacks and responds with 404 not found if given a nonexistent order' do
+      old_id = existing_order.id
+      existing_order.order_items.each do |items|
+        items.destroy
+      end
+      existing_order.destroy
+
+      get order_path(existing_order)
+
+      must_respond_with 400
+    end
+  end
+
+  describe 'create action' do
+    let(:order) { Order.new }
+    let(:existing_product) { Product.first }
+
+    let(:order_data) {
+      {
+        order: {
+          name: 'Sherlock Holmes',
+          email: 'smart@ssdetective.com',
+          address: '221B Baker St, London',
+          cc_num: 1234567812345678,
+          cvv: 123,
+          exp_month: 12,
+          exp_year: Date.today.year + 1,
+          zip: 43770
+        }
+      }
     }
+
+    let(:order_items_data) {
+      {
+        order_item: {
+          quantity: 2,
+          product_id: existing_product.id
+        }
+      }
+    }
+
+    # it 'creates an order associated with an order_item' do
+    #   order_test = Order.new(order_data[:order])
+    #
+    #   order_test.must_be :valid?, "Order data was invalid. Engineer, please fix this test."
+    #
+    #   expect {
+    #     post orders_path, params: order_items_data
+    #   }.must_change('Order.count', +1)
+    #
+    #   binding.pry
+    #   must_redirect_to order_path(Order.last)
+    #
+    #   expect(Order.last.name).must_equal order_data[:order][:name]
+    #   expect(Order.last.email).must_equal work_data[:order][:email]
+    #
+    # end
+  end
+
+  describe 'validations on update action' do
+    let(:order) { Order.new }
 
     let(:order_data) {
       {
@@ -229,7 +296,7 @@ describe OrdersController do
 
       expect {
         patch order_path(order), params: order_data
-      }.must_raise ArgumentError 
+      }.must_raise ArgumentError
 
     end
 

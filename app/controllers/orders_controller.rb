@@ -6,7 +6,9 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(id: params[:id])
-    render_404 unless @order
+    unless @order
+      render :nosnacks, status: :bad_request
+    end
   end
 
   def create
@@ -28,9 +30,7 @@ class OrdersController < ApplicationController
         flash[:status] = :failure
         flash[:result_text] = "Could not add item to cart"
         flash[:messages] = order_item.errors.messages
-        redirect_back fallback_location: root_path
-        # render :new, status: :bad_request
-        #TODO: create a bad request page?
+        redirect_back fallback_location: root_path, status: :bad_request
       end
 
     else
@@ -102,6 +102,11 @@ class OrdersController < ApplicationController
     end
 
   end
+
+  def nosnacks
+    render :nosnacks, status: :bad_request
+  end
+
 
   private
 
