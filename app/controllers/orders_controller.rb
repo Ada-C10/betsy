@@ -49,10 +49,12 @@ class OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.find_by(id: params[:id])
     @order.update_attributes(order_params)
     if @order.save
-      # flash[:status] = :success
-      # flash[:result_text] = "Order Complete"
+      @order.update_attribute(:order_placed, @order.updated_at)
+      flash[:status] = :success
+      flash[:result_text] = "Order Complete"
 
       # redirect_to confirmation_path(@order) <-- make this
       session[:order_id] = nil
@@ -71,6 +73,8 @@ class OrdersController < ApplicationController
 
   private
 
+  # <ActionController::Parameters {"name"=>"a", "email"=>"test@email.com", "address"=>"123", "cc_num"=>"a", "cvv"=>"1", "exp_date"=>"1", "zip"=>"1"} permitted: true>
+
   def order_params
     params.require(:order).permit(
       :name,
@@ -79,7 +83,8 @@ class OrdersController < ApplicationController
       :cc_num,
       :cvv,
       :exp_date,
-      :zip
+      :zip,
+      :status
     )
   end
 
