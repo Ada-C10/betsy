@@ -2,6 +2,7 @@ require "test_helper"
 require "pry"
 
 describe ProductsController do
+
   describe "Logged in merchants" do
 
     before do
@@ -26,7 +27,8 @@ describe ProductsController do
         must_respond_with :success
       end
 
-      # I think this failure has something to do with single-use
+      TODO # I think this failure has something to do with single-use
+      
       it "logged in merchants cannot access the show page for a product that doesn't exist" do
         product_id = Product.first.id + 1
 
@@ -79,6 +81,19 @@ describe ProductsController do
       end
 
       describe "edit" do
+        it "succeeds for a product ID that exists" do
+          get edit_product_path(Product.first)
+          must_respond_with :success
+        end
+
+        TODO #help!
+
+        it "renders 404 not_found for product that doesn't exist" do
+          product = Product.first
+          product.destroy
+          get edit_product_path (product)
+          must_respond_with :failure
+        end
       end
 
       describe "update" do
@@ -105,7 +120,7 @@ describe ProductsController do
         must_respond_with :success
       end
 
-      # I think this failure has something to do with single-use
+      TODO # I think this failure has something to do with single-use
       it "guest users cannot access the show page for a product that doesn't exist" do
         # product_id = Product.first.id + 1
         #
