@@ -35,8 +35,15 @@ describe OrderItem do
       expect(order_item).must_be :invalid?
     end
 
+    it 'is not valid with a quantity equal to 0' do
+      order_item.quantity = 0
+
+      expect(order_item).must_be :invalid?
+
+    end
+
     it 'is not valid with a quantity input other than an integer' do
-      order_item.quantity = "you should fail"
+      order_item.quantity = "invalid data"
 
       expect(order_item).must_be :invalid?
     end
@@ -49,11 +56,63 @@ describe OrderItem do
 
 
   # RELATIONS TESTS
-  it 'must relate '
+  describe 'relations' do
+    let(:order_item) { order_items(:order_item_6) }
 
+    # products
+    it 'must relate to a product' do
+
+      expect(order_item).must_respond_to :product
+      expect(order_item.product).must_equal products(:thyme)
+    end
+
+    it 'can set the product via product instance' do
+
+      new_item = OrderItem.new(quantity: 1, order: orders(:order_two))
+
+      new_item.product = products(:steak)
+
+      expect(new_item.product_id).must_equal products(:steak).id
+    end
+
+    it 'can set the product via product id' do
+
+      new_item = OrderItem.new(quantity: 1, order: orders(:order_two))
+
+      new_item.product_id = products(:steak).id
+
+      expect(new_item.product).must_equal products(:steak)
+    end
+
+
+    # orders
+    it 'must relate to an order' do
+
+      expect(order_item).must_respond_to :order
+      expect(order_item.order).must_equal orders(:order_three)
+    end
+
+    it 'can set the order via order instance' do
+      new_item = OrderItem.new(quantity: 1, product: products(:taco))
+
+      new_item.order_id = orders(:order_two).id
+
+      expect(new_item.order).must_equal orders(:order_two)
+    end
+
+    it 'can set the order via order id' do
+      new_item = OrderItem.new(quantity: 1, product: products(:taco))
+
+      new_item.order = orders(:order_two)
+
+      expect(new_item.order_id).must_equal orders(:order_two).id
+    end
+  end
 
 
   # MODEL TESTS
+  describe 'custom model methods' do
+  end
 
 
 
