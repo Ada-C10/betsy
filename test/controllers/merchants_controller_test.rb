@@ -22,19 +22,19 @@ describe MerchantsController do
     end
   end
 
-  describe "dashboard" do
-    it "should get a merchant's dashboard" do
-      perform_login(fred)
-      get dashboard_path
-      must_respond_with :success
-    end
-
-    it "should redirect to the root path if user is not logged in" do
-      get dashboard_path
-
-      must_respond_with :redirect
-      must_redirect_to root_path
-    end
-  end
+  # describe "dashboard" do
+  #   it "should get a merchant's dashboard" do
+  #     perform_login(fred)
+  #     get dashboard_path
+  #     must_respond_with :success
+  #   end
+  #
+  #   it "should redirect to the root path if user is not logged in" do
+  #     get dashboard_path
+  #
+  #     must_respond_with :redirect
+  #     must_redirect_to root_path
+  #   end
+  # end
 
 end
