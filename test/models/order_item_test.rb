@@ -43,7 +43,7 @@ describe OrderItem do
     end
 
     it 'is not valid with a quantity input other than an integer' do
-      order_item.quantity = "invalid data"
+      order_item.quantity = "you should fail"
 
       expect(order_item).must_be :invalid?
     end
@@ -112,6 +112,19 @@ describe OrderItem do
 
   # MODEL TESTS
   describe 'custom model methods' do
+    describe 'available_stock' do
+    end
+
+    describe 'item_total' do
+    end
+
+    describe 'product_name' do
+    end
+
+    describe 'order_status' do
+    end
+
+
   end
 
 
