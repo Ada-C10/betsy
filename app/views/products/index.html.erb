@@ -1,4 +1,5 @@
 <div class="container">
+  <% breadcrumb :root %>
   <div class="jumbotron text-center">
       <h2>List of Products</h2>
   </div>
@@ -8,7 +9,6 @@
 
 <% @products.each_slice(3) do |row| %>
   <div class="row">
-    <!-- Modal has to be inside this do block  -->
     <% row.each do |product| %>
       <div class="col-sm-4 mb-4 text-center d-flex justify-content-around">
         <div class="card" style="width: 18rem;">
@@ -24,90 +24,24 @@
           <div class="card-footer text-muted">
             <% if product.inventory == 0 %>
               <p>Out of Stock</p>
-              <!-- SJL: We should hide this integer (or the logic for printing this string) in a custom method -->
             <% elsif product.inventory <= 20 %>
               <p>Hurry! Only a few left!</p>
             <% end %>
 
-          <!-- Wait, do we already handle this in the controller with .where? -->
-            <% if product.inventory > 0 %>
 
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addToCart" data-whatever="@mdo">Add To Cart</button>
+            <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
 
-                <!-- This is the modal -->
-                  <div class="modal fade" id="addToCart" tabindex="-1" role="dialog" aria-labelledby="addToCartLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
+              <%= f.label :quantity, 'Quantity' %>
+              <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: product.inventory, maxlength: 3 %>
 
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="addToCartLabel"><%=product.name %></h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
+              <%= f.hidden_field :product_id, value: product.id %>
 
-                        <div class="modal-body">
-                          <%= image_tag(product.image_url, width: 500, alt: product.name, class: "card-img-top") %>
-                        </div>
-
-                        <div class="modal-footer">
-                          <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="basic-addon1">Quantity</span>
-                            </div>
-                              <input type="number" class="form-control" aria-label="Quantity" aria-describedby="basic-addon1" value=1 required="true" maxlength=3 min=1 max= <%= product.inventory %>>
-                          </div>
-                            <%= f.hidden_field :product_id, value: product.id %>
-                            <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
-                          <% end %>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-
-            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addToCart" data-whatever="@mdo">Add To Cart</button>
-            <div class="modal fade" id="addToCart" tabindex="-1" role="dialog" aria-labelledby="addToCartLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="addToCartLabel"><%#=product.name %></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <%= image_tag(product.image_url, width: 500, alt: product.name, class: "card-img-top") %>
-                  </div>
-                  <div class="modal-footer">
-                    <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">Quantity</span>
-                      </div>
-                    </div>
-                  </div>
-                  <%# end %>
-       End of the modal -->
-                      <%# f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: product.inventory, maxlength: 3 %>
-                      <%= f.hidden_field :product_id, value: product.id %>
-                      <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
-                    <% end %>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
             <% end %>
+
           </div>
         </div>
       </div>
-    </div>
     <% end %>
   </div>
 <% end %>
-
-  <!-- This is JUST THE FORM! -->
-    <%# form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
-      <%# f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: product.inventory, maxlength: 3 %>
-      <%# f.hidden_field :product_id, value: product.id %>
-      <%# f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
-    <%# end %>
