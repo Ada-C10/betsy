@@ -22,17 +22,9 @@
     <% @paiditems.each do |order_id, items| %>
     <% order = Order.find_by(id: order_id) %>
   <div class="container order my-1">
-    <div class="container checkbox ml-auto d-inline">
+    <%= render partial: "checkbox",
+          locals: { order: order} %>
 
-      <%= form_with model: order, url: merchant_ship_path, action: :patch do |f| %>
-        <%= f.hidden_field :order_id, value: order.id %>
-        <%= f.hidden_field :merchant_id, value: @merchant.id %>
-
-        <%=f.check_box :status, {}, "complete", "paid" %>
-        <%= f.submit "Mark As Shipped!" %>
-      <% end %>
-
-    </div>
     <a class="btn btn-light" role="button" href=<%= merchant_customer_path(@merchant.id, order_id) %>> Order #<%= order_id %>  ➡️
 
 

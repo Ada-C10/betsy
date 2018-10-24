@@ -8,7 +8,5 @@
 last 4 only!
 <%= @order.exp_date %>
 
-<!-- Refactor after test -->
-<% if @orderitems.nil? || @orderitems.empty? %>
-<p>You have no orders!</p>
-<% end %>
+<%= render partial: "checkbox",
+      locals: { order: @order }%>

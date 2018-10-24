@@ -4,6 +4,8 @@
   <% @completeitems.each do |order_id, items| %>
     <% order = Order.find_by(id: order_id) %>
   <p>Order #<%= order.id %> : <%= order.orderitems.count %> Items : Placed on <%= readable_date(order.created_at) %> : Sales: <%= readable_cost(order.total_cost) %> : (Reviews)</p>
+  <%= render partial: "checkbox",
+        locals: { order: order }%>
   <% end %>
 <% else %>
   <p>You have no orders in your order history.</p>

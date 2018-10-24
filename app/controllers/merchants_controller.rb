@@ -49,7 +49,7 @@ class MerchantsController < ApplicationController
 
       flash[:status] = :success
       if status == "complete"
-        flash[:result_text] = "Thanks for shipping order ##{@order.id}!"
+        flash[:result_text] = "Yay! We're so glad your package is safely on its way!"
       elsif status == "paid"
         flash[:result_text] = "Has there been an unexpected delay with Order# #{@order.id}? Customer support is here to help."
       end
