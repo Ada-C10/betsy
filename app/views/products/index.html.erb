@@ -14,7 +14,7 @@
       <div class="col-sm-4 mb-5 text-center d-flex justify-content-around">
         <div class="card" style="width: 18rem;">
           <div class="card-header">
-            Sold by <%= link_to readable_name(product.merchant.name), merchant_products_path(product.merchant_id) %>
+            Sold by <%= link_to product.merchant.name, merchant_products_path(product.merchant_id) %>
           </div>
           <%= image_tag(product.image_url, width: 500, alt: product.name, class: "card-img-top") %>
           <div class="card-body">

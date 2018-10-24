@@ -1,4 +1,4 @@
-<div class="container checkbox">
+<div class="container checkbox d-inline">
   <%= form_with model: order, url: merchant_ship_path, action: :patch do |f| %>
     <%= f.hidden_field :order_id, value: order.id %>
     <%= f.hidden_field :merchant_id, value: @merchant.id %>
