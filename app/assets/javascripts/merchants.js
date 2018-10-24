@@ -2,7 +2,7 @@
 // All this logic will automatically be available in application.js.
 
 // Tabbed partials will be included in the URI (/uri/#partial/)
-$(document).ready(() => {
+$(document).ready(function() {
   let url = location.href.replace(/\/$/, "");
 
   if (location.hash) {
@@ -14,6 +14,7 @@ $(document).ready(() => {
       $(window).scrollTop(0);
     }, 400);
   }
+});
 
 // // Marking the order as shipped will submit the form
 // $('#shipItCheckbox').change(function()
