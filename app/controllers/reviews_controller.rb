@@ -5,9 +5,10 @@ class ReviewsController < ApplicationController
     product = Product.find_by(id: params[:id])
     review.product = product
 
-    # PUT THIS IN A MODEL
-    merchant_products = Product.all.where(merchant_id: @logged_in_merchant.id)
+    merchant_products = Product.all.where(merchant_id:@logged_in_merchant.id)
+
     product_ids = merchant_products.map { |p| p.id }
+
 
     if product_ids.include?(@logged_in_merchant.id)
       if review.save
@@ -22,7 +23,7 @@ class ReviewsController < ApplicationController
       end
     else
       flash[:status] = :failure
-      flash[:result_test] = "Cannot add a review for your own product!"
+      flash[:result_text] = "Cannot add a review for your own product!"
       redirect_back fallback_location: root_path
     end
 
