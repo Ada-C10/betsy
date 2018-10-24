@@ -7,6 +7,7 @@ class DeleteFromOrderAddToGuest < ActiveRecord::Migration[5.2]
     remove_column :orders, :email
     remove_column :orders, :zip
     remove_column :orders, :cvv
+    create_table :guests
     add_column :guests, :name, :string
     add_column :guests, :address, :string
     add_column :guests, :cc_num, :integer
