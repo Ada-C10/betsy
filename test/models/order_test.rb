@@ -113,4 +113,28 @@ describe Order do
 
     end
   end
+
+  describe 'Class method: get_current_month' do
+    it 'returns the current month' do
+      result = Order.get_current_month
+
+      result.must_equal Date.today.month
+    end
+  end
+
+  describe 'Class method: get_current_year' do
+    it 'returns the current year' do
+      result = Order.get_current_year
+
+      result.must_equal Date.today.year
+    end
+  end
+
+  describe 'validate method' do
+    it 'raises an ArgumentError if exp_year or exp_month are nil' do
+
+
+    end
+  end
+
 end

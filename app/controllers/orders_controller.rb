@@ -42,21 +42,13 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    #TODO: display generic 'It looks like you don't have any snacks in your cart. Add some to get noshin'!' IF no session id
-
     if @cart && @cart.id == params[:id].to_i
-      # puts "Params id is #{params[:id]}"
-      # puts params[:id].class
-      # puts "Cart id is #{@cart.id}"
-      # puts @cart.id.class
-      # puts @cart.id.to_i == params[:id].to_i
       @order = Order.find_by(id: params[:id])
     else
       flash.now[:status] = :failure
       flash.now[:result_text] = "Cannot edit nonexistent order"
       render :nosnacks, status: :bad_request
     end
-
   end
 
   def update
@@ -81,7 +73,6 @@ class OrdersController < ApplicationController
   end
 
   def finalize
-    #TODO: display generic 'It looks like you don't have any snacks in your cart. Add some to get noshin'!' IF no session id
     unless @cart && @cart.id == params[:id].to_i
       flash.now[:status] = :failure
       flash.now[:result_text] = "Cannot finalize nonexistent order"
@@ -91,7 +82,6 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
-    #TODO: display generic 'It looks like you don't have any snacks in your cart. Add some to get noshin'!' IF no session id
     if @cart
       @order = @cart
       @order.update_attribute(:status, 'paid')
@@ -100,13 +90,25 @@ class OrdersController < ApplicationController
     else
       render :nosnacks, status: :bad_request
     end
+  end
 
+  def destroy
+    if @cart && @cart.id == params[:id].to_i
+      @cart.update_attribute(:status, 'cancelled')
+      flash.now[:status] = :success
+      flash.now[:result_text] = "Order Cancelled"
+      session[:order_id] = nil
+      render :nosnacks
+    else
+      flash.now[:status] = :failure
+      flash.now[:result_text] = "Cannot empty nonexistent or unauthorized cart"
+      render :nosnacks, status: :bad_request
+    end
   end
 
   def nosnacks
     render :nosnacks, status: :bad_request
   end
-
 
   private
 
@@ -123,11 +125,11 @@ class OrdersController < ApplicationController
     )
   end
 
-  def order_items_params
-    params.require(:order_item).permit(
-      :quantity,
-      :product_id
-    )
-  end
+  # def order_items_params
+  #   params.require(:order_item).permit(
+  #     :quantity,
+  #     :product_id
+  #   )
+  # end
 
 end
