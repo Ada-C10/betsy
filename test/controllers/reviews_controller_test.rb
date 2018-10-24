@@ -37,7 +37,7 @@ describe ReviewsController do
       expect(flash[:status]).must_equal :failure
       expect(flash[:result_text]).must_equal "Could not create your review."
 
-      must_respond_with :bad_request
+      must_respond_with :redirect
     end
   end
 end
