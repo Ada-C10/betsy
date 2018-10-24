@@ -28,4 +28,15 @@ describe SearchController do
       must_respond_with :success
     end
   end
+
+  describe "find_order" do
+    it "finds the order with a matching order id and email" do
+    end
+
+    it "redirects to the root path if order is not found" do
+    end
+
+    it "redirects to the root path if order id and email do not match" do
+    end
+  end
 end
