@@ -104,22 +104,36 @@ describe Merchant do
       end
     end
 
-    # describe "self.items_by_orderid(items)" do
-    #   it "returns items as a hash grouped by orderid" do
-    #     orderitems = Merchant.items_by_order_id(WHAT IS IT TAKING IN)
-    #
-    #
-    #   # loop in items, check that order id is all different
-    #     # loop in items.first, check that order is is all same
-    #     # check that all items in every array belong to the merchant
-    #
-    #   end
-    #
-    #   it "if arg is empty collection, it returns empty collection" do
-    #     params = []
-    #     expect .empty? == true
-    #   end
-    # end
+    describe "self.items_by_orderid(items)" do
+      it "takes in an array of orderitems and returns items as a hash grouped by orderid" do
+        item1 = orderitems(:itemsone)
+        item2 = orderitems(:itemstwo)
+        item3 = orderitems(:itemsthree)
+        items = []
+        items << item1
+        items << item2
+        items << item3
+        order_ids = []
+
+        orderitems = Merchant.items_by_orderid(items)
+        orderitems.each do |key, value|
+          order_ids << key
+          value.each do |item|
+            expect(item).must_be_kind_of Orderitem
+          end
+        end
+
+        expect(order_ids.uniq.length).must_equal 3
+      end
+
+      it "if arg is empty collection, it returns empty collection" do
+        items = []
+        orderitems = Merchant.items_by_orderid(items)
+
+        expect(orderitems.length).must_equal 0
+        expect(orderitems).must_be_kind_of Array
+      end
+    end
 
     describe "total_revenue" do
       it "should return an accurate calculation of total revenue" do

@@ -13,8 +13,4 @@ module ApplicationHelper
     first = cc.size - 4
     return cc[first..last]
   end
-
-  def readable_exp(order)
-    return Date.strptime(order.exp_date, '%m%Y').strftime("%m / %Y")
-  end
 end
