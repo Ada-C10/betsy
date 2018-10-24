@@ -30,13 +30,42 @@ describe SearchController do
   end
 
   describe "find_order" do
+    let(:order) { orders(:ordciara) }
+    let(:order2) { orders(:ordrussell)}
+
     it "finds the order with a matching order id and email" do
+      search_params = {
+        id: order.id,
+        email: order.email
+      }
+      post find_order_path, params: search_params
+
+      must_respond_with :redirect
+      must_redirect_to order_path(order.id)
     end
 
     it "redirects to the root path if order is not found" do
+      search_params = {
+        id: nil,
+        email: order.email
+      }
+
+      post find_order_path, params: search_params
+
+      must_respond_with :redirect
+      must_redirect_to root_path
     end
 
     it "redirects to the root path if order id and email do not match" do
+      search_params = {
+        id: order.id,
+        email: order2.email
+      }
+
+      post find_order_path, params: search_params
+
+      must_respond_with :redirect
+      must_redirect_to root_path
     end
   end
 end
