@@ -34,8 +34,6 @@
 
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addToCart" data-whatever="@mdo">Add To Cart</button>
 
-
-<<<<<<< HEAD
                 <!-- This is the modal -->
                   <div class="modal fade" id="addToCart" tabindex="-1" role="dialog" aria-labelledby="addToCartLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -66,13 +64,12 @@
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
 
-=======
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addToCart" data-whatever="@mdo">Add To Cart</button>
             <div class="modal fade" id="addToCart" tabindex="-1" role="dialog" aria-labelledby="addToCartLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="addToCartLabel"><%=product.name %></h5>
+                    <h5 class="modal-title" id="addToCartLabel"><%#=product.name %></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -85,14 +82,11 @@
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">Quantity</span>
->>>>>>> 71550e0f973781fce8c657f1bdb798c29cd2bb33
                       </div>
                     </div>
-<<<<<<< HEAD
                   </div>
-                  <% end %>
-      <!-- End of the modal -->
-=======
+                  <%# end %>
+       End of the modal -->
                       <%# f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: product.inventory, maxlength: 3 %>
                       <%= f.hidden_field :product_id, value: product.id %>
                       <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
@@ -101,10 +95,9 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
             <% end %>
           </div>
->>>>>>> 71550e0f973781fce8c657f1bdb798c29cd2bb33
         </div>
       </div>
     </div>
