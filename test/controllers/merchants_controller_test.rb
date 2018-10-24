@@ -6,7 +6,6 @@ describe MerchantsController do
     iron_chef = merchants(:iron_chef)
 
     perform_login(iron_chef)
-    get merchant_callback_path(:github)
 
     must_redirect_to root_path
     expect(session[:merchant_id]).must_equal iron_chef.id
@@ -18,7 +17,6 @@ describe MerchantsController do
     merchant = Merchant.new(provider: "github", uid: 293, name: "New Merchant", email: "new123@gmail.com")
 
     perform_login(merchant)
-    get merchant_callback_path(:github)
 
     must_redirect_to root_path
 
@@ -37,7 +35,6 @@ describe MerchantsController do
 
     perform_login(invalid_new_merchant)
 
-    get merchant_callback_path(:github)
 
     must_redirect_to root_path
     expect( session[:merchant_id] ).must_equal nil
@@ -51,20 +48,34 @@ describe MerchantsController do
       perform_login(@hells)
     end
 
-    it "shows my account page for a logged in merchant" do
+    # it "shows my account page for a logged in merchant" do
+    #
+    #   get merchant_path(@hells.id)
+    #   must_respond_with :success
+    # end
 
-      get merchant_path(@hells.id)
-      must_respond_with :success
+
+    it "should show product change status" do
+
+      #get a product
+      thyme = products(:thyme)
+
+      #route with the id
+      post status_change_path(thyme.id)
+
+      expect(thyme.status).must_equal false
+
+      #where it goes next 
+      must_redirect_to root_path
     end
 
 
-    # it "should respond with not found for non-exsiting merchant" do
-    #
-    #   merchants(:hells).destroy
-    #   get merchant_path(@hells.id)
-    #
-    #   must_respond_with :missing
-    # end
+    it "should respond with not found for non-exsiting merchant" do
+
+      # get merchant_path(333)
+      #redirect/render might send to a different status code
+      # must_respond_with :missing
+    end
 
 
 

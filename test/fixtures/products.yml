@@ -8,6 +8,7 @@ thyme:
   merchant: iron_chef
   categories: atlantis, pandora
   inventory: 10
+  status: true
 
 butter:
   name: Butter

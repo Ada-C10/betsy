@@ -1,4 +1,3 @@
-require 'pry'
 class MerchantsController < ApplicationController
   # add new_product path in the merchant show page ex (# <%= link_to "Add Product", new_product_path %>) add in Products controller: before_action :require_login --also need to add to application controller
 
@@ -8,7 +7,7 @@ class MerchantsController < ApplicationController
   end
 
   def account_order
-    @merchant = Merchant.find_by(id: params[:id])
+    @merchant = @logged_in_merchant
     @items = @merchant.order_items
   end
 
@@ -32,18 +31,19 @@ class MerchantsController < ApplicationController
 
   def show
     @merchant = Merchant.find_by(id: params[:id])
+
+      # render_404 unless @merchant
     # @merchant = @logged_in_merchant
   end
-
 
 
   # def index
   #   @merchants = Merchant.all
   # end
-
-  def new
-    @merchant = Merchant.new
-  end
+  #
+  # def new
+  #   @merchant = Merchant.new
+  # end
 
   def create
     merchant_hash = request.env['omniauth.auth']
@@ -73,11 +73,11 @@ class MerchantsController < ApplicationController
   end
 
 
-  def edit
-  end
-
-  def update
-  end
+  # def edit
+  # end
+  #
+  # def update
+  # end
 
 
 
