@@ -62,10 +62,6 @@ class MerchantsController < ApplicationController
     end
   end
 
-# params[:order][:order_id]
-# params[:order][:merchant_id]
-# params[:order][:status]
-
   private
   def find_merchant
     @merchant = Merchant.find_by(id: params[:id].to_i)

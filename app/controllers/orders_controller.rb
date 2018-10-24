@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
       @order.status = "paid"
       session[:order_id] = nil
 
-      if @order.update_attributes(order_params)
+      if @order.update_attributes(order_params)(context: :place_order)
         redirect_to order_path(@order.id)
       else
         flash.now[:status] = :failure
