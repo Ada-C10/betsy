@@ -1,5 +1,6 @@
 <h4>Order # <%=@order.id %></h4>
-<h4>Seller # <%=@merchant.id %> (<%= @merchant.name %>)</h4>
+<p><strong>Seller</strong> #<%=@merchant.id %> (<%= @merchant.name %>)</p>
+<p><strong>Order placed on:</strong> <%= readable_date(@order.created_at) %></p>
 
 <%= render partial: "checkbox",
       locals: { order: @order }%></h3>
