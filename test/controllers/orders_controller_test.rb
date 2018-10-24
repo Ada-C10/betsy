@@ -62,22 +62,27 @@ describe OrdersController do
       }
     }
 
-    # it 'creates an order associated with an order_item' do
-    #   order_test = Order.new(order_data[:order])
-    #
-    #   order_test.must_be :valid?, "Order data was invalid. Engineer, please fix this test."
-    #
-    #   expect {
-    #     post orders_path, params: order_items_data
-    #   }.must_change('Order.count', +1)
-    #
-    #   binding.pry
-    #   must_redirect_to order_path(Order.last)
-    #
-    #   expect(Order.last.name).must_equal order_data[:order][:name]
-    #   expect(Order.last.email).must_equal work_data[:order][:email]
-    #
-    # end
+    it 'creates an order associated with an order_item' do
+      order_test = Order.new(order_data[:order])
+
+      order_test.must_be :valid?, "Order data was invalid. Engineer, please fix this test."
+
+      order_item_test = OrderItem.new(order_items_data[:order_item])
+
+      # binding.pry
+      order_item_test.wont_be :valid?, "Order data was invalid. Engineer, please fix this test."
+
+      expect {
+        post orders_path, params: order_items_data
+      }.must_change('Order.count', +1)
+
+      # binding.pry
+      # must_redirect_to order_path(Order.last)
+      #
+      # expect(Order.last.name).must_equal order_data[:order][:name]
+      # expect(Order.last.email).must_equal work_data[:order][:email]
+
+    end
   end
 
   describe 'validations on update action' do
