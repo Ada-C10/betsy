@@ -2,7 +2,13 @@ class CategoriesController < ApplicationController
   before_action :find_category, only:[:show]
 
   def new
-    @category = Category.new
+    if @logged_in_merchant
+      @category = Category.new
+    else
+      flash[:status] = :failure
+      flash[:result_text] = "Sign in as a merchant to access this page."
+        redirect_back fallback_location: root_path
+    end
   end
 
   def create
