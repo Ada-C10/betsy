@@ -2,6 +2,8 @@ require "test_helper"
 
 describe CategoriesController do
 
+  let(:bad_category_id) { Category.first.destroy.id }
+
   describe "Logged in merchants" do
 
     before do
@@ -17,9 +19,8 @@ describe CategoriesController do
       end
 
       it "logged in merchants cannot access the show page for a category that doesn't exist" do
-        category_id = Category.first.id + 1
 
-        get category_path(category_id)
+        get category_path(bad_category_id)
         must_respond_with :not_found
       end
 
@@ -35,7 +36,7 @@ describe CategoriesController do
 
           category_data = {
             category: {
-              name: "Fuzzy bunnies",
+              name: "Fuzzy bunnies"
             }
           }
 
@@ -50,7 +51,7 @@ describe CategoriesController do
 
           category_data = {
             category: {
-              name: ,
+              name: nil
             }
           }
 
@@ -58,7 +59,6 @@ describe CategoriesController do
             post categories_path, params: category_data
           }.wont_change ('Category.count')
 
-          must_respond_with :bad_request
         end
       end
     end
@@ -73,10 +73,13 @@ describe CategoriesController do
       end
 
       it "guest users cannot access the show page for a category that doesn't exist" do
-        category_id = Category.first.id + 1
+        # category_id = Category.first.id + 1
+        #
+        # get category_path(category_id)
+        # must_respond_with :not_found
 
-        get category_path(category_id)
-        must_respond_with :not_found
+        get category_path(bad_category_id)
+        must_respond_with :missing
       end
 
       it "guest users cannot access the new category form" do

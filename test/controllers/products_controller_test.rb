@@ -87,14 +87,14 @@ describe ProductsController do
         end
 
 
-        it "renders 404 not_found for product that doesn't exist" do
+        it "renders not_found for product that doesn't exist" do
           product = Product.first
-          order_items = OrderItem.all
-          order_items.destroy_all
+          # order_items = OrderItem.all
+          # order_items.destroy_all
           product.destroy
 
           get edit_product_path (product)
-          must_respond_with 404
+          must_respond_with :not_found
         end
       end
 
