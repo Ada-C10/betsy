@@ -4,6 +4,14 @@ class OrderItemsController < ApplicationController
   # has_many :order_items, through: products
   def create
     order_item = OrderItem.new(order_items_params)
+    order_item.product = Product.find_by(id: params[:id])
+
+    if order_item.quantity > order_item.product.inventory
+      flash[:status] = :failure
+      flash[:result_text] = "Could not add item to cart"
+      flash[:messages] = order_item.errors.messages
+      redirect_back fallback_location: root_path
+    end
 
     if @cart
       order_item.order_id = @cart.id
@@ -55,7 +63,13 @@ class OrderItemsController < ApplicationController
     redirect_to order_path(@cart)
   end
 
+  private
+
   def order_items_params
-    return params.require(:order_item).permit(:quantity, :product_id)
+    return params.require(:order_item).permit(:quantity) #, :product_id)
   end
+  #
+  # def product_params
+  #   return params.permit(:product_id)
+  # end
 end

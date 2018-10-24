@@ -26,6 +26,8 @@ describe OrderItemsController do
 
     let(:order_item_data) {
       {
+        product_id: existing_product.id,
+
         order_item: {
           quantity: 2,
           product_id: existing_product.id
@@ -35,9 +37,10 @@ describe OrderItemsController do
 
     let(:order_item_data_2) {
       {
+        product_id: Product.last.id,
+
         order_item: {
-          quantity: 2,
-          product_id: Product.last.id
+          quantity: 2
         }
       }
     }
@@ -84,7 +87,7 @@ describe OrderItemsController do
       cart = Order.last
       old_orders_count = Order.count
 
-      order_item_data_2[:order_item][:product_id] = nil
+      order_item_data_2[:product_id] = nil
 
       expect {
         post order_items_path, params: order_item_data_2

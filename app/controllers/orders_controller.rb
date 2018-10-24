@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(id: params[:id])
-    unless @order
+    if !@cart || !@order || @cart.id != @order.id
       render :nosnacks, status: :bad_request
     end
   end
