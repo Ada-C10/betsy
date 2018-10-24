@@ -1,5 +1,5 @@
 <header class="all-pages">
-  <nav class="navbar navbar-light bg-light navbar-expand-md fixed-top scrolling-navbar">
+  <nav class="navbar navbar-light bg-light navbar-expand-md fixed-top scrolling-navbar navbar-icon-top">
     <%= link_to '<i class="fa fa-home fa-lg"></i>'.html_safe, root_path, class: "navbar-brand navbar-light" %>
     <%= form_tag search_path, method: :get, class: "form-inline" do %>
       <div class="md-form my-0">
@@ -40,13 +40,13 @@
         </li>
         <% end %>
         <% if session[:order_id] %>
-        <li class="nav-item">
-          <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, order_path(session[:order_id]), class: "nav-link d-inline-block" %>
-        </li>
+          <li class="nav-item">
+            <%= link_to shopping_cart_count(@count), order_path(session[:order_id]), class: "nav-link d-inline-block" %>
+          </li>
         <% else %>
-        <li class="nav-item">
-          <%= link_to '<i class="fa fa-shopping-cart"></i>'.html_safe, order_path("cart"), class: "nav-link d-inline-block" %>
-        </li>
+          <li class="nav-item">
+            <%= link_to shopping_cart_count(@count), order_path("cart"), class: "nav-link d-inline-block" %>
+          </li>
         <% end %>
       </ul>
     </div>

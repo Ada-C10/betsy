@@ -136,7 +136,8 @@ h6 {
 }
 
 .home-body {
-  padding-top: 50rem;
+  padding: 2rem;
+  padding-bottom: 50rem;
 }
 
 .spacer {
@@ -145,4 +146,18 @@ h6 {
 
 .splash-search::-webkit-input-placeholder {
   text-align: center;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+  position: relative;
+  width: 36px;
+  font-size: 24px;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+  font-size: 0.75rem;
+  position: absolute;
+  top: -7px;
+  right: 4px;
+  font-family: sans-serif;
 }
