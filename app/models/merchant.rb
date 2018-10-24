@@ -21,6 +21,9 @@ class Merchant < ApplicationRecord
     if status == "all"
       return items
     else
+      unless STATUSES.include?(status)
+        return []
+      end
       return items[status]
     end
   end

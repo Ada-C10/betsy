@@ -4,6 +4,7 @@ describe MerchantsController do
   let(:fred) {merchants(:fred)}
   let(:merchant) {merchants(:sally)}
   let(:order) {orders(:ordciara)}
+  let(:order_complete) {orders(:ordrussell)}
 
   it "should get index " do
     get merchants_path
@@ -35,6 +36,7 @@ describe MerchantsController do
   # authorization test
     it "a user that's not logged in cannot access dashboard" do
       get dashboard_path
+      expect(session[:user_id]).must_be_nil
       must_respond_with :redirect
       must_redirect_to root_path
     end
@@ -68,39 +70,107 @@ describe MerchantsController do
     before do
       perform_login(fred)
     end
-    let(:params){
+    let (:params_hash) {
       {
         order: {
-        merchant_id: merchant.id,
-        order_id: order.id
+          merchant_id: merchant.id,
+          order_id: order.id,
+          status: "complete"
         }
       }
     }
 
     it "can change status from paid to complete" do
-      my_order = order.dup
-      expect(my_order.status).must_equal "paid"
-      expect{patch merchant_ship_path(params)}.wont_change 'Order.count'
-      expect(my_order.status).must_equal "complete"
-      must_respond_with :success
+      # order_hash =   {
+      #     order: {
+      #     merchant_id: merchant.id,
+      #     order_id: order.id,
+      #     status: "complete"
+      #     }
+      #   }
+      old_order = Order.find_by(id: order.id) #ordciara
+      expect(old_order.status).must_equal "paid"
+      expect {
+        patch merchant_ship_path, params: params_hash
+      }.wont_change 'Order.count'
+      must_respond_with :redirect
+      must_redirect_to root_path
+
+      new_order = Order.find_by(id: order.id)
+      expect(new_order.status).must_equal "complete"
     end
 
     it "can change status from complete to paid" do
-      my_order = orders(:ordrussell).dup
-      expect(my_order.status).must_equal "complete"
-      expect{patch merchant_ship_path(params)}.wont_change 'Order.count'
-      expect(my_order.status).must_equal "paid"
-      must_respond_with :success
+      old_order = Order.find_by(id: order_complete.id) #ordrussell
+      order_hash =   {
+          order: {
+          merchant_id: fred.id,
+          order_id: order_complete.id,
+          status: "paid"
+          }
+        }
+      expect {
+        patch merchant_ship_path, params: order_hash
+      }.wont_change 'Order.count'
+      must_respond_with :redirect
+      must_redirect_to root_path
+
+      new_order = Order.find_by(id: order_complete.id)
+      expect(new_order.status).must_equal "paid"
+    end
+
+# authorization test:
+    it "gives an error if merchant doesn't have that order" do
+      order_hash =   {
+          order: {
+          merchant_id: fred.id,
+          order_id: order.id,
+          status: "complete"
+          }
+        }
+      old_order = Order.find_by(id: order.id) #ordciara
+      expect {
+        patch merchant_ship_path, params: order_hash
+      }.wont_change 'Order.count'
+      must_respond_with :not_found
+
+      new_order = Order.find_by(id: order.id)
+      expect(new_order.status).must_equal "paid"
+    end
+
+    it "gives an error if the order params have invalid status" do
+      order_hash =   {
+          order: {
+          merchant_id: merchant.id,
+          order_id: order.id,
+          status: "invalidstatus"
+          }
+        }
+      old_order = Order.find_by(id: order.id) #ordciara
+      expect {
+        patch merchant_ship_path, params: order_hash
+      }.wont_change 'Order.count'
+      must_respond_with :bad_request
+
+      new_order = Order.find_by(id: order.id)
+      expect(new_order.status).must_equal "paid"
     end
 
     it "will redirect to not found if there's no order" do
-      expect{patch merchant_ship_path(params)}.wont_change 'Order.count'
+      params_hash = {
+        order: {
+          merchant_id: -1,
+          order_id: order.id,
+          status: "complete"
+        }
+      }
+      expect{patch merchant_ship_path(params_hash)}.wont_change 'Order.count'
       must_respond_with :not_found
     end
 
 # authorization test
     it "should redirect to the root path if user is not logged in" do
-      patch merchant_ship_path(params)
+      patch merchant_ship_path(params_hash)
       expect(@current_user).must_be_nil
       must_respond_with :redirect
       must_redirect_to root_path
