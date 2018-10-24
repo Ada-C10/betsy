@@ -38,8 +38,8 @@ class MerchantsController < ApplicationController
 
 
   def show
-    @merchant = @logged_in_merchant
-    # @merchant = Merchant.find_by(id: params[:id])
+    # @merchant = @logged_in_merchant don't use this one, will not show merchant page to user that is not logged in
+    @merchant = Merchant.find_by(id: params[:id])
 
     if @merchant.nil?
       head :not_found
