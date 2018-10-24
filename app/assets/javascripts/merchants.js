@@ -3,10 +3,10 @@
 
 // Tabbed partials will be included in the URI (/uri/#partial/)
 $(document).ready(function() {
-  let url = location.href.replace(/\/$/, "");
+  var url = location.href.replace(/\/$/, "");
 
   if (location.hash) {
-    const hash = url.split("#");
+    var hash = url.split("#");
     $('#myTab a[href="#'+hash[1]+'"]').tab("show");
     url = location.href.replace(/\/#/, "#");
     history.replaceState(null, null, url);
