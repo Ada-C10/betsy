@@ -1,12 +1,61 @@
-<h2>Order # <%=@order.id %></h2>
-<h2>Merchant : <%=@merchant.name %></h2>
-
-<%= @order.name %>
-<%= @order.email %>
-<%= @order.address %>
-<%= @order.cc_num %>
-last 4 only!
-<%= @order.exp_date %>
+<h4>Order # <%=@order.id %></h4>
+<h4>Seller # <%=@merchant.id %> (<%= @merchant.name %>)</h4>
 
 <%= render partial: "checkbox",
-      locals: { order: @order }%>
+      locals: { order: @order }%></h3>
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="row" colspan="2">Customer Info</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Name</th>
+      <td><%= @order.name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Email</th>
+      <td><%=@order.email%></td>
+    </tr>
+    <tr>
+      <th scope="row">Address</th>
+      <td><%=@order.address%></td>
+    </tr>
+    <tr>
+      <th scope="row">CC</th>
+      <td><%=last_four(@order) %></td>
+    </tr>
+    <tr>
+      <th scope="row">Expiration</th>
+      <td><%= readable_exp(@order)%></td>
+    </tr>
+  </tbody>
+</table>
+
+<% if @orderitems %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Order Item</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orderitems.each do |item| %>
+        <% product = item.product %>
+        <tr>
+          <td><%= link_to product.name, product_path(product.id) %></td>
+          <td><%= product.description %></td>
+          <td><%= readable_cost(product.cost) %></td>
+          <td><%= item.quantity %></td>
+          <td><%= readable_cost(item.line_item_price) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
