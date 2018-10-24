@@ -33,11 +33,19 @@ describe OrderItemsController do
       }
     }
 
-    it 'creates an order_item if cart is empty' do
+    let(:order_item_data_2) {
+      {
+        order_item: {
+          quantity: 2,
+          product_id: Product.last.id
+        }
+      }
+    }
 
+    it 'creates an order_item and order if cart is empty' do
       order_item_test = OrderItem.new(order_item_data[:order_item])
 
-      order_item_test.wont_be :valid?, "Order data was invalid. Engineer, please fix this test."
+      order_item_test.wont_be :valid?, "Order data was valid. Engineer, please fix this test."
 
       old_orders_count = Order.count
       old_orderItems_count = OrderItem.count
@@ -51,7 +59,41 @@ describe OrderItemsController do
 
       expect(OrderItem.last.quantity).must_equal order_item_data[:order_item][:quantity]
       expect(OrderItem.last.order_id).must_equal Order.last.id
+    end
+
+    it 'creates an order_item if cart is not empty, associates it with the in-progress order and does not create a new order' do
+
+      post order_items_path, params: order_item_data
+      cart = Order.last
+      old_orders_count = Order.count
+
+      expect {
+        post order_items_path, params: order_item_data_2
+      }.must_change('OrderItem.count', +1)
+
+      must_redirect_to order_path(Order.last)
+
+      expect(Order.count).must_equal old_orders_count
+      expect(OrderItem.last.order_id).must_equal cart.id
 
     end
+
+    it 'returns bad request if given invalid data and cart exists' do
+
+      post order_items_path, params: order_item_data
+      cart = Order.last
+      old_orders_count = Order.count
+
+      order_item_data_2[:order_item][:product_id] = nil
+
+      expect {
+        post order_items_path, params: order_item_data_2
+      }.wont_change('OrderItem.count')
+
+      must_respond_with 302
+      expect(flash[:messages]).must_include :product
+
+    end
+
   end
 end

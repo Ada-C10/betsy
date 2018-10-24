@@ -12,33 +12,33 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new
-
-    if @order.save
-
-      session[:order_id] = @order.id
-      order_item = OrderItem.new(order_items_params)
-      order_item.order_id = @order.id
-      order_item.product = Product.find_by(id: params[:product_id])
-
-      if order_item.save
-        flash[:status] = :success
-        flash[:result_text] = "Added item to cart"
-
-        redirect_to order_path(@order)
-      else
-        flash[:status] = :failure
-        flash[:result_text] = "Could not add item to cart"
-        flash[:messages] = order_item.errors.messages
-        redirect_back fallback_location: root_path, status: :bad_request
-      end
-
-    else
-      flash[:status] = :failure
-      flash[:result_text] = "Problems with adding to cart"
-      flash[:messages] = @order.errors.messages
-      redirect_back fallback_location: root_path
-    end
+    # @order = Order.new
+    #
+    # if @order.save
+    #
+    #   session[:order_id] = @order.id
+    #   order_item = OrderItem.new(order_items_params)
+    #   order_item.order_id = @order.id
+    #   order_item.product = Product.find_by(id: params[:product_id])
+    #
+    #   if order_item.save
+    #     flash[:status] = :success
+    #     flash[:result_text] = "Added item to cart"
+    #
+    #     redirect_to order_path(@order)
+    #   else
+    #     flash[:status] = :failure
+    #     flash[:result_text] = "Could not add item to cart"
+    #     flash[:messages] = order_item.errors.messages
+    #     redirect_back fallback_location: root_path, status: :bad_request
+    #   end
+    #
+    # else
+    #   flash[:status] = :failure
+    #   flash[:result_text] = "Problems with adding to cart"
+    #   flash[:messages] = @order.errors.messages
+    #   redirect_back fallback_location: root_path
+    # end
   end
 
   def edit

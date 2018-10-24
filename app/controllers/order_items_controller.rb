@@ -8,7 +8,6 @@ class OrderItemsController < ApplicationController
     if @cart
       order_item.order_id = @cart.id
     else
-      puts 'I am here'
       order = Order.create
       order_item.order_id = order.id
       session[:order_id] = order.id
