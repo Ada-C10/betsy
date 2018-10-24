@@ -14,15 +14,15 @@ class OrderItemsController < ApplicationController
       session[:order_id] = order.id
     end
 
-    unless order_item.quantity < order_item.product.inventory && order_item.save
+    if order_item.save
+      flash[:status] = :success
+      flash[:result_text] = "Added item to cart"
+      redirect_to order_path(order_item.order)
+    else
       flash[:status] = :failure
       flash[:result_text] = "Could not add item to cart"
       flash[:messages] = order_item.errors.messages
       redirect_back fallback_location: root_path
-    else
-      flash[:status] = :success
-      flash[:result_text] = "Added item to cart"
-      redirect_to order_path(order_item.order)
     end
 
   end
@@ -59,10 +59,7 @@ class OrderItemsController < ApplicationController
   private
 
   def order_items_params
-    return params.require(:order_item).permit(:quantity) #, :product_id)
+    return params.require(:order_item).permit(:quantity) 
   end
-  #
-  # def product_params
-  #   return params.permit(:product_id)
-  # end
+
 end
