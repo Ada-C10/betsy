@@ -15,8 +15,22 @@ describe OrdersController do
 
     let(:existing_order) {Order.first}
 
-    it "succeeds for an extant order ID" do
-      get order_path(existing_order)
+    let(:order_item_data) {
+      {
+        id: Product.first.id,
+        order_item: {
+          quantity: 2,
+        }
+      }
+    }
+
+    it "succeeds for an extant order ID if you are the client currently adding to that order" do
+      #Arrange: THIS user makes order
+      post order_items_path, params: order_item_data
+      order = Order.last
+      must_redirect_to order_path(order)
+
+      get order_path(order.id)
 
       must_respond_with :success
     end
@@ -55,9 +69,9 @@ describe OrdersController do
 
     let(:order_items_data) {
       {
+        id: existing_product.id,
         order_item: {
           quantity: 2,
-          product_id: existing_product.id
         }
       }
     }
@@ -92,9 +106,9 @@ describe OrdersController do
 
     let(:order_item_data) {
       {
+        id: Product.first.id,
         order_item: {
           quantity: 2,
-          product_id: Product.first.id
         }
       }
     }
@@ -190,9 +204,9 @@ describe OrdersController do
 
     let(:order_item_data) {
       {
+        id: Product.first.id,
         order_item: {
           quantity: 2,
-          product_id: Product.first.id
         }
       }
     }
@@ -281,9 +295,9 @@ describe OrdersController do
 
     let(:order_item_data) {
       {
+        id: Product.first.id,
         order_item: {
           quantity: 2,
-          product_id: Product.first.id
         }
       }
     }
@@ -335,9 +349,9 @@ describe OrdersController do
 
     let(:order_item_data) {
       {
+        id: Product.first.id,
         order_item: {
           quantity: 2,
-          product_id: Product.first.id
         }
       }
     }
