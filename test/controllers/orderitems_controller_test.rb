@@ -37,6 +37,7 @@ describe OrderitemsController do
       }.wont_change "Orderitem.count"
 
       expect(flash[:result_text]).must_equal "Could not save"
+      must_respond_with :redirect
     end
 
     it "will create a session for current order" do

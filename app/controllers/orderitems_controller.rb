@@ -24,7 +24,7 @@ class OrderitemsController < ApplicationController
         flash[:status] = :failure
         flash[:result_text] = "Could not save"
         flash[:messages] = @orderitem.errors.messages
-        render "layouts/servererror", status: :internal_server_error
+        redirect_back(fallback_location: root_path)
       end
     end
   end
