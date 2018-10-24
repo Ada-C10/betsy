@@ -41,11 +41,18 @@ describe MerchantsController do
     expect( Merchant.count ).must_equal start_count
   end
 
+
+
+
   describe "Logged in merchcants" do
 
     before do
       @hells = merchants(:hells)
       perform_login(@hells)
+    end
+
+    it "signed in merchant can succesfully log out" do
+
     end
 
     # it "shows my account page for a logged in merchant" do
@@ -59,22 +66,22 @@ describe MerchantsController do
 
       #get a product
       thyme = products(:thyme)
-
       #route with the id
       post status_change_path(thyme.id)
+      # binding.pry
 
       expect(thyme.status).must_equal false
 
-      #where it goes next 
+      #where it goes next
       must_redirect_to root_path
     end
 
 
     it "should respond with not found for non-exsiting merchant" do
 
-      # get merchant_path(333)
-      #redirect/render might send to a different status code
-      # must_respond_with :missing
+      get merchant_path(333)
+      # redirect/render might send to a different status code
+      must_respond_with :missing
     end
 
 

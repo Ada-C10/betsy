@@ -28,15 +28,20 @@ class Merchant < ApplicationRecord
 
 
   #will try and use this method instead of doing all the work that is now taking place in the show.html.erb
-  def logged_merchant
-    if @logged_in_merchant
-      if @logged_in_merchant.id != nil &&  @logged_in_merchant.id ==  @merchant.id
-        return true
-      end
-      return false
-    end
-    return false
-  end
+  # def logged_merchant
+  #   if @logged_in_merchant
+  #     if @logged_in_merchant.id != nil &&  @logged_in_merchant.id ==  @merchant.id
+  #       return true
+  #     end
+  #     return false
+  #   end
+  #   return false
+  # end
+
+
+  #TODO total revenue by status completed
+
+#TODO filter order displayed by status 
 
 
 end
