@@ -1,4 +1,3 @@
-require 'pry'
 class Orderitem < ApplicationRecord
   belongs_to :order
   belongs_to :product

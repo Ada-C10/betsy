@@ -1,3 +1,4 @@
+require 'pry'
 class Merchant < ApplicationRecord
   STATUSES = %w(pending paid complete cancelled)
 
@@ -16,30 +17,67 @@ class Merchant < ApplicationRecord
    return merchant
   end
 
-  def readable_name
-    return self.name.split.map(&:capitalize).join(' ')
+  def items_by_status(status)
+    items = self.orderitems.group_by { |oi| oi.order.status }
+
+    available_statuses = items.keys
+
+    if status == "all"
+      return items
+    else
+      if STATUSES.include?(status) && available_statuses.include?(status)
+        return items[status]
+      else
+        return []
+      end
+    end
+  end
+
+  def self.items_by_orderid(items)
+    if items.nil? || items.empty?
+      return []
+    end
+    items = items.group_by {|oi| oi.order.id}
+    return items
   end
 
   def total_revenue
-    return self.orderitems.reduce(0) {|sum, item| sum + item.line_item_price}
-  end
+    paid_items = self.items_by_status("paid")
+    complete_items = self.items_by_status("complete")
 
-
-
-  def orders_by_status(status)
-    orderitems = self.orderitems.select  {|oi| oi.order.status == status}
-    orders = orderitems.map { |oi| oi.order }.uniq!
-    return orders
-  end
-
-  def sales_by_status
-    sales = Hash.new
-
-    STATUSES.each do |status|
-      orderitems_by_status = self.orderitems.select  {|oi| oi.order.status == status}
-      revenue_by_status = orderitems_by_status.reduce(0) {|sum, item| sum + item.line_item_price}
-      sales[status] = revenue_by_status
+    if paid_items.nil?
+      revenue_paid = 0
+    else
+      revenue_paid = paid_items.sum { |oi| oi.line_item_price }
     end
-    return sales
+
+    if complete_items.nil?
+      revenue_complete = 0
+    else
+      revenue_complete = complete_items.sum { |oi| oi.line_item_price }
+    end
+
+    return revenue_paid + revenue_complete
   end
+
+  def revenue_by_status
+    revenue = Hash.new
+    paid_items = self.items_by_status("paid")
+    complete_items = self.items_by_status("complete")
+
+    if paid_items.nil?
+      revenue["paid"] = 0
+    else
+      revenue["paid"] = paid_items.sum { |oi| oi.line_item_price }
+    end
+
+    if complete_items.nil?
+      revenue["complete"] = 0
+    else
+      revenue["complete"] = complete_items.sum { |oi| oi.line_item_price }
+    end
+
+    return revenue
+  end
+
 end

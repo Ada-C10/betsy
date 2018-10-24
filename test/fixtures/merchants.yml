@@ -21,3 +21,10 @@ kiki:
   uid: 135
   provider: github
 # kilimanjaro, ordciara
+
+bob:
+  name: Bob
+  email: bob@gmail.com
+  avatar_url: https://via.placeholder.com/200x200
+  uid: 139
+  provider: github
