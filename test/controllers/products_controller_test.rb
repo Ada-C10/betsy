@@ -1,5 +1,5 @@
 require "test_helper"
-require 'pry'
+
 describe ProductsController do
   let(:fred) { merchants(:fred) }
   let(:category) { categories(:africa) }

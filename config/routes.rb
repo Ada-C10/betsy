@@ -14,11 +14,17 @@ Rails.application.routes.draw do
   # Route for users to look up past orders by ID
   post '/find_order', to: 'search#find_order', as: 'find_order'
 
-  # Route for merchants to change status of their product
-  patch '/merchants/:merchant_id/products/:id/status', to: 'products#status', as: 'products_status'
-
   # Route to order dashboard page
   get "/dashboard", to: 'merchants#dashboard', as: "dashboard"
+
+  # Route for merchant to view customer information and print shipping label
+  get '/merchants/:merchant_id/:order_id', to: 'merchants#customer', as: 'merchant_customer'
+
+  # Route for merchant to change status of their order (ship it)
+  patch '/merchants/ship', to: 'merchants#ship', as: 'merchant_ship'
+
+  # Route for merchants to change status of their product
+  patch '/merchants/:merchant_id/products/:id/status', to: 'products#status', as: 'products_status'
 
   # Route for search
   get '/search', to: 'search#search', as: "search"

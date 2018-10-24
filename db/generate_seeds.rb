@@ -27,13 +27,14 @@ CSV.open('db/seed_data/order.csv', "w", :write_headers=> true,
     id = i+1
     status = %w(pending pending paid paid complete complete cancelled).sample
     unless status == "pending"
-      name = Faker::FunnyName.name
+      fake_user = Faker::Omniauth
+      name = fake_user[:info][:name]
       address = Faker::Address.full_address
       cc_num = Faker::Finance.credit_card
       exp_date = "#{Faker::Stripe.month}#{Faker::Stripe.year}"
       zip = Faker::Address.zip
       cvv = Faker::Stripe.ccv
-      email = Faker::Internet.free_email
+      email = fake_user[:info][:email]
     end
 
     csv << [id, status, name, address, cc_num, exp_date, zip, cvv, email]

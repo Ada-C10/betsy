@@ -72,18 +72,118 @@ describe Merchant do
     end
 
   describe "Custom Methods" do
-    it "should return an accurate calculation of total revenue" do
-      expect(merchant.total_revenue).must_equal 62
+    describe "items_by_status" do
+      it "if arg is 'all', returns a collection of orderitems as a hash" do
+        orderitems = merchant.items_by_status("all")
+
+        orderitems.each do |key, value|
+          expect(STATUSES).must_include key
+          value.each do |item|
+            expect(item).must_be_kind_of Orderitem
+          end
+        end
+
+        expect(orderitems).must_be_kind_of Hash
+       end
+      end
+
+      it "if arg is valid status, returns a collection of orderitems as an array" do
+        orderitems = merchant.items_by_status("complete")
+
+        expect(orderitems).must_be_kind_of Array
+        orderitems.each do |item|
+          expect(item).must_be_kind_of Orderitem
+        end
+      end
+
+      it "if merchant has no items of that status" do
+        orderitems = merchant.items_by_status("paid")
+
+        expect(orderitems).must_be_kind_of Array
+        expect(orderitems.length).must_equal 0
+      end
     end
 
-    it "returns a readable name" do
-      expect(merchant.readable_name).must_equal "Fred"
+    describe "self.items_by_orderid(items)" do
+      it "takes in an array of orderitems and returns items as a hash grouped by orderid" do
+        item1 = orderitems(:itemsone)
+        item2 = orderitems(:itemstwo)
+        item3 = orderitems(:itemsthree)
+        items = []
+        items << item1
+        items << item2
+        items << item3
+        order_ids = []
+
+        orderitems = Merchant.items_by_orderid(items)
+        orderitems.each do |key, value|
+          order_ids << key
+          value.each do |item|
+            expect(item).must_be_kind_of Orderitem
+          end
+        end
+
+        expect(order_ids.uniq.length).must_equal 3
+      end
+
+      it "if arg is empty collection, it returns empty collection" do
+        items = []
+        orderitems = Merchant.items_by_orderid(items)
+
+        expect(orderitems.length).must_equal 0
+        expect(orderitems).must_be_kind_of Array
+      end
     end
 
+    describe "total_revenue" do
+      it "should return an accurate calculation of total revenue" do
+        expect(merchant.total_revenue).must_equal (15.5 * 3)
+      end
+
+      it "if there are no paid or complete items, it returns 0" do
+        item = orderitems(:itemsthree)
+        item.destroy
+
+        expect(merchant.total_revenue).must_equal 0
+      end
     end
 
+    describe "revenue_by_status" do
+      it "should return a hash with status keys and total revenue of all items" do
+
+        revenue_hash = merchant.revenue_by_status
+        expect(revenue_hash).must_be_kind_of Hash
+
+        keys = revenue_hash.keys
+        keys.each do |key|
+          expect(STATUSES).must_include key
+        end
+
+        values = revenue_hash.values
+
+        values.each do |value|
+          expect(value).must_be_kind_of Numeric
+        end
+      end
+
+      it "if there are no items of given status, it returns 0" do
+        merchant = merchants(:bob)
+
+        revenue_hash = merchant.revenue_by_status
+
+        expect(revenue_hash).must_be_kind_of Hash
+
+        keys = revenue_hash.keys
+        keys.each do |key|
+          expect(STATUSES).must_include key
+        end
+
+        values = revenue_hash.values
+
+        values.each do |value|
+          expect(value).must_equal 0
+        end
+      end
+    end
   end
-
-    
-
-    end
+end

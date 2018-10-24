@@ -1,0 +1,17 @@
+<div class="container checkbox">
+  <%= form_with model: order, url: merchant_ship_path, action: :patch do |f| %>
+    <%= f.hidden_field :order_id, value: order.id %>
+    <%= f.hidden_field :merchant_id, value: @merchant.id %>
+    <label class="switch">
+      <%=f.check_box :status, {}, "complete", "paid" %>
+      <span class="slider round"></span>
+    </label>
+    <% if order.status == "paid" %>
+      <% submit_button_text = "This Order Has Shipped!" %>
+    <% elsif order.status == "complete" %>
+    <% submit_button_text = "I Made A Mistake! This Order Has NOT Shipped Yet." %>
+    <% end %>
+
+    <%= f.submit submit_button_text, class: "btn btn-info", role: "button" %>
+  <% end %>
+</div>
