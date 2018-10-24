@@ -1,3 +1,4 @@
+require 'pry'
 class Merchant < ApplicationRecord
   STATUSES = %w(pending paid complete cancelled)
 
@@ -18,13 +19,17 @@ class Merchant < ApplicationRecord
 
   def items_by_status(status)
     items = self.orderitems.group_by { |oi| oi.order.status }
+
+    available_statuses = items.keys
+
     if status == "all"
       return items
     else
-      unless STATUSES.include?(status)
+      if STATUSES.include?(status) && available_statuses.include?(status)
+        return items[status]
+      else
         return []
       end
-      return items[status]
     end
   end
 
