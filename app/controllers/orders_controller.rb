@@ -35,7 +35,6 @@ class OrdersController < ApplicationController
       Product.adjust_inventory(@order_items)
 
       @order.status = "paid"
-      session[:order_id] = nil
 
       if @order.update_attributes(order_params)
         redirect_to order_path(@order.id)
@@ -43,8 +42,10 @@ class OrdersController < ApplicationController
         flash.now[:status] = :failure
         flash.now[:result_text] = "Could not complete order"
         flash.now[:messages] = @order.errors.messages
-        render :edit, status: :bad_request
+        return render :edit, status: :bad_request
       end
+
+      session[:order_id] = nil
     end
   end
 
