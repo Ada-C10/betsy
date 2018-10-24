@@ -21,13 +21,7 @@
             <div class="dropdown-divider"></div>
             <%= link_to "View by seller", merchants_path, class: "dropdown-item" %>
           </div>
-            <!-- <li class="nav-item">
-            <%# link_to "Sell", new_product_path, class: "nav-link"%>
-          </li> -->
-          <!-- "Sell" should take a logged-in user to Add a new PRoduct, and a non logged-in user to a "sign up!" page -->
-          <!-- <li class="nav-item">
-          <%# link_to "Categories", categories_path, class: "nav-link" %>
-        </li> -->
+        </li>
         <% if session[:user_id] %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
