@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
     else
       @products = Product.all.order(:name).where(active: true).where("inventory > ?", 0)
     end
+    @orderitem = Orderitem.new
   end
 
   def show
@@ -99,7 +100,7 @@ class ProductsController < ApplicationController
 
       if @merchant.nil?
         render "layouts/notfound", status: :not_found
-      end  
+      end
     end
   end
 
