@@ -13,4 +13,8 @@ module ApplicationHelper
     first = cc.size - 4
     return cc[first..last]
   end
+
+  def shopping_cart_count(count)
+    '<i class="fa fa-shopping-cart"><span class="badge badge-danger d-flex justify-content-around">'.html_safe + "#{count}" '</span></i>'.html_safe
+  end
 end

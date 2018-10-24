@@ -62,8 +62,52 @@ h1 {
   letter-spacing: 8px;
 }
 
+h3 {
+  align-self: center;
+}
+
 h5 {
   letter-spacing: 3px;
+}
+
+h6, h6 a {
+  font-weight: bold;
+  font-size: 50px;
+  color: white;
+}
+
+h6 {
+  margin:0;
+  padding:0;
+  vertical-align:middle; /*middle centred*/
+  display:table-cell; /*acts like a table cell*/
+}
+
+.card {
+  border: none;
+}
+.jumbotron{
+    background: url("jumotron.jpg") no-repeat center center;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+    font-weight: bold;
+    font-size: 50px;
+    color: white;
+    font-stretch: expanded;
+
+}
+
+.breadcrumb-item + .breadcrumb-item::before         {
+   font-family: 'fontAwesome';
+   content: "\f101" !important;
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .hr-light {
@@ -79,6 +123,7 @@ h5 {
     color: #4A4A4B;
 }
 
+
 .nav-item {
   padding: 1rem 1rem;
 }
@@ -92,7 +137,8 @@ h5 {
 }
 
 .home-body {
-  padding-top: 50rem;
+  padding: 2rem;
+  padding-bottom: 50rem;
 }
 
 .spacer {
@@ -101,4 +147,18 @@ h5 {
 
 .splash-search::-webkit-input-placeholder {
   text-align: center;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+  position: relative;
+  width: 36px;
+  font-size: 24px;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+  font-size: 0.75rem;
+  position: absolute;
+  top: -7px;
+  right: 4px;
+  font-family: sans-serif;
 }

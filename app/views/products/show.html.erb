@@ -1,4 +1,5 @@
 <div class="container">
+  <% breadcrumb :product, @products %>
   <h2 class="display-4 text-center"><%= link_to @product.name, product_path(@product.id) %></h2>
   <br />
   <div class="row">

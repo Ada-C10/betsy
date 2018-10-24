@@ -41,6 +41,7 @@ CSV.foreach(CATEGORY_FILE, :headers => true) do |row|
   category = Category.new
   category.id = row['id'].to_i
   category.name = row['name']
+  category.image_url = row['image_url']
   successful = category.save
   if !successful
     category_failures << category

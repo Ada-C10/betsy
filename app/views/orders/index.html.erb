@@ -1,1 +1,29 @@
-<h1>Orders#index</h1>
+<div class="container">
+  <div class="jumbotron text-center"> <%#grey box%>
+    <h2>List of Orders</h2>
+  </div>
+</div>
+<br>
+<table style="width:100%">
+  <tr class="header_font">
+    <th>ID</th>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Credit Card Number</th>
+    <th>Expiration Date</th>
+    <th>Order</th>
+    <th>Email</th>
+  </tr>
+  <% @orders.each do |order| %>
+  <tr>
+    <td><%=link_to order.id, order(order.id)%></td>
+    <td><%=link_to order.name, order(order.id)%></td>
+    <td><%=link_to order.address, order(order.id)%></td>
+    <td><%=link_to order.cc_num, order(order.id)%></td>
+    <td><%=link_to order.exp_date, order(order.id)%></td>
+    <td><%=link_to order.zip, order(order.id)%></td>
+    <td><%=link_to order.cvv, order(order.id)%></td>
+    <td><%=link_to order.email, order(order.id)%></td>
+    <% end %>
+  </tr>
+</table>

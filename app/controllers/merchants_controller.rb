@@ -66,6 +66,7 @@ class MerchantsController < ApplicationController
   def find_merchant
     @merchant = Merchant.find_by(id: params[:id].to_i)
 
+
     unless @merchant
       render "layouts/notfound", status: :not_found
     end

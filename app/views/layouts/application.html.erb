@@ -34,6 +34,16 @@
     <% end %>
 
     <%= yield %>
+    <br>
+    <br>
+    <!-- Copyright -->
+  <div class="footer-copyright text-center">© 2018 Copyright:
+    <a href="adadevelopersacademy.org"> Regretsy.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 
     <footer class="page-footer font-small pt-4">
       <div class="container-fluid text-center text-md-left">
@@ -54,16 +64,16 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <!-- <div class="modal-body">
-                    <%= form_with class: "form-group" do |f|%>
+                  <div class="modal-body">
+                    <%= form_with url: find_order_path, method: :post, class: "form-group" do |f|%>
                       <%= f.label :id, 'Order ID' %>
-                      <%= f.text_field :id, class: "form-control"%>
+                      <%= f.text_field :id, class: "form-control mb-3", type: :number, required: true %>
+
+                      <%= f.label :email, 'Email' %>
+                      <%= f.text_field :email, class: "form-control mb-3", required: true%>
 
                       <%= f.submit "Submit", class: "product-button btn btn-primary", role: "button" %>
                     <% end %>
-                  </div> -->
-                  <div class="modal-footer">
-                    <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
                   </div>
                 </div>
               </div>

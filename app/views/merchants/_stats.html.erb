@@ -19,3 +19,17 @@
 <h3>Total (Active) Products: <%= @activeproducts.count %> products currently in stock</h3>
 <p><%= "Products - Out Of Stock Products: #{@soldout.count} products currently out of stock" %></p>
 <p><%= "Products - Archived (Inactive) Products: #{@inactive.count} products archived" %></p>
+
+<!-- <div class="container">
+  <div class="jumbotron text-center"> <%#grey box%>
+    <h7>My Order Statistics</h7>
+  </div>
+</div>
+<br>
+<br>
+<ul class="list-group">
+  <h3>Total Sales: <%= readable_cost(@merchant.total_revenue) %></h3>
+  <ul class="list-group">
+    <% @merchant.sales_by_status.each do |status, sales| %>
+    <li class="list-group-item text-center d-inline-block"><%= "Sales - #{status.capitalize} Orders: " %><%= readable_cost(sales) %></h4><% end %>
+  </ul> -->

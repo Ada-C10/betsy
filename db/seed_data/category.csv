@@ -1,9 +1,9 @@
-id,name
-1,South America
-2,North America
-3,Asia
-4,Clothing
-5,Experiences
-6,Europe
-7,Africa
-8,Accessories
+id,name,image_url
+1,South America,category-southamerica.jpg
+2,North America,category-northamerica.jpg
+3,Asia,category-asia.jpg
+4,Clothing,category-clothing.jpg
+5,Experiences,category-experiences.jpg
+6,Europe,category-europe.jpg
+7,Africa,category-africa.jpg
+8,Accessories,category-accessories.jpg

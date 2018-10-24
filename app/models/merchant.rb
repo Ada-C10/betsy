@@ -41,7 +41,6 @@ class Merchant < ApplicationRecord
     return items
   end
 
-
   def total_revenue
     paid_items = self.items_by_status("paid")
     complete_items = self.items_by_status("complete")

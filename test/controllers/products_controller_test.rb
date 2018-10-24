@@ -230,6 +230,9 @@ describe ProductsController do
 
         expect{patch products_status_path(merchants(:fred).id,product.id)}.wont_change 'Product.count'
 
+        product = Product.find_by(id: product.id)
+        expect(product.active).must_equal false
+
         must_respond_with :redirect
       end
 
@@ -237,7 +240,11 @@ describe ProductsController do
         product = products(:fannypack)
         product.active = false
         product.save
+
         expect{patch products_status_path(merchants(:fred).id,product.id)}.wont_change 'Product.count'
+
+        product = Product.find_by(id: product.id)
+        expect(product.active).must_equal true
 
         must_respond_with :redirect
       end

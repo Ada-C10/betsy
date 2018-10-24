@@ -86,7 +86,7 @@ describe OrderitemsController do
 
       new_orderitem = Orderitem.find(id)
 
-      must_respond_with :internal_server_error
+      must_respond_with :redirect
       expect(old_orderitem.quantity).must_equal new_orderitem.quantity
       expect(old_orderitem.product_id).must_equal new_orderitem.product_id
       expect(old_orderitem.order_id).must_equal new_orderitem.order_id

@@ -39,6 +39,7 @@ gem "omniauth"
 gem "omniauth-github"
 
 gem 'textacular', '~> 5.0', require: 'textacular/rails'
+gem 'gretel'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
