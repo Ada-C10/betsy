@@ -6,13 +6,6 @@ class OrderItemsController < ApplicationController
     order_item = OrderItem.new(order_items_params)
     order_item.product = Product.find_by(id: params[:id])
 
-    if order_item.quantity > order_item.product.inventory
-      flash[:status] = :failure
-      flash[:result_text] = "Could not add item to cart"
-      flash[:messages] = order_item.errors.messages
-      redirect_back fallback_location: root_path
-    end
-
     if @cart
       order_item.order_id = @cart.id
     else
@@ -21,15 +14,15 @@ class OrderItemsController < ApplicationController
       session[:order_id] = order.id
     end
 
-    if order_item.save
-      flash[:status] = :success
-      flash[:result_text] = "Added item to cart"
-      redirect_to order_path(order_item.order)
-    else
+    unless order_item.quantity < order_item.product.inventory && order_item.save
       flash[:status] = :failure
       flash[:result_text] = "Could not add item to cart"
       flash[:messages] = order_item.errors.messages
       redirect_back fallback_location: root_path
+    else
+      flash[:status] = :success
+      flash[:result_text] = "Added item to cart"
+      redirect_to order_path(order_item.order)
     end
 
   end
