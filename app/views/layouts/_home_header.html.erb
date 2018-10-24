@@ -1,4 +1,7 @@
 <header class="home-page">
+<div>
+  <%= breadcrumbs pretext: "You are here:  ", display_single_fragment: true, style: :bootstrap, separator: '' %>
+</div>
   <nav class="navbar navbar-dark navbar-expand-md fixed-top scrolling-navbar navbar-icon-top">
     <%= link_to '<i class="fa fa-home fa-lg"></i>'.html_safe, root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
@@ -6,8 +9,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <%= link_to "Shop", products_path, class: "nav-link" %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Shop
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "View all products", products_path, class: "dropdown-item" %>
+            <%= link_to "View by category", categories_path, class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "View by seller", merchants_path, class: "dropdown-item" %>
+          </div>
         </li>
         <% if session[:user_id] %>
           <li class="nav-item dropdown">
@@ -61,5 +72,4 @@
      </div>
    </div>
  </div>
- <%= breadcrumbs pretext: "You are here: ", display_single_fragment: true, style: :bootstrap, separator: '' %>
 </header>

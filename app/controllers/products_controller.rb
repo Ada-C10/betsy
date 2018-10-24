@@ -99,7 +99,7 @@ class ProductsController < ApplicationController
 
       if @merchant.nil?
         render "layouts/notfound", status: :not_found
-      end  
+      end
     end
   end
 
