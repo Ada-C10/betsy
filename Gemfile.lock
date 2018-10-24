@@ -96,6 +96,8 @@ GEM
     formatador (0.2.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    gretel (3.0.9)
+      rails (>= 3.1.0)
     guard (2.14.2)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -287,6 +289,7 @@ DEPENDENCIES
   chromedriver-helper
   dotenv-rails
   font-awesome-rails
+  gretel
   guard
   guard-minitest
   jbuilder (~> 2.5)

@@ -1,10 +1,12 @@
-<h1>List of Merchants</h1>
-<ul>
+<div class="container">
+  <div class="jumbotron text-center"> <%#grey box%>
+      <h2>List of Merchants</h2>
+  </div>
+</div>
+<br>
+<ul class="list-group">
   <% @merchants.each do |merchant| %>
-   <li>
-     <%= link_to merchant.name, merchant_path(merchant.id) %>
-   </li>
+  <li class="list-group-item text-center d-inline-block"><%= link_to link_to merchant.name, merchant_path(merchant.id) %></li>
   <% end %>
 </ul>
-<!-- 
-clean up this loop by putting loop in partial -->
+</div>

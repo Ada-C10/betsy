@@ -11,29 +11,33 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <%= link_to "Shop", products_path, class: "nav-link" %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Shop
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "View all products", products_path, class: "dropdown-item" %>
+            <%= link_to "View by category", categories_path, class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "View by seller", merchants_path, class: "dropdown-item" %>
+          </div>
         </li>
         <% if session[:user_id] %>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              My Seller Account
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to "View My Store", merchant_products_path(session[:user_id]), class: "dropdown-item" %>
-              <%= link_to "My Seller Dashboard", dashboard_path, class: "dropdown-item" %>
-              <div class="dropdown-divider"></div>
-              <% if session[:order_id] %>
-                <%= link_to "Log Out", logout_path, method: "delete", class: "dropdown-item", data: {confirm: "Are you sure? You will lose all items in your cart."} %>
-              <% else %>
-                <%= link_to "Log Out", logout_path, method: "delete", class: "dropdown-item" %>
-              <% end %>
-            </div>
-          </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            My Seller Account
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "View My Store", merchant_products_path(session[:user_id]), class: "dropdown-item" %>
+            <%= link_to "My Seller Dashboard", dashboard_path, class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Log Out", logout_path, method: "delete", class: "dropdown-item" %>
+          </div>
+        </li>
         <% else %>
-          <li class="nav-item">
-            <%= link_to "Seller Login", "/auth/github", class: "nav-link"%>
-          </li>
+        <li class="nav-item">
+          <%= link_to "Seller Login", "/auth/github", class: "nav-link"%>
+        </li>
         <% end %>
         <% if session[:order_id] %>
           <li class="nav-item">
