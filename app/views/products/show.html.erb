@@ -22,31 +22,15 @@
           <br >
           <%= @product.inventory %> currently in stock
           <br>
-          <!-- <a href=" <%= product_order_item_path(@product.id) %>  " class="btn btn-primary">Add to cart</a> -->
-          <% if @cart %>
-            <%= form_with model: @order_item, url: order_items_path, method: :post do |f| %>
-            <%= hidden_field_tag(:product_id, @product.id) %>
 
-            <%= f.label :quantity %>
-            <%= f.number_field :quantity, value: 1 %>
 
-            <%= f.submit "Add to cart" %>
-            <% end %>
-          <!-- create an order_item and add to existing cart -->
+
+          <% if @product.already_in_cart(@cart) %>
+          <%= render partial: "add_to_cart", locals: { url: order_item_path(@product.already_in_cart(@cart)), method: :put } %>
+
           <% else %>
-
-
-            <%= form_with model: @order_item, url: orders_path, method: :post do |f| %>
-            <%= hidden_field_tag(:product_id, @product.id) %>
-
-            <%= f.label :quantity %>
-            <%= f.number_field :quantity, value: 1 %>
-
-            <%= f.submit "Add to cart" %>
+          <%= render partial: "add_to_cart", locals: { url: add_item_path, method: :post } %>
           <% end %>
-
-          <% end %>
-
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   put '/orders/confirmation', to: 'orders#confirmation', as: 'confirmation'
   get 'orders/nosnacks', to: 'orders#nosnacks', as: 'nosnacks'
   get 'orders/:id/finalize', to: 'orders#finalize', as: 'finalize'
+  post 'products/:id/order_items', to: 'order_items#create', as: 'add_item'
   resources :orders
   resources :categories
 
