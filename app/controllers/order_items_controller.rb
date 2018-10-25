@@ -4,21 +4,27 @@ class OrderItemsController < ApplicationController
   # has_many :order_items, through: products
   def create
     order_item = OrderItem.new(order_items_params)
-    order_item.order_id = @cart.id
-    order_item.product = Product.find_by(id: params[:product_id])
+    order_item.product = Product.find_by(id: params[:id])
+
+    if @cart
+      order_item.order_id = @cart.id
+    else
+      order = Order.create
+      order_item.order_id = order.id
+      session[:order_id] = order.id
+    end
 
     if order_item.save
       flash[:status] = :success
       flash[:result_text] = "Added item to cart"
-
-      redirect_to order_path(@cart)
+      redirect_to order_path(order_item.order)
     else
       flash[:status] = :failure
       flash[:result_text] = "Could not add item to cart"
       flash[:messages] = order_item.errors.messages
       redirect_back fallback_location: root_path
-      # render :new, status: :bad_request
     end
+
   end
 
   def update
@@ -50,7 +56,10 @@ class OrderItemsController < ApplicationController
     redirect_to order_path(@cart)
   end
 
+  private
+
   def order_items_params
-    return params.require(:order_item).permit(:quantity)
+    return params.require(:order_item).permit(:quantity) 
   end
+
 end

@@ -6,6 +6,7 @@ class OrderItem < ApplicationRecord
 
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validate :cant_exceed_inventory
 
   def available_stock
     return [*1..self.product.inventory]
@@ -14,8 +15,6 @@ class OrderItem < ApplicationRecord
   def item_total
     return self.quantity * self.product.price
   end
-
-
 
   def product_name
     return self.product.name
@@ -33,10 +32,16 @@ def total
 return  self.item_total * TAX_RATE
 end
 
-#
-# def self.revenue
-#   paid_order_items = self.order.where(status: "paid")
-# end
+
+  def cant_exceed_inventory
+
+    if quantity > self.product.inventory
+      errors.add(:quantity, "Cannot order #{quantity}. Only #{self.product.inventory} in stock.")
+    end
+
+  end
+
+
 
 
 end

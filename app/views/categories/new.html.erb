@@ -1,0 +1,14 @@
+<h2>Add a Country that Categorizes the Products You Are Selling</h2>
+
+<section>
+  <%= form_with model: @category do |f| %>
+
+  <div class="form-group">
+    <%= f.text_field :name, placeholder: "ex. Nicaragua", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+  <% end %>
+</section>

@@ -10,14 +10,17 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find_by(id: params[:id])
+
+    if @product.nil?
+      head :not_found
+    end
+
     @order_item = OrderItem.new
     @order_item.product_id = @product.id
     @reviews = @product.reviews
     @review = Review.new
 
-    if @product.nil?
-      head :not_found
-    end
+
 
   end
 

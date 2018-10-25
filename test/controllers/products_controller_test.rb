@@ -27,7 +27,7 @@ describe ProductsController do
         must_respond_with :success
       end
 
-      # I think this failure has something to do with single-use
+      # I think this failure has something to do with single-use?
 
       it "logged in merchants cannot access the show page for a product that doesn't exist" do
         product_id = Product.first.id + 1
@@ -86,18 +86,52 @@ describe ProductsController do
           must_respond_with :success
         end
 
-         #help!
 
-        it "renders 404 not_found for product that doesn't exist" do
+        it "renders not_found for product that doesn't exist" do
           product = Product.first
+          # order_items = OrderItem.all
+          # order_items.destroy_all
           product.destroy
+
           get edit_product_path (product)
-          must_respond_with :failure
+          must_respond_with :not_found
         end
       end
 
       describe "update" do
+        let (:product_hash) {
+          {
+            product: {
+              name: 'Fuzzy Bunnies',
+              price: 10,
+              inventory: 20,
+            }
+          }
+        }
+        it "succeeds for valid data and an extant work ID" do
+          product = products(:butter).id
+          expect {
+            patch product_path(product), params: product_hash
+          }.wont_change 'Product.count'
 
+          must_respond_with :redirect
+
+          product = Product.find_by(id: product)
+          expect(product.name).must_equal 'Fuzzy Bunnies'
+          expect(product.price).must_equal 10
+          expect(product.inventory).must_equal 20
+        end
+
+        it "renders bad_request for badf data" do
+          product = products(:butter).id
+          product_hash[:product][:price] = 0
+          expect {
+            patch product_path(product), params: product_hash
+          }.wont_change 'Product.count'
+
+          must_respond_with :bad_request
+
+        end
       end
     end
   end
@@ -123,13 +157,9 @@ describe ProductsController do
 
       # I think this failure has something to do with single-use
       it "guest users cannot access the show page for a product that doesn't exist" do
-        # product_id = Product.first.id + 1
-        #
-        # get product_path(product_id)
-        # must_respond_with :not_found
 
         get product_path(Product.last.id + 1)
-        must_respond_with 404
+        must_respond_with :not_found
       end
 
       it "guest users cannot access the new product form" do
