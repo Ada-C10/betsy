@@ -18,13 +18,13 @@
           </div>
         </li>
         <% if session[:user_id] %>
-          <li class="nav-item dropdown"><%= new_orders_count(@orders_count) %>
+          <li class="nav-item dropdown"><%= new_orders_badge%>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               My Seller Account
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "View My Store", merchant_products_path(session[:user_id]), class: "dropdown-item" %>
-              <%= link_to "My Seller Dashboard", dashboard_path, class: "dropdown-item" %><%= new_orders_count(@orders_count) %>
+              <%= link_to "My Seller Dashboard", dashboard_path, class: "dropdown-item" %><%= new_orders_badge %>
               <div class="dropdown-divider"></div>
               <% if session[:order_id] %>
                 <%= link_to "Log Out", logout_path, method: "delete", class: "dropdown-item", data: {confirm: "Are you sure? You will lose all items in your cart."} %>
