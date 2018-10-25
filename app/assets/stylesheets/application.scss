@@ -48,37 +48,37 @@ main {
 .pt-md-5, .py-md-5 {
   padding-top: 18rem !important;
 }
-//
-// @media (max-width: 740px) {
+
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 100vw;
+  }
+
+  .pt-md-5, .py-md-5 {
+    padding-top: 15rem !important;
+  }
+}
+
+// @media only screen and (min-width: 768px) and (max-width: 1024px) {
 //   html,
 //   body,
-//   header,
+//   .home-page,
 //   .view {
-//     height: 100vw;
-//   }
-//
-//   .pt-md-5, .py-md-5 {
-//     padding-top: 15rem !important;
+//     height: 84%;
 //   }
 // }
-
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  html,
-  body,
-  .home-page,
-  .view {
-    height: 84%;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  html,
-  body,
-  .home-page,
-  .view {
-    height: 80%;
-  }
-}
+//
+// @media only screen and (max-width: 767px) {
+//   html,
+//   body,
+//   .home-page,
+//   .view {
+//     height: 80%;
+//   }
+// }
 
 h1 {
   letter-spacing: 8px;
