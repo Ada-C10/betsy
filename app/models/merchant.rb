@@ -1,3 +1,4 @@
+require 'pry'
 class Merchant < ApplicationRecord
   STATUSES = %w(pending paid complete cancelled)
 

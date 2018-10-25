@@ -47,7 +47,24 @@
   </div>
 </div>
 <div class="container home-body">
-  <h4>Featured Products</h4>
+  <div id="featurename">Featured Products</div>
+  <br>
+  <% featured = @products.last(6) %>
+  <% featured.each_slice(3) do |row| %>
   <div class="row">
+    <% row.each do |product| %>
+    <div class="col-md-4 col-md-4 col-md-4 text-center d-flex justify-content-around">
+      <div class="card" style="width: 20rem;">
+        <%= image_tag(product.image_url, width: 500, alt: product.name, class: "card-img-top") %>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to product.name, product_path(product.id) %></h5>
+          <p class="card-text"><%= "Description: #{product.description}" %></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
   </div>
+  <% end %>
+</div>
+</div>
 </div>
