@@ -5,9 +5,9 @@
   <thead>
     <tr>
       <th scope="col"></th>
+      <th scope="col">Purchase Date</th>
       <th scope="col">Product Name</th>
       <th scope="col">Total Quantity</th>
-      <th scope="col">Purchase Date</th>
       <th scope="col">Order Status</th>
       <th scope="col">Item Price</th>
       <th scope="col">Item Revenue</th>
@@ -18,9 +18,10 @@
     <% @items.each do |order_item| %>
     <tr>
       <td><img src="<%= find_image_for(order_item.product) %>" alt="snack image", height="100", width="100"></td>
-      <td><%= link_to "#{order_item.product_name}", summary_path(order_item.order.id)%></td>
+      <td><%= link_to readable_date(order_item.created_at), summary_path(order_item.order.id) %></td>
+      <td><%= link_to order_item.product.name, product_path(order_item.product.id) %></td>
       <td><%= order_item.quantity %></td>
-      <td><%= readable_date(order_item.created_at) %></td>
+
       <td><%= order_item.order_status %></td>
       <td>$<%= order_item.product.price %></td>
       <td>$<%= order_item.item_total %></td>

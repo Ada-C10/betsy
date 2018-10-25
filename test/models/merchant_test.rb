@@ -28,6 +28,21 @@ describe Merchant do
   end
 
 
+
+
+  it "merchant has many products" do
+
+    thyme = products(:thyme)
+    taco = products(:taco)
+
+    @ironchef.must_respond_to :products
+
+    @ironchef.products.each do |product|
+      product.must_be_kind_of Product
+    end
+  end
+
+
   it "requires a name and an email" do
     merchant = Merchant.new(uid: 19, provider: 'github')
     merchant.valid?.must_equal false
