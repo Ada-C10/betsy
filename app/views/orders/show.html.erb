@@ -38,30 +38,32 @@
     <%= link_to "Checkout", edit_order_path(@order.id), class: "btn btn-secondary" %>
     <%= link_to "Continue Shopping", products_path, class: "btn btn-secondary" %>
   <% else %>
-    <h2>Order Confirmation Page</h2>
+    <h2 class="mb-5">Order Confirmation Page</h2>
 
-    <p>Email: <%= @order.email %></p>
-    <p>Created: <%= readable_date(@order.created_at) %></p>
-    <p>Order status: <%= @order.status.capitalize %></p>
-    <p>Total Cost: <%= readable_cost(@order.total_cost) %></p>
+    <p><strong>Email: </strong><%= @order.email %></p>
+    <p><strong>Placed: </strong><%= readable_date(@order.created_at) %></p>
+    <p><strong>Order status: </strong><%= @order.status.capitalize %></p>
+    <p><strong>Total Cost: </strong><%= readable_cost(@order.total_cost) %></p>
 
     <br />
     <table class="table">
       <thead>
         <tr>
-          <th>Product</th>
+          <th style="width: 250px"></th>
+          <th style="width: 15%">Product</th>
           <th>Product Description</th>
-          <th>Quantity</th>
-          <th>Price</th>
+          <th class="text-center">Quantity</th>
+          <th class="text-center">Price</th>
         </tr>
       </thead>
       <tbody>
         <% @orderitems.each do |orderitem| %>
           <tr>
+            <td><%= image_tag(orderitem.product.image_url, class: "fifty") %></td>
             <td><%= link_to orderitem.product.name, product_path(orderitem.product.id) %></td>
             <td><%= orderitem.product.description %></td>
-            <td><%= orderitem.quantity %></td>
-            <td><%= readable_cost(orderitem.line_item_price) %></td>
+            <td class="text-center"><%= orderitem.quantity %></td>
+            <td class="text-center"><%= readable_cost(orderitem.line_item_price) %></td>
           </tr>
         <% end %>
       </tbody>
