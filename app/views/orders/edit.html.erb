@@ -1,28 +1,84 @@
 <div class="container">
-  <h2>Checkout</h2>
+  <section>
+    <h1 class="no-spacing">Checkout</h1>
+    <hr />
+  </section>
 
-  <%= form_with model: @order, class: "form-group" do |f|%>
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "form-control" %>
+  <section class="mt-5">
+    <%= form_with model: @order do |f|%>
+      <div class="form-group row">
+        <%= f.label :name, class: "col-md-3 col-form-label"%>
+        <div class="col-md-9">
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+      </div>
 
-    <%= f.label :email, "Email" %>
-    <%= f.text_field :email, class: "form-control" %>
+      <div class="form-group row">
+        <%= f.label :email, "Email", class: "col-md-3 col-form-label"%>
+        <div class="col-md-9">
+          <%= f.text_field :email, class: "form-control" %>
+        </div>
+      </div>
 
-    <%= f.label :address, "Street Address" %>
-    <%= f.text_field :address, class: "form-control" %>
+      <div class="form-group row">
+        <%= f.label :address, "Address", class: "col-md-3 col-form-label"%>
+        <div class="col-md-9">
+          <%= f.text_field :address, class: "form-control" %>
+        </div>
+      </div>
 
-    <%= f.label :zip, "Zip Code" %>
-    <%= f.text_field :zip, class: "form-control" %>
+      <div class="form-group row">
+        <%= f.label :zip, "Zip", class: "col-md-3 col-form-label"%>
+        <div class="col-md-9">
+          <%= f.text_field :zip, class: "form-control" %>
+        </div>
+      </div>
 
-    <%= f.label :cc_num, "Credit Card" %>
-    <%= f.text_field :cc_num, class: "form-control" %>
+      <div class="row">
+        <div class="col-xs-12 col-md-4">
+          <div class="card mt-5 mb-3">
+            <div class="card-header bg-primary text-white text-center">
+              <h5 class="mb-1 no-spacing">
+                  Payment Details
+              </h5>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <%= f.label :cc_num, "Credit Card" %>
+                <div class="input-group">
+                  <%= f.text_field :cc_num, class: "form-control" %>
+                </div>
+              </div>
 
-    <%= f.label :exp_date, "Expiration" %>
-    <%= f.text_field :exp_date, class: "form-control" %>
-
-    <%= f.label :cvv, "Security Code" %>
-    <%= f.text_field :cvv, class: "form-control" %>
-
-    <%= f.submit "Complete Order", class: "product-button btn btn-primary", role: "button" %>
-  <% end %>
+              <div class="row">
+                <div class="col-xs-7 col-md-7">
+                  <div class="form-group">
+                    <%= f.label :exp_date, "Expiration" %>
+                    <div class="col-xs-8 col-lg-8 pl-ziro">
+                        <%= f.text_field :exp_date, class: "form-control", placeholder: "MMYY" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-4 col-md-4 pull-right">
+                  <div class="form-group">
+                    <%= f.label :cvv, "CVV" %>
+                    <%= f.text_field :cvv, class: "form-control" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <h6>
+                Final Payment: <strong><%= readable_cost(@total_cost) %></strong>
+              </h6>
+            </div>
+          </div>
+          <br/>
+          <div>
+            <%= f.submit "Complete Order", class: "product-button btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </section>
 </div>

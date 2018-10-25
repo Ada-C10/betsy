@@ -1,12 +1,11 @@
 <div class="container">
-  <h2 class="display-4 text-center">404</h2>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6 mt-5 text-center">
       <%= image_tag("lost1.jpg", :alt => "404") %>
     </div>
-    <div class="col-sm-6">
-      <br />
-      <p><%= "Uh oh! That page just went on vacation. Sorry about that." %></p>
+    <div class="col-sm-6 mt-5">
+      <h2 class="display-4">404</h2>
+      <p><strong>Uh oh! That page just went on vacation. Sorry about that.</strong></p>
       <br />
       <p><%= "Search No Regretsy" %></p>
       <%= form_tag search_path, method: :get, class: "form-inline" do %>

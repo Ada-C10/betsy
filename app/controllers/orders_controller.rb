@@ -27,6 +27,7 @@ class OrdersController < ApplicationController
       @order.email = @current_user.email
       @order.save
     end
+    @total_cost = @order.total_cost
   end
 
   def update
