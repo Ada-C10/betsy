@@ -1,3 +1,9 @@
+<%= render partial: 'layouts/form_errors',
+locals: {
+  model: @product
+}
+%>
+
 <section>
   <%= form_with model: @product do |f| %>
 
