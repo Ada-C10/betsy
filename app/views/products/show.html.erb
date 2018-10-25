@@ -52,7 +52,7 @@
       <% @reviews.each do |review| %>
         <blockquote class="blockquote bg-light mb-5 text-center pt-4 pb-4">
           <p><%= review.description %></p>
-          <footer class="blockquote-footer"><%= review.name %></footer>
+          <footer class="blockquote-footer"><%= review.name %> on <%= readable_date(review.created_at) %></footer>
         </blockquote>
       <% end %>
       <% if @product.reviews.count != 0 %>
