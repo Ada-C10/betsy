@@ -2,8 +2,7 @@ class ReviewsController < ApplicationController
 
   def create
     review = Review.new(review_params)
-    product = Product.find_by(id: params[:id])
-    review.product = product
+    review.product = Product.find_by(id: params[:id])
 
     merchant_products = Product.all.where(merchant_id:@logged_in_merchant.id)
 

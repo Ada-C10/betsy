@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   private
 
   def find_home_category
-    @categories = Category.all.map
+    @categories = Category.all
   end
 
   def find_orders
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def find_merchants
-    @merchants = Merchant.all.map
+    @merchants = Merchant.all
   end
 
 
