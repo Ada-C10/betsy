@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div class="container">
   <% if @orderitems.size == 0 %>
     <h2 class="mb-5">Your Cart</h2>
@@ -24,37 +23,12 @@
               <td><%= link_to orderitem.product.name, product_path(orderitem.product.id) %></td>
               <td><%= orderitem.product.description %></td>
               <td>
-=======
-<% if @orderitems.size == 0 %>
-  <h2>Your Cart</h2>
-  <p>There are no items in your cart.</p>
-<% elsif !session[:order_id].nil? && @order.status == "pending" %>
-  <h2>Your Cart</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Product Description</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Remove From Cart</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @orderitems.each do |orderitem| %>
-        <tr>
-          <td><%= link_to orderitem.product.name, product_path(orderitem.product.id) %></td>
-          <td><%= orderitem.product.description %></td>
-          <td>
->>>>>>> e4ab5f3b0e58dc66f986eed97467ed84e12898b4
-
-            <%= form_with model: orderitem, url: orderitem_path(orderitem), class: "cart-quantity-form", method: :patch do |f|%>
-              <%= f.text_field :quantity, type: :number, value: orderitem.quantity, placeholder: orderitem.quantity, required: true, min: 1, max: orderitem.product.inventory, maxlength: 3 %>
-              <%= f.hidden_field :product_id, value: orderitem.product.id %>
-              <%= f.submit "Update Cart", class: "cart-quantity-button btn", role: "button" %>
-            <% end %>
-
-          </td>
+                <%= form_with model: orderitem, url: orderitem_path(orderitem), class: "cart-quantity-form", method: :patch do |f|%>
+                  <%= f.text_field :quantity, type: :number, value: orderitem.quantity, placeholder: orderitem.quantity, required: true, min: 1, max: orderitem.product.inventory, maxlength: 3 %>
+                  <%= f.hidden_field :product_id, value: orderitem.product.id %>
+                  <%= f.submit "Update Cart", class: "cart-quantity-button btn", role: "button" %>
+                <% end %>
+              </td>
           <td><%= readable_cost(orderitem.line_item_price) %></td>
           <td><%= link_to "X", orderitem_path(orderitem.id), method: :delete %></td>
         </tr>
