@@ -55,7 +55,6 @@ describe OrderItem do
   # RELATIONS TESTS
   describe 'relations' do
     let(:order_item) { order_items(:order_item_6) }
-    
 
     # products
     it 'must relate to a product' do
@@ -103,7 +102,7 @@ describe OrderItem do
 
     # orders
     it 'must relate to an order' do
-
+      
       expect(order_item).must_respond_to :order
       expect(order_item.order).must_equal orders(:order_three)
     end
