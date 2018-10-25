@@ -6,7 +6,7 @@
 <br>
 <ul class="list-group">
   <% @merchants.each do |merchant| %>
-  <li class="list-group-item text-center d-inline-block"><%= link_to link_to merchant.name, merchant_path(merchant.id) %></li>
+  <li class="list-group-item text-center d-inline-block"><%= link_to link_to merchant.name, merchant_products_path(merchant.id) %></li>
   <% end %>
 </ul>
 </div>

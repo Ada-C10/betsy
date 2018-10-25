@@ -1,7 +1,11 @@
 <div class="container">
   <%# breadcrumb :root %>
   <div class="jumbotron text-center">
-      <h2>List of Products</h2>
+      <% if @merchant %>
+        <h2><%= "#{@merchant.name}'s Store" %></h2>
+      <% else %>
+        <h2>List of Products</h2>
+      <% end %>
   </div>
 </div>
 
@@ -13,11 +17,11 @@
       <div class="col-sm-4 mb-4 text-center d-flex justify-content-around">
         <div class="card" style="width: 18rem;">
           <div class="card-header">
-            Sold by <%= link_to product.merchant.name, merchant_products_path(product.merchant_id) %>
+            <h5 class="no-spacing"><%= link_to product.name, product_path(product.id) %></h5>
           </div>
           <%= image_tag(product.image_url, width: 500, alt: product.name, class: "card-img-top") %>
           <div class="card-body">
-            <h5 class="card-title"><%= link_to product.name, product_path(product.id) %></h5>
+            <p class="card-title">Sold by <%= link_to product.merchant.name, merchant_products_path(product.merchant_id) %></p>
             <p class="card-text"><%= "Description: #{product.description}" %></p>
             <p class="card-text"><%= readable_cost(product.cost) %></p>
           </div>

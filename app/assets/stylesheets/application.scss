@@ -164,6 +164,14 @@ footer {
    padding-bottom: 1rem;
  }
 
+ .transparent {
+   background-color:rgba(0,0,0,0.2);
+ }
+
+ .transparent::-webkit-input-placeholder {
+   color: white;
+ }
+
 .splash-search::-webkit-input-placeholder {
   text-align: center;
 }
