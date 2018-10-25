@@ -8,7 +8,7 @@ crumb :products do
 end
 
 crumb :product do |product|
-  link product.name, product_path(product.id)
+  link "#{product.name}", product_path(product.id)
   parent :products
 end
 
@@ -17,8 +17,9 @@ crumb :categories do
   parent :root
 end
 
-crumb :category do |category|
-  link "category", category_path(category.id)
+crumb :categories do |category|
+  link "#{category.name}", category_path(category.id)
+  parent :categories
 
 end
 
@@ -27,7 +28,26 @@ crumb :merchants do
   parent :root
 end
 crumb :merchants do |merchant|
-  link "Merchant", merchant_path(merchant.id)
+  link "#{merchant.name}", merchant_path(merchant.id)
+  parent :merchants
+end
+
+crumb :orders do
+  link "Orders", orders_path
+  parent :root
+end
+crumb :orders do |order|
+  link "#{order.id}", order_path(order.id)
+  parent :orders
+end
+
+crumb :orderitems do
+  link "Orderitems", orderitems_path
+  parent :root
+end
+crumb :orderitems do |orderitem|
+  link "#{orderitem.id}", orderitem_path(order.id)
+  parent :orders
 end
 
 # crumb :issue do |issue|

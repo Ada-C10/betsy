@@ -1,85 +1,68 @@
-<div class="container">
-  <% if @orderitems.size == 0 %>
-    <h2 class="mb-5">Your Cart</h2>
-    <p>There are no items in your cart.</p>
-  <% elsif !session[:order_id].nil? && @order.status == "pending" %>
-    <h2 class="mb-5">Your Cart</h2>
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th style="width: 200px"></th>
-            <th style="width: 13%">Product</th>
-            <th>Product Description</th>
-            <th class="text-center">Quantity</th>
-            <th class="text-center">Price</th>
-            <th class="text-center">Remove</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @orderitems.each do |orderitem| %>
-            <tr>
-              <td><%= image_tag(orderitem.product.image_url, class: "fifty") %></td>
-              <td><%= link_to orderitem.product.name, product_path(orderitem.product.id) %></td>
-              <td><%= orderitem.product.description %></td>
-              <td>
+<% if @orderitems.size == 0 %>
+  <h2>Your Cart</h2>
+  <p>There are no items in your cart.</p>
+<% elsif !session[:order_id].nil? && @order.status == "pending" %>
+  <h2>Your Cart</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Product Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Remove From Cart</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orderitems.each do |orderitem| %>
+        <tr>
+          <td><%= link_to orderitem.product.name, product_path(orderitem.product.id) %></td>
+          <td><%= orderitem.product.description %></td>
+          <td>
 
-                <%= form_with model: orderitem, url: orderitem_path(orderitem), class: "cart-quantity-form text-center", method: :patch do |f|%>
-                  <%= f.text_field :quantity, type: :number, value: orderitem.quantity, placeholder: orderitem.quantity, class: "text-center", required: true, min: 1, max: orderitem.product.inventory, maxlength: 3 %>
-                  <%= f.hidden_field :product_id, value: orderitem.product.id %>
-                  <%= f.submit "Update", class: "cart-quantity-button btn", role: "button" %>
-                <% end %>
+            <%= form_with model: orderitem, url: orderitem_path(orderitem), class: "cart-quantity-form", method: :patch do |f|%>
+              <%= f.text_field :quantity, type: :number, value: orderitem.quantity, placeholder: orderitem.quantity, required: true, min: 1, max: orderitem.product.inventory, maxlength: 3 %>
+              <%= f.hidden_field :product_id, value: orderitem.product.id %>
+              <%= f.submit "Update Cart", class: "cart-quantity-button btn", role: "button" %>
+            <% end %>
 
-              </td>
-              <td><%= readable_cost(orderitem.line_item_price) %></td>
-              <td class="text-center"><%= link_to "X", orderitem_path(orderitem.id), method: :delete %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+          </td>
+          <td><%= readable_cost(orderitem.line_item_price) %></td>
+          <td><%= link_to "X", orderitem_path(orderitem.id), method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-    <hr />
-    <h6 class="ml-3">
-      Total: <%= readable_cost(@order.total_cost) %>
-    </h6>
+  <%= link_to "Checkout", edit_order_path(@order.id), class: "btn btn-secondary" %>
+  <%= link_to "Continue Shopping", products_path, class: "btn btn-secondary" %>
+<% else %>
+  <h2>Order Confirmation Page</h2>
 
-    <hr />
-    <%= link_to "Checkout", edit_order_path(@order.id), class: "btn btn-secondary mt-3" %>
-    <%= link_to "Continue Shopping", products_path, class: "btn btn-secondary mt-3" %>
-  <% else %>
-    <h2 class="mb-5">Order Confirmation Page</h2>
+  <p>Email: <%= @order.email %></p>
+  <p>Created: <%= readable_date(@order.created_at) %></p>
+  <p>Order status: <%= @order.status.capitalize %></p>
+  <p>Total Cost: <%= readable_cost(@order.total_cost) %></p>
 
-    <p><strong>Email: </strong><%= @order.email %></p>
-    <p><strong>Placed: </strong><%= readable_date(@order.created_at) %></p>
-    <p><strong>Order status: </strong><%= @order.status.capitalize %></p>
-    <p><strong>Total Cost: </strong><%= readable_cost(@order.total_cost) %></p>
-
-    <br />
-
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th style="width: 250px"></th>
-            <th style="width: 15%">Product</th>
-            <th>Product Description</th>
-            <th class="text-center">Quantity</th>
-            <th class="text-center">Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @orderitems.each do |orderitem| %>
-            <tr>
-              <td><%= image_tag(orderitem.product.image_url, class: "fifty") %></td>
-              <td><%= link_to orderitem.product.name, product_path(orderitem.product.id) %></td>
-              <td><%= orderitem.product.description %></td>
-              <td class="text-center"><%= orderitem.quantity %></td>
-              <td class="text-center"><%= readable_cost(orderitem.line_item_price) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  <% end %>
-</div>
+  <br />
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Product Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orderitems.each do |orderitem| %>
+        <tr>
+          <td><%= link_to orderitem.product.name, product_path(orderitem.product.id) %></td>
+          <td><%= orderitem.product.description %></td>
+          <td><%= orderitem.quantity %></td>
+          <td><%= readable_cost(orderitem.line_item_price) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
