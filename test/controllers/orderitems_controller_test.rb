@@ -1,5 +1,4 @@
 require "test_helper"
-require 'pry'
 describe OrderitemsController do
   let(:product){ products(:kilimanjaro) }
   let(:order){ orders(:ordlegend) }
