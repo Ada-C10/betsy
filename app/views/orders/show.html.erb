@@ -41,11 +41,7 @@
 <% else %>
   <h2>Order Confirmation Page</h2>
 
-  <p>Email: <%= @order.email %></p>
-  <p>Created: <%= readable_date(@order.created_at) %></p>
-  <p>Order status: <%= @order.status.capitalize %></p>
-  <p>Total Cost: <%= readable_cost(@order.total_cost) %></p>
-
+    <p class="mt-5"><strong>ORDER NUMBER: </strong><%= @order.id %></p>
     <p><strong>Email: </strong><%= @order.email %></p>
     <p><strong>Placed: </strong><%= readable_date(@order.created_at) %></p>
     <p><strong>Order status: </strong><%= @order.status.capitalize %></p>

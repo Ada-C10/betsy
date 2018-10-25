@@ -35,7 +35,7 @@ body,
 }
 
 main {
-  min-height: 100vh;
+  min-height: 100vw;
 }
 
 .view {
@@ -132,11 +132,6 @@ footer {
 
 }
 
-// .breadcrumb-item + .breadcrumb-item::before         {
-//    font-family: 'fontAwesome';
-//    content: "\f101" !important;
-// }
-
 .fifty {
   width: 160px;
   height: 120px;
@@ -179,7 +174,7 @@ footer {
 }
 
 div.field_with_errors {
-  display: inline;
+  display: none;
 }
 
 .nav-item {

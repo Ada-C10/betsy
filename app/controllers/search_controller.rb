@@ -3,7 +3,7 @@ class SearchController < ApplicationController
 
   def search
     @term = params[:search]
-    @products = Product.text_search(params[:search])
+    @products = Product.text_search(params[:search]).where(active: true)
     @merchants = Merchant.text_search(params[:search])
     @categories = Category.text_search(params[:search])
     @sum = @products.length + @merchants.length + @categories.length
