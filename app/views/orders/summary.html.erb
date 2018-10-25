@@ -88,11 +88,12 @@
 </table>
 </section>
 
+<%#
 <nav class="navbar navbar-expand-md">
   <span>
     <%=link_to "Cancel this order", order_path(@order), method: :delete, data: { confirm: "Order is currently #{@order.status}. Are you sure you want to cancel?" }, class: "btn btn-danger mx-1" %>
-  </span>
-</nav>
+  <%#</span>
+</nav> %>
 <% else %>
 
 <h2>No peeking in other carts, please!</h2>
