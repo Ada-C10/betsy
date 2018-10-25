@@ -24,19 +24,47 @@ class Merchant < ApplicationRecord
 
   end
 
+  def order_total
+    total = 0
+    self.order_items.each do |order_item|
+      if order_item.order.status == "paid"
+        total += order_item.item_total
+      end
+    end
+    return total
+  end
+
+
+
+  def tax
+    return (order_total * 0.1)
+  end
+
+
+  def total_tax
+    return (order_total + tax)
+  end
 
 
 
   #will try and use this method instead of doing all the work that is now taking place in the show.html.erb
-  def logged_merchant
-    if @logged_in_merchant
-      if @logged_in_merchant.id != nil &&  @logged_in_merchant.id ==  @merchant.id
-        return true
-      end
-      return false
-    end
-    return false
-  end
+  # def logged_merchant
+  #   if @logged_in_merchant
+  #     if @logged_in_merchant.id != nil &&  @logged_in_merchant.id ==  @merchant.id
+  #       return true
+  #     end
+  #     return false
+  #   end
+  #   return false
+  # end
+
+
+  #TODO total revenue by status completed
+
+
+
+
+#TODO filter order displayed by status
 
 
 end

@@ -59,7 +59,7 @@
 
         <% if @logged_in_merchant %>
         <ul class="navbar-nav navbar-right">
-          <li class="nav-item"><a class="nav-link" href="<%= merchant_account_path(@logged_in_merchant) %>">My Account</a></li>
+          <li class="nav-item"><a class="nav-link" href="<%= merchant_account_path %>">My Account</a></li>
           <li class="nav-item"><a class="nav-link" href="/logout" data-method="delete">Logout</a></li>
           <% else %>
           <li class="nav-item"><a class="nav-link" href="/auth/github">Login</a></li>
@@ -127,7 +127,7 @@
       </div>
 
     </div>
-  </header>
+</header>
 
 
   <% if flash[:result_text] or flash[:messages] %>

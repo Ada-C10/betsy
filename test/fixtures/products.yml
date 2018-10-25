@@ -8,6 +8,7 @@ thyme:
   merchant: iron_chef
   categories: atlantis, pandora
   inventory: 10
+  status: true
 
 butter:
   name: Butter
@@ -17,6 +18,8 @@ butter:
   merchant: hells
   categories: asgard
   inventory: 10
+  status: true
+
 
 steak:
   name: Steak
@@ -26,6 +29,8 @@ steak:
   merchant: bake_off
   categories: asgard
   inventory: 10
+  status: true
+
 
 donut:
   name: Donut
@@ -35,6 +40,8 @@ donut:
   merchant: ugly
   categories: pandora, atlantis
   inventory: 10
+  status: true
+
 
 sherbert:
   name: Sherbet
@@ -44,6 +51,8 @@ sherbert:
   merchant: ugly
   categories: pandora, shangri, atlantis, asgard
   inventory: 10
+  status: true
+
 
 bread:
   name: bread
@@ -53,6 +62,8 @@ bread:
   merchant: ugly
   categories: asgard, pandora
   inventory: 10
+  status: true
+
 
 pickle:
   name: Pickles
@@ -62,6 +73,8 @@ pickle:
   merchant: hells
   categories: atlantis, shangri
   inventory: 10
+  status: true
+
 
 taco:
   name: Taco
@@ -71,3 +84,4 @@ taco:
   merchant: iron_chef
   categories: asgard
   inventory: 10
+  status: true

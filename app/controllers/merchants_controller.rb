@@ -1,16 +1,24 @@
-require 'pry'
 class MerchantsController < ApplicationController
-  # add new_product path in the merchant show page ex (# <%= link_to "Add Product", new_product_path %>) add in Products controller: before_action :require_login --also need to add to application controller
-
 
   def account
     @merchant = @logged_in_merchant
+
+    if @merchant.nil?
+      head :not_found
+    end
+
   end
 
   def account_order
-    @merchant = Merchant.find_by(id: params[:id])
+    @merchant = @logged_in_merchant
+
+    if @merchant.nil?
+      return head :not_found
+    end
+
     @items = @merchant.order_items
   end
+
 
 
 
@@ -18,32 +26,30 @@ class MerchantsController < ApplicationController
     @product = Product.find_by(id: params[:id])
 
     if @product.status
-      @product.status = false
+      @product.update_attribute(:status, false)
     else
-      @product.status = true
+      @product.update_attribute(:status, true)
     end
 
     if @product.save
       redirect_back fallback_location: root_path
+    else
+      puts "Failed to save product: #{@product.errors.messages}"
     end
 
   end
 
 
   def show
+    # @merchant = @logged_in_merchant don't use this one, will not show merchant page to user that is not logged in
     @merchant = Merchant.find_by(id: params[:id])
-    # @merchant = @logged_in_merchant
+
+    if @merchant.nil?
+      head :not_found
+    end
+
   end
 
-
-
-  # def index
-  #   @merchants = Merchant.all
-  # end
-
-  def new
-    @merchant = Merchant.new
-  end
 
   def create
     merchant_hash = request.env['omniauth.auth']
@@ -71,14 +77,6 @@ class MerchantsController < ApplicationController
     redirect_to root_path
 
   end
-
-
-  def edit
-  end
-
-  def update
-  end
-
 
 
   def destroy
