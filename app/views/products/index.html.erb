@@ -19,7 +19,7 @@
           <div class="card-header">
             <h5 class="no-spacing"><%= link_to product.name, product_path(product.id) %></h5>
           </div>
-          <%= image_tag(product.image_url, width: 500, alt: product.name, class: "card-img-top") %>
+          <img src="<%= product.image_url %>" width="500" alt="<%= product.name %>" class="card-img-top">
           <div class="card-body">
             <p class="card-title">Sold by <%= link_to product.merchant.name, merchant_products_path(product.merchant_id) %></p>
             <p class="card-text"><%= "Description: #{product.description}" %></p>

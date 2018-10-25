@@ -19,7 +19,7 @@
         <tbody>
           <% @orderitems.each do |orderitem| %>
             <tr>
-              <td><%= image_tag(orderitem.product.image_url, class: "fifty") %></td>
+              <td><img src="<%= orderitem.product.image_url %>" class="fifty"></td>
               <td><%= link_to orderitem.product.name, product_path(orderitem.product.id) %></td>
               <td><%= orderitem.product.description %></td>
               <td>
@@ -71,7 +71,7 @@
         <tbody>
           <% @orderitems.each do |orderitem| %>
             <tr>
-              <td><%= image_tag(orderitem.product.image_url, class: "fifty") %></td>
+              <td><img src="<%= orderitem.product.image_url %>" class="fifty"></td>
               <td><%= link_to orderitem.product.name, product_path(orderitem.product.id) %></td>
               <td><%= orderitem.product.description %></td>
               <td class="text-center"><%= orderitem.quantity %></td>

@@ -11,7 +11,7 @@
   <% row.each do |category| %>
   <div class="col-sm-6 mb-4 text-center d-flex justify-content-around">
     <div class="card" style="width: 35rem; height: 25rem">
-      <%= image_tag(category.image_url, width: 600, alt: category.name, class: "card-img-top") %>
+      <img src="<%= category.image_url %>" width="600" alt="<%= category.name %>" class="card-img-top">
       <div class="card-img-overlay">
         <div class="card-img-top">
           <h6 class="card-title"><%= link_to category.name, category_path(category.id) %></h6>
