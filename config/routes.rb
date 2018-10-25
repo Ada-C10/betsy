@@ -34,4 +34,6 @@ Rails.application.routes.draw do
 
   post '/products/:id/reviews', to: 'reviews#create', as: 'create_review'
 
+  get '/bytesquad', to: 'pages#bytesquad', as: 'bytesquad'
+
 end
