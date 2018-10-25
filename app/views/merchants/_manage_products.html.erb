@@ -7,7 +7,7 @@
 
 <% if @products %>
 
-<%= link_to "Add Product", new_merchant_product_path(@merchant.id) %>
+<%= link_to "Add Product", new_merchant_product_path(@merchant.id), class: "btn btn-primary btn-lg active" %>
 <table class="table">
   <thead>
     <tr>
