@@ -1,16 +1,22 @@
 <div class="container">
-  <div class="row">
-    <h2 class="d-flex justify-content-center">Order Fulfillment</h2>
-    <% if @orderitems["paid"] %>
-      <p class="d-inline-block ml-auto mr-5">
-        <button class="btn btn-primary shadow-lg bg-primary rounded" type="button" data-toggle="collapse" data-target="#collapseOrderDetails" aria-expanded="false" aria-controls="collapseOrderDetails">
-          Toggle Order Details
-        </button>
-      </p>
+  <div class="jumbotron text-center">
+    <h7>New Sales</h7>
   </div>
+</div>
+<br>
+
+<div class="container">
+  <div class="row">
+  <% if @orderitems["paid"] %>
+  <p class="d-inline-block ml-auto mr-5">
+    <button class="btn btn-primary shadow-lg bg-primary rounded" type="button" data-toggle="collapse" data-target="#collapseOrderDetails" aria-expanded="false" aria-controls="collapseOrderDetails">
+      Toggle Order Details
+    </button>
+  </p>
+</div>
 
   <div class="row">
-    <h3><%= "Woohoo! You have #{@paiditems.count} New Orders!" %></h3>
+    <h3><%= "Woohoo! You have #{@paiditems.size} New Orders!" %></h3>
   </div>
   <div class="row">
     <h3>It's time to ship.</h3>
@@ -34,7 +40,7 @@
     <div class="collapse" id="collapseOrderDetails">
       <div class="card card-body d-block">
         <ul>
-          <li><%= items.count %> products</li>
+          <li><%= items.size %> products</li>
           <li><%= orderitems_total_quantity(items) %> total items</li>
           <li>Order placed on <%= readable_date(order.created_at) %></li>
           <li>Total sales: <%= readable_cost(order.total_cost) %></li>

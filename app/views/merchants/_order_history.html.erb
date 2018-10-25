@@ -1,11 +1,16 @@
-<h2>Order History</h2>
+<div class="container">
+  <div class="jumbotron text-center">
+    <h7>Order History</h7>
+  </div>
+</div>
+<br>
 <% if @orderitems["complete"] %>
-<h4>Hey you. You're amazing. You have an all-time total of <%= @completeitems.count %> complete orders.</h4>
+<h4>Hey you. You're amazing. You have an all-time total of <%= @completeitems.size %> complete orders.</h4>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">Order</th>
-      <th scope="col">Number of items</th>
+      <th scope="col">Number of Items</th>
       <th scope="col">Order Placed</th>
       <th scope="col">Sales</th>
       <th scope="col">Undo</th>
@@ -15,8 +20,8 @@
     <% @completeitems.each do |order_id, items| %>
     <% order = Order.find_by(id: order_id) %>
     <tr>
-      <td><%=order.id%></td>
-      <td><%=order.orderitems.count%></td>
+      <td><%= link_to order.id, merchant_customer_path(@merchant.id, order_id) %></td>
+      <td><%=orderitems_total_quantity(items)%></td>
       <td><%= readable_date(order.created_at) %></td>
       <td><%= readable_cost(order.total_cost) %></td>
       <td>button</td>

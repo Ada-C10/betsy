@@ -1,46 +1,148 @@
 <div class="container">
-  <div class="jumbotron text-center"> <%#grey box%>
+  <div class="jumbotron text-center">
     <h7>My Order Statistics</h7>
   </div>
 </div>
 <br>
-<br>
 
-<div class="card-columns">
+<div class="card-deck">
+  <div class="card bg-warning mb-4">
+    <h5 class="card-header d-flex w-100 justify-content-between align-items-center">
+      <small>Sales (To Date) </small><small><%= readable_cost(@merchant.total_revenue) %></small>
+    </h5>
+    <div class="card-body">
+      <% revenue = @merchant.revenue_by_status %>
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-light flex-column align-items-center">
+          <h5 class="d-flex w-100 justify-content-between">
+            <small>Paid</small>
+            <small><%= readable_cost(revenue["paid"]) %></small>
+          </h5>
+        </li>
+      </ul>
+      <ul class="list-group mt-3">
+        <li class="list-group-item list-group-item-light flex-column align-items-center">
+          <h5 class="d-flex w-100 justify-content-between">
+            <small>Complete</small>
+            <small><%= readable_cost(revenue["complete"]) %></small>
+          </h5>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card bg-warning mb-4" >
+    <h5 class="card-header d-flex w-100 justify-content-between align-items-center">
+      <small>Total Orders </small><small><%= Merchant.items_by_orderid(@merchant.orderitems).size %></small>
+    </h5>
+    <div class="card-body">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-light flex-column align-items-center">
+          <h5 class="d-flex w-100 justify-content-between">
+            <small>Pending</small>
+            <small><%= @pendingitems.size %></small>
+          </h5>
+        </li>
+      </ul>
+      <ul class="list-group mt-3">
+        <li class="list-group-item list-group-item-light flex-column align-items-center">
+          <h5 class="d-flex w-100 justify-content-between">
+            <small>Paid</small>
+            <small><%= @paiditems.size %></small>
+          </h5>
+        </li>
+      </ul>
+      <ul class="list-group mt-3">
+        <li class="list-group-item list-group-item-light flex-column align-items-center">
+          <h5 class="d-flex w-100 justify-content-between">
+            <small>Complete</small>
+            <small><%= @completeitems.size %></small>
+          </h5>
+        </li>
+      </ul>
+      <ul class="list-group mt-3">
+        <li class="list-group-item list-group-item-light flex-column align-items-center">
+          <h5 class="d-flex w-100 justify-content-between">
+            <small>Cancelled</small>
+            <small><%= @cancelleditems.size %></small>
+          </h5>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 
-      <div class="card bg-warning mb-3" >
-        <div class="card-body">
-          <h5 class="card-title">Total Sales: <%= readable_cost(@merchant.total_revenue) %></h5>
-          <p class="card-text">      <ul class="list-group">
-                  <% @merchant.revenue_by_status.each do |status, sales| %>
-                    <li class="list-group-item text-center d-inline-block"><%= "Sales - #{status.capitalize} Orders: "%><%= readable_cost(sales) %></li>
-                  <% end %>
-                </ul></p>
-        </div>
-      </div>
+<div class="card-deck">
+  <div class="card bg-warning mb-4">
+    <h5 class="card-header d-flex w-100 justify-content-between align-items-center">
+      <small>Total Items </small><small><%= orderitems_total_quantity(@merchant.orderitems) %></small>
+    </h5>
+    <div class="card-body">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-light flex-column align-items-center">
+          <h5 class="d-flex w-100 justify-content-between">
+            <small>Pending</small>
+            <small><%= orderitems_total_quantity(@orderitems["pending"]) %></small>
+          </h5>
+        </li>
+      </ul>
+      <ul class="list-group mt-3">
+        <li class="list-group-item list-group-item-light flex-column align-items-center">
+          <h5 class="d-flex w-100 justify-content-between">
+            <small>Paid</small>
+            <small><%= orderitems_total_quantity(@orderitems["paid"]) %></small>
+          </h5>
+        </li>
+      </ul>
+      <ul class="list-group mt-3">
+        <li class="list-group-item list-group-item-light flex-column align-items-center">
+          <h5 class="d-flex w-100 justify-content-between">
+            <small>Complete</small>
+            <small><%= orderitems_total_quantity(@orderitems["complete"]) %></small>
+          </h5>
+        </li>
+      </ul>
+      <ul class="list-group mt-3">
+        <li class="list-group-item list-group-item-light flex-column align-items-center">
+          <h5 class="d-flex w-100 justify-content-between">
+            <small>Cancelled</small>
+            <small><%= orderitems_total_quantity(@orderitems["cancelled"]) %></small>
+          </h5>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-
-      <div class="card bg-warning mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Total Orders: <%= Merchant.items_by_orderid(@merchant.orderitems).count %></h5>
-          <ul class="list-group">
-            <li class="list-group-item text-center d-inline-block"><%= "Orders - Paid (Unshipped) Orders: #{@paiditems.count} orders" %></li>
-            <li class="list-group-item text-center d-inline-block"><%= "Orders - Pending (Cart) Orders: #{@pendingitems.count} orders" %></li>
-            <li class="list-group-item text-center d-inline-block"><%= "Orders - Complete (Shipped) Orders: #{@completeitems.count} orders" %></li>
-            <li class="list-group-item text-center d-inline-block"><%= "Orders - Cancelled Orders: #{@cancelleditems.count} orders" %></li>
-          </ul>
-        </div>
-      </div>
-
-
-
-      <h3>Total Items: <%= @merchant.orderitems.count %></h3>
-      <% @orderitems.each do |status, items| %>
-      <p><%= "Items - #{status.capitalize} Orders: #{items.count} items" %></p>
-      <% end %>
-
-
-      <h3>Total (Active) Products: <%= @activeproducts.count %> products currently in stock</h3>
-      <p><%= "Products - Out Of Stock Products: #{@soldout.count} products currently out of stock" %></p>
-      <p><%= "Products - Archived (Inactive) Products: #{@inactive.count} products archived" %></p>
+  <div class="card bg-warning mb-4">
+    <h5 class="card-header w-100 align-items-center">
+      <small>Products</small>
+    </h5>
+    <div class="card-body">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-light flex-column align-items-center">
+          <h5 class="d-flex w-100 justify-content-between">
+            <small>In Stock</small>
+            <small><%= @activeproducts.size %> products</small>
+          </h5>
+        </li>
+      </ul>
+      <ul class="list-group mt-3">
+        <li class="list-group-item list-group-item-light flex-column align-items-center">
+          <h5 class="d-flex w-100 justify-content-between">
+            <small>Out Of Stock</small>
+            <small><%= @soldout.size %> products</small>
+          </h5>
+        </li>
+      </ul>
+      <ul class="list-group mt-3">
+        <li class="list-group-item list-group-item-light flex-column align-items-center">
+          <h5 class="d-flex w-100 justify-content-between">
+            <small>Inactive</small>
+            <small><%= @inactive.size %> products</small>
+          </h5>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
