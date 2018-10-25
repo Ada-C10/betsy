@@ -13,13 +13,12 @@ class ProductsController < ApplicationController
 
     if @product.nil? || @product.status == false
       head :not_found
+    else
+      @order_item = OrderItem.new
+      @order_item.product_id = @product.id
+      @reviews = @product.reviews
+      @review = Review.new
     end
-
-    @order_item = OrderItem.new
-    @order_item.product_id = @product.id
-    @reviews = @product.reviews
-    @review = Review.new
-
 
 
   end

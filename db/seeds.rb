@@ -79,126 +79,45 @@ end
 puts "Added #{Product.count} product records"
 puts "#{product_failures.length} products failed to save"
 
+categories = [1,2,3,4,5,6,7,8]
+categories.each do |i|
+  category = Category.find(i)
+  products = Product.where(merchant_id: i)
 
-category1 = Category.find(1)
-products1 = Product.where(merchant_id: 1)
+  products.each do |product|
+    category.products << product
+  end
+  successful = category.save
 
-products1.each do |product|
-    category1.products << product
-end
-successful = category1.save
+  if !successful
+    puts "category#{i} products failed to save product."
+  else
+    puts "category#{i} products successfully saved."
+  end
 
-if !successful
-  puts "category1.products failed to save product."
-else
-  puts "category1.products successfully saved."
-end
-
-
-
-category2 = Category.find(2)
-products2 = Product.where(merchant_id: 2)
-
-products2.each do |product|
-    category2.products << product
-end
-successful = category2.save
-
-if !successful
-  puts "category2.products failed to save product."
-else
-  puts "category2.products successfully saved."
 end
 
+REVIEW_FILE = Rails.root.join('db', 'seed_data', 'reviews.csv')
+puts "Loading raw review data from #{REVIEW_FILE}"
 
-category3 = Category.find(3)
-products3 = Product.where(merchant_id: 3)
-
-products3.each do |product|
-    category3.products << product
-end
-successful = category3.save
-
-if !successful
-  puts "category3.products failed to save product."
-else
-  puts "category3.products successfully saved."
-end
-
-category4 = Category.find(4)
-products4 = Product.where(merchant_id: 4)
-
-products4.each do |product|
-    category4.products << product
-end
-successful = category4.save
-
-if !successful
-  puts "category4.products failed to save product."
-else
-  puts "category4.products successfully saved."
+review_failures = []
+CSV.foreach(REVIEW_FILE, :headers => true) do |row|
+  review = Review.new
+  review.id = row['id']
+  review.rating = row['rating']
+  review.description = row['description']
+  review.product_id = row['product_id']
+  successful = review.save
+  if !successful
+    review_failures << review
+    puts "Failed to save review: #{review.inspect}"
+  else
+    puts "Created review: #{review.inspect}"
+  end
 end
 
-
-category5 = Category.find(5)
-products5 = Product.where(merchant_id: 5)
-
-products5.each do |product|
-    category5.products << product
-end
-successful = category5.save
-
-if !successful
-  puts "category5.products failed to save product."
-else
-  puts "category5.products successfully saved."
-end
-
-
-category6 = Category.find(6)
-products6 = Product.where(merchant_id: 6)
-
-products6.each do |product|
-    category6.products << product
-end
-successful = category6.save
-
-if !successful
-  puts "category6.products failed to save product."
-else
-  puts "category6.products successfully saved."
-end
-
-
-category7 = Category.find(7)
-products7 = Product.where(merchant_id: 7)
-
-products7.each do |product|
-    category7.products << product
-end
-successful = category7.save
-
-if !successful
-  puts "category7.products failed to save product."
-else
-  puts "category7.products successfully saved."
-end
-
-
-category8 = Category.find(8)
-products8 = Product.where(merchant_id: 8)
-
-products8.each do |product|
-    category8.products << product
-end
-successful = category8.save
-
-if !successful
-  puts "category8.products failed to save product."
-else
-  puts "category8.products successfully saved."
-end
-
+puts "Added #{Review.count} review records"
+puts "#{review_failures.length} review failed to save"
 
 # Since we set the primary key (the ID) manually on each of the
 # tables, we've got to tell postgres to reload the latest ID

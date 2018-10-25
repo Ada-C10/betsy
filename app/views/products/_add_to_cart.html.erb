@@ -1,3 +1,10 @@
+<%= render partial: 'layouts/form_errors',
+locals: {
+  model: @order_item
+}
+%>
+
+
 <%= form_with model: @order_item, url: url, method: method do |f| %>
 
 <%= f.label :quantity %>
