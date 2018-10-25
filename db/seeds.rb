@@ -200,6 +200,28 @@ else
 end
 
 
+REVIEW_FILE = Rails.root.join('db', 'seed_data', 'reviews.csv')
+puts "Loading raw review data from #{REVIEW_FILE}"
+
+review_failures = []
+CSV.foreach(REVIEW_FILE, :headers => true) do |row|
+  review = Product.new
+  review.id = row['id']
+  review.rating = row['rating']
+  review.description = row['description']
+  review.product_id = row['product_id']
+  successful = review.save
+  if !successful
+    review_failures << review
+    puts "Failed to save review: #{review.inspect}"
+  else
+    puts "Created review: #{review.inspect}"
+  end
+end
+
+puts "Added #{Review.count} review records"
+puts "#{review_failures.length} review failed to save"
+
 # Since we set the primary key (the ID) manually on each of the
 # tables, we've got to tell postgres to reload the latest ID
 # values. Otherwise when we create a new record it will try
