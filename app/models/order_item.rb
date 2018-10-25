@@ -8,7 +8,7 @@ class OrderItem < ApplicationRecord
   validate :cant_exceed_inventory
 
   def available_stock
-    return self.product.inventory > 0 ? [*1..self.product.inventory] : nil
+    return self.product.inventory > 0 ? [*1..self.product.inventory] : [0]
   end
 
   def item_total

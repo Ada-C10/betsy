@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :find_merchants
   before_action :has_cart?, :find_orders
   before_action :find_active_products
+  before_action :reviewing_order?
 
 
   def nosnacks
