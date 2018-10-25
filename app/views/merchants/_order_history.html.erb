@@ -4,8 +4,10 @@
   </div>
 </div>
 <br>
+<br>
 <% if @orderitems["complete"] %>
-<h4>Hey you. You're amazing. You have an all-time total of <%= @completeitems.size %> complete orders.</h4>
+<h4>We're grateful for sellers like you.</h4>
+<br>
 <table class="table">
   <thead>
     <tr>
@@ -24,7 +26,8 @@
       <td><%=orderitems_total_quantity(items)%></td>
       <td><%= readable_date(order.created_at) %></td>
       <td><%= readable_cost(order.total_cost) %></td>
-      <td>button</td>
+      <td><%= render partial: "checkbox",
+                      locals: { order: order }%></td>
       <% end %>
     </tr>
   </tbody>

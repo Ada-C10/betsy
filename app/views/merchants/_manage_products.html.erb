@@ -6,8 +6,10 @@
 <br>
 
 <% if @products %>
-
-<%= link_to "Add Product", new_merchant_product_path(@merchant.id), class: "btn btn-primary btn-lg active" %>
+  <figure class="mb-5">
+  <%= link_to image_tag("icons/icon-add-product.png", width: 50, alt: "invoice icon", class: "add-product-icon figure-img img-fluid rounded"), new_merchant_product_path(@merchant.id) %>
+  <figcaption class="figure-caption text-left">Add A New Product!</figcaption>
+</figure>
 <table class="table">
   <thead>
     <tr>

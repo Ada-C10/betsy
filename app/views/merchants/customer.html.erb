@@ -1,9 +1,20 @@
-<h4>Order # <%=@order.id %></h4>
-<p><strong>Seller</strong> #<%=@merchant.id %> (<%= @merchant.name %>)</p>
-<p><strong>Order placed on:</strong> <%= readable_date(@order.created_at) %></p>
 
-<%= render partial: "checkbox",
-      locals: { order: @order }%></h3>
+
+<div class="mb-5 d-flex">
+  <div>
+    <h4>Order # <%=@order.id %></h4>
+    <p><strong>Seller</strong> #<%=@merchant.id %> (<%= @merchant.name %>)</p>
+    <p><strong>Order placed on:</strong> <%= readable_date(@order.created_at) %></p>
+  </div>
+  <nav class="d-flex justify-content-end">
+    <div class="mr-5">
+      <%= render partial: "checkbox", locals: { order: @order }%>
+    </div>
+    <div>
+      <%= link_to "Back To Dashboard", dashboard_path, class: "btn btn-primary mr-3", type:"button" %>
+    </div>
+  </nav>
+</div>
 
 <table class="table table-sm">
   <thead>

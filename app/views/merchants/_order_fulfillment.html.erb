@@ -18,7 +18,7 @@
       <% @paiditems.each do |order_id, items| %>
       <% order = Order.find_by(id: order_id) %>
 
-        <div class="list-group-item list-group-item-action list-group-item-light my-2 d-flex bd-highlight" role="button" %>
+        <div class="list-group-item list-group-item-action list-group-item-dark my-2 d-flex" role="button" %>
           <div>
             <h5 class="ml-5">ORDER <%= order_id %></h5>
           </div>
@@ -36,8 +36,7 @@
           <figcaption class="figure-caption text-center">Shipping Info</figcaption>
         </div>
         <div class="pl-5 mr-5 align-self-center">
-          <%= image_tag "icons/icon-shipped.png", width: 50, alt: "shipped order icon", class: "fulfillment-icon icon-shipped figure-img img-fluid rounded" %>
-          <figcaption class="figure-caption text-center">It's Shipped!</figcaption>
+          <%= render partial: "checkbox", locals: { order: order }%>
         </div>
       </div>
 

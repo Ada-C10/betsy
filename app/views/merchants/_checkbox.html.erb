@@ -1,17 +1,16 @@
-<div class="container checkbox">
-  <%= form_with model: order, url: merchant_ship_path, action: :patch do |f| %>
-    <%= f.hidden_field :order_id, value: order.id %>
-    <%= f.hidden_field :merchant_id, value: @merchant.id %>
-    <label class="switch">
-      <%=f.check_box :status, {}, "complete", "paid" %>
-      <span class="slider round"></span>
-    </label>
-    <% if order.status == "paid" %>
-      <% submit_button_text = "This Order Has Shipped!" %>
-    <% elsif order.status == "complete" %>
-    <% submit_button_text = "I Made A Mistake! This Order Has NOT Shipped Yet." %>
-    <% end %>
-
-    <%= f.submit submit_button_text, class: "btn btn-info", role: "button" %>
-  <% end %>
-</div>
+<% if order.status == "paid" %>
+  <% status = "complete" %>
+  <% caption_text = "I've Shipped It!" %>
+  <% image_url = "icons/icon-shipped.png" %>
+<% elsif order.status == "complete" %>
+  <% status = "paid" %>
+  <% caption_text = "Oops, Not Shipped Yet" %>
+  <% image_url = "icons/icon-cancelled.png" %>
+<% end %>
+<%= form_with model: order, url: merchant_ship_path, action: :patch do |f| %>
+  <%= f.hidden_field :order_id, value: order.id %>
+  <%= f.hidden_field :merchant_id, value: @merchant.id %>
+  <%=f.hidden_field :status, value: status %>
+  <%= image_submit_tag(image_url, width: 50, alt: "shipped order icon", class: "fulfillment-icon icon-shipped figure-img img-fluid m-0 p-0", data: { confirm: "Are you sure?" }, role: "button") %>
+  <figcaption class="figure-caption text-left"><%= caption_text %><figcaption>
+<% end %>
