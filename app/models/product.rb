@@ -39,7 +39,7 @@ class Product < ApplicationRecord
         sum += review.rating
       end
 
-      return (sum / count)
+      return (sum * 1.0 / count).round(2)
     end
   end
 end
