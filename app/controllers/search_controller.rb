@@ -2,9 +2,12 @@ class SearchController < ApplicationController
   skip_before_action :require_login
 
   def search
+    @term = params[:search]
     @products = Product.text_search(params[:search])
     @merchants = Merchant.text_search(params[:search])
     @categories = Category.text_search(params[:search])
+    @sum = @products.length + @merchants.length + @categories.length
+    @orderitem = Orderitem.new
   end
 
   def find_order

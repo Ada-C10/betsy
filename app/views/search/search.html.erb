@@ -1,43 +1,93 @@
-<h2>Search Results</h2>
-
-<br /><br /><br />
-<% if @products.empty? && @merchants.empty? && @categories.empty?  %>
-  <p>
-    No matches for your search.
-  </p>
-<% else %>
+<main>
   <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <h3>Products</h3>
-        <ul>
+    <h2>Search Results</h2>
+    <hr />
+    <% if @products.empty? && @merchants.empty? && @categories.empty?  %>
+      <p class="mb-5"><%= @sum %> results were found for the search term: <%= @term.capitalize %></p>
+    <% else %>
+      <div class="container">
+        <p class="mb-5"><%= @sum %> results were found for the search term: <%= @term.capitalize %></p>
+        <% if @products.length > 0 %>
+        <div class="row mt-3">
+          <h3>Products</h3>
           <% @products.each do |item| %>
-            <li>
-              <%= link_to item.name, product_path(item.id) %>
-            </li>
+            <div class="col-sm-12 mb-5">
+              <div class="card">
+                <div class="row no-gutters">
+                    <div class="col-auto">
+                      <%= image_tag(item.image_url, class: "one-hundred") %>
+                    </div>
+                    <div class="col d-flex justify-content-center align-items-center">
+                      <div class="card-body">
+                        <h5 class="card-title no-spacing"><%= link_to item.name, product_path(item.id) %></h5>
+                        <p class="card-text"><%= item.description %></p>
+                      </div>
+                      <div class="card-block px-2">
+                        <% if item.inventory > 0 %>
+                          <h6 class="card-text">Availability: In Stock</h6>
+                          <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
+
+                            <%= f.label :quantity, 'Quantity' %>
+                            <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: item.inventory, maxlength: 3 %>
+
+                            <%= f.hidden_field :product_id, value: item.id %>
+
+                            <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
+                          <% end %>
+                        <% else %>
+                          <h4 class="card-text">Availability: Out of Stock</h4>
+                        <% end %>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
           <% end %>
-        </ul>
+        </div>
+        <% end %>
+        <% if @merchants.length > 0 %>
+        <div class="row">
+          <h3>Merchants</h3>
+          <div class="col-sm-12">
+            <% @merchants.each do |item| %>
+              <div class="card">
+                <div class="row no-gutters">
+                    <div class="col-auto">
+                      <%= image_tag("notfound.jpg", class: "one-hundred") %>
+                    </div>
+                    <div class="col d-flex justify-content-center align-items-center">
+                      <div class="card-body">
+                        <h5 class="card-title no-spacing"><%= link_to item.name, merchant_path(item.id) %></h5>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+        <% if @categories.length > 0 %>
+          <div class="row mt-5">
+            <h3>Categories</h3>
+            <div class="col-sm-12">
+              <% @categories.each do |item| %>
+                <div class="card">
+                  <div class="row no-gutters">
+                      <div class="col-auto">
+                        <%= image_tag(item.image_url, class: "one-hundred") %>
+                      </div>
+                      <div class="col d-flex justify-content-center align-items-center">
+                        <div class="card-body">
+                          <h5 class="card-title no-spacing"><%= link_to item.name, category_path(item.id) %></h5>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
-      <div class="col-md-4">
-        <h3>Merchants</h3>
-        <ul>
-          <% @merchants.each do |item| %>
-            <li>
-              <%= link_to item.name, merchant_path(item.id) %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-      <div class="col-md-4">
-        <h3>Categories</h3>
-        <ul>
-          <% @categories.each do |item| %>
-            <li>
-              <%= link_to item.name, category_path(item.id) %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
+    <% end %>
   </div>
-<% end %>
+</main>
