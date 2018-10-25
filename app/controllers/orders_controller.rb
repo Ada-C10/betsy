@@ -2,6 +2,12 @@ class OrdersController < ApplicationController
   include ApplicationHelper
 
   def index
+    if params[:search]
+      @orders = Order.search(params[:search]).order("created_at DESC")
+    else
+      @orders = nil
+    end
+
   end
 
   def show

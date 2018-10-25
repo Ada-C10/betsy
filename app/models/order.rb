@@ -56,5 +56,13 @@ class Order < ApplicationRecord
     end
   end
 
+  def self.search(search)
+    where("email ILIKE ?", "%#{search}%")
+  end
+
+  # def self.search(search_id, search_email)
+  #   where("id ILIKE ? or email ILIKE ?", "%#{search_id}%", "%#{search_email}%")
+  # end
+
 
 end
