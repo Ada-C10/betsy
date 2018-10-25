@@ -89,12 +89,14 @@ describe ProductsController do
 
         it "renders not_found for product that doesn't exist" do
           product = Product.first
-          # order_items = OrderItem.all
-          # order_items.destroy_all
+          order_items = OrderItem.all
+          order_items.destroy_all
           product.destroy
 
           get edit_product_path (product)
           must_respond_with :not_found
+
+
         end
       end
 
@@ -159,7 +161,9 @@ describe ProductsController do
       it "guest users cannot access the show page for a product that doesn't exist" do
 
         get product_path(Product.last.id + 1)
+
         must_respond_with :not_found
+
       end
 
       it "guest users cannot access the new product form" do

@@ -27,7 +27,6 @@ class OrderItem < ApplicationRecord
     return self.order.status
   end
 
-
   def total
     return  self.item_total * TAX_RATE
   end
