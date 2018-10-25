@@ -1,5 +1,11 @@
 <h2>Add a Country that Categorizes the Products You Are Selling</h2>
 
+<%= render partial: 'layouts/form_errors',
+locals: {
+  model: @category
+}
+%>
+
 <section>
   <%= form_with model: @category do |f| %>
 
