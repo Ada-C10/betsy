@@ -21,6 +21,7 @@ class MerchantsController < ApplicationController
 
 
 
+
   def status_change
     @product = Product.find_by(id: params[:id])
 
@@ -32,6 +33,8 @@ class MerchantsController < ApplicationController
 
     if @product.save
       redirect_back fallback_location: root_path
+    else
+      puts "Failed to save product: #{@product.errors.messages}"
     end
 
   end

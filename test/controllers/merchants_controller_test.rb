@@ -70,6 +70,8 @@ describe MerchantsController do
       post status_change_path(thyme.id)
       # binding.pry
 
+      thyme.reload
+
       expect(thyme.status).must_equal false
 
       #where it goes next

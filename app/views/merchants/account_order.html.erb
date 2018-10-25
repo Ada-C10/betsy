@@ -9,32 +9,30 @@
       <th scope="col">Total Quantity</th>
       <th scope="col">Purchase Date</th>
       <th scope="col">Order Status</th>
+      <th scope="col">Item Price</th>
       <th scope="col">Item Revenue</th>
-
-
-
     </tr>
   </thead>
 
   <tbody>
-    <% total = 0 %>
     <% @items.each do |order_item| %>
     <tr>
       <td><img src="<%= find_image_for(order_item.product) %>" alt="snack image", height="100", width="100"></td>
-      <td><%= order_item.product_name %></td>
+      <td><%= link_to "#{order_item.product_name}", root_path(order_item.order.id)%></td>
       <td><%= order_item.quantity %></td>
       <td><%= readable_date(order_item.created_at) %></td>
       <td><%= order_item.order_status %></td>
       <td>$<%= order_item.product.price %></td>
-      <% total = total + order_item.product.price %>
+      <td>$<%= order_item.item_total %></td>
     </tr>
     <% end  %>
   </tbody>
 </table>
 
-<p class="end">Total Revenue: $<%= total %></td>
+<p class="end">Subtotal: $<%= @merchant.order_total %></td>
+  <p class="end"> Tax: $<%= @merchant.tax %> </p>
 
+  <p class="end"> Total: <%= @merchant.total_tax %> </p>
 
-<%# TODO link to each individual order %>
-<%# TODO inline subtotal like in checkout %>
-<%# TODO link to order that has shipped/not shipped %>
+  <%# TODO link to each individual order %>
+  <%# TODO link to order that has shipped/not shipped %>

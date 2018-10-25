@@ -24,6 +24,26 @@ class Merchant < ApplicationRecord
 
   end
 
+  def order_total
+    total = 0
+    self.order_items.each do |order_item|
+      if order_item.order.status == "paid"
+        total += order_item.item_total
+      end
+    end
+    return total
+  end
+
+
+
+  def tax
+    return (order_total * 0.1)
+  end
+
+
+  def total_tax
+    return (order_total + tax)
+  end
 
 
 
@@ -41,7 +61,10 @@ class Merchant < ApplicationRecord
 
   #TODO total revenue by status completed
 
-#TODO filter order displayed by status 
+
+
+
+#TODO filter order displayed by status
 
 
 end
