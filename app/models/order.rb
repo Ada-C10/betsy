@@ -60,5 +60,10 @@ class Order < ApplicationRecord
     return Order.where("cast(id as text) LIKE ? AND email LIKE ?", "%#{search_id}%", "%#{search_email}%")
   end
 
+  def get_cc
+    last_four = self.cc_num % 10000
+    return "XXXX-XXXX-XXXX-#{last_four}"
+  end
+
 
 end

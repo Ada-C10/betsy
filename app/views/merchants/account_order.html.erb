@@ -18,7 +18,7 @@
     <% @items.each do |order_item| %>
     <tr>
       <td><img src="<%= find_image_for(order_item.product) %>" alt="snack image", height="100", width="100"></td>
-      <td><%= link_to "#{order_item.product_name}", root_path(order_item.order.id)%></td>
+      <td><%= link_to "#{order_item.product_name}", summary_path(order_item.order.id)%></td>
       <td><%= order_item.quantity %></td>
       <td><%= readable_date(order_item.created_at) %></td>
       <td><%= order_item.order_status %></td>
