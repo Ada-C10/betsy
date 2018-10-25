@@ -3,8 +3,8 @@
 
     <div class="card-columns">
       <% @merchant.products.each do |product| %>
+      <% if product.status %>
       <div class="card" style="width: 18rem;">
-
         <img class="card-img-top" src=" <%= find_image_for(product) %> " alt="Snack Image">
         <div class="card-body">
           <h5 class="card-title"><%= link_to product.name, product_path(product.id) %></h5>
@@ -18,7 +18,10 @@
             <p><%= "No reviews yet" %></p>
           <% end %>
           <p class="card-text"><%= product.description %></p>
+          <a class="card-merchant" href=" <%= merchant_path(product.merchant.id) %>"><%= "#{product.merchant.name}" %></a>
+          <a class="card-details" href=" <%= product_path(product.id) %>">Details</a>
         </div>
       </div>
+      <% end %>
       <% end %>
     </div>

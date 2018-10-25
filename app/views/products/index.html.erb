@@ -1,14 +1,20 @@
-
-<h1>All Products</h1>
-
 <div class="card-columns">
   <% @active_products.shuffle.each do |p| %>
   <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src=" <%= find_image_for(p) %> " alt="Image description">
+    <img class="card-img-top" src=" <%= find_image_for(p) %> " alt="snack image">
     <div class="card-body">
-      <h5 class="card-title"><%= p.name %></h5>
+      <h5 class="card-title"><%=link_to p.name, product_path(p.id) %></h5>
       <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(p.price)%></h6>
+      <% if p.average_rating %>
+      <p><%= "Average rating:" %></p>
+        <% p.average_rating.to_i.times do %>
+          <i class="fa fa-cookie-bite"></i>
+        <% end %>
+      <% else %>
+        <p><%= "No reviews yet" %></p>
+      <% end %>
       <p class="card-text"><%= p.description %></p>
+<<<<<<< HEAD
       <% if p.average_rating %>
       <p><%= "Average rating:" %></p>
         <% p.average_rating.to_i.times do %>
@@ -20,8 +26,11 @@
       Sold by: <a href=" <%= merchant_path(p.merchant.id) %>"><%= "#{p.merchant.name}" %></a>
       <br>
       <a href=" <%= product_path(p.id) %>" class="btn btn-primary">Details</a>
+=======
+      <a class="card-merchant" href=" <%= merchant_path(p.merchant.id) %>"><%= "#{p.merchant.name}" %></a>
+      <a class="card-details" href=" <%= product_path(p.id) %>">Details</a>
+>>>>>>> ea63c25aff665ec4293a76566d2b08d6ee4fc8b2
     </div>
   </div>
-
   <% end %>
 </div>
