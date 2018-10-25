@@ -58,6 +58,24 @@ class OrderItemsController < ApplicationController
     end
   end
 
+
+
+  def ship
+    @order_item = OrderItem.find_by(id: params[:id])
+
+    @order_item.status ? @order_item.update_attribute(:status, false) : @order_item.update_attribute(:status, true)
+
+
+    if @order_item.save
+      redirect_back fallback_location: root_path
+    else
+      puts "Failed to update order_item: #{@order_items.status.errors.messages}"
+    end
+
+  end
+
+
+
   private
 
   def order_items_params
@@ -81,5 +99,9 @@ class OrderItemsController < ApplicationController
   def is_authorized
     return @cart && @order_item && @cart.id == @order_item.order_id
   end
+
+
+
+
 
 end

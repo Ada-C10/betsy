@@ -11,6 +11,8 @@
       <th scope="col">Order Status</th>
       <th scope="col">Item Price</th>
       <th scope="col">Item Revenue</th>
+      <th scope="col">Shipped?</th>
+
     </tr>
   </thead>
 
@@ -25,6 +27,11 @@
       <td><%= order_item.order_status %></td>
       <td>$<%= order_item.product.price %></td>
       <td>$<%= order_item.item_total %></td>
+      <% if order_item.status %>
+      <td><%= link_to "Shipped", ship_path(order_item.id), method: :post, class: "btn btn-primary" %></td>
+      <% else %>
+      <td><%= link_to "Not Shipped", ship_path(order_item.id), method: :post, class: "btn btn-danger" %></td>
+      <% end  %>
     </tr>
     <% end  %>
   </tbody>
