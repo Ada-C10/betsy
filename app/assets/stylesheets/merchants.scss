@@ -64,3 +64,13 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/////////////////////////////////////////////////////////
+
+.quickview > li {
+  list-style-type: none;
+}
+
+.quickview {
+  font-size: 11px;
+}

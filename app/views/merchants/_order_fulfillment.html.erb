@@ -7,10 +7,10 @@
 
 <div class="container">
   <% if @orderitems["paid"] %>
-    <div class="d-flex w-100 justify-content-between mb-3">
+    <div class="d-flex justify-content-between mb-3">
     <h3>It's time to ship.</h3>
-      <button class="btn btn-primary btn-lg active" type="button" data-toggle="collapse" data-target="#collapseOrderDetails" aria-expanded="false" aria-controls="collapseOrderDetails">
-        Toggle Quickview
+      <button class="btn btn-outline-info active mr-3" type="button" data-toggle="collapse" data-target="#collapseOrderDetails" aria-expanded="false" aria-controls="collapseOrderDetails">
+        Display 1-page summary
       </button>
     </div>
 
@@ -20,17 +20,30 @@
 
 
 
-        <a class="btn btn-light btn-lg my-1 row" role="button" href=<%= merchant_customer_path(@merchant.id, order_id) %>>
-           <div class="col-4 col-sm-3 col-md-2 col-xl-1">
-             <div class="d-flex justify-content-end">
-               order <%= order_id %></div></div>
+        <a class="btn btn-light btn-lg my-2 row" role="button" href=<%= merchant_customer_path(@merchant.id, order_id) %>>
+          <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+            <div class="d-flex justify-content-end">
+              <h5 class="m-0 p-0">ORDER <%= order_id %></h5>
+            </div>
+            <ul class="quickview mb-0">
+              <li><%= orderitems_total_quantity(items) %> total items</li>
+              <li><%= items.size %> products</li>
+              <li>Order placed on <%= readable_date(order.created_at) %></li>
+              <li>Total sales: <%= readable_cost(order.total_cost) %></li>
+            </ul>
+          </div>
         </a>
+        <%= image_tag "/images/icons/icon-invoice.jpg", alt: "invoice icon", class: "fulfillment-icon icon-invoice" %>
+        <%= image_tag "/images/icons/icon-shipped.jpg", alt: "shipped order icon", class: "fulfillment-icon icon-shipped" %>
+
+
+
 
         <div class="collapse" id="collapseOrderDetails">
-          <div class="card card-body d-block">
-            <ul>
-              <li><%= items.size %> products</li>
+          <div class="card card-body mb-0">
+            <ul class="quickview mb-0">
               <li><%= orderitems_total_quantity(items) %> total items</li>
+              <li><%= items.size %> products</li>
               <li>Order placed on <%= readable_date(order.created_at) %></li>
               <li>Total sales: <%= readable_cost(order.total_cost) %></li>
             </ul>
