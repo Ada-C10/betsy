@@ -1,15 +1,6 @@
 require "test_helper"
 
 describe Order do
-  let(:order) { Order.first }
-
-  # this was just to test that table data was valid
-  it "must be valid" do
-    skip
-    Order.all.each do |o|
-      expect(o.valid?).must_equal true
-    end
-  end
 
   describe 'relations' do
     let(:order) { Order.first }
@@ -44,7 +35,8 @@ describe Order do
           cvv: 123,
           exp_month: 12,
           exp_year: Date.today.year + 1,
-          zip: 43770
+          zip: 43770,
+          status: 'awaiting confirmation'
         }
       }
     }
@@ -130,9 +122,42 @@ describe Order do
     end
   end
 
-  describe 'validate method' do
-    it 'raises an ArgumentError if exp_year or exp_month are nil' do
+  describe 'validate method: cant_be_expired' do
 
+    let(:bad_order_data) {
+      {
+        order: {
+          name: 'Sherlock Holmes',
+          email: 'smart@ssdetective.com',
+          address: '221B Baker St, London',
+          cc_num: 1234567812345678,
+          cvv: 123,
+          exp_month: nil, #Date.today.month - 1,
+          exp_year: nil, #Date.today.year,
+          zip: 43770,
+          status: 'paid'
+        }
+      }
+    }
+
+    it 'raises an ArgumentError only on update if exp_year or exp_month are nil' do
+      order = Order.new(bad_order_data[:order])
+
+      order.must_be :valid?, "Order params have some invalid parameters. Please fix."
+
+      expect{order.update(bad_order_data[:order])}.must_raise ArgumentError
+
+    end
+
+    it 'raises adds messages to errors only on update if exp_year indicates an expired credit card' do
+      bad_order_data[:order][:exp_year] = Date.today.year - 1
+      bad_order_data[:order][:exp_month] = Date.today.month
+      order = Order.new(bad_order_data[:order])
+
+      order.must_be :valid?, "Order params have some invalid parameters. Please fix."
+
+      order.update(bad_order_data[:order])
+      expect(order.errors.messages).must_include "Credit Card expired in #{bad_order_data[:order][:exp_year]}"
 
     end
   end

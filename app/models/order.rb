@@ -8,7 +8,9 @@ class Order < ApplicationRecord
   validates :address, presence: true, on: :update
   validates :zip, presence: true, length: { is: 5 }, on: :update
   validates :cvv, presence: true, on: :update
+  validates :status, presence: true
   validate :cant_be_expired, on: :update
+
 
 
   TAX_RATE = 0.101
