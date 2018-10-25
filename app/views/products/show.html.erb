@@ -11,14 +11,15 @@
 
         <p class="card-subtitle mb-2"><%= category.name %></p>
 
-          <%end%></h6>
-          <br >
-          Sold by: <a href=" <%= merchant_path(@product.merchant.id) %>"><%= "#{@product.merchant.name}" %></a>
-          <br >
-          price: <%= number_to_currency(@product.price) %>
-          <br >
-          <%= @product.inventory %> currently in stock
-          <br>
+        <%end%></h6>
+        <br >
+        Sold by: <a href=" <%= merchant_path(@product.merchant.id) %>"><%= "#{@product.merchant.name}" %></a>
+        <br >
+        <%= number_to_currency(@product.price) %>
+        <br >
+        <%= @product.inventory %> currently in stock
+        <br>
+
 
         <% if @product.already_in_cart(@cart) %>
         <%= render partial: "add_to_cart", locals: { url: order_item_path(@product.already_in_cart(@cart)), method: :put } %>
