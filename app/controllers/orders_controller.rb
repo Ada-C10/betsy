@@ -1,11 +1,16 @@
 class OrdersController < ApplicationController
   include ApplicationHelper
 
+  after_action :clear_summary, only: [:summary]
+
   def index
-    if params[:search]
-      @orders = Order.search(params[:search]).order("created_at DESC")
-    else
-      @orders = nil
+    @orders = nil
+
+    if params[:search_id] && params[:search_email] &&params[:search_id] != "" && params[:search_email] != ""
+      search_id = params[:search_id]
+      search_email = params[:search_email]
+      @orders = Order.search(search_id, search_email).order("created_at DESC")
+      session[:old_order] = search_id
     end
 
   end
@@ -82,6 +87,10 @@ class OrdersController < ApplicationController
     end
   end
 
+  def summary
+    @order = Order.find_by(id: session[:old_order])
+  end
+
   def nosnacks
     render :nosnacks, status: :bad_request
   end
@@ -99,6 +108,10 @@ class OrdersController < ApplicationController
       :exp_year,
       :zip,
     )
+  end
+
+  def clear_summary
+    session[:old_order] = nil
   end
 
   # def order_items_params

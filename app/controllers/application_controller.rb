@@ -41,6 +41,10 @@ class ApplicationController < ActionController::Base
     @active_products = Product.all.where(status: true)
   end
 
+  def reviewing_order?
+    @allowed_reviewer = session[:old_order]
+  end
+
 
 
 end

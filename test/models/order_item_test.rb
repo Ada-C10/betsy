@@ -178,10 +178,5 @@ describe OrderItem do
       end
 
     end
-
-
   end
-
-
-
 end
