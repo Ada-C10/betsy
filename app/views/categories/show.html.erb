@@ -12,7 +12,7 @@
   <div class="card" style="width: 18rem;">
     <img class="card-img-top" src=" <%= find_image_for(p) %> " alt="Snack Image">
     <div class="card-body">
-      <h5 class="card-title"><%= p.name %></h5>
+      <h5 class="card-title"><%=link_to p.name, product_path(p.id) %></h5>
       <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(p.price) %></h6>
       <% if p.average_rating %>
       <p><%= "Average rating:" %></p>
