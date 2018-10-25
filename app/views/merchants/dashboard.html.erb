@@ -1,10 +1,10 @@
 <div class="container-fluid mx-1">
   <div class="row" >
-    <div class="col-2">
+    <div class="col-0 col-md-2">
 
-      <ul class="nav nav-pills d-block nav-expand-md scrolling-navbar navbar-icon-top" id="myTab" role="tablist" aria-orientation="vertical">
+      <ul class="nav nav-pills d-block" id="myTab" role="tablist" aria-orientation="vertical">
         <li class="nav-item">
-          <a class="nav-link active" id="fulfillment-tab" data-toggle="tab" href="#fulfillment" role="tab" aria-controls="fulfillment" aria-selected="true">New Sales</a>
+          <a class="nav-link active d-flex justify-content-between" id="fulfillment-tab" data-toggle="tab" href="#fulfillment" role="tab" aria-controls="fulfillment" aria-selected="true"><p class="d-inline m-0 p-0">New Sales</p><span class= "align-self-center"><%= new_orders_badge %></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="products-tab" data-toggle="tab" href="#products" role="tab" aria-controls="products" aria-selected="false">Manage My Products</a>
@@ -21,7 +21,7 @@
       </ul>
 
   </div>
-  <div class="col-10">
+  <div class="col-12 col-md-10">
 
     <div class="tab-content pl-3" id="myTabContent">
       <div class="tab-pane fade show active" id="fulfillment" role="tabpanel" aria-labelledby="fulfillment-tab"><%= render 'order_fulfillment' %></div>

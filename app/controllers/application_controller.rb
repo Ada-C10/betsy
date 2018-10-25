@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :current_user
   before_action :require_login
   before_action :count_of_items_in_order
+  before_action :count_of_new_items
 
   private
 
@@ -23,5 +24,10 @@ class ApplicationController < ActionController::Base
     else
       @count = 0
     end
+  end
+
+  def count_of_new_items
+    @orderitems = @current_user.items_by_status("paid")
+    @orders_count = Merchant.items_by_orderid(@orderitems).size
   end
 end
