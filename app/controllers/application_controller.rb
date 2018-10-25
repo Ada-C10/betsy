@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :find_merchants
   before_action :has_cart?, :find_orders
   before_action :find_active_products
+  before_action :reviewing_order?
 
 
   def nosnacks
@@ -39,6 +40,10 @@ class ApplicationController < ActionController::Base
 
   def find_active_products
     @active_products = Product.all.where(status: true)
+  end
+
+  def reviewing_order?
+    @allowed_reviewer = session[:old_order]
   end
 
 

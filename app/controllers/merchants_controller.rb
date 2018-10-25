@@ -37,6 +37,12 @@ class MerchantsController < ApplicationController
       puts "Failed to save product: #{@product.errors.messages}"
     end
 
+
+    if @product.nil?
+      head :not_found
+    end
+
+
   end
 
 

@@ -8,7 +8,7 @@ class OrderItem < ApplicationRecord
   validate :cant_exceed_inventory
 
   def available_stock
-    return [*1..self.product.inventory]
+    return self.product.inventory > 0 ? [*1..self.product.inventory] : [0]
   end
 
   def item_total
@@ -27,12 +27,15 @@ class OrderItem < ApplicationRecord
     return self.order.status
   end
 
+
+  def total
+    return  self.item_total * TAX_RATE
+  end
+
   def cant_exceed_inventory
-    if quantity > self.product.inventory
+    if self.product && quantity && quantity > self.product.inventory
       errors.add(:quantity, "Cannot order #{quantity}. Only #{self.product.inventory} in stock.")
     end
   end
-
-
 
 end
