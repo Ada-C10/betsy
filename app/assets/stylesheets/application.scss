@@ -39,7 +39,7 @@ main {
 }
 
 .view {
-  background-image: image_url('splash/ggbridge.jpg');
+  background-image: url('https://s3.amazonaws.com/ada-student-project-noregretsy/splash/ggbridge.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -120,7 +120,7 @@ footer {
 }
 
 .jumbotron{
-    background: url("jumotron.jpg") no-repeat center center;
+    background: url('https://s3.amazonaws.com/ada-student-project-noregretsy/jumotron.jpeg') no-repeat center center;
     -webkit-background-size: 100% 100%;
     -moz-background-size: 100% 100%;
     -o-background-size: 100% 100%;

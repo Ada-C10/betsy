@@ -1,9 +1,9 @@
 id,name,image_url
-1,South America,category-southamerica.jpg
-2,North America,category-northamerica.jpg
-3,Asia,category-asia.jpg
-4,Clothing,category-clothing.jpg
-5,Experiences,category-experiences.jpg
-6,Europe,category-europe.jpg
-7,Africa,category-africa.jpg
-8,Accessories,category-accessories.jpg
+1,South America,https://s3.amazonaws.com/ada-student-project-noregretsy/category-southamerica.jpg
+2,North America,https://s3.amazonaws.com/ada-student-project-noregretsy/category-northamerica.jpg
+3,Asia,https://s3.amazonaws.com/ada-student-project-noregretsy/category-asia.jpg
+4,Clothing,https://s3.amazonaws.com/ada-student-project-noregretsy/category-clothing.jpg
+5,Experiences,https://s3.amazonaws.com/ada-student-project-noregretsy/category-experiences.jpg
+6,Europe,https://s3.amazonaws.com/ada-student-project-noregretsy/category-europe.jpg
+7,Africa,https://s3.amazonaws.com/ada-student-project-noregretsy/category-africa.jpg
+8,Accessories,https://s3.amazonaws.com/ada-student-project-noregretsy/category-accessories.jpg
