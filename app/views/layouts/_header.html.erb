@@ -19,7 +19,7 @@
             <%= link_to "View all products", products_path, class: "dropdown-item" %>
             <%= link_to "View by category", categories_path, class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
-            <%= link_to "View by seller", merchants_path, class: "dropdown-item" %>
+            <%= link_to "View by seller", merchant_products_path, class: "dropdown-item" %>
           </div>
         </li>
         <% if session[:user_id] %>
