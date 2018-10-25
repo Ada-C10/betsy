@@ -9,8 +9,7 @@ Rails.application.routes.draw do
   get 'orders/:id/finalize', to: 'orders#finalize', as: 'finalize'
   get 'orders/summary/:id', to: 'orders#summary', as: 'summary'
   post 'products/:id/order_items', to: 'order_items#create', as: 'add_item'
-
-post 'order_items/:id/ship', to: 'order_items#ship', as: 'ship'
+  post 'order_items/:id/ship', to: 'order_items#ship', as: 'ship'
 
   # get 'pages/search', to: 'pages'
   resources :orders
