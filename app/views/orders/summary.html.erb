@@ -1,4 +1,38 @@
-<% if @allowed_reviewer %>
+<% if @order && (@allowed_reviewer || @logged_in_merchant) %>
+
+<table class="table order-info">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email Address</th>
+      <th>Mailing Address</th>
+      <th>Credit Card Number</th>
+      <th>Expiration month/year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= @order.name %>
+      </td>
+      <td>
+        <%= @order.email %>
+      </td>
+      <td>
+        <%= @order.address %>
+      </td>
+      <td>
+        <%= @order.get_cc %>
+      </td>
+      <td>
+        <%= @order.exp_month %> / <%= @order.exp_year %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
 <table class="table order-info">
   <thead>
     <tr>
