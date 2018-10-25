@@ -2,15 +2,17 @@
   <% status = "complete" %>
   <% caption_text = "Ship Me Now!" %>
   <% image_url = "icons/icon-shipped.png" %>
+  <% confirm_message = "Has your item already shipped? Say 'OK' to let us know the order is complete. Say 'Cancel' to return to dashboard and view shipping information." %>
 <% elsif order.status == "complete" %>
   <% status = "paid" %>
   <% caption_text = "Oops, Not Shipped Yet" %>
   <% image_url = "icons/icon-cancelled.png" %>
+  <%= confirm_message = "Are you sure? We will move your order back to the 'New Orders' tab." %>
 <% end %>
 <%= form_with model: order, url: merchant_ship_path, action: :patch do |f| %>
   <%= f.hidden_field :order_id, value: order.id %>
   <%= f.hidden_field :merchant_id, value: @merchant.id %>
   <%=f.hidden_field :status, value: status %>
-  <%= image_submit_tag(image_url, width: 50, alt: "shipped order icon", class: "fulfillment-icon icon-shipped figure-img img-fluid m-0 p-0", data: { confirm: "Has your item already shipped? Say 'yes' to let us know the order is complete. Say 'no' to return to dashboard and view shipping information." }, role: "button") %>
+  <%= image_submit_tag(image_url, width: 50, alt: "shipped order icon", class: "fulfillment-icon icon-shipped figure-img img-fluid m-0 p-0", data: { confirm: confirm_message }, role: "button") %>
   <figcaption class="figure-caption text-left"><%= caption_text %><figcaption>
 <% end %>
