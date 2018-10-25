@@ -78,7 +78,6 @@
     </nav>
 </header>
 
-
   <% if flash[:result_text] or flash[:messages] %>
   <section class="alert__container">
     <div class="alert alert-<%= flash[:status].to_s == 'failure' ? 'warning' : flash[:status] %>">

@@ -15,7 +15,7 @@
         <br >
         Sold by: <a href=" <%= merchant_path(@product.merchant.id) %>"><%= "#{@product.merchant.name}" %></a>
         <br >
-        $<%= @product.price %>
+        <%= number_to_currency(@product.price) %>
         <br >
         <%= @product.inventory %> currently in stock
         <br>
