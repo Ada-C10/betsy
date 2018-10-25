@@ -88,7 +88,16 @@ class OrdersController < ApplicationController
   end
 
   def summary
-    @order = Order.find_by(id: session[:old_order])
+    if @allowed_reviewer
+      @order = Order.find_by(id: session[:old_order])
+    elsif @logged_in_merchant
+      order = Order.find_by(id: params[:id])
+      order.products.each do |product|
+        if product.merchant_id == @logged_in_merchant.id
+          @order = order
+        end
+      end
+    end
   end
 
   def nosnacks
