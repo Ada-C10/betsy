@@ -1,8 +1,6 @@
-<div class="card-deck">
-
-  <div class="card">
+  <div class="card-columns">
     <h2 ><%= "#{@product.name}" %></h2>
-    <div class="card-title" style="width: 30rem">
+    <div class="card-title" style="width: 20rem">
       <img class="card-img-top" src=" <%= find_image_for(@product) %> " alt="Image description">
 
       <div class="card-subtitle mb-2 text-muted" >
@@ -35,7 +33,7 @@
       </div>
     </div>
   </div>
-</div>
+
 
 
 <h2>Reviews</h2>
@@ -50,7 +48,7 @@
 
 <p><%= "Average rating:" %></p>
   <% @product.average_rating.to_i.times do %>
-    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-star"></i>
   <% end %>
 <% else %>
   <p><%= "No reviews yet" %></p>
@@ -65,37 +63,37 @@
 <div class="review-form-container">
 
   <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-star"></i>
   </label>
   <input required="required" type="radio" value="1" name="review[rating]" id="review_rating_1">
 
   <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
   </label>
   <input required="required" type="radio" value="2" name="review[rating]" id="review_rating_2">
 
   <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
   </label>
   <input required="required" type="radio" value="3" name="review[rating]" id="review_rating_3">
 
   <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
   </label>
   <input required="required" type="radio" value="4" name="review[rating]" id="review_rating_4">
 
   <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
   </label>
   <input required="required" type="radio" value="5" name="review[rating]" id="review_rating_5">
 </div>
