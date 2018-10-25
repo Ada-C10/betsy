@@ -24,6 +24,18 @@ module ApplicationHelper
     end
   end
 
+  def completed_order_badge
+    if flash[:notification]
+      ('<span class="badge badge-warning">'+ "#{flash[:notification]}" + '</span>').html_safe
+    end
+  end
+
+  def just_shipped_badge(order_id)
+    if order_id == flash[:just_shipped_id]
+      ('<span class="badge badge-warning">'+ "Just Shipped!" + '</span>').html_safe
+    end
+  end
+
   def orderitems_total_quantity(orderitems)
     return orderitems.sum {|oi| oi.quantity }
   end

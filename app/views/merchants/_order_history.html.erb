@@ -22,7 +22,7 @@
     <% @completeitems.each do |order_id, items| %>
     <% order = Order.find_by(id: order_id) %>
     <tr>
-      <td><%= link_to order.id, merchant_customer_path(@merchant.id, order_id) %></td>
+      <td class="d-inline-flex flex-column"><%= link_to order.id, merchant_customer_path(@merchant.id, order_id) %><%= just_shipped_badge(order_id) %></td>
       <td><%=orderitems_total_quantity(items)%></td>
       <td><%= readable_date(order.created_at) %></td>
       <td><%= readable_cost(order.total_cost) %></td>

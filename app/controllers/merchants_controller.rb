@@ -39,7 +39,6 @@ class MerchantsController < ApplicationController
     unless @merchant && @order
       return render "layouts/notfound", status: :not_found
     end
-    # is this being handled somewhere else?
     unless @merchant.orderitems.any? {|oi|oi.order_id == @order.id}
       return render "layouts/notfound", status: :not_found
     end
@@ -50,6 +49,8 @@ class MerchantsController < ApplicationController
       flash[:status] = :success
       if status == "complete"
         flash[:result_text] = "Yay! We're so glad your package is safely on its way!"
+        flash[:notification] = "1"
+        flash[:just_shipped_id] = @order.id
       elsif status == "paid"
         flash[:result_text] = "Has there been an unexpected delay with Order# #{@order.id}? Customer support is here to help."
       end

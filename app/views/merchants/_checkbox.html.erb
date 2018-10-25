@@ -1,6 +1,6 @@
 <% if order.status == "paid" %>
   <% status = "complete" %>
-  <% caption_text = "I've Shipped It!" %>
+  <% caption_text = "Ship Me Now!" %>
   <% image_url = "icons/icon-shipped.png" %>
 <% elsif order.status == "complete" %>
   <% status = "paid" %>
@@ -11,6 +11,6 @@
   <%= f.hidden_field :order_id, value: order.id %>
   <%= f.hidden_field :merchant_id, value: @merchant.id %>
   <%=f.hidden_field :status, value: status %>
-  <%= image_submit_tag(image_url, width: 50, alt: "shipped order icon", class: "fulfillment-icon icon-shipped figure-img img-fluid m-0 p-0", data: { confirm: "Are you sure?" }, role: "button") %>
+  <%= image_submit_tag(image_url, width: 50, alt: "shipped order icon", class: "fulfillment-icon icon-shipped figure-img img-fluid m-0 p-0", data: { confirm: "Has your item already shipped? Say 'yes' to let us know the order is complete. Say 'no' to return to dashboard and view shipping information." }, role: "button") %>
   <figcaption class="figure-caption text-left"><%= caption_text %><figcaption>
 <% end %>
