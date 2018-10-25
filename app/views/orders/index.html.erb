@@ -1,1 +1,35 @@
-<h1>This is the Order Index page and should not be seen by unauthenticated users</h1>
+<h2>Find Your Order</h2>
+<%= form_tag(orders_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search_id, params[:search], placeholder: "Order Number" %>
+<%= text_field_tag :search_email, params[:search], placeholder: "Email" %>
+<%= submit_tag "Search", :email => nil, :id => nil, class: 'btn btn-info' %>
+<% end %>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Order #</th>
+      <th scope="col">Purchase Date</th>
+      <th scope="col">Order Total</th>
+      <th scope="col">Order Status</th>
+    </tr>
+  </thead>
+
+  <br >
+
+  <% if @orders %>
+  <tbody>
+    <% @orders.each do |order| %>
+    <tr>
+      <td></td>
+      <td><%= link_to order.id, summary_path(order.id) %></td>
+      <td><%= readable_date(order.order_placed) %></td>
+      <td><%= number_to_currency(order.total) %></td>
+      <td><%= order.status %></td>
+    </tr>
+    <% end  %>
+  </tbody>
+  <% end %>
+</table>

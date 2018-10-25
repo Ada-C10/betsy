@@ -8,7 +8,9 @@ class Order < ApplicationRecord
   validates :address, presence: true, on: :update
   validates :zip, presence: true, length: { is: 5 }, on: :update
   validates :cvv, presence: true, on: :update
+  validates :status, presence: true
   validate :cant_be_expired, on: :update
+
 
 
   TAX_RATE = 0.101
@@ -52,6 +54,10 @@ class Order < ApplicationRecord
         errors.add(:exp_month, "Credit Card is expired")
       end
     end
+  end
+
+  def self.search(search_id, search_email)
+    return Order.where("cast(id as text) LIKE ? AND email LIKE ?", "%#{search_id}%", "%#{search_email}%")
   end
 
 

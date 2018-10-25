@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :find_merchants
   before_action :has_cart?, :find_orders
   before_action :find_active_products
+  before_action :reviewing_order?
 
 
   def nosnacks
@@ -12,7 +13,7 @@ class ApplicationController < ActionController::Base
   private
 
   def find_home_category
-    @categories = Category.all.map
+    @categories = Category.all
   end
 
   def find_orders
@@ -25,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def find_merchants
-    @merchants = Merchant.all.map
+    @merchants = Merchant.all
   end
 
 
@@ -39,6 +40,10 @@ class ApplicationController < ActionController::Base
 
   def find_active_products
     @active_products = Product.all.where(status: true)
+  end
+
+  def reviewing_order?
+    @allowed_reviewer = session[:old_order]
   end
 
 
