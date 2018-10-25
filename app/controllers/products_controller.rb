@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find_by(id: params[:id])
 
-    if @product.nil?
+    if @product.nil? || @product.status == false
       head :not_found
     else
       @order_item = OrderItem.new

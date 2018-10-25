@@ -1,41 +1,39 @@
-<div class="card-deck">
+<div class="card-columns">
+  <div class="card-title" style="width: 20rem">
+    <img class="card-img-top" src=" <%= find_image_for(@product) %> " alt="Image description">
+    <div class="card-body">
+      <h5 class="card-title"><%= "#{@product.name}" %></h5>
 
-  <div class="card">
-    <h2 ><%= "#{@product.name}" %></h2>
-    <div class="card-title" style="width: 30rem">
-      <img class="card-img-top" src=" <%= find_image_for(@product) %> " alt="Image description">
+    <h6 class="card-subtitle mb-2 text-muted"><p><%= @product.description %></p></h6
 
-      <div class="card-subtitle mb-2 text-muted" >
-        <h3> <%= @product.description %></h3>
-        <br >
-        <h6 class="card-subtitle mb-2 text-muted"> Origin:
+      <h6 class="card-subtitle mb-2"> Origin:
+        <h3><% @product.categories.each do |category| %></h3>
 
-          <h3><% @product.categories.each do |category| %></h3>
-
-          <p class="card-subtitle mb-2 text-muted"><%= category.name %></p>
+        <p class="card-subtitle mb-2"><%= category.name %></p>
 
           <%end%></h6>
           <br >
           Sold by: <a href=" <%= merchant_path(@product.merchant.id) %>"><%= "#{@product.merchant.name}" %></a>
           <br >
-          price: $<%= @product.price %>
+          price: <%= number_to_currency(@product.price) %>
           <br >
           <%= @product.inventory %> currently in stock
           <br>
 
+        <% if @product.already_in_cart(@cart) %>
+        <%= render partial: "add_to_cart", locals: { url: order_item_path(@product.already_in_cart(@cart)), method: :put } %>
+
+        <% else %>
+        <%= render partial: "add_to_cart", locals: { url: add_item_path, method: :post } %>
+        <% end %>
 
 
-          <% if @product.already_in_cart(@cart) %>
-          <%= render partial: "add_to_cart", locals: { url: order_item_path(@product.already_in_cart(@cart)), method: :put } %>
 
-          <% else %>
-          <%= render partial: "add_to_cart", locals: { url: add_item_path, method: :post } %>
-          <% end %>
         </div>
-      </div>
     </div>
   </div>
 </div>
+
 
 
 <h2>Reviews</h2>
@@ -49,11 +47,11 @@
 <% end %>
 
 <p><%= "Average rating:" %></p>
-  <% @product.average_rating.to_i.times do %>
-    <i class="fa fa-cookie-bite"></i>
-  <% end %>
+<% @product.average_rating.to_i.times do %>
+<i class="fa fa-star"></i>
+<% end %>
 <% else %>
-  <p><%= "No reviews yet" %></p>
+<p><%= "No reviews yet" %></p>
 <% end %>
 
 <br>
@@ -65,37 +63,37 @@
 <div class="review-form-container">
 
   <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-star"></i>
   </label>
   <input required="required" type="radio" value="1" name="review[rating]" id="review_rating_1">
 
   <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
   </label>
   <input required="required" type="radio" value="2" name="review[rating]" id="review_rating_2">
 
   <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
   </label>
   <input required="required" type="radio" value="3" name="review[rating]" id="review_rating_3">
 
   <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
   </label>
   <input required="required" type="radio" value="4" name="review[rating]" id="review_rating_4">
 
   <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
-    <i class="fa fa-cookie-bite"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
   </label>
   <input required="required" type="radio" value="5" name="review[rating]" id="review_rating_5">
 </div>

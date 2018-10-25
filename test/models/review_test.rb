@@ -31,8 +31,9 @@ describe Review do
 
     end
 
-    it 'can se the review via a review id' do
-      
+    it 'can set the review for the correct ' do
+
+
     end
 
 

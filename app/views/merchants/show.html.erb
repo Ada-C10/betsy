@@ -12,7 +12,7 @@
           <% if product.average_rating %>
           <p><%= "Average rating:" %></p>
             <% product.average_rating.to_i.times do %>
-              <i class="fa fa-cookie-bite"></i>
+              <i class="fa fa-star"></i>
             <% end %>
           <% else %>
             <p><%= "No reviews yet" %></p>
