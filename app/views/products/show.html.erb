@@ -1,38 +1,38 @@
-  <div class="card-columns">
-    <h2 ><%= "#{@product.name}" %></h2>
-    <div class="card-title" style="width: 20rem">
-      <img class="card-img-top" src=" <%= find_image_for(@product) %> " alt="Image description">
+<div class="card-columns">
+  <h2 ><%= "#{@product.name}" %></h2>
+  <div class="card-title" style="width: 20rem">
+    <img class="card-img-top" src=" <%= find_image_for(@product) %> " alt="Image description">
 
-      <div class="card-subtitle mb-2 text-muted" >
-        <h3> <%= @product.description %></h3>
+    <div class="card-subtitle mb-2 text-muted" >
+      <h3> <%= @product.description %></h3>
+      <br >
+      <h6 class="card-subtitle mb-2 text-muted"> Origin:
+
+        <h3><% @product.categories.each do |category| %></h3>
+
+        <p class="card-subtitle mb-2 text-muted"><%= category.name %></p>
+
+        <%end%></h6>
         <br >
-        <h6 class="card-subtitle mb-2 text-muted"> Origin:
-
-          <h3><% @product.categories.each do |category| %></h3>
-
-          <p class="card-subtitle mb-2 text-muted"><%= category.name %></p>
-
-          <%end%></h6>
-          <br >
-          Sold by: <a href=" <%= merchant_path(@product.merchant.id) %>"><%= "#{@product.merchant.name}" %></a>
-          <br >
-          price: $<%= @product.price %>
-          <br >
-          <%= @product.inventory %> currently in stock
-          <br>
+        Sold by: <a href=" <%= merchant_path(@product.merchant.id) %>"><%= "#{@product.merchant.name}" %></a>
+        <br >
+        price: $<%= @product.price %>
+        <br >
+        <%= @product.inventory %> currently in stock
+        <br>
 
 
 
-          <% if @product.already_in_cart(@cart) %>
-          <%= render partial: "add_to_cart", locals: { url: order_item_path(@product.already_in_cart(@cart)), method: :put } %>
+        <% if @product.already_in_cart(@cart) %>
+        <%= render partial: "add_to_cart", locals: { url: order_item_path(@product.already_in_cart(@cart)), method: :put } %>
 
-          <% else %>
-          <%= render partial: "add_to_cart", locals: { url: add_item_path, method: :post } %>
-          <% end %>
-        </div>
+        <% else %>
+        <%= render partial: "add_to_cart", locals: { url: add_item_path, method: :post } %>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
 
 
 
@@ -47,11 +47,11 @@
 <% end %>
 
 <p><%= "Average rating:" %></p>
-  <% @product.average_rating.to_i.times do %>
-    <i class="fa fa-star"></i>
-  <% end %>
+<% @product.average_rating.to_i.times do %>
+<i class="fa fa-star"></i>
+<% end %>
 <% else %>
-  <p><%= "No reviews yet" %></p>
+<p><%= "No reviews yet" %></p>
 <% end %>
 
 <br>
