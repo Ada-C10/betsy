@@ -1,28 +1,10 @@
 require "test_helper"
 
 describe OrderItemsController do
-  # it "must be a real test" do
-  #   flunk "Need real tests"
-  # end
 
   describe 'create action' do
     let(:order) { Order.new }
     let(:existing_product) { Product.first }
-
-    # let(:order_data) {
-    #   {
-    #     order: {
-    #       name: 'Sherlock Holmes',
-    #       email: 'smart@ssdetective.com',
-    #       address: '221B Baker St, London',
-    #       cc_num: 1234567812345678,
-    #       cvv: 123,
-    #       exp_month: 12,
-    #       exp_year: Date.today.year + 1,
-    #       zip: 43770
-    #     }
-    #   }
-    # }
 
     let(:order_item_data) {
       {
@@ -98,6 +80,153 @@ describe OrderItemsController do
       expect(flash[:messages]).must_include :quantity
 
     end
+  end
+
+  describe 'update action' do
+    let(:order) { Order.new }
+    let(:existing_product) { Product.first }
+
+    let(:order_item_data) {
+      {
+        id: existing_product.id,
+
+        order_item: {
+          quantity: 2,
+          product_id: existing_product.id
+        }
+      }
+    }
+
+    let(:order_item_setup) {
+      post order_items_path, params: order_item_data
+    }
+
+    let(:old_orders_count) { Order.count }
+    let(:old_orderItems_count) { OrderItem.count }
+    let(:item) { OrderItem.last }
+    let(:max_quantity) { item.product.inventory }
+
+    it 'successfully updates an order_item with valid input and redirects to the shopping cart' do
+      order_item_setup
+
+      order_item_data[:order_item][:quantity] = max_quantity
+
+      put order_item_path(item), params: order_item_data
+
+      must_redirect_to order_path(item.order)
+
+      expect(Order.count).must_equal old_orders_count
+      expect(OrderItem.count).must_equal old_orderItems_count
+      expect(OrderItem.last.quantity).must_equal max_quantity
+      expect(flash[:result_text]).must_include "Successfully updated order for # #{item.product.name}."
+    end
+
+    it 'does not update an order_item with invalid data and redirects back to last page' do
+      order_item_setup
+
+      old_quantity = order_item_data[:order_item][:quantity]
+      order_item_data[:order_item][:quantity] = max_quantity + 1
+
+      put order_item_path(item), params: order_item_data
+
+      must_respond_with 302
+
+      expect(Order.count).must_equal old_orders_count
+      expect(OrderItem.count).must_equal old_orderItems_count
+      expect(OrderItem.last.quantity).must_equal old_quantity
+      expect(flash[:result_text]).must_include "Something went wrong: Could not update order ##{item.id}"
+      expect(flash[:messages]).must_include :quantity
+    end
+
+    it 'responds with bad_request if attempting to update an order_item that does not belong to the cart of the current user' do
+      order_item_setup
+
+      # Arrange: First OrderItem is not associated with current user
+      item = OrderItem.first
+
+      put order_item_path(item), params: order_item_data
+
+      must_respond_with :bad_request
+    end
+
+    it 'responds with bad_request if attempting to update an order_item when the cart is empty' do
+      # Arrange: First OrderItem is not associated with current user
+      item = OrderItem.first
+
+      put order_item_path(item), params: order_item_data
+
+      must_respond_with :bad_request
+    end
+  end
+
+  describe 'destroy action' do
+
+    let(:order) { Order.new }
+    let(:existing_product) { Product.first }
+
+    let(:order_item_data) {
+      {
+        id: existing_product.id,
+
+        order_item: {
+          quantity: 2,
+          product_id: existing_product.id
+        }
+      }
+    }
+
+    let(:order_item_setup) {
+      post order_items_path, params: order_item_data
+    }
+
+    let(:old_orders_count) { Order.count }
+    let(:old_orderItems_count) { OrderItem.count }
+    let(:item) { OrderItem.last }
+    let(:max_quantity) { item.product.inventory }
+
+    it "successfully destroys an order item that is in the user's cart" do
+      order_item_setup
+      cart = item.order
+
+      expect{
+        delete order_item_path(item.id)
+      }.must_change('OrderItem.count', -1)
+
+      must_redirect_to order_path(cart)
+
+    end
+
+    it "responds with 404 not_found if order item does not exist" do
+      order_item_setup
+      delete order_item_path(item.id)
+
+      expect{
+        delete order_item_path(item.id)
+      }.wont_change('OrderItem.count')
+
+      must_respond_with :bad_request
+    end
+
+    it "responds with bad_request if order item does not belong in current cart" do
+      order_item_setup
+      cart = item.order
+
+      expect{
+        delete order_item_path(OrderItem.first)
+      }.wont_change('OrderItem.count')
+
+      must_respond_with :bad_request
+
+    end
+
+    it "responds with bad_request if cart is empty" do
+      expect{
+        delete order_item_path(OrderItem.first)
+      }.wont_change('OrderItem.count')
+
+      must_respond_with :bad_request
+    end
 
   end
+
 end
