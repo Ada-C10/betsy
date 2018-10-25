@@ -21,8 +21,6 @@ class OrderItem < ApplicationRecord
     return self.order.status
   end
 
-<<<<<<< HEAD
-=======
   def cant_exceed_inventory
 
     if quantity > self.product.inventory
@@ -31,7 +29,4 @@ class OrderItem < ApplicationRecord
 
   end
 
-
-
->>>>>>> refactors
 end

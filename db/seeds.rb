@@ -205,7 +205,7 @@ puts "Loading raw review data from #{REVIEW_FILE}"
 
 review_failures = []
 CSV.foreach(REVIEW_FILE, :headers => true) do |row|
-  review = Product.new
+  review = Review.new
   review.id = row['id']
   review.rating = row['rating']
   review.description = row['description']
