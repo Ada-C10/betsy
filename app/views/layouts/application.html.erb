@@ -33,83 +33,77 @@
       </section>
     <% end %>
 
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
 
-    <footer class="page-footer font-small pt-4">
-      <div class="container-fluid text-center text-md-left">
-        <div class="row">
-          <div class="col-md-6 mt-md-0 mt-3">
-            <h5 class="text-uppercase">Contact Us</h5>
-            <p>Email</p>
-            <p>Phone Number</p>
-            <p>Social Media Icons</p>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Find your order</button>
+    <footer id="myFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Get started</h5>
+                    <ul>
+                      <li><%= link_to "Home", root_path %></li>
+                      <li><%= link_to "Login", "/auth/github" %></li>
+                      <li>
+                        <a href="#" data-toggle="modal" data-target="#myModal">Find your order</a>
+                      </li>
 
-            <div class="modal fade" id="myModal">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Enter Order Information</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <%= form_with url: find_order_path, method: :post, class: "form-group" do |f|%>
-                      <%= f.label :id, 'Order ID' %>
-                      <%= f.text_field :id, class: "form-control mb-3", type: :number, required: true %>
 
-                      <%= f.label :email, 'Email' %>
-                      <%= f.text_field :email, class: "form-control mb-3", required: true%>
+                      <div class="modal fade formodal" id="myModal">
+                        <div class="modal-dialog">
+                          <div class="modal-content black">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Enter Order Information</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" class="white">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <%= form_with url: find_order_path, method: :post, class: "form-group" do |f|%>
+                                <%= f.label :id, 'Order ID' %>
+                                <%= f.text_field :id, class: "form-control mb-3", type: :number, required: true %>
 
-                      <%= f.submit "Submit", class: "product-button btn btn-primary", role: "button" %>
-                    <% end %>
-                  </div>
+                                <%= f.label :email, 'Email' %>
+                                <%= f.text_field :email, class: "form-control mb-3", required: true%>
+
+                                <%= f.submit "Submit", class: "product-button btn btn-primary", role: "button" %>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ul>
                 </div>
-              </div>
+                <div class="col-sm-3">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><a href="#">Phone</a></li>
+                        <li><a href="#">Email</a></li>
+                        <li><a href="#">Chat</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 offset-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="#">Shelan</a></li>
+                        <li><a href="#">Sammi Jo</a></li>
+                        <li><a href="#">Katie</a></li>
+                        <li><a href="#">Alice</a></li>
+                    </ul>
+                </div>
             </div>
-          </div>
-          <hr class="clearfix w-100 d-md-none pb-3">
-          <div class="col-md-3 mb-md-0 mb-3">
-            <h5 class="text-uppercase">Links</h5>
-
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">Link 1</a>
-              </li>
-              <li>
-                <a href="#!">Link 2</a>
-              </li>
-              <li>
-                <a href="#!">Link 3</a>
-              </li>
-              <li>
-                <a href="#!">Link 4</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-3 mb-md-0 mb-3">
-            <h5 class="text-uppercase">Links</h5>
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">Link 1</a>
-              </li>
-              <li>
-                <a href="#!">Link 2</a>
-              </li>
-              <li>
-                <a href="#!">Link 3</a>
-              </li>
-              <li>
-                <a href="#!">Link 4</a>
-              </li>
-            </ul>
-          </div>
         </div>
-      </div>
-      <div class="footer-copyright text-center py-3">© 2018 Copyright:
-        <a href="/"> NoRegretsy.com</a>
-      </div>
+        <div class="social-networks">
+            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2018 Copyright: NoRegretsy.com </p>
+        </div>
     </footer>
+
+
   </body>
 </html>

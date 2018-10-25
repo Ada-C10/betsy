@@ -1,79 +1,77 @@
-<main>
-  <div class="container">
-    <%# breadcrumb :product, @product %>
-    <div class="row">
-      <div class="col-lg-6">
-        <%= image_tag(@product.image_url, alt: @product.name, class: "two-hundred mb-5") %>
-      </div>
-      <div class="col-lg-6 pl-5">
-        <h3 class="mb-5 mt-3"><%= @product.name %></h3>
-        <p><strong>Description:</strong> <%= @product.description %></p>
-        <p><strong>Current price:</strong> <%= readable_cost(@product.cost) %></p>
-        <% if @product.reviews.count == 0 %>
-          <p><strong>Item not yet rated.</strong></p>
-        <% else %>
-          <p><strong>Average User Rating:</strong> <%= @product.average_rating %></p>
-        <% end %>
-        <% if @product.active %>
-          <div class="mt-5">
-            <% if @product.inventory == 0 %>
-              <p>Out of Stock</p>
-            <% elsif @product.inventory <= 20 %>
-              <p>Hurry! Only a few left!</p>
-            <% end %>
-
-            <% if @product.inventory > 0 %>
-              <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
-
-                <%= f.label :quantity, 'Quantity' %>
-                <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: @product.inventory, maxlength: 3 %>
-
-                <%= f.hidden_field :product_id, value: @product.id %>
-
-                <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
-              <% end %>
-            <% end %>
-          </div>
-        <% else %>
-          <div class="card-footer text-muted">
-            Product No Longer Available
-          </div>
-        <% end %>
-      </div>
+<div class="container">
+  <%# breadcrumb :product, @product %>
+  <div class="row">
+    <div class="col-lg-6">
+      <%= image_tag(@product.image_url, alt: @product.name, class: "two-hundred mb-5") %>
     </div>
-
-    <hr />
-
-    <div class="col-sm-12">
-      <h4 class="text-center mb-5 mt-5">Reviews</h4>
+    <div class="col-lg-6 pl-5">
+      <h3 class="mb-5 mt-3"><%= @product.name %></h3>
+      <p><strong>Description:</strong> <%= @product.description %></p>
+      <p><strong>Current price:</strong> <%= readable_cost(@product.cost) %></p>
       <% if @product.reviews.count == 0 %>
-        <p class="text-center mb-5">No reviews yet. Be the first!</p>
+        <p><strong>Item not yet rated.</strong></p>
+      <% else %>
+        <p><strong>Average User Rating:</strong> <%= @product.average_rating %></p>
       <% end %>
-      <% @reviews.each do |review| %>
-        <blockquote class="blockquote bg-light mb-5 text-center pt-4 pb-4">
-          <p><%= review.description %></p>
-          <footer class="blockquote-footer"><%= review.name %> on <%= readable_date(review.created_at) %></footer>
-        </blockquote>
-      <% end %>
-      <% if @product.reviews.count != 0 %>
-        <h6 class="text-center mt-5">Leave a review.</h6>
-      <% end %>
-      <% if @product.merchant_id != session[:user_id] %>
-        <%= form_with model: @review, url: reviews_path, class: "form-group" do |f|%>
-          <%= f.label :name, 'Your Name' %>
-          <%= f.text_field :name, class: "form-control"%>
+      <% if @product.active %>
+        <div class="mt-5">
+          <% if @product.inventory == 0 %>
+            <p>Out of Stock</p>
+          <% elsif @product.inventory <= 20 %>
+            <p>Hurry! Only a few left!</p>
+          <% end %>
 
-          <%= f.label :description, 'Your Thoughts' %>
-          <%= f.text_field :description, class: "form-control"%>
-          <br />
-          <%= f.label "Rate this product!" %>
-          <%= f.select :rating, [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]], class: "form-control" %>
+          <% if @product.inventory > 0 %>
+            <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
 
-          <%= f.hidden_field :product_id, value: @product.id %>
+              <%= f.label :quantity, 'Quantity' %>
+              <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: @product.inventory, maxlength: 3 %>
 
-          <%= f.submit "Submit", class: "product-button btn btn-primary", role: "button" %>
-        <% end %>
+              <%= f.hidden_field :product_id, value: @product.id %>
+
+              <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="card-footer text-muted">
+          Product No Longer Available
+        </div>
       <% end %>
     </div>
   </div>
-</main>
+
+  <hr />
+
+  <div class="col-sm-12">
+    <h4 class="text-center mb-5 mt-5">Reviews</h4>
+    <% if @product.reviews.count == 0 %>
+      <p class="text-center mb-5">No reviews yet. Be the first!</p>
+    <% end %>
+    <% @reviews.each do |review| %>
+      <blockquote class="blockquote bg-light mb-5 text-center pt-4 pb-4">
+        <p><%= review.description %></p>
+        <footer class="blockquote-footer"><%= review.name %> on <%= readable_date(review.created_at) %></footer>
+      </blockquote>
+    <% end %>
+    <% if @product.reviews.count != 0 %>
+      <h6 class="text-center mt-5">Leave a review.</h6>
+    <% end %>
+    <% if @product.merchant_id != session[:user_id] %>
+      <%= form_with model: @review, url: reviews_path, class: "form-group" do |f|%>
+        <%= f.label :name, 'Your Name' %>
+        <%= f.text_field :name, class: "form-control"%>
+
+        <%= f.label :description, 'Your Thoughts' %>
+        <%= f.text_field :description, class: "form-control"%>
+        <br />
+        <%= f.label "Rate this product!" %>
+        <%= f.select :rating, [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]], class: "form-control" %>
+
+        <%= f.hidden_field :product_id, value: @product.id %>
+
+        <%= f.submit "Submit", class: "product-button btn btn-primary", role: "button" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

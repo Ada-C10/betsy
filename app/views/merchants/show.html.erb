@@ -1,72 +1,74 @@
-<h2><%= link_to @merchant.name, merchant_path(@merchant.id) %></h2>
-<p><%= @merchant.email %></p>
+<div class="container">
+  <h2><%= link_to @merchant.name, merchant_path(@merchant.id) %></h2>
+  <p><%= @merchant.email %></p>
 
-<br /><br /><br />
+  <br /><br /><br />
 
-<h4>Current Products</h4>
-<% if session[:user_id] == @merchant.id %>
-  <%= link_to "Add Product", new_merchant_product_path(@merchant.id) %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Description</th>
-        <th>Edit</th>
-        <th>Retire/Activate</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @products.each do |product| %>
+  <h4>Current Products</h4>
+  <% if session[:user_id] == @merchant.id %>
+    <%= link_to "Add Product", new_merchant_product_path(@merchant.id) %>
+    <table class="table">
+      <thead>
         <tr>
-          <td><%= link_to product.name, product_path(product.id) %></td>
-          <td><%= product.description %></td>
-          <td><%= link_to ('<i class="fa fa-edit"></i>').html_safe, edit_merchant_product_path(@merchant.id, product.id) %></td>
-          <td><%= link_to ('<i class="fa fa-hourglass-end"></i>').html_safe, products_status_path(@merchant.id, product.id), method: :patch %></td>
-          <% if product.active %>
-            <td>Active</td>
-          <% else %>
-            <td>Retired</td>
-          <% end %>
+          <th>Product</th>
+          <th>Description</th>
+          <th>Edit</th>
+          <th>Retire/Activate</th>
+          <th>Status</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Description</th>
-        <th>Inventory</th>
-        <th>Price</th>
-        <th>Add to Cart</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @products.each do |product| %>
-        <tr>
-          <td><%= link_to product.name, product_path(product.id) %></td>
-          <td><%= product.description %></td>
-          <td><%= product.inventory %></td>
-          <td><%= readable_cost(product.cost) %></td>
-          <td>
-            <% if product.inventory == 0 %>
-              <p>Out of Stock</p>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= link_to product.name, product_path(product.id) %></td>
+            <td><%= product.description %></td>
+            <td><%= link_to ('<i class="fa fa-edit"></i>').html_safe, edit_merchant_product_path(@merchant.id, product.id) %></td>
+            <td><%= link_to ('<i class="fa fa-hourglass-end"></i>').html_safe, products_status_path(@merchant.id, product.id), method: :patch %></td>
+            <% if product.active %>
+              <td>Active</td>
             <% else %>
-              <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
-
-                <%= f.label :quantity, 'Quantity' %>
-                <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: product.inventory, maxlength: 3 %>
-
-                <%= f.hidden_field :product_id, value: product.id %>
-
-                <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
-              <% end %>
+              <td>Retired</td>
             <% end %>
-          </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Description</th>
+          <th>Inventory</th>
+          <th>Price</th>
+          <th>Add to Cart</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= link_to product.name, product_path(product.id) %></td>
+            <td><%= product.description %></td>
+            <td><%= product.inventory %></td>
+            <td><%= readable_cost(product.cost) %></td>
+            <td>
+              <% if product.inventory == 0 %>
+                <p>Out of Stock</p>
+              <% else %>
+                <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
+
+                  <%= f.label :quantity, 'Quantity' %>
+                  <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: product.inventory, maxlength: 3 %>
+
+                  <%= f.hidden_field :product_id, value: product.id %>
+
+                  <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
