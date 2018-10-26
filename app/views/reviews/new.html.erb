@@ -1,0 +1,17 @@
+<section>
+  <%= form_with model: [@product, @review] do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :rating %>
+    <%= f.select :rating, Review::RATINGS %>
+
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+
+    <%= f.hidden_field :product_id, value: @product.id %>
+
+    <%= f.submit class: "btn btn-primary" %>
+
+  <% end %>
+</section>

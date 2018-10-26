@@ -1,0 +1,46 @@
+product_one:
+ name: test product 1
+ price: 1.99
+ photo: http://placekitten.com/200/300
+ stock: 10
+ active: true
+ merchant: dogdays
+ description: blah blah blah cats
+product_two:
+ name: test product 2
+ price: 10.99
+ photo: http://placekitten.com/200/300
+ stock: 15
+ active: true
+ merchant: palomino
+ description: blah blah blah cats
+product_three:
+ name: test product 3
+ price: 18.99
+ photo: http://placekitten.com/200/300
+ stock: 5
+ active: true
+ merchant: larry
+ description: blah blah blah cats
+product_four:
+ name: test product 4
+ price: 1.99
+ photo: http://placekitten.com/200/300
+ stock: 8
+ active: true
+ merchant: cuteclothes
+ description: blah blah blah cats
+product_five:
+ name: test product 5
+ price: 11.99
+ photo: http://placekitten.com/200/300
+ stock: 10
+ active: true
+ merchant: dogdays
+ description: blah blah blah cats
+product_six:
+  name: test product 6
+  price: 11.99
+  stock: 10
+  active: true
+  merchant: dogdays

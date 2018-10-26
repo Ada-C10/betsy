@@ -1,0 +1,90 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+/* Import scss content */
+@import "**/*";
+
+body {
+  background-color: #191970;
+  margin: 2em;
+}
+
+header {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  grid-template-columns: 1fr 4fr;
+  color: #191970;
+  margin-top : 15px;
+  padding: 10px;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.header-heading {
+  font-family: 'Rammetto One', cursive;
+}
+
+.header-img {
+  background-image: image-url("home/petstogether.jpeg");
+  background-repeat: no-repeat;
+  background-position: left top;
+  width: 400px;
+  height: 350px;
+}
+
+nav {
+  grid-row: 2;
+  grid-column: 1 / 3;
+  // background-color: #191970;
+  border-top: solid #c6d9ec .1rem;
+  border-bottom: solid #c6d9ec .1rem;
+}
+
+.user-nav-list, .shopping-nav-list {
+  display: flex;
+  flex-direction: row;
+}
+
+header a:hover, header a:link, header a:visited, footer {
+  color: #191970;
+  text-decoration: none;
+  margin: 1em;
+}
+
+header a:hover {
+  text-decoration: underline;
+}
+
+.header-subheading {
+  margin-bottom: 2em;
+}
+
+h1, h2, h3 {
+  color: #191970
+}
+
+
+main, header {
+  background-color: white;
+  padding: 2em;
+}

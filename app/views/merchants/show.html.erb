@@ -1,0 +1,31 @@
+<section class = "merchant-details">
+  <h2><%=@merchant.username%> </h2>
+  <p><%=@merchant.created_at.strftime("Joined Petsy in %B %Y")%></p>
+    <div class="merchant-products">
+      <h3>Products</h3>
+      <table class="table merchant-products-table">
+        <thead>
+          <tr>
+            <th> </th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @merchant.products.each do |product| %>
+          <tr>
+            <td><img src="<%=product.photo%>" alt="Image of <%=product.name%>"></td>
+            <td><%= link_to product.name, product_path(product.id) %></td>
+            <td><%= product.description %></td>
+            <td><%= product.price %></td>
+            <td><%= product.stock %></td>
+            <td><%= product.rating %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+</section>

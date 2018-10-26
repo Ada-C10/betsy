@@ -1,0 +1,18 @@
+<section class = "all-products">
+  <h2>All Products</h2>
+
+  <section class = "product-gallery">
+    <% @products.each do |product| %>
+    <div class="card">
+      <img class="card-img-top" src="<%=product.photo%>" alt="Image of <%=product.name%>">
+      <div class="card-body">
+        <h5 class="card-title"><%= product.name %></h5>
+        <p class="card-text"><%= product.description%></p>
+        <%= link_to "Adopt me!", product_path(product.id), class:"btn btn-primary"%>
+      </div>
+    </div>
+    <% end %>
+  </section>
+
+<%= will_paginate @products %>
+</section>

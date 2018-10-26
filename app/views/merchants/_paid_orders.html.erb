@@ -1,0 +1,31 @@
+<div class="merchant-products">
+  <h3>Paid Order Items &nbsp Count: <%= "#{@merchant.paid_order_items.length}" %>&nbsp&nbsp&nbsp Total Revenue for Paid Order Items: $<%= "#{@merchant.paid_orders_subtotal}" %></h3>
+  <table class="table merchant-products-table">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Product ID</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+        <th>Ordered On</th>
+        <th>Status</th>
+        <th>      </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @merchant.paid_order_items.each do |item| %>
+          <tr>
+            <td><%= link_to item.order.id, customer_info_path(item.order.id) %></td>
+            <td><%= link_to item.product_id, product_path(item.product_id) %></td>
+            <td><%= item.product.description %></td>
+            <td><%= item.quantity %></td>
+            <td><%= item.price %></td>
+            <td><%= render_date(item.created_at) %></td>
+            <td><%= item.status %></td>
+            <td><%= link_to "Fulfill order", order_items_status_path(item.id), method: :post, class: 'btn btn-primary' %></td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

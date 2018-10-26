@@ -1,0 +1,33 @@
+<div class="merchant-products">
+  <h3>Products
+    <span class="btn btn-primary">
+      <%= link_to "Add New Product", new_product_path %>
+      <%= link_to "Add New Category", new_category_path %>
+    </span>
+  </h3>
+  <table class="table merchant-products-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Rating</th>
+        <th>      </th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @merchant.products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product_path(product.id)%></td>
+        <td><%= product.description%></td>
+        <td>$ <%= product.price%></td>
+        <td><%= product.stock%></td>
+        <td><%= product.rating%></td>
+        <td><%= link_to "Edit", edit_product_path(product.id), class: 'btn btn-primary'%></td>
+
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

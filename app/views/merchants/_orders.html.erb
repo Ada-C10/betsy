@@ -1,0 +1,29 @@
+<div class="merchant-products">
+  <h3>All Order Items &nbsp&nbsp Count: <%= "#{@merchant.order_items.size}" %> &nbsp&nbsp&nbsp Total Revenue for All Order Items: $<%= "#{@merchant.all_order_items_subtotal}" %></h3>
+  <table class="table merchant-products-table">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Product ID</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+        <th>Ordered On</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @merchant.order_items.each do |item| %>
+        <tr>
+          <td><%= link_to item.order.id, customer_info_path(item.order.id) %></td>
+          <td><%= link_to item.product_id, product_path(item.product_id) %></td>
+          <td><%= item.product.description %></td>
+          <td><%= item.quantity %></td>
+          <td><%= item.price %></td>
+          <td><%= render_date(item.created_at) %></td>
+          <td><%= item.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

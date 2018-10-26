@@ -1,0 +1,89 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.banner {
+  color: white;
+  padding: 5rem;
+  border: 3rem;
+  margin: 2rem;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+#puppy-banner {
+  background-image: image-url("home/white-puppy-running.jpg");
+}
+
+#tiger-banner {
+  background-image: image-url("home/tiger-eyes.jpg");
+}
+
+#sweater-banner {
+  background-image: image-url("home/penguin-sweaters.jpg");
+}
+
+.overlay {
+  padding: 10rem;
+  position: relative;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  height: 200%;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.banner:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 2rem;
+  position: relative;
+  text-align: center;
+}
+
+.product-gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  margin: .5em;
+  width: 15rem;
+}
+
+.pagination {
+  .previous_page { background:#191970; color:white; }
+  .previous_page.disabled { background: white; color: #777; }
+  .current { border: .15em solid;}
+  .next_page { background: #191970; color: white; }
+  .next_page.disabled { background: white; color: #777; }
+}
+
+a, em, span {
+  color: #191970;
+  padding: .25em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.product-gallery img {
+  height: 250px;
+}

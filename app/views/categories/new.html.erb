@@ -1,0 +1,8 @@
+<%= form_with model: @category  do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name , class: 'form-control'%>
+
+  <%= f.submit class: "btn btn-primary" %>
+
+<% end %>

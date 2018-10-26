@@ -1,0 +1,15 @@
+<section class="order-search">
+  <%= form_tag(orders_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search by Order #" %>
+    <%= submit_tag "Search" %>
+  <% end %>
+
+  <% if @orders.present? %>
+    <% @orders.each do |order| %>
+      <p>View details of:
+      <%=link_to "Order ##{order.id}", order_path(order.id)%></p>
+      <% end %>
+  <% else %>
+    <p>There are no orders with the number <%= params[:search] %>.</p>
+  <% end %>
+</section>

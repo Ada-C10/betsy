@@ -1,0 +1,31 @@
+<%= render partial: 'layouts/form_errors',
+locals: {
+  model: @order
+}
+%>
+
+<%= form_with model: @order, class: 'order-form' do |f| %>
+
+  <h3> <%= form_title %> </h3>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email, class: "form-control" %>
+
+  <%= f.label :address %>
+  <%= f.text_field :address, class: "form-control" %>
+
+  <%= f.label :cc_num %>
+  <%= f.text_field :cc_num, class: "form-control" %>
+
+  <%= f.label :cc_cvv %>
+  <%= f.text_field :cc_cvv, class: "form-control" %>
+
+  <%= f.label :cc_expiration, 'Expiration date' %>
+  <%= f.date_select :cc_expiration, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :use_month_numbers => true, :order => [:month, :year], class: "form-control" %>
+
+  <%= f.submit 'Finalize Order', class: "order-form-submit-button btn btn-primary" %>
+
+<% end %>

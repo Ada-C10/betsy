@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+dog:
+  name: dogs
+  products: [product_one, product_two]
+cat:
+  name: cats
+  products: [product_three]
+val:
+  name: silly val
+  products: [product_one, product_two, product_six]

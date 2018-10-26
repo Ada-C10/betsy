@@ -1,0 +1,47 @@
+<h2> Customer Order Detail </h2>
+
+<section>
+  <ul>
+    <li> <strong> Name: </strong> <%= @order.name %> </li>
+    <li> <strong> Email Address: </strong> <%= @order.email %> </li>
+    <li> <strong> Address: </strong> <%= @order.address %> </li>
+    <li> <strong> Credit Card Number: </strong> XXXX-XXXX-XXXX-<%= @order.CC_num_last_four %> </li>
+    <li> <strong> Date: </strong> <%= render_date(@order.created_at) %> </li>
+    <li>
+      <strong>Order ID: </strong> <%= @order.id %>
+    </li>
+
+  </ul>
+</section>
+
+
+<section>
+  <h3> Order Items </h3>
+<table class='table'>
+
+  <thead>
+    <tr>
+      <th> Name </th>
+      <th> Quantity </th>
+      <th> Status </th>
+      <th> Price </th>
+    </tr>
+  </thead>
+
+  <% @order.order_items.each do |item| %>
+    <% if session[:user_id] == item.product.merchant_id %>
+      <tr>
+        <td> <%= item.product.name %> </td>
+        <td> <%= item.quantity %> </td>
+        <td> <%= item.status %> </td>
+        <td> <%= item.price %> </td>
+      </tr>
+    <% end %>
+  <% end %>
+
+  <tr>
+    <td colspan="3"> <strong> Total </strong> </td>
+    <td> <%= @order.total %> </td>
+  </tr>
+</table>
+</section>
