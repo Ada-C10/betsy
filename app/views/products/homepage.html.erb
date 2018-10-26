@@ -8,7 +8,8 @@
 
 <section class="features text-center newest">
 
-  <h2 class="card text-center newest">Just in!</h2>
+  <h2 class="card text-center newest blink">Just in!</h2>
+  <br />
   <div class="text-center card">
     <% new = Product.newest(@products) %>
     <a href="<%= product_path(new.id) %>">

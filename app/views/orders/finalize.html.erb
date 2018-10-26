@@ -62,7 +62,7 @@
   </table>
 </section>
 
-<nav class="navbar navbar-expand-md">
+<nav>
   <span>
     <%=link_to "Cancel this order", order_path(@cart), method: :delete, data: { confirm: "Are you sure you want to cancel this order?" }, class: "btn btn-danger mx-1" %>
     <%=link_to "Confirm this order", confirmation_path, method: :put, class: "btn btn-info mx-1" %>
