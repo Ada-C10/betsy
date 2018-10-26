@@ -17,4 +17,12 @@ module ApplicationHelper
   def shopping_cart_count(count)
     '<i class="fa fa-shopping-cart"><span class="badge badge-danger d-flex justify-content-around">'.html_safe + "#{count}" '</span></i>'.html_safe
   end
+
+  def readable_order(order)
+    if order == 1
+      return "Order"
+    else
+      return "Orders"
+    end
+  end
 end
