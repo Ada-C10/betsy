@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Betsy</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+  <body>
+
+  <header class="header">
+  <h1 id="logo-hover" class="logo">
+    <%= link_to "REDSY", root_path %><span class="little-header">All Red, All The Time</span>
+  </h1>
+
+
+  <nav class="navigation">
+    <ul class="nav-app-header">
+      <li class="nav-item app-header__nav_item">
+        <%= link_to "Shop All Products", products_path, class: "nav-link" %>
+      </li>
+      <div class="dropdown">
+        <span><%= link_to "Shop By Merchant", merchants_path, class: "nav-link" %></span>
+          <div class="dropdown-content">
+            <% Merchant.all.each do |merchant| %>
+              <li><%= link_to merchant.username, merchant_products_path(merchant.id) %></li>
+            <% end %>
+         </div>
+       </div>
+
+      <div class="dropdown">
+        <span><%= link_to "Shop By Category", categories_path, class: "nav-link" %></span>
+          <div class="dropdown-content">
+            <% Category.all.each do |category| %>
+              <li><%= link_to category.category_name, category_products_path(category[:id]) %></li>
+            <% end %>
+          </div>
+      </div>
+
+      <li class="nav-item app-header__nav_item">
+        <%= link_to "Cart", orders_path, class: "nav-link" %>
+      </li>
+
+
+      <li>
+        <% if @login_user %>
+          <li class="nav-item app-header__nav_item">
+          <%= link_to "My Account", merchant_path(@login_user), id: "session", class: "btn btn-primary" %>
+              </li>
+          <li class="nav-item app-header__nav_item">
+              <%= link_to "Log out", logout_path, method: "delete", id: "session", class: "btn btn-primary"   %>
+            </li>
+        <% else %>
+          <li class="nav-item app-header__nav_item">
+            <%= link_to "Login with Github", "/auth/github", id: "session", class: "btn btn-primary"  %>
+          </li>
+        <% end %>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+    <% if flash[:result_text] or flash[:messages] %>
+    <section class="alert__container">
+      <div class="alert alert-<%= flash[:status].to_s == 'failure' ? 'warning' : flash[:status] %>">
+        <span><%= flash[:status].to_s == "failure" ? "A problem occurred: " : "" %><%= flash[:result_text] %></span>
+        <% if flash[:messages] %>
+        <ul>
+          <% flash[:messages].each do |name, problems| %>
+          <% problems.each do |problem| %>
+          <li><%= name %>: <%= problem %></li>
+          <% end %>
+          <% end %>
+        </ul>
+        <% end %>
+      </div>
+    </section>
+    <% end %>
+
+  <main>
+    <%= yield %>
+  </main>
+
+  </body>
+  <footer>
+     <%= link_to "Homepage", root_path %>   |
+     <%= link_to "About Us", about_us_path %></p>
+     <p> Copyright Red Jaguars 2018</p>
+  </footer>
+</html>

@@ -1,0 +1,46 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+order1:
+  payment_status: pending
+  fulfillment_status: pending
+  guest_email: person@person.com
+  guest_mailing: 123 somewhere st.
+  guest_cc_name: Person A. Person
+  guest_cc_num: 1234567890123456
+  guest_cc_exp_date: 01/2020
+  guest_cc_cvv_code: 123
+  guest_cc_zip: 07747
+
+order2:
+  payment_status: paid
+  fulfillment_status: complete
+  guest_email: me@wnbc.net
+  guest_mailing: 321 somewhere sq.
+  guest_cc_name: Person Moo
+  guest_cc_num: 0987654321098765
+  guest_cc_exp_date: 02/2021
+  guest_cc_cvv_code: 321
+  guest_cc_zip: 11238
+
+order3:
+  payment_status: pending
+  fulfillment_status: pending
+  guest_email: herc@hercules.org
+  guest_mailing: 1 highline st.
+  guest_cc_name: Hercules Hercules
+  guest_cc_num: 1234567890123456
+  guest_cc_exp_date: 11/2020
+  guest_cc_cvv_code: 999
+  guest_cc_zip: 98121
+
+
+order4:
+  payment_status: pending
+  fulfillment_status: pending
+  guest_email: person@person.com
+  guest_mailing: 123 somewhere st.
+  guest_cc_name: Person A. Person
+  guest_cc_num: 1234567890123456
+  guest_cc_exp_date: 01/2020
+  guest_cc_cvv_code: 123
+  guest_cc_zip: 07747

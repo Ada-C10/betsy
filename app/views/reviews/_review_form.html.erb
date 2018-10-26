@@ -1,0 +1,21 @@
+<div class="mini-body">
+
+<section>
+  <%= form_with(model: @review, url: [@review.product, @review]) do |f| %>
+
+    <div class="form-group">
+      <%= f.label :rating %>:
+      <%= f.select(:star_rating, ['1', '2', '3', '4', '5']) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :review %>
+      <%= f.text_field :text, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit action_type, class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</section>
+</div>

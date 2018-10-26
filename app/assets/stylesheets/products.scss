@@ -1,0 +1,100 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.product-title {
+  text-align: center;
+}
+
+/*---------------------- PRODUCT LIST ----------------------------*/
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  justify-content: center;
+  grid-column-gap: 50px;
+  grid-row-gap: 25px;
+  align-self: auto;
+  margin: 4em
+}
+
+.grid-item img {
+  max-width: 100%;
+  height: 250px;
+  border-radius: 50;
+  padding: 2px;
+  border: 1px solid #EC7C7C ;
+  outline: 3px solid #FFE5E7;
+  outline-offset: 1px;
+
+  margin: 0 auto ;
+}
+
+
+
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  margin: 0;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.6;
+}
+
+/*---------------------- PRODUCT DETAILS ----------------------------*/
+
+.show-grid-container {
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  grid-column-gap: 5px;
+  align-self: auto;
+}
+
+.show-grid-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  padding: 1px;
+}
+
+.show-grid-image img {
+  width: 90%;
+  padding: 1px;
+  border: 1px solid black ;
+
+}
+
+.review-container {
+  display: grid;
+  text-align: left;
+  width: 70%;
+  margin: -10px auto;
+  padding: 30px;
+
+}
+
+
+.add-cart {
+  background-color: #F97A74 !important;
+  border: 1px #292F36 solid;
+}

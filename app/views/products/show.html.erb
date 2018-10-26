@@ -1,0 +1,76 @@
+<div class="mini-body">
+
+<section class="product-title">
+  <h2>Product Details</h2>
+</section>
+<hr><br>
+  <div class="show-grid-container">
+  <section class="show-grid-image">
+    <%= image_tag "#{@product.photo_url}", class: "show-image" %>
+  </section>
+
+  <section class="show-grid-details">
+    <h4>
+      <strong><%= @product.name %></strong>
+    </h4>
+    <p>
+    <div>
+      <strong>Price:</strong>
+        <%= number_to_currency(@product.price_int_to_float, precision: 2) %>
+    </div>
+
+    <div><strong>Seller:</strong>
+      <%= link_to @product.merchant.username, merchant_products_path(@product.merchant.id) %>
+    </div>
+    <p>
+    <div>
+      <% if @product.inventory < 1 %>
+        <strong>Out of Stock</strong>
+        <% else %>
+        <strong>Available Stock:</strong> <%= @product.inventory %>
+        </div>
+        <div>
+          <%= form_with model: @order, url: product_order_items_create_path(@product.id), method: :post do |f|%>
+            <strong><%= f.label :quantity%></strong>
+            <%= f.select :quantity, (1..@product.inventory)  %><br>
+            <%= f.submit "Add Item to Cart", class: "btn btn-primary add-cart" %>
+          <% end %>
+        <% end %>
+    </div>
+    <hr>
+    <div><strong>Description:</strong>
+      <%= @product.description %>
+    </div>
+
+    <div><strong>Categories:</strong>
+      <% @product.categories.each do |c| %>
+      <%= link_to c.category_name, category_products_path(c.id) %>
+      <% end %>
+    </div>
+  </section>
+</div>
+
+  <section class="review-container">
+    <div>
+      <h4><strong>Rating Summary</strong></h4>
+    </div>
+    <div>
+        <li> Average rating: <%= @avg_rating %></li>
+    </div>
+    <hr>
+    <div>
+      <strong>Reviews</strong>
+        <%  @product.reviews.each do |r| %>
+        <li> Rating: <%=  r.star_rating %></li>
+        <p>
+        <li> Review: <%=  r.text %></li>
+        <hr>
+        <% end %>
+    </div>
+    <p>
+    <div>
+      <%= link_to "Add review", new_product_review_path(@product), class: "btn btn-primary add-cart"%>
+    </div>
+  </section>
+
+</div>

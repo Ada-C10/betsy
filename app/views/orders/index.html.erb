@@ -1,0 +1,106 @@
+<div class="mini-body">
+
+<h2>Your Cart</h2>
+<hr>
+<!-- QUESTION: is this the best way to do this? To show an empty vs non-empty cart? -->
+<% if  !@orders || @orders.empty_cart? %>
+<h3>Cart is empty!</h3>
+
+<% else %>
+
+<h3>Products</h3>
+<div style="overflow-x:auto;">
+
+<table>
+  <thead class="table-head">
+    <td>
+      Image
+    </td>
+    <td>
+      Item Name
+    </td>
+    <td>
+      Unit Price
+    </td>
+    <td>
+      Current Quantity
+    </td>
+    <td>
+      Update Quantity
+    </td>
+    <td>
+      Remove
+    </td>
+    <td>
+      Subtotal
+    </td>
+  </thead>
+  <tbody>
+
+<!-- QUESTION: render partial the repeated code below to DRY it up? -->
+<% @orders.order_items.each do |order_item| %>
+<% order_item.double_check_availability %>
+  <tr>
+    <td>
+      <%= link_to image_tag("#{order_item.product.photo_url}"), product_path(order_item.product.id), class: "order-image"%>
+    </td>
+    <td><strong>
+      <%= link_to order_item.product.name, product_path(order_item.product.id) %>
+    </strong>
+    </td>
+    <td>
+      <%= number_to_currency((order_item.product.price_int_to_float), precision: 2) %>
+    </td>
+    <td>
+      <%= order_item.quantity %>
+    </td>
+
+    <td>
+      <%= form_with model: @order_item, url: order_items_update_path(:order_item_id => order_item), method: :put do |f|%>
+
+        <%= f.label :quantity%>
+        <%= f.select :quantity, (1..order_item.product.inventory) %>
+        <%= f.submit "Update", class: "btn btn-primary update-order" %>
+
+      <% end %>
+
+
+    </td>
+    <td>
+      <%= link_to 'Remove from Cart', order_item_path(order_item.id), method: :delete, data: { confirm: "Are you sure you want to delete item:  #{order_item.product.name}?" }, class: "btn btn-primary remove-item"  %>
+    </td>
+    <!-- TODO: decide if link here should change column from true to false -->
+    <td>
+      <%= number_to_currency(order_item.order_item_subtotal, precision: 2) %>
+    </td>
+  </tr>
+  <% end %>
+
+  <tr>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+      TOTAL: <%= number_to_currency(@orders.order_total, precision: 2) %>
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p>
+<div>
+  <%= link_to 'Proceed to Checkout', new_order_path, class: "btn btn-success"  %>
+</div>
+
+
+<% end %>
+</div>

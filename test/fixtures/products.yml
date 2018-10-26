@@ -1,0 +1,73 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+poodr:
+  name: Poodr
+  price: 2000
+  description: ruby is practical and full of bicycles and flexible
+  photo_url: https://i.imgur.com/WnNdern.jpg
+  status: true
+  inventory: 1
+  merchant: jupiter
+
+koolaid:
+  name: koolaid
+  price: 100
+  description: a sugary drink that breaks through a wall
+  photo_url: https://images-na.ssl-images-amazon.com/images/I/91BG%2BhDfwuL._SY550_.jpg
+  status: true
+  inventory: 100
+  merchant: mercury
+
+wig1:
+  name: wig
+  price: 4444
+  description: not just for halloween
+  photo_url: https://images.halloweencostumes.com/products/22842/1-1/long-wavy-red-wig.jpg
+  status: true
+  inventory: 100
+  merchant: saturn
+
+houseplant1:
+  name: houseplant
+  price: 1500
+  description: Cyclamen
+  photo_url: https://www.educationquizzes.com/library/Gardening/Houseplants/Cyclamen-C.jpg
+  status: true
+  inventory: 0
+  merchant: saturn
+
+lamp:
+  name: lamp
+  price: 6600
+  description: let there be light
+  photo_url: https://images.homedepot-static.com/productImages/d5b0dbea-d25f-49c5-824d-7c894e5d14ab/svn/chrome-table-lamps-tl8082-64_400_compressed.jpg
+  status: true
+  inventory: 50
+  merchant: mars
+
+nailpolish1:
+  name: nailpolish
+  price: 1000
+  description: spirit fingers
+  photo_url: https://i.imgur.com/Yczg2oF.jpg
+  status: true
+  inventory: 2
+  merchant: saturn
+
+onesie1:
+  name: onesie
+  price: 900
+  description: not your grandma's jammies
+  photo_url: https://images-na.ssl-images-amazon.com/images/I/51tRFrfnuPL._UX342_.jpg
+  status: true
+  inventory: 5
+  merchant: mars
+
+snuggie:
+  name: snuggie
+  price: 500
+  description: hygge time
+  photo_url: http://4.bp.blogspot.com/_AGXlKNxtdl8/SwDf52G-CTI/AAAAAAAAA1E/hFHKLRpGwvs/s1600/snuggie.jpg
+  status: true
+  inventory: 44
+  merchant: jupiter

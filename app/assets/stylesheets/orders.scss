@@ -1,0 +1,66 @@
+// Place all the styles related to the orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table, th, td {
+    border: 0px solid black;
+    text-align: center !important;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+
+}
+
+// tr:nth-child(even){background-color: #f2f2f2}
+// th, td {
+//     padding: 12px;
+//     text-align: left;
+//     height: 50px;
+//     vertical-align: bottom;
+// }
+//
+// tr:hover {background-color: #F7EBE8;}
+// tr:nth-child(even) {background-color: #F7EBE8;}
+
+
+.update-order {
+  color: black;
+  background-color: #FFE5E7 !important;
+  border: 1px #292F36 solid;
+}
+
+
+.remove-item {
+  color: #fff !important;
+  background-color: #F72F26 !important;
+  border: 1px #292F36 solid;
+}
+
+.order-image img{
+  width: 75px;
+  height: 75px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+
+.checkout {
+  color: white !important;
+  background-color: #23D552 !important;
+  border: 1px #292F36 solid;
+}
+
+.table-head {
+  align-items: center;
+  font-weight: bold;
+  background-color: #EBECEC;
+}

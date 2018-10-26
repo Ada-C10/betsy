@@ -1,0 +1,22 @@
+<div class="mini-body">
+
+<section class="category-title">
+<h2>Product Categories</h2>
+</section>
+
+<hr>
+
+<container>
+<p></p>
+<ul class="grid-container">
+  <% @categories.each do |category| %>
+  <li class="grid-item">
+    <strong>
+      <div class="container">
+    <h5><%= link_to "#{category.category_name}", category_products_path(category[:id]) %></h5>
+  </strong>
+  </li>
+    <% end %>
+  </ul>
+  </container>
+</div>

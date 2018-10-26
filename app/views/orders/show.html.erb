@@ -1,0 +1,41 @@
+<div class="mini-body">
+  <% if session[:merchant_id].nil? %>
+  <section class="product-title">
+    <h2>Thanks for shopping with us!</h2>
+  </section>
+  <hr><br>
+  <% end %>
+
+<h3> Order Details </h3>
+<p>Order: #<%=@order.id %> </p>
+<p>Purchased on: <%=@order.created_at.strftime("%m/%d/%Y") %> </p>
+<p>Purchase status: <%=@order.payment_status %> </p>
+<p>Name: <%=@order.guest_cc_name %> </p>
+<p>Shipping address: <%=@order.guest_mailing %> </p>
+<p>Email: <%=@order.guest_email %> </p>
+<br />
+
+
+
+<h3> Products Purchased </h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Product: </th>
+      <th scope="col">Price: </th>
+      <th scope="col">Quantity: </th>
+    </tr>
+  </thead>
+  <% @order.order_items.each do |item| %>
+  <tbody>
+      <td><%= link_to item.product.name, product_path(item.product.id) %></td>
+      <td><%=number_to_currency(item.product.price_int_to_float, precision: 2) %> </td>
+      <td><%= item.quantity %></td>
+  </tbody>
+  <% end %>
+</table>
+
+<br />
+<p>
+  Purchase Total: <%= number_to_currency(@order.order_total, precision: 2) %>
+</p>

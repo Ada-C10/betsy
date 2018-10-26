@@ -1,0 +1,18 @@
+// Place all the styles related to the Categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.category-title {
+  text-align: center;
+}
+
+/*---------------------- PRODUCT LIST ----------------------------*/
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  justify-content: center;
+  grid-column-gap: 50px;
+  grid-row-gap: 25px;
+  align-self: auto;
+}

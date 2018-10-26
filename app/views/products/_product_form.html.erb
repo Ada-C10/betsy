@@ -1,0 +1,39 @@
+<section>
+  <%= form_with model: @product do |f| %>
+
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :price%>
+      <%= f.text_field :price, class: "form-control", :value => number_with_precision(f.object.price_int_to_float, :precision => 2) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :inventory %>
+      <%= f.text_field :inventory, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :category_ids, "Select all categories that apply" %>
+      <%= f.select(:category_ids, Category.all.map { |c| [c.category_name, c.id] }, {}, :multiple => true, class: "form-control") %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :link_photo_url %>
+      <%= f.text_field :photo_url, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit action_type, class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</section>

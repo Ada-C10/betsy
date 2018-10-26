@@ -1,0 +1,103 @@
+<div class="mini-body">
+<section class="merchant-show-title">
+<h2> Orders Summary </h2>
+</section>
+<hr>
+  <% if @login_user != nil %>
+  <table>
+    <thead>
+      <td>
+    <th><strong>Total Revenue:</strong> <%= number_to_currency(@orders.total_revenue, precision: 2) %></th>
+    </td>
+    <td>
+      <strong>By status Paid:</strong> <%= number_to_currency(@orders.revenue_by_status("paid"), precision: 2)%>
+    </td>
+    <td>
+      <strong>By status Complete:</strong> <%= number_to_currency(@orders.revenue_by_status("complete"), precision: 2)%>
+    </td>
+  </table>
+
+<br>
+
+  <table>
+    <td>
+      <th><strong>Total Orders:</strong> <%= @orders.length %> </th>
+    </td>
+    <td>
+      <strong>Orders Paid:</strong> <%= @orders.total_orders_by_status("paid") %>
+    </td>
+    <td>
+      <strong>Orders Complete:</strong> <%= @orders.total_orders_by_status("complete") %>
+    </td>
+  </table>
+
+
+
+  <% end %>
+
+<hr>
+  <h2>Orders</h2>
+<table>
+  <thead>
+
+  <tr class="order-header">
+    <th>Order ID</th>
+    <th>Purchase Date</th>
+    <th>Item Name</th>
+    <th>Item Quantity</th>
+    <th>Item Price</th>
+    <th>Item Subtotal</th>
+    <th>Current Status</th>
+    <th>Ship Status</th>
+    <th></th>
+  </thead>
+
+<tbody>
+
+  </tr>
+  <% @order_items.each do |item| %>
+  <tr class="order-row">
+    <td>
+      <%= link_to item.order.id, order_path(item.order) %>
+    </td>
+    <td>
+      <!-- QUESTION: USE UPDATED_AT INSTEAD? -->
+      <%= item.order.created_at.strftime("%m/%d/%Y") %>
+    </td>
+    <td>
+        <%= item.product.name %>
+    </td>
+    <td>
+
+        <%= item.quantity %>
+      </td>
+      <td>
+
+          <%= number_to_currency(item.product.price_int_to_float, precision: 2) %>
+        </td>
+<td>
+          <%= number_to_currency(item.order_item_subtotal, precision: 2) %>
+
+    </td>
+    <td>
+      <%= item.order.payment_status %>
+    </td>
+    <td>
+      <%= item.shipped %>
+    </td>
+
+    <td>
+      <!-- Shipped button needs to toggle to ship -->
+      <% if item.shipped == false %>
+      <%= link_to "Mark as shipped", ship_item_path({order_item_id: item.id, shipped: true}), method: :put, class: "btn btn-danger"%>
+      <% else %>
+      <%= link_to "Unship", ship_item_path({order_item_id: item.id, shipped: false}), method: :put, class: "btn btn-danger"%>
+      <% end %>
+    </td>
+
+
+  </tr>
+  <% end %>
+</tbody>
+</table>
+</div>

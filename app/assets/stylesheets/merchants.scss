@@ -1,0 +1,101 @@
+// Place all the styles related to the merchants controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.merchant-title {
+  text-align: center;
+}
+
+
+.mini-body{
+  color: black;
+  background-color: white;
+    width: 80%;
+    border: 10px solid white;
+    padding: 15px;
+    margin: auto;
+}
+
+.merchant-show-title {
+  text-align: center;
+  color: #292F36;
+  text-transform:uppercase;
+  letter-spacing: .5em;
+  text-shadow: 2px 2px #B1B3B5;
+}
+
+/*---------------------- PRODUCT LIST ----------------------------*/
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  justify-content: center;
+  grid-column-gap: 50px;
+  grid-row-gap: 25px;
+  align-self: auto;
+}
+
+.order-items {
+  margin-bottom: 0;
+  padding: 0;
+}
+.order-items li {
+  list-style: disc;
+}
+
+.order-row td {
+  padding: 10px 20px;
+  vertical-align: top;
+}
+
+.order-header th {
+  padding: 10px 20px;
+}
+
+
+/*---------------------- MERCHANT SHOW ----------------------*/
+
+
+.add-category {
+  background-color: #F97A74 !important;
+  border: 1px #292F36 solid;
+}
+
+.add-product {
+  background-color: #F97A74 !important;
+  border: 1px #292F36 solid;
+}
+
+.order-summary {
+  background-color: #FFE5E7 !important;
+  border: 1px #292F36 solid;
+}
+
+
+
+
+.mini-body-about{
+justify-content: center;
+ color: black;
+  background-color: white;
+    width: 80%;
+    border: 10px solid white;
+    padding: 15px;
+    margin: auto;
+}
+
+.about-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+  justify-content: center;
+  grid-column-gap: 50px;
+  grid-row-gap: 20px;
+  align-self: auto;
+}
+
+.grid-item {
+  padding: 20px
+
+}

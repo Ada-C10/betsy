@@ -1,0 +1,31 @@
+<div class="mini-body">
+<section class="product-title">
+<% if params[:category_id] %>
+  <h2>List of Products: <%= Category.find(params[:category_id]).category_name.capitalize %>
+    <% elsif params[:merchant_id] %>
+    <h2><%= Merchant.find(params[:merchant_id]).username %>'s shop </h2>
+  <% else %>
+  <h2>All Products</h2>
+  <% end %>
+</section>
+<hr>
+<container>
+<p></p>
+<ul class="grid-container">
+  <% @products.each do |p| %>
+  <li class="grid-item">
+    <strong>
+      <div class="container">
+      <%= link_to image_tag("#{p.photo_url}"), product_path(p.id), class: "image"%>
+      </div>
+      <div></div>
+      <%= link_to "#{p.name}", product_path(p.id) %>
+      <div></div>
+      <%= number_to_currency(p.price_int_to_float, precision: 2) %>
+    </strong>
+  </li>
+  <% end %>
+</ul>
+</container>
+
+</div>

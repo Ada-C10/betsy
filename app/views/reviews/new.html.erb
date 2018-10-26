@@ -1,0 +1,22 @@
+<div class="mini-body">
+
+<section class="product-title">
+  <h2>Add a New Review</h2>
+</section>
+<hr><br>
+
+  <div class="show-grid-container">
+  <section class="show-grid-image">
+    <%= image_tag "#{@review.product.photo_url}", class: "show-image" %>
+  </section>
+
+  <section class="show-grid-details">
+    <h4>
+      <strong><%= @review.product.name %></strong>
+    </h4>
+    <p>
+    </section>
+
+      <%= render partial: "review_form", locals: { action_type: "Create Review" } %>
+
+</div>

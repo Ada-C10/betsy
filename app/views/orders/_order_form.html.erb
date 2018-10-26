@@ -1,0 +1,44 @@
+<section>
+  <%= form_with model: @order, local: true do |f| %>
+
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :guest_cc_name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :address%>
+      <%= f.text_field :guest_mailing, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.text_field :guest_email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :credit_card_number %>
+      <%= f.text_field :guest_cc_num, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :expiration_date %>
+      <%= f.text_field :guest_cc_exp_date, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :cvv %>
+      <%= f.text_field :guest_cc_cvv_code, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :billing_zip_code %>
+      <%= f.text_field :guest_cc_zip, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit action_type, class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</section>

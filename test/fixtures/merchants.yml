@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+mercury:
+  username: mercury
+  email: m@1mercury.com
+  uid: 12345678
+  provider: github
+
+jupiter:
+  username: jupiter
+  email: jup@jup.net
+  uid: 87654321
+  provider: github
+
+neptune:
+  username: neptune
+  email: neptune123@nep.com
+  uid: 23456789
+  provider: github
+
+saturn:
+  username: saturn
+  email: 123saturn@sat.org
+  uid: 98765432
+  provider: github
+
+mars:
+  username: mars
+  email: marsmars@mars1.com
+  uid: 01234567
+  provider: github

@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister');
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@import url('https://fonts.googleapis.com/css?family=Paytone+One');
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+/* Import scss content */
+@import "**/*";
+
+body {
+	width: 100wh;
+	height: 90vh;
+	color: #fff;
+	background: linear-gradient(-45deg, #E54B4B, #E54B4B, #F7EBE8, #F72F26);
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+
+
+.welcome {
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  text-shadow: 2px 2px grey;
+}
+
+
+h2 {
+  color: #292F36;
+  text-transform:uppercase;
+  letter-spacing: 1em;
+  text-shadow: 2px 2px #B1B3B5;
+}
+
+body {
+text-transform:capitalize;
+background-color: #fff;
+font-family: 'Quicksand', sans-serif;
+
+}
+
+strong {
+  color: #EA1300;
+  font-weight: bold;
+}
+
+footer {
+  color: #923030;
+  text-align: center;
+
+}
+main {
+  padding: 4rem;
+}
+
+li {
+  list-style: none;
+}
+
+.homepage-title {
+  text-align: center;
+}
+
+.header {
+  color: #EA1300;
+  background-color: #FFFFFF;
+  font-family: 'Paytone One', sans-serif;
+  padding: 2rem 2rem .1rem 2rem;
+
+}
+
+#logo-hover a:visited {
+  color:#EA1300;
+}
+
+#logo-hover a:link {
+  color:#EA1300;
+}
+
+.logo {
+  text-align: left;
+  font-weight: 600;
+  font-size: 7em;
+  letter-spacing: .2em;
+  margin-bottom: .25em;
+}
+
+.little-header {
+  font-size: 20px;
+  color: #292F36;
+  letter-spacing: .2em;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.nav-app-header {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  font-family: 'Quicksand', sans-serif;
+
+}
+
+.app-header__nav_item {
+  padding-left: 20px;
+}
+
+a:visited {
+  color: #292F36;
+
+}
+a:link {
+  color: #292F36;
+}
+
+a:hover {
+  color: #E54B4B;
+  transition: .6s;
+  text-decoration: none;
+}
+
+#logo-hover a:hover {
+  color: #B4231C;
+  background-image:image-url("smallfirework.gif");
+}
+
+#session {
+  background-color: #FFFFFF;
+}
+
+#session:hover {
+  color: #E54B4B;
+  border: #E54B4B solid 1px;
+}
+
+.btn-primary {
+  background-color: #E54B4B;
+  border: 1px #292F36 solid;
+}
+
+.btn-primary:hover {
+  color: #E54B4B;
+  background-color: #E54B4B;
+  border: 1px #E54B4B solid;
+}
+
+.btn-primary:visited {
+  background-color: #E54B4B;
+  border: 1px #292F36 solid;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #FFF;
+    background-image:image-url("red-falling.gif");
+
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 36px;
+    z-index: 1;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.carousel {
+  overflow: hidden;
+  height: 320px;
+  width: 95%;
+  background-color: white;
+  margin: 0 auto ;
+  border: 1px solid #E54B4B ;
+
+}
+
+.carousel img {
+  margin-top: -22%;
+  margin-bottom: auto;
+  height: auto;
+  width: 100%;
+}
+
+
+
+.mini-body {
+  color: black;
+  background-color: white;
+    width: 80%;
+    border: 10px solid white;
+    padding: 25px;
+    margin: auto;
+}

@@ -1,0 +1,16 @@
+<div class="mini-body">
+  <h2 class="merchant-show-title"> Merchant Summary: <%= @merchant.username %> </h2>
+<p>
+  <section>
+  <% if @login_user != nil %>
+    <%= link_to "Add Product", new_product_path, class: "btn btn-primary add-product" %>
+    <%= link_to "Add Category", new_category_path, class: "btn btn-primary add-category" %>
+    <%= link_to "Order Summary", merchant_order_summary_path(@merchant), class: "btn btn-primary order-summary" %>
+  <% end %>
+  </section>
+<p>
+
+<p>
+<%= render partial: "/layouts/merchant_account_products" %>
+</p>
+</div>

@@ -1,0 +1,26 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+review1:
+  star_rating: 1
+  text: SO BAD. IT BROKE!!!!!!
+  product: lamp
+
+review2:
+  star_rating: 2
+  text: It wiggles. Not stable.
+  product: lamp
+
+review3:
+  star_rating: 3
+  text: Average in every way.
+  product: snuggie
+
+review4:
+  star_rating: 4
+  text: Happy with this purchase, but you know -- it's not perfect...
+  product: nailpolish1
+
+review5:
+  star_rating: 5
+  text: SO HAPPY VERY WOW TWO THUMBS WAY UP THXXXXXX
+  product: poodr
