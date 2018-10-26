@@ -1,39 +1,73 @@
-<div class="card-columns">
-  <div class="card-title" style="width: 20rem">
-    <img class="card-img-top" src=" <%= find_image_for(@product) %> " alt="Image description">
-    <div class="card-body">
-      <h5 class="card-title"><%= "#{@product.name}" %></h5>
-
-    <h6 class="card-subtitle mb-2 text-muted"><p><%= @product.description %></p></h6
-
-      <h6 class="card-subtitle mb-2"> Origin:
-        <h3><% @product.categories.each do |category| %></h3>
-
-        <p class="card-subtitle mb-2"><%= category.name %></p>
-
-        <%end%></h6>
-        <br >
-        Sold by: <a href=" <%= merchant_path(@product.merchant.id) %>"><%= "#{@product.merchant.name}" %></a>
-        <br >
-        <%= number_to_currency(@product.price) %>
-        <br >
-        <%= @product.inventory %> currently in stock
-        <br>
-
-
-        <% if @product.already_in_cart(@cart) %>
-        <%= render partial: "add_to_cart", locals: { url: order_item_path(@product.already_in_cart(@cart)), method: :put } %>
-
-        <% else %>
-        <%= render partial: "add_to_cart", locals: { url: add_item_path, method: :post } %>
-        <% end %>
-
-        </div>
+<div class="jumbotron-container">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4"><%= "#{@product.name}" %></h1>
     </div>
   </div>
 </div>
 
 
-<section class="review-form">
-<%= render partial: "add_review", locals: {url: create_review_path, method: :post } %>
+<div class="product-details-container">
+
+  <div class="product-image-container">
+    <div class="product-image">
+      <img class="card-img-top" src=" <%= find_image_for(@product) %> " alt="Snack image">
+    </div>
+  </div>
+
+  <div class="product-details-info">
+    <div class="product-detail-header">
+      <h3><%= "#{@product.name}" %></h3>
+    </div>
+
+    <div class="product-detail-merchant">
+      <h6>Sold by: <a href="<%= merchant_path(@product.merchant.id) %>"><%= "#{@product.merchant.name}" %></a></h6>
+    </div>
+
+    <div class="product-detail-price">
+      <p><%= number_to_currency(@product.price) %></p>
+    </div>
+
+    <div class="product-detail-desc">
+      <p><%= @product.description %></p>
+    </div>
+
+    <div class="product-detail-categories">
+      <h6>Origin:</h6>
+      <% @product.categories.each do |category| %>
+      <p><%= category.name %></p>
+      <%end%>
+    </div>
+
+    <div class="product-detail-rating">
+      <% if @reviews.count > 0 %>
+      <p><%= "Average rating:" %>
+      <% @product.average_rating.to_i.times do %>
+      <i class="fa fa-star"></i>
+      <% end %></p>
+      <% else %>
+      <p><%= "No reviews yet" %></p>
+      <% end %>
+    </div>
+
+    <div class="product-detail-inventory">
+      <p><%= @product.inventory %> currently in stock</p>
+    </div>
+
+    <div class="product-detail-add-cart">
+      <div class="button">
+        <% if @product.already_in_cart(@cart) %>
+        <%= render partial: "add_to_cart", locals: { url: order_item_path(@product.already_in_cart(@cart)), method: :put } %>
+        <% else %>
+        <%= render partial: "add_to_cart", locals: { url: add_item_path, method: :post } %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<section class="review-form-container">
+  <%= render partial: "add_review", locals: {url: create_review_path, method: :post } %>
 </section>

@@ -1,22 +1,14 @@
-<div class="card-columns">
-  <% @active_products.shuffle.each do |p| %>
-  <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src=" <%= find_image_for(p) %> " alt="snack image">
-    <div class="card-body">
-      <h5 class="card-title"><%=link_to p.name, product_path(p.id) %></h5>
-      <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(p.price)%></h6>
-      <% if p.average_rating %>
-      <p><%= "Average rating:" %></p>
-        <% p.average_rating.to_i.times do %>
-          <i class="fa fa-cookie-bite"></i>
-        <% end %>
-      <% else %>
-        <p><%= "No reviews yet" %></p>
-      <% end %>
-      <p class="card-text"><%= p.description %></p>
-      <a class="card-merchant" href=" <%= merchant_path(p.merchant.id) %>"><%= "#{p.merchant.name}" %></a>
-      <a class="card-details" href=" <%= product_path(p.id) %>">Details</a>
+<div class="jumbotron-container">
+  <div class="jumbotron jumbotron-fluid j-categories j-merchant j-all">
+    <div class="container">
+      <h1 class="display-4"> <%= "All Snacks" %> </h1>
     </div>
   </div>
+</div>
+
+
+<div class="card-columns">
+  <% @active_products.shuffle.each do |product| %>
+    <%= render partial: 'layouts/product_cards', locals: { product: product }%>
   <% end %>
 </div>
