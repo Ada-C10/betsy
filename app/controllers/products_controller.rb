@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
   def homepage
+    @products = Product.all.where(status: true)
 
   end
 

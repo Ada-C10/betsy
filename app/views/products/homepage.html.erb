@@ -1,3 +1,42 @@
 <section id="homepage-carousel">
-<%= render partial: '/layouts/header_carousel' %>
+  <%= render partial: '/layouts/header_carousel' %>
+</section>
+
+<br />
+<hr />
+<br />
+
+<section class="features text-center newest">
+
+  <h2 class="card text-center newest">Just in!</h2>
+  <div class="text-center card">
+    <% new = Product.newest(@products) %>
+    <a href="<%= product_path(new.id) %>">
+      <img class="card-img-top text-center" src=" <%= find_image_for(new) %> " alt="snack image">
+    </a>
+    <div class="card-body">
+      <h5 class="card-title"><%=link_to "#{new.name} by #{new.merchant.name}", product_path(new.id) %></h5>
+    </div>
+  </div>
+</div>
+
+</section>
+
+<br />
+<hr />
+<br />
+
+<section class="features top-rated">
+
+<h2 class="text-center top-rated">Top Rated Snacks</h2>
+  <div class="scrolling-wrapper">
+    <% Product.top_rated(@products).each do |product| %>
+    <div class="card" style="width: 18rem;">
+      <a href="<%= product_path(product.id) %>">
+        <img class="card-img-top" src=" <%= find_image_for(product) %> " alt="snack image">
+      </a>
+    </div>
+    <%end%>
+  </div>
+
 </section>

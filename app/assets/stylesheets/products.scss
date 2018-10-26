@@ -16,3 +16,23 @@ h2 {
   flex-direction: row;
   align-items: center;
 }
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  .card {
+    display: inline-block;
+    border: none;
+  }
+}
+
+.features .card {
+  border: none;
+  width: 18rem; margin:0 auto;
+}
+
+.text-center.top-rated, .newest {
+  color: #4c4f54;
+}

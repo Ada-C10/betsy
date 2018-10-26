@@ -22,5 +22,14 @@ class Product < ApplicationRecord
     return Product.where("name iLIKE ?", "%#{search}%")
   end
 
+  def self.top_rated(products)
+    top_rated = products.sort_by { |product| product.average_rating.to_i }.reverse
+    return top_rated[0..4]
+  end
+
+  def self.newest(products)
+    return products.last
+  end
+
 
 end
