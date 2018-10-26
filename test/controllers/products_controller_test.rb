@@ -94,7 +94,8 @@ describe ProductsController do
           product.destroy
 
           get edit_product_path (product)
-          must_respond_with :not_found
+          flash[:status].must_equal :failure
+          must_respond_with 302
 
 
         end
