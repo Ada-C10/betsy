@@ -6,11 +6,18 @@ describe ReviewsController do
   describe "Logged in merchants" do
 
     before do
+      bake_off = merchants(:bake_off)
       perform_login(merchants(:bake_off))
     end
 
     describe "create-ability for logged-in merchants" do
       it "can create a review for products that aren't their own" do
+
+        review = reviews(:review_one)
+        thyme = products(:thyme)
+        post create_review_path(review)
+
+        must_respond_with :success
 
       end
 

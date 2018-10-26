@@ -11,7 +11,7 @@
   text-align: center;
 }
 .heading-title {
-    margin-bottom: 100px;
+    margin-bottom: 30px;
 }
 .text-center {
     text-align: center;
@@ -20,13 +20,16 @@
     margin-bottom: 0;
     letter-spacing: 2px;
     font-weight: normal;
+    font-size: 50px;
 }
 
 .half-txt {
     width: 60%;
     margin: 0 auto;
     display: inline-block;
-    line-height: 25px;
+    line-height: 50px;
+    font-size: 30px;
+
     color: #7e7e7e;
 }
 .text-uppercase {
@@ -42,22 +45,27 @@
 }
 .team-member, .team-member .team-img {
     position: relative;
+    margin-top: 50px;
 }
 
 .team-title {
     position: relative;
     padding: 20px 0;
     display: inline;
+    margin-bottom: 20px;
     letter-spacing: 2px;
 }
 .team-title h5 {
-    margin-bottom: 0px;
+    font-size: 30px;
+    margin-bottom: 10px;
     display: block;
     text-transform: uppercase;
 }
 .team-title span {
-    font-size: 12px;
+    font-size: 25px;
     text-transform: uppercase;
     color: #a5a5a5;
     letter-spacing: 1px;
+    margin-bottom: 100px;
+
 }

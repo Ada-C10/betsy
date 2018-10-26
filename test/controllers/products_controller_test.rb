@@ -21,13 +21,20 @@ describe ProductsController do
         must_respond_with :success
       end
 
+      it "logged in merchants can access the searched products index page" do
+        product = Product.first
+        search_data = { search: product.name.to_s}
+
+        get products_path, params: search_data
+
+        must_respond_with 200
+      end
+
       it "logged in merchants can access the show page for a product" do
         product_id = Product.first.id
         get product_path(product_id)
         must_respond_with :success
       end
-
-      # I think this failure has something to do with single-use?
 
       it "logged in merchants cannot access the show page for a product that doesn't exist" do
         product_id = Product.first.id + 1
@@ -87,14 +94,15 @@ describe ProductsController do
         end
 
 
-        it "renders not_found for product that doesn't exist" do
+        it "redirects for a product that doesn't exist" do
           product = Product.first
           order_items = OrderItem.all
           order_items.destroy_all
           product.destroy
 
           get edit_product_path (product)
-          must_respond_with :not_found
+          expect(flash["status"]).must_equal :failure
+          must_respond_with 302
 
 
         end
