@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <title>Fibonoshi</title>
+<head>
+  <title>Fibonoshi</title>
 
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <href="https://fonts.googleapis.com/css?family=Lora|Roboto:400,700" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous"> -->
-
-  </head>
-
-
-  <body>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <href="https://fonts.googleapis.com/css?family=Lora|Roboto:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
 
 
-    <header class="app-header">
+<body>
 
+  <header class="app-header">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
 
       <a class="navbar-brand" href="<%= root_path %>">Fibonoshi</a>
@@ -52,8 +49,6 @@
           <li class="nav-item">
             <a class="nav-link" href="<%= products_path%>"> All Products</a>
           </li>
-
-
         </ul>
 
 
@@ -73,10 +68,12 @@
             <% end %>
           </li>
         </ul>
-
       </div>
     </nav>
-</header>
+
+    <%= render partial: 'layouts/header_carousel' %>
+
+  </header>
 
   <% if flash[:result_text] or flash[:messages] %>
   <section class="alert__container">
@@ -120,33 +117,33 @@
         <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
           <h5 class="font-weight-bold text-uppercase mb-4">About</h5>
 
-            <ul class="list-unstyled">
-              <li>
-                <p>
-                  <a href="#!">CAREERS</a>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <a href="#!">BYTE SQUAD</a>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <a href="#!">BLOG</a>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <a href="#!">IN THE NEWS</a>
-                </p>
-              </li>
-            </ul>
+          <ul class="list-unstyled">
+            <li>
+              <p>
+                <a href="#!">CAREERS</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <a href="#!">BYTE SQUAD</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <a href="#!">BLOG</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <a href="#!">IN THE NEWS</a>
+              </p>
+            </li>
+          </ul>
 
         </div>
 
 
-          <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+        <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
 
 
           <h5 class="font-weight-bold text-uppercase mb-4">Address</h5>
@@ -154,8 +151,8 @@
           <ul class="list-unstyled">
             <li>
               <p>
-               Seattle, WA 98161
-             </p>
+                Seattle, WA 98161
+              </p>
             </li>
             <li>
               <p>
@@ -164,13 +161,13 @@
             </li>
             <li>
               <p>
-              1 555 555 5555
-             </p>
+                1 555 555 5555
+              </p>
             </li>
             <li>
               <p>
-              1 555 555 5555
-             </p>
+                1 555 555 5555
+              </p>
             </li>
           </ul>
 
@@ -188,6 +185,8 @@
 
           <a class="insta-link" href="https://instagram.com/"> <%= image_tag("instagram.svg") %> </a>
 
+          <a class="github-link" href="https://github.com"> <%= image_tag("github.svg") %> </a>
+
         </div>
 
       </div>
@@ -201,6 +200,6 @@
 
 
 
-  </body>
+</body>
 
 </html>
