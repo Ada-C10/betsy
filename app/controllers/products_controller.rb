@@ -52,12 +52,14 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    if @logged_in_merchant
-      @product = Product.find_by(id: params[:id])
+    product = Product.find_by(id: params[:id])
+    if @logged_in_merchant && product
+      @product = product
     else
+      @product = nil
       flash[:status] = :failure
       flash[:result_text] = "Sign in as a merchant to access this page."
-        redirect_back fallback_location: root_path
+      redirect_back fallback_location: root_path
     end
   end
 
