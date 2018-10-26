@@ -42,7 +42,7 @@ describe MerchantsController do
   end
 
 
-  describe "Logged in merchcants" do
+  describe "Logged in merchant" do
 
     before do
       @hells = merchants(:hells)

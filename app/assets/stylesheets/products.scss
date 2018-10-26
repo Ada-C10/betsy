@@ -2,19 +2,60 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-h2 {
-  color: red;
+.app-carousel-container {
+  display: none;
 }
 
-.review-form {
-  margin: 10rem 10rem;
-  background-color: salmon;
+.product-details-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows:  1fr ;
+  grid-column-gap: 2rem;
+  margin-top: 7rem;
+  margin-right: 7rem;
+  margin-left: 5rem;
 }
 
-.review-info {
+.product-details-info {
+  display: grid;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  padding: 1rem 1rem;
+}
+
+.product-image-container {
+  display: grid;
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.product-review-container ul {
+  list-style-type: none;
+}
+
+.review-details-container {
+  border-bottom: 2px solid lightgray;
+}
+
+.add-review-container {
+  display: flex;
+  flex-direction: column;
+  margin: 7rem;
+  justify-content: center;
+  border-top: 2px solid lightgray;
+  padding-top: 1rem;
+
+}
+
+.review-buttons-container {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.review-buttons {
+  margin-top: 3rem;
+  margin-right: 30px;
 }
 
 .scrolling-wrapper {

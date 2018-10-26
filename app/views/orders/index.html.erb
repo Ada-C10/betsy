@@ -1,3 +1,5 @@
+<section class="main-body">
+
 <h2>Find Your Order</h2>
 <%= form_tag(orders_path, :method => "get", id: "search-form") do %>
 <%= text_field_tag :search_id, params[:search], placeholder: "Order Number" %>
@@ -33,3 +35,5 @@
   </tbody>
   <% end %>
 </table>
+
+</section>

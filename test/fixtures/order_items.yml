@@ -28,10 +28,10 @@ order_item_5:
   quantity: 5
   product: taco
   order: order_three
-  status: false
+  status: true
 
 order_item_6:
   quantity: 1
   product: thyme
   order: order_three
-  status: false
+  status: true

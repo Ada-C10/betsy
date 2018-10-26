@@ -1,83 +1,95 @@
-<h2>Reviews</h2>
-<div class="review-container">
+<div class="add-review-container">
 
-  <div class="review-info">
-    <% if @reviews.count > 0 %>
-    <% @reviews.each do |r| %>
-    <ul>
-      <li><%= "Rating:" %></li>
-      <% r.rating.to_i.times do  %>
-        <i class="fa fa-star"></i>
-      <% end %>
-      <li><%= "#{r.description}" %></li>
-    </ul>
-    <% end %>
-
-    <p><%= "Average rating:" %></p>
-    <% @product.average_rating.to_i.times do %>
-    <i class="fa fa-star"></i>
-    <% end %>
-    <% else %>
-    <p><%= "No reviews yet" %></p>
-    <% end %>
+  <div class="product-review-container">
+    <h2>Reviews</h2>
+    <br>
+    <div class="review-details-container">
+      <div class="review-info">
+        <% if @reviews.count > 0 %>
+        <% @reviews.each do |r| %>
+        <ul>
+          <% r.rating.to_i.times do  %>
+          <i class="fa fa-star"></i>
+          <% end %>
+          <li><%= "#{r.description}" %></li>
+          <br>
+        </ul>
+        <% end %>
+        <%end %>
+      </div>
+    </div>
   </div>
 
+
+    <%= form_with model: @review, url: url, method: :post do |f| %>
+
+    <div class="review-buttons-container">
+
+      <div class="review-buttons">
+      <label class="star radio-inline" for="review_rating">
+        <i class="fa fa-star"></i>
+      </label>
+      <input required="required" type="radio" value="1" name="review[rating]" id="review_rating_1">
+      </div>
+
+      <div class="review-buttons">
+      <label class="star radio-inline" for="review_rating">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </label>
+      <input required="required" type="radio" value="2" name="review[rating]" id="review_rating_2">
+      </div>
+
+      <div class="review-buttons">
+      <label class="star radio-inline" for="review_rating">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </label>
+      <input required="required" type="radio" value="3" name="review[rating]" id="review_rating_3">
+      </div>
+
+      <div class="review-buttons">
+      <label class="star radio-inline" for="review_rating">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </label>
+      <input required="required" type="radio" value="4" name="review[rating]" id="review_rating_4">
+      </div>
+
+      <div class="review-buttons">
+      <label class="star radio-inline" for="review_rating">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </label>
+      <input required="required" type="radio" value="5" name="review[rating]" id="review_rating_5">
+      </div>
+
+    </div>
+
+    <div class="leave-review-container">
+
+    <div class="form_group">
+      <%= f.label :Leave_a_review %>
+      <br>
+      <%= f.text_area :description, cols: 50, rows: 5 %>
+      <br>
+    </div>
+
+    <div class="form_group">
+      <%= f.submit "Submit Review", class:"btn btn-outline-info" %>
+    </div>
+
+    <% end %>
+
+    </div>
+
+
+
+
 </div>
-
-
-<br>
-<br>
-<br>
-
-<%= form_with model: @review, url: url, method: :post do |f| %>
-
-<div class="review-form-container">
-
-  <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-star"></i>
-  </label>
-  <input required="required" type="radio" value="1" name="review[rating]" id="review_rating_1">
-
-  <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-star"></i>
-    <i class="fa fa-star"></i>
-  </label>
-  <input required="required" type="radio" value="2" name="review[rating]" id="review_rating_2">
-
-  <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-star"></i>
-    <i class="fa fa-star"></i>
-    <i class="fa fa-star"></i>
-  </label>
-  <input required="required" type="radio" value="3" name="review[rating]" id="review_rating_3">
-
-  <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-star"></i>
-    <i class="fa fa-star"></i>
-    <i class="fa fa-star"></i>
-    <i class="fa fa-star"></i>
-  </label>
-  <input required="required" type="radio" value="4" name="review[rating]" id="review_rating_4">
-
-  <label class="star radio-inline" for="review_rating">
-    <i class="fa fa-star"></i>
-    <i class="fa fa-star"></i>
-    <i class="fa fa-star"></i>
-    <i class="fa fa-star"></i>
-    <i class="fa fa-star"></i>
-  </label>
-  <input required="required" type="radio" value="5" name="review[rating]" id="review_rating_5">
-</div>
-
-<div class="form_group">
-  <%= f.label :Leave_a_review %>
-  <br>
-  <%= f.text_area :description, cols: 25, rows: 5 %>
-  <br>
-</div>
-
-<div class="form_group">
-  <%= f.submit "Submit Review" %>
-</div>
-
-<% end %>

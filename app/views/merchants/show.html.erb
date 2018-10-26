@@ -1,27 +1,20 @@
-  <h5>All products sold by:   <%= @merchant.name %>  </h5>
-  <p> Date Joined:  <%= readable_date(@merchant.created_at) %><br>
+<section class="main-body">
 
-    <div class="card-columns">
-      <% @merchant.products.each do |product| %>
-      <% if product.status %>
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src=" <%= find_image_for(product) %> " alt="Snack Image">
-        <div class="card-body">
-          <h5 class="card-title"><%= link_to product.name, product_path(product.id) %></h5>
-          <h6 class="card-subtitle mb-2 text-muted"><%= number_to_currency(product.price) %></h6>
-          <% if product.average_rating %>
-          <p><%= "Average rating:" %></p>
-            <% product.average_rating.to_i.times do %>
-              <i class="fa fa-star"></i>
-            <% end %>
-          <% else %>
-            <p><%= "No reviews yet" %></p>
-          <% end %>
-          <p class="card-text"><%= product.description %></p>
-          <a class="card-merchant" href=" <%= merchant_path(product.merchant.id) %>"><%= "#{product.merchant.name}" %></a>
-          <a class="card-details" href=" <%= product_path(product.id) %>">Details</a>
-        </div>
-      </div>
-      <% end %>
-      <% end %>
-    </div>
+<%= render partial: 'layouts/jumbotron',
+locals: {
+  model: @merchant
+}
+%>
+
+<p> Date Joined: <%= readable_date(@merchant.created_at) %></p>
+
+<div class="card-columns">
+  <% @merchant.products.each do |product| %>
+    <% if product.status %>
+      <%= render partial: 'layouts/product_cards', locals: { product: product }%>
+    <% end %>
+  <% end %>
+</div>
+
+
+</section>

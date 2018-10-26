@@ -46,14 +46,51 @@
   display: inline-block;
 }
 
+.carousel-text {
+  color: white;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+  font-size: 6rem;
+  text-shadow: 2px 2px #2d3142;
+  padding-bottom: 12rem;
+}
+
+.carousel-sub-text {
+  font-size: 3rem;
+  color: white;
+  text-shadow: 2px 2px #2d3142;
+}
+
+// Header jumbotron
+
+.jumbotron-fluid {
+  margin-top: 1rem;
+  background-image: url(https://images.unsplash.com/photo-1517973187489-09dbf278c9a0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d883071fe628e8c953b0752e3c007002&auto=format&fit=crop&w=750&q=80);
+  background-size: cover;
+}
+
+
+.jumbotron-fluid h1 {
+  color: white;
+  text-shadow: 2px 2px #2d3142;
+  font-size: 5rem;
+  font-weight: bold;
+  padding-top: 1rem;
+  display: inline-block;
+  width: 100%;
+}
+
+
 
 // Main
+
 
 .alert__container {
   margin-top: 5rem;
 }
 
-main {
+.main-body {
   padding: 7rem;
 }
 
@@ -99,8 +136,6 @@ h5, h6, .card-title, .card-subtitle {
 .card-details {
   padding-left: 1rem;
 }
-
-
 
 
 // Footer
