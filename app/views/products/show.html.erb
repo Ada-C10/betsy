@@ -45,7 +45,11 @@
   <div class="col-sm-12">
      <h4 class="text-center mb-5 mt-5">Reviews</h4>
      <% if @product.reviews.count == 0 %>
-       <p class="text-center mb-5">No reviews yet. Be the first!</p>
+       <% if @product.merchant_id == @current_user.id %>
+        <p class="text-center mb-5">No reviews yet.</p>
+      <% else %>
+        <p class="text-center mb-5">No reviews yet. Be the first!</p>
+      <% end %>
      <% end %>
      <% @reviews.each do |review| %>
        <blockquote class="blockquote bg-light mb-5 text-center pt-4 pb-4">
