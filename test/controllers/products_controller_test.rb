@@ -101,7 +101,7 @@ describe ProductsController do
           product.destroy
 
           get edit_product_path (product)
-          expect(flash["status"]).must_equal :failure
+          flash[:status].must_equal :failure
           must_respond_with 302
 
 

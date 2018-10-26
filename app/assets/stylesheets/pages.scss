@@ -20,7 +20,7 @@
     margin-bottom: 0;
     letter-spacing: 2px;
     font-weight: normal;
-    font-size: 50px;
+    font-size: 30px;
 }
 
 .half-txt {
@@ -28,7 +28,7 @@
     margin: 0 auto;
     display: inline-block;
     line-height: 50px;
-    font-size: 30px;
+    font-size: 20px;
 
     color: #7e7e7e;
 }
@@ -56,16 +56,22 @@
     letter-spacing: 2px;
 }
 .team-title h5 {
-    font-size: 30px;
+    font-size: 20px;
     margin-bottom: 10px;
     display: block;
     text-transform: uppercase;
 }
 .team-title span {
-    font-size: 25px;
+    font-size: 14px;
     text-transform: uppercase;
     color: #a5a5a5;
     letter-spacing: 1px;
     margin-bottom: 100px;
 
+}
+
+.team-img img {
+    max-height: 400px;
+    max-width: 400px;
+    margin-bottom: 50px;
 }
