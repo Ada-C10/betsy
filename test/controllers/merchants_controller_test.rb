@@ -89,7 +89,6 @@ describe MerchantsController do
 
       it "if logged in merchants save for product status is not successful it gives an error message" do
 
-        # binding.pry
         post status_change_path(3333)
         must_respond_with :not_found
 
