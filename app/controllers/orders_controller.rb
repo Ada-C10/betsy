@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   def index
     @orders = nil
 
-    if params[:search_id] && params[:search_email] &&params[:search_id] != "" && params[:search_email] != ""
+    if valid_search
       search_id = params[:search_id]
       search_email = params[:search_email]
       @orders = Order.search(search_id, search_email).order("created_at DESC")
@@ -123,11 +123,8 @@ class OrdersController < ApplicationController
     session[:old_order] = nil
   end
 
-  # def order_items_params
-  #   params.require(:order_item).permit(
-  #     :quantity,
-  #     :product_id
-  #   )
-  # end
+  def valid_search
+    return params[:search_id] && params[:search_email] &&params[:search_id] != "" && params[:search_email] != ""
+  end
 
 end

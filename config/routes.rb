@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post 'order_items/:id/ship', to: 'order_items#ship', as: 'ship'
 
   # get 'pages/search', to: 'pages'
-  resources :orders
+  resources :orders, except: [:create]
   resources :categories
 
   resources :products do

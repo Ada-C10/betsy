@@ -1,14 +1,41 @@
 require "test_helper"
 
 describe OrdersController do
-  # it "must be a real test" do
-  #   flunk "Need real tests"
-  # end
 
-  it 'must friggin work' do
-    skip
-    get root_path
-    must_respond_with :success
+  let(:search_data) {
+    {
+      search_id: Order.first.id,
+      search_email: Order.first.email
+    }
+  }
+
+
+  describe 'index action' do
+    it 'sets @orders to nil given no search parameters' do
+
+      get orders_path, params: nil
+
+      must_respond_with 200
+    end
+
+    it 'sets @orders to nil given blank search parameters' do
+      search_data[:search_id] = ""
+      search_data[:search_email] = ""
+
+      get orders_path, params: search_data
+
+      must_respond_with 200
+    end
+
+    it 'sets @orders to return the specific Order instances that meet the search criteria and sets session[:old_order] to track the searched id ' do
+
+      get orders_path, params: search_data
+
+      must_respond_with 200
+
+      controller.session[:old_order].must_equal search_data[:search_id].to_s
+    end
+
   end
 
   describe 'show action' do
@@ -45,58 +72,6 @@ describe OrdersController do
       get order_path(existing_order)
 
       must_respond_with 400
-    end
-  end
-
-  describe 'create action' do
-    let(:order) { Order.new }
-    let(:existing_product) { Product.first }
-
-    let(:order_data) {
-      {
-        order: {
-          name: 'Sherlock Holmes',
-          email: 'smart@ssdetective.com',
-          address: '221B Baker St, London',
-          cc_num: 1234567812345678,
-          cvv: 123,
-          exp_month: 12,
-          exp_year: Date.today.year + 1,
-          zip: 43770
-        }
-      }
-    }
-
-    let(:order_items_data) {
-      {
-        id: existing_product.id,
-        order_item: {
-          quantity: 2,
-        }
-      }
-    }
-
-    it 'creates an order associated with an order_item' do
-      skip
-      order_test = Order.new(order_data[:order])
-
-      order_test.must_be :valid?, "Order data was invalid. Engineer, please fix this test."
-
-      order_item_test = OrderItem.new(order_items_data[:order_item])
-
-      # binding.pry
-      order_item_test.wont_be :valid?, "Order data was invalid. Engineer, please fix this test."
-
-      expect {
-        post orders_path, params: order_items_data
-      }.must_change('Order.count', +1)
-
-      # binding.pry
-      # must_redirect_to order_path(Order.last)
-      #
-      # expect(Order.last.name).must_equal order_data[:order][:name]
-      # expect(Order.last.email).must_equal work_data[:order][:email]
-
     end
   end
 
@@ -229,35 +204,6 @@ describe OrdersController do
     end
 
     it 'respond with bad_request if cart exists and buyer is not the owner of this cart' do
-
-      #TODO: so much struggle
-      # #Arrange: THIS user makes order
-      # post order_items_path, params: order_item_data
-      # must_redirect_to order_path(Order.last)
-      #
-      # #Arrange: edit and update order with buyer info
-      # order = Order.last
-      #
-      # put order_path(order), params: order_data
-      # must_redirect_to finalize_path(Order.last)
-      #
-      # binding.pry
-      # controller.session[:order_id] = nil
-      # binding.pry
-      #
-      # #Arrange: THIS user makes order
-      # post order_items_path, params: order_item_data
-      # must_redirect_to order_path(Order.last)
-      # diff_order = Order.last
-      #
-      # put order_path(diff_order), params: order_data
-      # must_redirect_to finalize_path(Order.last)
-      # # binding.pry
-      #
-      # #Arrange: get to finalization page
-      # get finalize_path(order)
-      # binding.pry
-
       get finalize_path(Order.last)
 
       expect(flash[:result_text]).must_include 'Cannot finalize nonexistent order'
@@ -647,6 +593,39 @@ describe OrdersController do
         patch order_path(order), params: order_data
       }.must_raise ArgumentError
 
+    end
+  end
+
+  describe 'summary' do
+
+    let(:search_data) {
+      {
+        search_id: Order.first.id,
+        search_email: Order.first.email
+      }
+    }
+
+    it 'responds with success if a user is accessing the order they just searched as tracked by session[:old_order], renders page regardless (output varies on permissions)' do
+
+      get orders_path, params: search_data
+
+      session[:old_order].wont_be_nil
+
+      get summary_path(session[:old_order])
+
+      must_respond_with 200
+    end
+
+    it 'responds with success if a logged_in_merchant is accessing an order that contains at least one of their products, renders page regardless (output varies on permissions)' do
+
+      iron_chef = merchants(:iron_chef)
+      order_three = orders(:order_three)
+
+      perform_login(iron_chef)
+
+      get summary_path(order_three), params: {id: 3}
+
+      must_respond_with 200
     end
 
   end
