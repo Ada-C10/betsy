@@ -113,7 +113,6 @@ describe Merchant do
     it "returns right total with taxes" do
       expect(@ironchef.order_total).must_equal 3000
       expect(@ironchef.tax).must_equal 300
-      # binding.pry
       expect(@ironchef.total_tax).must_equal 3300
     end
   end
