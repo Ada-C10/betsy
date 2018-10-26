@@ -46,7 +46,7 @@
   <div class="col-sm-12">
      <h4 class="text-center mb-5 mt-5">Reviews</h4>
      <% if @product.reviews.count == 0 %>
-       <% if @product.merchant_id == @current_user.id %>
+       <% if @product.merchant_id == @current_user&.id %>
         <p class="text-center mb-5">No reviews yet.</p>
       <% else %>
         <p class="text-center mb-5">No reviews yet. Be the first!</p>
