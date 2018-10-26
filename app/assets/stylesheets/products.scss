@@ -3,21 +3,53 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .app-carousel-container {
-  padding: 0;
-  margin: 0;
+  display: none;
 }
+
+.product-details-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows:  1fr ;
+  grid-column-gap: 2rem;
+  margin-top: 7rem;
+  margin-right: 7rem;
+  margin-left: 5rem;
+}
+
+.product-details-info {
+  display: grid;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  padding: 1rem 1rem;
+}
+
+.product-image-container {
+  display: grid;
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
 
 h2 {
   color: red;
 }
 
-.review-form {
-  margin: 10rem 10rem;
+.review-form-container {
+  margin-top: 4rem;
   background-color: salmon;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr ;
 }
 
 .review-info {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.review-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
