@@ -6,7 +6,7 @@
 <br>
 <% if @orderitems["cancelled"] %>
 
-<h3>You have <%= @cancelleditems.size %> cancelled orders in your complete order history.</h3>
+<h3>You have <%= @cancelleditems.size %> cancelled <%= readable_order(@cancelleditems.count) %> in your complete order history.</h3>
 
 
 <table class="table">
