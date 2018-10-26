@@ -61,78 +61,58 @@ describe OrderItem do
     end
 
 
-  # RELATIONS TESTS
-  describe 'relations' do
-    let(:order_item) { order_items(:order_item_6) }
+    # RELATIONS TESTS
+    describe 'relations' do
+      let(:order_item) { order_items(:order_item_6) }
 
-    # products
-    it 'must relate to a product' do
+      # products
+      it 'must relate to a product' do
 
-      expect(order_item).must_respond_to :product
-      expect(order_item.product).must_equal products(:thyme)
-    end
-
-    it 'can set the product via product instance' do
-
-      new_item = OrderItem.new(quantity: 1, order: orders(:order_two))
-
-      new_item.product = products(:steak)
-
-      expect(new_item.product_id).must_equal products(:steak).id
-    end
-
-    it 'can set the product via product id' do
-
-      new_item = OrderItem.new(quantity: 1, order: orders(:order_two))
-
-      new_item.product_id = products(:steak).id
-
-      expect(new_item.product).must_equal products(:steak)
-    end
-
-    # Controller
-    it 'is able to set multiple quantities of the a product to an order_item' do
-      product_1 = products(:pickle)
-
-      new_item = OrderItem.new(quantity: 1, order: orders(:order_two))
-      order_item.product = product_1
-      order_item.product = product_1
-      order_item.product = product_1
-
-      expect(order_item).must_be :valid
-      expect(order_item.products).must_equal [product1, product1, product1]
+        expect(order_item).must_respond_to :product
+        expect(order_item.product).must_equal products(:thyme)
       end
 
+      it 'can set the product via product instance' do
+
+        new_item = OrderItem.new(quantity: 1, order: orders(:order_two))
+
+        new_item.product = products(:steak)
+
+        expect(new_item.product_id).must_equal products(:steak).id
+      end
+
+      it 'can set the product via product id' do
+
+        new_item = OrderItem.new(quantity: 1, order: orders(:order_two))
+
+        new_item.product_id = products(:steak).id
+
+        expect(new_item.product).must_equal products(:steak)
+      end
+
+      # orders
+      it 'must relate to an order' do
+
+        expect(order_item).must_respond_to :order
+        expect(order_item.order).must_equal orders(:order_three)
+      end
+
+      it 'can set the order via order instance' do
+        new_item = OrderItem.new(quantity: 1, product: products(:taco))
+
+        new_item.order_id = orders(:order_two).id
+
+        expect(new_item.order).must_equal orders(:order_two)
+      end
+
+      it 'can set the order via order id' do
+        new_item = OrderItem.new(quantity: 1, product: products(:taco))
+
+        new_item.order = orders(:order_two)
+
+        expect(new_item.order_id).must_equal orders(:order_two).id
+      end
     end
-
-    # Controller?
-    it 'does not assign more than one unique product to an order_item' do
-    end
-
-    # orders
-    it 'must relate to an order' do
-
-      expect(order_item).must_respond_to :order
-      expect(order_item.order).must_equal orders(:order_three)
-    end
-
-    it 'can set the order via order instance' do
-      new_item = OrderItem.new(quantity: 1, product: products(:taco))
-
-      new_item.order_id = orders(:order_two).id
-
-      expect(new_item.order).must_equal orders(:order_two)
-    end
-
-    it 'can set the order via order id' do
-      new_item = OrderItem.new(quantity: 1, product: products(:taco))
-
-      new_item.order = orders(:order_two)
-
-      expect(new_item.order_id).must_equal orders(:order_two).id
-    end
-
-
   end
 
 
@@ -153,7 +133,7 @@ describe OrderItem do
 
       it 'must return nil if associated product inventory is less than 1' do
         order_item.product.inventory = 0
-        expect(order_item.available_stock).must_be_nil
+        expect(order_item.available_stock).must_equal [0]
       end
     end
 
@@ -182,20 +162,6 @@ describe OrderItem do
 
         expect(order_item.order_status).must_equal status
       end
-    end
-
-    describe 'total' do
-      it 'must return the total taxes on a given line order subtotal' do
-        product = order_item.product.price
-        quantity = order_item.quantity
-        tax = 0.101
-
-        expected_result = product * quantity * ( tax )
-
-        expect(order_item.total).must_be_close_to expected_result
-
-      end
-
     end
   end
 end

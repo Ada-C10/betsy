@@ -29,31 +29,34 @@
   grid-row-start: 1;
 }
 
-
-h2 {
-  color: red;
+.product-review-container ul {
+  list-style-type: none;
 }
 
-.review-form-container {
-  margin-top: 4rem;
-  background-color: salmon;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr ;
+.review-details-container {
+  border-bottom: 2px solid lightgray;
 }
 
-.review-info {
+.add-review-container {
+  display: flex;
+  flex-direction: column;
+  margin: 7rem;
+  justify-content: center;
+  border-top: 2px solid lightgray;
+  padding-top: 1rem;
+
+}
+
+.review-buttons-container {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
 .review-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  margin-top: 3rem;
+  margin-right: 30px;
 }
-
 
 .scrolling-wrapper {
   overflow-x: scroll;

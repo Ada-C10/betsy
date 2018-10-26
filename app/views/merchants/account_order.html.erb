@@ -1,3 +1,4 @@
+<section class="main-body">
 
 <h3 class=merchant_title>Order fulfillment for Merchant: <%= @merchant.name %></h3>
 
@@ -28,7 +29,7 @@
       <td>$<%= order_item.product.price %></td>
       <td>$<%= order_item.item_total %></td>
       <% if order_item.status %>
-      <td><%= link_to "Shipped", ship_path(order_item.id), method: :post, class: "btn btn-primary" %></td>
+      <td><%= link_to "Shipped", ship_path(order_item.id), method: :post, class: "btn btn-outline-info" %></td>
       <% else %>
       <td><%= link_to "Not Shipped", ship_path(order_item.id), method: :post, class: "btn btn-danger" %></td>
       <% end  %>
@@ -42,5 +43,5 @@
 
   <p class="end"> Total: <%= @merchant.total_tax %> </p>
 
-  <%# TODO link to each individual order %>
-  <%# TODO link to order that has shipped/not shipped %>
+
+</section>

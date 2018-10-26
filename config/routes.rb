@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   # get 'pages/search', to: 'pages'
   resources :orders, except: [:create]
-  resources :categories
+  resources :categories, except: [:index, :edit, :update, :destroy]
 
   resources :products do
     resources :order_items, only: [:index, :show, :create, :update]
