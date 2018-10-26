@@ -7,6 +7,7 @@
     </div>
     <div class="col-lg-6 pl-5">
       <h3 class="mb-5 mt-3"><%= @product.name %></h3>
+      <p><strong>Sold By: </strong><%= link_to @product.merchant.name, merchant_products_path(@product.merchant.id) %></p>
       <p><strong>Description:</strong> <%= @product.description %></p>
       <p><strong>Current price:</strong> <%= readable_cost(@product.cost) %></p>
       <% if @product.reviews.count == 0 %>
