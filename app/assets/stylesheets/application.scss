@@ -96,6 +96,10 @@ h5.no-spacing, h1.no-spacing {
   letter-spacing: 0;
 }
 
+h1.half-spacing {
+  letter-spacing: 4px;
+}
+
 footer {
   bottom: 0;
 }
@@ -114,6 +118,20 @@ footer {
 //   display:table-cell; /*acts like a table cell*/
 // }
 
+a.white-links {
+  color: white;
+  text-decoration: none;
+}
+
+a.white-links:visited {
+  color: white;
+  text-decoration: none;
+}
+
+a.white-links:hover {
+  color: #52769D;
+  text-decoration: underline;
+}
 
 .card {
   border: none;
