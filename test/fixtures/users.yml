@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+seller:
+  full_name: Francesco Rinaldi
+  email: francesco@rinaldi.com
+  is_a_seller: true
+  uid: 12345678
+  provider: github
+
+buyer:
+  full_name: Pasta Eater
+  email: pasta@eater.com
+  is_a_seller: false
+  uid: 23456789
+  provider: github
+
+ada:
+  provider: github
+  uid: 12345
+  email: ada@adadevelopersacademy.org
+  full_name: countess_ada
+  is_a_seller: true
+
+grace:
+  provider: github
+  uid: 13371337
+  email: grace@hooper.net
+  full_name: graceful_hopps
+
+guest:
+  is_a_seller: false
+  provider: guest_login
+  uid: 98765432
+  email: example@example.com
+  full_name: Guest user

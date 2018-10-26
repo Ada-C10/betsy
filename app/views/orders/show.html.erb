@@ -1,0 +1,118 @@
+<!-- Users will need authorization to view orders -->
+<div class="pull-right order-number">
+  <h1>Order Confirmation</h1>
+  <h4>Order # <%= @order.id %></h4>
+</div>
+
+<div class="order-confirmation">
+  <h4><strong>Your order is complete!</strong></h4>
+  <p>Thank you for your order!</p>
+  <p>Let us know if you encounter any issues - your satisfaction is our priority.</p>
+  </p>
+</div>
+
+<div class="order-details">
+  <p><strong>Date Placed: </strong><%= readable_date(@order.updated_at) %></p>
+  <p><strong>Name:</strong> <%= @login_user.full_name %></p>
+  <p><strong>Email:</strong> <%= @login_user.email %></p>
+  <p><strong>Shipped to:</strong>
+    <p><%= @order.address.first_name %> <%= @order.address.last_name %></p>
+    <p><%= @order.address.street %></p>
+    <p><%= @order.address.city %> <%= @order.address.state %> <%= @order.address.zip %></p>
+  </p>
+  <p><strong>Status: </strong> <%= @order.status.capitalize %></p>
+  <p><strong>Payment: </strong> <%= @order.payment.card_type %> ending in <%= @order.payment.last_four_digits %>, expiring <%= cc_date(@order.payment.expiration_date) %></p>
+</div>
+
+<div class="card shopping-cart-container">
+  <table class="table table-hover shopping-cart-wrap">
+    <thead class="text-muted">
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col" width="120">Quantity</th>
+        <th scope="col" width="120">Price</th>
+        <th scope="col" width="200">Back to Product</th>
+        <th scope="col" width="200">Product Subtotal</th>
+      </tr>
+    </thead>
+    <% @order.order_products.each do |op| %>
+    <tbody>
+        <tr>
+        	<td>
+            <figure class="media">
+            	<div class="img-wrap"><%= image_tag(op.product.image_url, alt: "product image icon", class: "img-thumbnail img-sm") %></div>
+            	<figcaption class="media-body">
+            		<h3 class="title text-truncate"><%= op.product.name %></h3>
+            	</figcaption>
+            </figure>
+        	</td>
+  	      <td class="quantity-field">
+            <%=op.quantity %>
+  	      </td>
+  	      <td>
+        		<div class="price-wrap">
+        			<var class="price"><%= readable_price(op.product.price_in_cents)%></var>
+        		</div>
+  	      </td>
+          <td>
+            <%= link_to "Back to Product", product_path(op.product.id), class: "btn btn-products" %>
+          </td>
+          <td>
+        		<div class="price-wrap">
+        			<var class="price"><%= readable_price(op.item_subtotal)%></var>
+        		</div>
+  	      </td>
+      </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td>
+          Subtotal
+        </td>
+        <td>
+          <%= readable_price(@order.order_subtotal) %>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          Seattle Sales Tax (10.1%)
+        </td>
+        <td>
+          <%= readable_price(@order.seattle_sales_tax) %>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td>
+          Flat Rate Shipping
+        </td>
+        <td>
+          <%= readable_price(@order.flat_rate_shipping) %>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td>
+          <strong>Order Total</strong>
+        </td>
+        <td>
+          <strong><%= readable_price(@order.order_total) %></strong>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div> <!-- card.// -->

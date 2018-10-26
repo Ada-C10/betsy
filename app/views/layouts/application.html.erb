@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>SpaghEttsi</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://png.icons8.com/metro/1600/spaghetti.png">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item nav-word">
+          <a class=" nav-link dropdown-toggle " id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Shop Pasta</a>
+          <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown" id="products-dropdown">
+            <%=link_to "Pasta by Category", products_path, class: "dropdown-item"%>
+            <%=link_to "Pasta by Merchant", products_by_merchant_path, class: "dropdown-item"%>
+        </div>
+        </li>
+        <li class="nav-item nav-word">
+          <%=link_to "Recipes", 'https://www.allrecipes.com/recipes/95/pasta-and-noodles/', class: "nav-link"%>
+        </li>
+        <% if @login_user && @login_user.is_a_seller %>
+          <li class="nav-item nav-word">
+            <%=link_to "Your Shop", dashboard_path, class: "nav-link"%>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="mx-auto order-0">
+      <%= link_to image_tag("spaghettsi-logo.png", alt: "spaghettsi logo", id: "spaghettsi-logo"), root_path %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item nav-word">
+          <%=link_to "Contact Us", contact_us_path, class: "nav-link"%>
+        </li>
+        <li class="nav-item nav-word">
+          <%= link_to "Cart", shopping_cart_path, class: "nav-link" %>
+        </li>
+        <% if @login_user && @login_user.provider != 'guest_login' %>
+          <li class="nav-item nav-word">
+            <%= link_to "My Account", account_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item nav-word">
+            <%= link_to "Log Out", logout_path, method: "delete", class: "nav-link"  %>
+          </li>
+        <% elsif @login_user && @shopping_cart %>
+          <li class="nav-item nav-word">
+            <%=link_to "Log In", "/auth/github", class: "nav-link", data: {confirm: "Your cart won't follow you when you log in.  Please add all of your desired products again after login!"}%>
+          </li>
+        <% else %>
+          <li class="nav-item nav-word">
+            <%=link_to "Log In", "/auth/github", class: "nav-link"%>
+          <li class="nav-item nav-word">
+        <% end %>
+
+      </ul>
+    </div>
+  </nav>
+
+
+
+  <% if flash.any? %>
+  <section class='alert__container'>
+    <% flash.each do |name, message| %>
+    <% if name == 'warning' || name == 'success' %>
+    <div class="alert alert-<%= name %> text-center">
+      <span><%= message %></span>
+      <% if flash[:validation_errors] %>
+      <ul>
+        <% flash[:validation_errors].each do |message|%>
+        <li class="error-list text-center">
+          <%= message %>
+        </li>
+        <%end%>
+      </ul>
+      <% end %>
+    </div>
+    <% end %>
+    <%end%>
+  </section>
+  <% end%>
+
+
+  <%= yield %>
+
+  <br />
+  <footer class="border sticky-bottom">
+    <div class=" page-footer footer  py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-3 footer-one">
+            <%= image_tag("spaghettsi-logo.png", alt:"Spaghettsi Logo", style:"width:120px;")%>
+            <p class="pt-4">Connect with us! Imagine the pastabilities!</p>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-3 footer-two">
+            <h5>Information </h5>
+            <ul class="list-unstyled">
+              <li><a href="maintenance.html">Maintenance Tips</a></li>
+              <li><a href="contact.html">Locations</a></li>
+              <li><a href="about.html">Pasta Recipes</a></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-3 footer-three">
+            <h5>Helpful Links </h5>
+            <ul class="list-unstyled">
+              <li><a href="maintenance.html">Pasta Puns</a></li>
+              <li><a href="contact.html">Pasta Quotes</a></li>
+              <li><a href="about.html">Testimonials</a></li>
+              <li><a href="about.html">Careers</a></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-3 footer-four">
+            <h5>Become a Seller! </h5>
+            <p>
+              Sign in and visit your <%= link_to "account page", account_path %> to sell your incredible homemade pasta.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="sm buttons text-center">
+        <a href="#link" class="fa fa-facebook" onclick="location.href = 'https://www.facebook.com/Spagh-ettsi-326258068155647';" ></a>
+        <a href="#link" class="fa fa-twitter" onclick="location.href ='https://twitter.com/EttsiSpagh';" ></a>
+        <a href="#" class="fa fa-google"></a>
+        <a href="#link" class="fa fa-instagram" onclick="location.href ='https://www.instagram.com/spaghettsi/';" ></a>
+        <a href="#" class="fa fa-pinterest" onclick="location.href
+        ='https://www.pinterest.com/spaghettsi/';"></a>
+      </div>
+      <div class="copyright bglight1 border pt-2">
+        <div class="container">
+          <div class="row justify-content-md-center">
+            <p>© 2018 Copyright:<a> Spagh-ettsi ™️ ®️</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

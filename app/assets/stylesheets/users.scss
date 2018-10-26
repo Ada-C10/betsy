@@ -1,0 +1,95 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.user-card {
+  margin: 3rem;
+  background-color: #B22222;
+}
+
+.table {
+  margin-bottom: 5rem;
+}
+
+.card-footer {
+  height: 4rem;
+}
+
+.card-footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.card-footer a:hover {
+  color: #064579;
+}
+
+
+// ========================================
+// DASHBOARD
+// ========================================
+
+.sidenav {
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 20px;
+    left: 10px;
+    background-color: firebrick;
+    overflow-x: hidden;
+    padding: 15px 10px;
+    margin-top: 9rem;
+
+}
+
+.sidenav a {
+    padding: 10px 8px 10px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    display: block;
+
+
+}
+
+.sidenav a:hover {
+    color: #064579;
+}
+
+.main {
+    margin-left: 140px; /* Same width as the sidebar + left position in px */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+.card-deck {
+  margin-right: 3rem;
+}
+
+.card-dashboard {
+  border: 3px solid black;
+}
+
+.large-print {
+  font-size: 40px;
+}
+
+#btn-seller {
+  width: 20rem;
+}
+// ===========================
+// SHOW
+// ===========================
+.merchant-order-details {
+  margin-left: 15rem;
+  margin-top: 10rem;
+  padding: 2rem;
+}
+
+.shipped {
+  text-decoration: underline;
+}

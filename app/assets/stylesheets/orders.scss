@@ -1,0 +1,130 @@
+// Place all the styles related to the Orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.param {
+    margin-bottom: 7px;
+    line-height: 1.4;
+}
+.param-inline dt {
+    display: inline-block;
+}
+.param dt {
+    margin: 0;
+    margin-right: 7px;
+    font-weight: 600;
+}
+.param-inline dd {
+    vertical-align: baseline;
+    display: inline-block;
+}
+
+.param dd {
+    margin: 0;
+    vertical-align: baseline;
+}
+
+.shopping-cart-wrap .price {
+    color: #007bff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 5px;
+    display: block;
+}
+var {
+    font-style: normal;
+}
+
+.media img {
+    margin-right: 1rem;
+}
+.img-sm {
+    width: 90px;
+    max-height: 75px;
+    object-fit: cover;
+}
+
+.shopping-cart-container {
+  margin: 4rem;
+  border: none;
+}
+
+// ==========================
+// CHECKOUT
+// ==========================
+
+.table>tbody>tr>td, .table>tfoot>tr>td{
+    vertical-align: middle;
+}
+
+.checkout-table {
+  margin-top: 3rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+.guest-checkout-1 {
+  margin-left: 4rem;
+}
+.guest-checkout {
+  margin-left: 6rem;
+}
+
+.btn-space {
+  margin-right: 5px;
+}
+
+.btn-group {
+  margin-left: 3rem;
+  margin-right: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media screen and (max-width: 600px) {
+    table#cart tbody td .form-control{
+		width:20%;
+		display: inline !important;
+	}
+	.actions .btn{
+		width:36%;
+		margin:1.5em 0;
+	}
+
+	.actions .btn-info{
+		float:left;
+	}
+	.actions .btn-danger{
+		float:right;
+	}
+
+	table#cart thead { display: none; }
+	table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
+	table#cart tbody tr td:first-child { background: #333; color: #fff; }
+	table#cart tbody td:before {
+		content: attr(data-th); font-weight: bold;
+		display: inline-block; width: 8rem;
+	}
+
+	table#cart tfoot td{display:block; }
+	table#cart tfoot td .btn{display:block;}
+
+}
+
+.order-total {
+  height: 10px;
+}
+// =====================================
+// SHOW PAGE
+// =====================================
+
+.order-details {
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+  margin: 3rem;
+}
+
+.order-confirmation {
+  margin-top: 8rem;
+  margin-left: 2rem;
+}
+.order-number {
+  padding: 2rem;
+}

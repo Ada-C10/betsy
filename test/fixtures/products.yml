@@ -1,0 +1,44 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+spaghetti:
+  name: spaghetti
+  user: seller
+  price_in_cents: 299
+  quantity: 50
+  category: long
+  description: this is a box of spaghetti
+  is_active: true
+  image_url: http
+
+lasagne:
+  name: lasagne
+  user: seller
+  price_in_cents: 499
+  quantity: 25
+  category: sheet
+  description: these are lasagne noodles
+  image_url: http
+
+
+fusilli:
+  name: fusilli
+  user: seller
+  price_in_cents: 400
+  quantity: 20
+  category: short
+  description: fusilli jerry, because you're silly
+  image_url: http
+  
+inactive_ravioli:
+  name: ravioli
+  user: seller
+  price_in_cents: 399
+  quantity: 34
+  category: filled
+  description: roly poly ravioli
+  is_active: false
+  image_url: http
