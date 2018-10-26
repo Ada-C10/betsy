@@ -18,12 +18,6 @@ describe CategoriesController do
         must_respond_with :success
       end
 
-      it "logged in merchants cannot access the show page for a category that doesn't exist" do
-
-        get category_path(bad_category_id)
-        must_respond_with :not_found
-      end
-
       it "logged in merchants can access the new category form" do
         get new_category_path
         must_respond_with :success
@@ -70,16 +64,6 @@ describe CategoriesController do
         category_id = Category.first.id
         get category_path(category_id)
         must_respond_with :success
-      end
-
-      it "guest users cannot access the show page for a category that doesn't exist" do
-        # category_id = Category.first.id + 1
-        #
-        # get category_path(category_id)
-        # must_respond_with :not_found
-
-        get category_path(bad_category_id)
-        must_respond_with :missing
       end
 
       it "guest users cannot access the new category form" do

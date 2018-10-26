@@ -15,20 +15,12 @@ class OrderItem < ApplicationRecord
     return self.quantity * self.product.price
   end
 
-  def total
-    return self.item_total * TAX_RATE
-  end
-
   def product_name
     return self.product.name
   end
 
   def order_status
     return self.order.status
-  end
-
-  def total
-    return  self.item_total * TAX_RATE
   end
 
   def cant_exceed_inventory
