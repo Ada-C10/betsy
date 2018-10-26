@@ -4,28 +4,34 @@ order_item_1:
   quantity: 1
   product: butter
   order: order_one
+  status: false
 
 order_item_2:
   quantity: 2
   product: bread
   order: order_one
+  status: false
 
 order_item_3:
   quantity: 1
   product: steak
   order: order_one
+  status: false
 
 order_item_4:
   quantity: 10
   product: sherbert
   order: order_two
+  status: false
 
 order_item_5:
   quantity: 5
   product: taco
   order: order_three
+  status: false
 
 order_item_6:
   quantity: 1
   product: thyme
   order: order_three
+  status: false

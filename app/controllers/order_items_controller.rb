@@ -65,11 +65,14 @@ class OrderItemsController < ApplicationController
 
     @order_item.status ? @order_item.update_attribute(:status, false) : @order_item.update_attribute(:status, true)
 
-
     if @order_item.save
       redirect_back fallback_location: root_path
+
     else
-      puts "Failed to update order_item: #{@order_items.status.errors.messages}"
+      flash[:status] = :failure
+      flash[:result_text] = "Failed to update order_item:"
+      flash[:messages] = @order_item.errors.messages
+      render :template => "orders/nosnacks", status: :bad_request
     end
 
   end

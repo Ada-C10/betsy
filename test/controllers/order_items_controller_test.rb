@@ -226,6 +226,51 @@ describe OrderItemsController do
 
       must_respond_with :bad_request
     end
+  end
+
+  describe 'ship action' do
+
+    let(:order) { Order.new }
+    let(:existing_product) { Product.first }
+
+    let(:order_item_data) {
+      {
+        id: existing_product.id,
+
+        order_item: {
+          quantity: 2,
+          product_id: existing_product.id
+        }
+      }
+    }
+
+    let(:order_item_setup) {
+      post order_items_path, params: order_item_data
+    }
+
+    let(:old_orders_count) { Order.count }
+    let(:old_orderItems_count) { OrderItem.count }
+    let(:item) { OrderItem.last }
+    let(:max_quantity) { item.product.inventory }
+
+    it 'changes the status of an order from shipped to not shipped and vice versa' do
+
+      item = OrderItem.first
+      original_status = item.status
+
+      post ship_path(item.id)
+
+      must_respond_with 302
+      item = OrderItem.find(item.id)
+      expect(item.status).must_equal !original_status
+
+      post ship_path(item.id)
+
+      must_respond_with 302
+      item = OrderItem.find(item.id)
+      expect(item.status).must_equal original_status
+
+    end
 
   end
 
