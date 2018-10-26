@@ -29,7 +29,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to "View My Store", merchant_products_path(session[:user_id]), class: "dropdown-item" %>
-            <a href "<%=dashboard_path%>" class= "dropdown-item" >My Seller Dashnoard<%= new_orders_badge %></a>
+            <a href "<%=dashboard_path%>" class= "dropdown-item" >My Seller Dashboard<%= new_orders_badge %></a>
             <div class="dropdown-divider"></div>
             <%= link_to "Log Out", logout_path, method: "delete", class: "dropdown-item" %>
           </div>
