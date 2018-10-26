@@ -6,6 +6,45 @@
   display: none;
 }
 
+
+.feature-headline-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding-right: 7rem;
+  padding-left: 7rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.feature-headline-image {
+  margin-right: 3rem;
+}
+
+.feature-about {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  align-items: center;
+  justify-content:center;
+}
+
+.button-to-products {
+  margin-top: 3rem;
+}
+.feature-text {
+  text-align: center;
+  color: #2d3142;
+}
+
+.feature-text p {
+  font-size: 15px;
+}
+
+.image-collage {
+  width: 25rem;
+  height: 25rem;
+}
+
 .product-details-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
