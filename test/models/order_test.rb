@@ -63,10 +63,18 @@ describe Order do
     end
   end
 
-  describe 'Class method: tax_rate' do
-    it 'returns the constant TAX_RATE formatted to at most the 100ths place' do
+  describe 'taxes method' do
+    it 'returns the taxes for the order subtotal' do
+      order = Order.first
 
-      Order.tax_rate.must_be_close_to 10.1
+      sum = 0
+      order.order_items.each do |o_item|
+        sum += o_item.product.price * o_item.quantity
+      end
+
+      expected_result = sum * 0.101
+
+      order.taxes.must_be_close_to expected_result
 
     end
   end
@@ -124,7 +132,7 @@ describe Order do
 
   describe 'validate method: cant_be_expired' do
 
-    let(:bad_order_data) {
+    let(:order_data) {
       {
         order: {
           name: 'Sherlock Holmes',
@@ -132,38 +140,82 @@ describe Order do
           address: '221B Baker St, London',
           cc_num: 1234567812345678,
           cvv: 123,
-          exp_month: nil, #Date.today.month - 1,
-          exp_year: nil, #Date.today.year,
+          exp_month: Date.today.month,
+          exp_year: Date.today.year+1,
           zip: 43770,
           status: 'paid'
         }
       }
     }
 
+    let(:good_month)  { Date.today.month + 1 }
+    let(:bad_year) { Date.today.year - 1 }
+    let(:bad_month)  { Date.today.month - 1 }
+    let(:order) {Order.create}
+
+    it 'succeeds if given an expiration month and year than indicates a non-expired card' do
+
+      order = Order.create(order_data[:order])
+      x = Order.update(order.id, exp_month: good_month)
+
+      expect(x.errors.messages).must_be_empty
+    end
+
     it 'raises an ArgumentError only on update if exp_year or exp_month are nil' do
-      order = Order.new(bad_order_data[:order])
 
       order.must_be :valid?, "Order params have some invalid parameters. Please fix."
 
-      expect{order.update(bad_order_data[:order])}.must_raise ArgumentError
+      expect{Order.update(order.id, exp_month: nil)}.must_raise ArgumentError
+      expect{Order.update(order.id, exp_year: nil)}.must_raise ArgumentError
 
     end
 
-    it 'raises adds messages to errors only on update if exp_year indicates an expired credit card' do
-      bad_order_data[:order][:exp_year] = Date.today.year - 1
-      bad_order_data[:order][:exp_month] = Date.today.month
-      order = Order.new(bad_order_data[:order])
+    it 'adds messages to errors only on update if exp_year indicates an expired credit card' do
+      order_data[:order][:exp_month] = good_month
+      order = Order.create(order_data[:order])
 
-      order.must_be :valid?, "Order params have some invalid parameters. Please fix."
+      x = Order.update(order.id, exp_year: bad_year)
+      expect(x.errors.messages).must_include :exp_year
+    end
 
-      order.update(bad_order_data[:order])
-      expect(order.errors.messages).must_include "Credit Card expired in #{bad_order_data[:order][:exp_year]}"
+    it 'adds messages to errors only on update if exp_year and exp_month indicates an expired credit card' do
+      order_data[:order][:exp_year] = Date.today.year
+      order = Order.create(order_data[:order])
 
+      x = Order.update(order.id, exp_month: bad_month)
+      expect(x.errors.messages).must_include :exp_month
     end
   end
 
   describe 'Class method search' do
-    
+
+    let(:order) { Order.first }
+    let(:id) {order.id}
+    let(:email) {order.email}
+
+    it 'returns an array of length 1 with the instance of Order that matches both search parameters' do
+      found_record = Order.search(id, email)
+      expect(found_record.length).must_equal 1
+      expect(found_record[0]).must_equal order
+    end
+
+    it 'returns an empty array when there is no match in the database' do
+      found_record = Order.search(0, 'fake@email.com')
+      expect(found_record).must_be_empty
+    end
   end
+
+  describe 'get_cc' do
+    it 'returns a string of a 16 digit number formatted like XXXX-XXXX-XXXX-1111' do
+      order = Order.first
+      cc = order.cc_num.to_s
+
+      expect(order.get_cc).must_equal "XXXX-XXXX-XXXX-#{cc[-4..-1]}"
+
+
+
+    end
+  end
+
 
 end
