@@ -43,10 +43,9 @@
         <div class="collapse" id="collapseOrderDetails">
           <div class="card card-body mb-0">
             <ul class="quickview mb-0">
-              <li><%= orderitems_total_quantity(items) %> total items</li>
-              <li><%= items.size %> products</li>
-              <li>Order placed on <%= readable_date(order.created_at) %></li>
-              <li>Total sales: <%= readable_cost(order.total_cost) %></li>
+              <% items.each do |item| %>
+              <li><%= item.product.name %> | Qty: <%= item.quantity %></li>
+              <% end %>
             </ul>
           </div>
         </div>
