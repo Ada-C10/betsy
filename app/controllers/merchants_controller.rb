@@ -25,23 +25,22 @@ class MerchantsController < ApplicationController
   def status_change
     @product = Product.find_by(id: params[:id])
 
-    if @product.status
-      @product.update_attribute(:status, false)
-    else
-      @product.update_attribute(:status, true)
-    end
-
-    if @product.save
-      redirect_back fallback_location: root_path
-    else
-      puts "Failed to save product: #{@product.errors.messages}"
-    end
-
-
     if @product.nil?
       head :not_found
-    end
 
+    else
+      if @product.status
+        @product.update_attribute(:status, false)
+      else
+        @product.update_attribute(:status, true)
+      end
+
+      if @product.save
+        redirect_back fallback_location: root_path
+      else
+        puts "Failed to save product: #{@product.errors.messages}"
+      end
+    end
 
   end
 
