@@ -2,7 +2,7 @@
   <h2>Search Results</h2>
   <hr />
   <% if @products.empty? && @merchants.empty? && @categories.empty?  %>
-    <p class="mb-5"><%= @sum %> results were found for the search term: <%= @term.capitalize %></p>
+    <p class="mb-5"><%= @sum %> results were found for the search term: <%= @term %></p>
   <% else %>
     <div class="container">
       <p class="mb-5"><%= @sum %> results were found for the search term: <%= @term.capitalize %></p>

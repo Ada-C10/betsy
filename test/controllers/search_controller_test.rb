@@ -23,7 +23,11 @@ describe SearchController do
     end
 
     it "suceeds when nothing is entered into the search" do
-      get search_path
+      search_params = {
+        search: ""
+      }
+      
+      get search_path, params: search_params
 
       must_respond_with :success
     end
