@@ -34,13 +34,13 @@
     <%= f.text_field :zip, class: "form-control"  %>
   </div>
 
-  <div class="form-group">
-    <%= f.label 'CVV' %>
-    <%= f.text_field :cvv, class: "form-control"  %>
+  <div class="form-group cvv">
+    <%= f.label 'cvv' %>
+    <%= f.text_field :cvv, class: "form-control cvv"  %>
   </div>
 
   <div class="form-group">
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.submit 'Review Order', class: "btn btn-primary" %>
   </div>
   <% end %>
 </section>
