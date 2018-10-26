@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+haunted:
+  name: Haunted
+
+zombie:
+  name: Zombie
+
+category1:
+  name: Graveyard
+
+category2:
+  name: Forest
+
+category3:
+  name: Empty Plot of Land
+
+category4:
+  name: Gingerbread House
+
+category5:
+  name: Basement
+
+category6:
+  name: Bridge
+
+category7:
+  name: Alley

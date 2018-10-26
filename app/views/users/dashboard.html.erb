@@ -1,0 +1,91 @@
+<br />
+<br />
+<br />
+
+
+<% if @user.nil? %>
+  <h1>User Not Found</h1>
+<% else %>
+
+  <div class="container" id="dashboard_container">
+    <header>
+      <h1 id=dashboard_heading, class="text-muted"><%= "#{@merchant.name}'s Dashboard" %></h1>
+      <!-- Edit own info here? Are we providing user edit/update? -->
+
+    </header>
+
+    <nav>
+      <ul id = "merchant_options">
+        <li class="btn">
+          <%= link_to "Add Product", new_product_path, class:"btn btn-primary"  %>
+        </li>
+        <li class="btn">
+          <%= link_to "Add Category", new_category_path, class:"btn btn-primary"  %>
+        </li>
+      </ul>
+    </nav>
+
+  <table class="table">
+    <h2 class="text-muted">My Products</h2>
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Price
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Stock
+        </th>
+        <th>
+          Edit
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @merchant.products.each do |product| %>
+        <tr>
+          <td>
+            <%= link_to product.name.capitalize, product_path(product.id) %>
+          </td>
+          <td>
+            <%="#{number_to_currency(product.price)}" %>
+          </td>
+          <td>
+            <%= "#{product.description}" %>
+          </td>
+          <td>
+            <%= "#{product.stock}" %>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_product_path(product.id) %>
+          </td>
+        </tr>
+
+      <% end %>
+    </tbody>
+  </table>
+
+    <section class="container">
+      <h2 class="text-muted">Orders</h2>
+      <ul id="order_filter">
+        <li class="btn">
+          <!-- Dropdown of status and all here  -->
+              <%= link_to "All Orders", dashboard_path(:status=>"all"), class:"btn btn-primary" %>
+        </li>
+          <% @status_types.each do |status| %>
+            <li class="btn btn-primary">
+              <%=link_to "#{status.capitalize} Orders", dashboard_path(:status=>"#{status}"), class:"btn btn-primary" %>
+            </li>
+          <% end %>
+      </ul>
+      <%= render partial: "statussummary" %>
+
+    </section>
+  </div>
+<% end %>

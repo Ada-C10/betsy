@@ -1,0 +1,25 @@
+<br />
+
+<section class='container'>
+  <h3 class="display-4 text-xs-center m-y-3 text-muted" id="speakers">Categories</h3>
+
+<div class="row">
+
+  <%# @category_photos.each do |photo| %>
+    <% @categories.each do |category| %>
+  <div class="col-md-6 col-lg-4">
+    <div class="card mb-3">
+      <% if !category.product_photo.nil? %>
+      <%= link_to image_tag(category.product_photo, alt:"Card image cap", class:"card-img-top img-fluid"), category_path(category.id) %>
+     <div class="card-block">
+        <h4 class="card-title"><%= category.name %></h4>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <% end %>
+
+
+
+
+</section>

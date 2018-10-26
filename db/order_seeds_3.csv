@@ -1,0 +1,13 @@
+street,city,state,zip,creditcard,ccexpiration,cvv,billingzip,status,user_id
+1194 Upton Avenue,Brewer,ME,04412,4444,02/2018,098,05512,pending,1
+4218 Tennessee Avenue,Southfield,MI,48034,4445,04/2021,078,98102,paid,1
+3574 Raintree Boulevard,,IN,47905,4446,06/2019,634,47905,complete,2
+976 Kidd Avenue,Anchorage,AK,99501,4447,02/2010,235,78912,cancelled,2
+3953 Randall Drive,Honolulu,HI,96819,4448,07/2022,511,47905,pending,3
+527 Hudson Street,Passaic,NJ,07055,4449,09/2010,702,98345,paid,3
+2159 Farm Meadow Drive,Yuma,AZ,85364,4450,03/2022,823,12745,complete,4
+1867 Byers Lane,Hamilton City,CA,95951,4451,11/2021,561,47905,cancelled,4
+3613 Mercer Street,Wausau,WI,54403,4452,12/2021,772,45221,complete,5
+3257 Briarwood Road,Humansville,MO,65674,4453,11/2018,102,47905,paid,6
+247 Northwest Boulevard,Fort Lee,NJ,07024,4454,3/2021,871,80503,pending,6
+3434 Northwest Boulevard,Fort Lee,NJ,07024,4454,3/2021,871,80503,paid,3

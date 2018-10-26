@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Thrillow</title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
+      <link rel="icon" type="image/png" href="https://image.flaticon.com/icons/svg/12/12402.svg">
+      <!-- <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png"> -->
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+   </head>
+   <body >
+      <header>
+         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+               <%= link_to "Thrillow", root_path, class: "navbar-brand" %>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarResponsive">
+                  <ul class="navbar-nav ml-auto">
+                     <li class="nav-item">
+                        <%= link_to "Shop All Homes", products_path, class: "nav-link" %>
+                     </li>
+                     <li class="nav-item">
+                        <%= link_to "Categories", categories_path, class: "nav-link" %>
+                     </li>
+                     <li class="nav-item">
+                        <%= link_to "Agents", users_path, class: "nav-link" %>
+                     </li>
+                     <li class = "nav-item">
+                        <%= link_to "Shopping Cart", order_path(@current_order), class: "nav-link" %>
+                     </li>
+                     <li class = "nav-item">
+                        <span class="badge badge-pill badge-light"><%= @current_order.items_in_cart %></span>
+                     </li>
+                     <li class="nav-item">
+                        <% if session[:user_id] %>
+                        <%= link_to "Merchant Dashboard", dashboard_path(session[:user_id]),class:"nav-link" %>
+                        <% end %>
+                     </li>
+                     <li class="nav-item">
+                        <% if session[:user_id] %>
+                        <%= link_to "Log out", logout_path, method: "delete",class:"nav-link"  %>
+                        <% else %>
+                        <%= link_to "Login", "/auth/github",class:"btn btn-light btn-capsul px-4 py-2" %>
+                        <% end %>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+         <section class="flash alert"/>
+            <% flash.each do |name, message| %>
+            <div class="alert"-<%=name %> <%=message %> </div>
+            <% end %>
+         </section>
+         <section class="flash">
+            <% flash.each do |name, message| %>
+            <% if message.class == Array %>
+            <div class="alert-warning">
+               <% message.each do |msg| %>
+               <p><strong><%= "#{name}:" %></strong><%= " #{msg}" %></p>
+               <% end %>
+            </div>
+            <% else %>
+            <div class="alert-<%= name %>">
+               <%= message %>
+            </div>
+            <% end %>
+            <% end %>
+         </section>
+      </header>
+      <main>
+         <%= yield %>
+      </main>
+   </body>
+</html>

@@ -1,0 +1,28 @@
+<!-- TODO Might remove this view, will use route for user/id/products instead -->
+<% if @user.nil? %>
+  <h1>User Not Found</h1>
+<% else %>
+  <!-- Are we doing show page for just merchants? -->
+  <!--Check seabay for reference  -->
+  <h1><%= @user.name %></h1>
+  <p>
+    <%= @user.email %>
+  </p>
+
+<% end %>
+
+<section>
+  <h2>Products</h2>
+  <ul>
+    <%= @user.products.each do |product| %>
+      <li>
+        <h3><%= product.name %></h3>
+        <p><%= "Price: #{product.price}" %></p>
+        <p><%= "Description: #{product.description}" %></p>
+        <p><%= "Stock: #{product.stock}" %></p>
+        <!-- <img <%= "#{product.photo}" %> > -->
+      </li>
+
+    <% end %>
+  </ul>
+</section>

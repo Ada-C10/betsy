@@ -1,0 +1,66 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- Include the above in your HEAD tag ---------->
+
+<% if @current_order.products.count == 0 %>
+<div class="container">
+  <h1 class="text-muted">Shopping Cart</h1>
+  <h2>Your cart is empty </h2>
+  <h3>Pick your next nightmare home at Shop All Homes above! </h3>
+</div>
+
+<% else %>
+
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    				<thead>
+						<tr>
+							<th style="width:50%">Product</th>
+							<th style="width:10%">Price</th>
+							<th style="width:8%">Quantity</th>
+							<th style="width:22%" class="text-center">Subtotal</th>
+							<th style="width:10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+            <% @current_order.orders_items.each do |item| %>
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-2 hidden-xs"><%= image_tag(item.product.photo, class: "img-responsive")%></div>
+									<div class="col-sm-10">
+										<h4 class="nomargin"><%= item.product.name %></h4>
+										<p class="text-left"><%= item.product.description %></p>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price">$<%= readable_price(item.product.price) %></td>
+							<td data-th="Quantity">
+                <%= form_with url:order_orders_item_path(@current_order.id,item.id), method: :patch   do |f|%>
+                 <%= f.text_field :quantity, value: "#{item.quantity}", class: "form-control text-center" %>
+                 <%= f.submit "Update Cart"%>
+                <% end %>
+							</td>
+							<td data-th="Subtotal" class="text-center">$<%= readable_price(item.calculate_total)%></td>
+							<td class="actions" data-th="">
+                <%= link_to "Remove", order_orders_item_path(@current_order.id, item.id) , class: "btn btn-danger btn-sm", method: :delete%>
+							</td>
+						</tr>
+            <%end%>
+					</tbody>
+					<tfoot>
+						<tr class="visible-xs">
+							<td class="text-center"><strong><%=readable_price(@current_order.order_calculate_total)%></strong></td>
+						</tr>
+						<tr>
+							<td class="text-left"><%= link_to "Continue Shopping", products_path, class: "btn btn-dark"%></td>
+							<td colspan="2" class="hidden-xs"></td>
+							<td class="hidden-xs text-center"><strong><%= (number_to_currency(@current_order.order_calculate_total))%></strong></td>
+              <td><%= link_to "Complete Order", edit_order_path(@current_order.id), class: "btn btn-success btn-block"%></td>
+						</tr>
+					</tfoot>
+				</table>
+      </div>
+<%end%>

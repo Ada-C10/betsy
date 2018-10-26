@@ -1,0 +1,29 @@
+  <section class="form">
+    <% if @category.errors.any? %>
+      <ul class="errors">
+        <% @category.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <ul>
+    <div class="container">
+      <%= form_with model: @category, class: "form" do |f|%>
+
+          <%# f.collection_check_boxes :category_ids, Category.all, :id, :name%>
+
+          <li><%= f.label :name %> </li>
+          <li><%= f.text_field :name, class: ""%></li>
+
+
+        <%= f.submit button_title, class: 'btn btn-info'%>
+        <% end %>
+    </div>
+
+    </ul>
+
+  </section>
+</section>

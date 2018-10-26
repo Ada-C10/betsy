@@ -1,0 +1,94 @@
+
+<h3 class="text-muted"><%= "Order Summary" %></h3>
+<!-- Total number of orders -->
+<!-- Total Revenue -->
+<table class="table", id="order_summary">
+  <thead>
+    <tr>
+      <th>
+        <%= "Revenue" %>
+      </th>
+      <th>
+        <%= "Number of Orders" %>
+      </th>
+    </tr>
+  </thead>
+  <tr>
+    <td>
+      <%= number_to_currency(@revenue_total) %>
+    </td>
+    <td>
+      <%= "#{@total_orders}" %>
+    </td>
+  </tr>
+</table>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        <%= "Order" %>
+      </th>
+      <th>
+        <%= "Date" %>
+      </th>
+      <th>
+        <%= "Product" %>
+      </th>
+      <th>
+        <%= "Price" %>
+      </th>
+      <th>
+        <%= "Quantity" %>
+      </th>
+      <th>
+        <%= "Subtotal" %>
+      </th>
+      <th>
+        <%= "Order Status" %>
+      </th>
+      <!--TODO: If we have time we'll do shipped status  -->
+      <!-- <th>
+        <%# "Shipped Status" %>
+      </th>
+      <th>
+        <%# "Edit Shipped Status" %>
+      </th> -->
+    </tr>
+  </thead>
+
+  <!--Can look at order items for a status  -->
+  <!-- order_items_for_status -->
+
+  <% @order_items.each do |item| %>
+    <tr>
+      <td>
+        <%= link_to "#{item.order.id}", order_path(item.order.id) %>
+      </td>
+      <td>
+        <%= format_date(item.order.updated_at) %>
+      </td>
+      <td>
+        <%= link_to "#{item.product.name.capitalize}", product_path(item.product.id) %>
+      </td>
+      <td>
+        <%= number_to_currency(item.product.price) %>
+      </td>
+      <td>
+        <%= item.quantity %>
+      </td>
+      <td>
+        <%= number_to_currency(item.calculate_total) %>
+      </td>
+      <td>
+        <%= item.order.status.capitalize %>
+      </td>
+      <!-- <td>
+        <%= "TODO SHIPPED STATUS" %>
+      </td>
+      <td>
+        <%= "TODO - Option to edit shipped status" %>
+      </td> -->
+    </tr>
+  <% end %>
+</table>

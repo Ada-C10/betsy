@@ -1,0 +1,69 @@
+<div class="container">
+  <!-- <br/>
+  <br/>
+  <br/>
+  <br/> -->
+
+  <h2>Confirmation</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Subtotal
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @items_in_cart.each do |item| %>
+        <tr>
+          <td>
+            <%= "#{item.product.name}" %>
+          </td>
+          <td>
+            <%= number_to_currency(item.calculate_total) %>
+          </td>
+          <td>
+            <%= link_to "#{item.product.name.capitalize}", product_path(item.product.id) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          Total
+        </th>
+        <th>
+          Time Placed
+        </th>
+        <th>
+          Status
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td>
+          <%= number_to_currency(@revenue_total) %>
+        </td>
+        <td>
+          <%= format_date(@date_placed) %>
+        <td>
+          <%= @order_status.capitalize %>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>

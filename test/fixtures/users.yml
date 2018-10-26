@@ -1,0 +1,74 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+
+
+user1:
+  name: User1
+  email: MyString
+  photo: MyString
+  uid: 67
+  provider: github
+
+user2:
+  name: User2
+  email: MyString@gmail.com
+  photo: MyString
+  uid: 1031
+  provider: github
+
+user3:
+  name: User3
+  email: MyString@gmail.com
+  photo: MyString
+  uid: 889
+  provider: github
+
+dani:
+  name: dani
+  email: dani@gmail.com
+  photo: MyString
+  uid: 111
+  provider: github
+
+kay:
+  name: kay
+  email: kay@gmail.com
+  photo: MyString
+  uid: 222
+  provider: github
+
+  # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+grace:
+ name: grace
+ email: s@s.com
+ photo: MyString
+ uid: 343434234
+ provider: github
+
+john:
+ name: john
+ email: sdf@sdf.com
+ photo: johnsphoto
+ uid: 542345234
+ provider: github
+
+user1:
+ name: user1
+ email: user2@gmail.com
+ photo: MyString
+ uid: 45646654
+ provider: github
+
+tom:
+ name: tom
+ email: tom@hotmail.com
+ photo: more_photos_of_tom
+ uid: 487984849
+ provider: github
+
+
+guest:
+ name:
+ email:
+ photo:

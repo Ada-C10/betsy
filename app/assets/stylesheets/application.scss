@@ -1,0 +1,264 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+
+/* Import scss content */
+@import "bootstrap";
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url('https://fonts.googleapis.com/css?family=Butcherman|Creepster');
+
+$primary-font: 'Gotham', gotham, Verdana,sans-serif;
+$primary-teal: black;
+// $primary-teal: #006699;
+$dark-teal: #00796B;
+$secondary-color: grey;
+$light-gray: #EEEEEE;
+$dark-gray: #424242;
+$gold: #FF5722;
+
+$default-border: 2px solid;
+
+body {
+  // background: black;
+}
+
+.carousel, .item, .active {
+  height:100%;
+}
+.carousel-inner {
+  width:100%;
+}
+.fill {
+  width:100%;
+  height:100%;
+  background-position:center;
+  background-size:cover;
+}
+
+body, h1, h2, h3, h4, h5 {
+  font-family: $primary-font;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: bold;
+  font-family: $primary-font, cursive;
+}
+
+a, h2, h3 {
+  color: black;
+}
+
+a:hover {
+  color: $dark-teal;
+  text-decoration: none;
+}
+
+/*------------------------*/
+/**********************************
+Responsive navbar-brand image CSS
+- Remove navbar-brand padding for firefox bug workaround
+- add 100% height and width auto ... similar to how bootstrap img-responsive class works
+***********************************/
+
+
+.navbar-brand {
+  padding: 0px;
+  font-family: "Butcherman";
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 15px;
+  width: auto;
+}
+
+section {
+  padding-top: 1em;
+}
+
+h1.logo{
+  font-family: 'Butcherman';
+}
+
+body, h1, h2, h3, h4, h5 {
+  font-family: $primary-font;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: bold;
+}
+
+a, h2, h3 {
+  color: $primary-teal;
+}
+
+a:hover {
+  color: $dark-teal;
+  text-decoration: none;
+}
+
+.product_photo {
+  width: 100%;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  line-height: 1.6;
+  font-family: Helvetica, sans-serif;
+}
+
+#wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 55vw;
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+  width: 100vw;
+  min-height: 55vw;
+  overflow: hidden;
+}
+
+.layer .content-wrap {
+  position: absolute;
+  width: 100vw;
+  min-height: 55vw;
+}
+
+.layer .content-body {
+  position: absolute;
+  width: 25%;
+  top: 50%;
+  text-align: center;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.layer img {
+  position: absolute;
+  width: 35%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.layer h1 {
+  font-size: 2em;
+}
+
+.bottom {
+  background: #222;
+  z-index: 1;
+}
+
+.bottom .content-body {
+  right: 5%;
+}
+
+.bottom h1 {
+  color: #fdab00;
+}
+
+/* top layer */
+.top {
+  background: #eee;
+  color: #222;
+  z-index: 2;
+  width: 50vw;
+}
+
+.top .content-body {
+  left: 5%;
+  color: #222;
+}
+
+.handle {
+  position: absolute;
+  height: 100%;
+  display: block;
+  background-color: #fdab00;
+  width: 5px; /*for the bar*/
+  top: 0;
+  left: 50%;
+  z-index: 3;
+}
+
+/* skew effect */
+.skewed .handle {
+  top: 50%;
+  transform: rotate(30deg) translateY(-50%);
+  height: 200%;
+  transform-origin: top;
+}
+
+.skewed .top {
+  transform: skew(-30deg);
+  margin-left: -1000px;
+  width: calc(50vw + 1000px);
+}
+
+.skewed .top .content-wrap {
+  transform: skew(30deg);
+  margin-left: 1000px;
+}
+
+@media(max-width: 768px) {
+  body {
+    font-size: 75%;
+  }
+}
+
+.dashboard_container {
+  margin: 2rem;
+  padding: 2rem;
+}
+
+table {
+  text-align: center;
+}
+
+#merchant_options .btn {
+  padding: 5px;
+}
+
+#dashboard_heading {
+    // color: #26A59A;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  #dashboard_container h2 {
+    // text-align: center;
+    padding: 1.5rem;
+  }
+
+  #dashboard_container #order_filter li {
+    margin: 0.5rem;
+  }
+
+  ul {
+    list-style-type: none;
+    // margin: 0;
+    padding: 0;
+  }
+
+
+  .content-half {
+      background-color: #b35919;
+  }

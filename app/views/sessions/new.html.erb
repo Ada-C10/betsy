@@ -1,0 +1,9 @@
+<!-- # Do we need this since we're doing Oauth for login?
+# The route sends them to auth callback  -->
+<h1>Please Log in</h1>
+
+<%= form_with model: @user, url: login_path, method: :post do |f| %>
+  <%= f.label :name, 'Username' %>
+  <%= f.text_field :name, placeholder: 'Username' %>
+  <%= f.submit 'Login' %>
+<% end %>

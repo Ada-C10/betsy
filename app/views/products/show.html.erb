@@ -1,0 +1,31 @@
+<br />
+<br />
+<br />
+<div class="container">
+  <% if @product.nil? %>
+    <h1> 404 Not found</h1>
+  <% else %>
+    <h1><%=@product.name.capitalize%></h1>
+    <section><%#@product.photo %></section>
+    <ul>
+      <li><strong>Price:</strong> <%= number_to_currency(@product.price) %></li>
+      <li><strong>Description:</strong> <%= @product.description %></li>
+      <li><strong>Stock:</strong> <%= @product.stock %></li>
+    </ul>
+  <% end %>
+
+  <%= form_with url: product_add_to_cart_path(@product.id) do |f|%>
+    <%= f.label :quantity %>
+    <%= f.text_field :quantity %>
+    <%= f.submit "Add to Cart" %>
+  <% end %>
+
+</div>
+
+
+<!-- add integer input field(text validation) for quantity + add to cart button, -->
+    <!-- capture product params pass to add_product method in orders-->
+<!-- if signed in as merchant and this is your product then show  -->
+  <%# link_to "Edit", edit_product_path(@product.id) %>
+  <%# link_to "Delete #{@product.title}", product_path(@product.id), method: :delete %>
+<%# end %>

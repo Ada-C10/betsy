@@ -1,0 +1,25 @@
+<br />
+<br />
+<br />
+<div class="container">
+  <h3 class="display-4 text-xs-center m-y-3 text-muted" id="speakers">Agents</h3>
+
+  <section class='container'>
+  <div class="row justify-content-center">
+
+      <% @merchants.each do |merchant| %>
+    <div class="col-md-6 col-lg-4">
+      <div class="card bg-light text-white mb-3">
+        <br />
+        <br />
+        <br />
+       <div class="card-block">
+         <br />
+          <h4 class="card-title text-center"><%= link_to "#{merchant.name}", merchant_products_path(merchant.id)  %></h4>
+          <br />
+        </div>
+      </div>
+    </div>
+    <%end %>
+  </section>
+</div>

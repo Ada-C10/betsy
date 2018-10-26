@@ -1,0 +1,14 @@
+item1:
+  order: one
+  product: product3
+  quantity: 3
+
+item2:
+  order: one
+  product: product2
+  quantity: 1
+
+item3:
+  order: two
+  product: product1
+  quantity: 1
