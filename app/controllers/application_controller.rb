@@ -27,7 +27,11 @@ class ApplicationController < ActionController::Base
   end
 
   def count_of_new_items
-    @orderitems = @current_user.items_by_status("paid")
-    @orders_count = Merchant.items_by_orderid(@orderitems).size
+    if @current_user
+      @orderitems = @current_user.items_by_status("paid")
+      @orders_count = Merchant.items_by_orderid(@orderitems).size
+    else
+      @orders_count = 0
+    end
   end
 end

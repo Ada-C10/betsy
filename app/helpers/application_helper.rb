@@ -37,7 +37,11 @@ module ApplicationHelper
   end
 
   def orderitems_total_quantity(orderitems)
-    return orderitems.sum {|oi| oi.quantity }
+    if orderitems.nil?
+      return 0
+    else
+      return orderitems.sum {|oi| oi.quantity }
+    end
   end
 
   def readable_order(order)
