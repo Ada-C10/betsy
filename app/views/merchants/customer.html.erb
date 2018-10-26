@@ -5,11 +5,11 @@
     <p><strong>Order placed on:</strong> <%= readable_date(@order.created_at) %></p>
   </div>
   <nav class="d-flex justify-content-end">
-    <div class="mr-5">
+    <div class="mr-5 pl-5">
       <%= render partial: "checkbox", locals: { order: @order }%>
     </div>
     <div>
-      <%= link_to "Back To Dashboard", dashboard_path, class: "btn btn-primary mr-3", type:"button" %>
+      <%= link_to "Back To Dashboard", dashboard_path, class: "btn btn-primary mr-3" %>
     </div>
   </nav>
 </div>

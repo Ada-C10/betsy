@@ -7,7 +7,7 @@
   <% status = "paid" %>
   <% caption_text = "Oops, Not Shipped Yet" %>
   <% image_url = "icons/icon-cancelled.png" %>
-  <%= confirm_message = "Are you sure? We will move your order back to the 'New Orders' tab." %>
+  <% confirm_message = "Are you sure? We will move your order back to the 'New Orders' tab." %>
 <% end %>
 <%= form_with model: order, url: merchant_ship_path, action: :patch do |f| %>
   <%= f.hidden_field :order_id, value: order.id %>
