@@ -47,6 +47,15 @@ describe Order do
     it 'is valid on create with only id and status recorded' do
       order.valid?.must_equal true
     end
+
+    it 'is invalid without a status' do
+      order = Order.create(order_data[:order])
+      x = Order.update(order.id, status: nil)
+      x.status.must_be_nil
+      x.valid?.must_equal false
+    end
+
+
   end
 
   describe 'subtotal method' do
