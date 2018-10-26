@@ -162,4 +162,8 @@ describe Order do
     end
   end
 
+  describe 'Class method search' do
+    
+  end
+
 end
