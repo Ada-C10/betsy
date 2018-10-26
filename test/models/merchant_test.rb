@@ -29,17 +29,16 @@ describe Merchant do
 
 
 
+  it "merchant has relationship with order items" do
+    order_item = order_items(:order_item_6)
 
-  it "merchant has many products" do
 
     thyme = products(:thyme)
     taco = products(:taco)
 
-    @ironchef.must_respond_to :products
+    @ironchef.must_respond_to :order_items
+    # expect(@ironchef.products.order_items).must_be :valid?
 
-    @ironchef.products.each do |product|
-      product.must_be_kind_of Product
-    end
   end
 
 
@@ -81,6 +80,24 @@ describe Merchant do
 
     valid_merchant.valid?.must_equal true
   end
+
+
+
+  @ironchef = merchants(:iron_chef)
+
+
+it "tests the build from github method" do
+
+
+  merchant{
+    info:{name: "someone", email: "someone@gmail.com"},
+    uid: 10,
+    provider: ''
+  }
+    merchant = Merchant.build_from_github(merchant)
+    binding.pry
+
+end
 
 
 
