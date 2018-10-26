@@ -5,7 +5,11 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.all
+    @active_products = Product.all.where(status: true)
+
+    if params[:search] && params[:search] != ""
+      @active_products = Product.search(params[:search]).order("name DESC")
+    end
   end
 
   def show

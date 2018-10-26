@@ -4,7 +4,9 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Snack</th>
+        <th></th>
+        <th>Product Name</th>
+        <th>Item Price</th>
         <th>Quantity</th>
         <th>Item Total</th>
         <th>Remove from Cart</th>
@@ -14,11 +16,12 @@
       <% @cart.order_items.each do |order_item| %>
 
       <tr>
+        <td><img src="<%= find_image_for(order_item.product) %>" alt="snack image", height="100", width="100"></td>
         <td><%= link_to order_item.product.name, product_path(order_item.product.id) %></td>
+        <td><%= number_to_currency(order_item.product.price) %></td>
         <td>
           <%= form_with model: order_item do |f| %>
           <%= f.label :quantity %>
-          <!-- need an inventory column in products table -->
           <%= f.select :quantity, order_item.available_stock, {}, { value: order_item.quantity, onchange: 'this.form.submit();' }%>
           <% end %>
         </td>
@@ -29,31 +32,21 @@
         </td>
       </tr>
       <%end%>
-      <tr>
-        <td></td>
-        <td> Subtotal</td>
-        <td> <%= number_to_currency(@cart.subtotal) %></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td> Tax</td>
-        <td> <%= Order.tax_rate %> %</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td> Total</td>
-        <td> <%= number_to_currency(@cart.total) %> </td>
-        <td></td>
-      </tr>
     </tbody>
   </table>
 
-<div>
-  <%= link_to "Continue to checkout", edit_order_path(@order), method: :get, class: "btn btn-primary" %>
-</div>
+  <br />
 
+<section class="order-costs">
+  <p class="end">Subtotal: <%= number_to_currency(@cart.subtotal) %></p>
+  <p class="end"> Taxes: <%= number_to_currency(@cart.taxes) %> </p>
+
+  <p class="end"> Total: <%= number_to_currency(@cart.total) %> </p>
+
+  <div class="end">
+    <%= link_to "Continue to checkout", edit_order_path(@order), method: :get, class: "btn btn-primary" %>
+  </div>
+</section>
 
   <% else %>
   <p>

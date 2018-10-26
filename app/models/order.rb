@@ -19,8 +19,8 @@ class Order < ApplicationRecord
     return self.order_items.sum { |o_items| o_items.item_total }
   end
 
-  def self.tax_rate
-    return (TAX_RATE * 100).round(2)
+  def taxes
+    return self.subtotal * TAX_RATE
   end
 
   def total

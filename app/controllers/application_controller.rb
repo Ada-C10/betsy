@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :find_logged_in_merchant
   before_action :find_merchants
   before_action :has_cart?, :find_orders
-  before_action :find_active_products
+  # before_action :find_active_products
   before_action :reviewing_order?
 
 
@@ -38,9 +38,9 @@ class ApplicationController < ActionController::Base
     return @cart = Order.find_by(id: session[:order_id])
   end
 
-  def find_active_products
-    @active_products = Product.all.where(status: true)
-  end
+  # def find_active_products
+  #   @active_products = Product.all.where(status: true)
+  # end
 
   def reviewing_order?
     @allowed_reviewer = session[:old_order]

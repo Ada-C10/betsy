@@ -14,22 +14,8 @@
         <p><%= "No reviews yet" %></p>
       <% end %>
       <p class="card-text"><%= p.description %></p>
-<<<<<<< HEAD
-      <% if p.average_rating %>
-      <p><%= "Average rating:" %></p>
-        <% p.average_rating.to_i.times do %>
-          <i class="fa fa-star"></i>
-        <% end %>
-      <% else %>
-        <p><%= "No reviews yet" %></p>
-      <% end %>
-      Sold by: <a href=" <%= merchant_path(p.merchant.id) %>"><%= "#{p.merchant.name}" %></a>
-      <br>
-      <a href=" <%= product_path(p.id) %>" class="btn btn-primary">Details</a>
-=======
       <a class="card-merchant" href=" <%= merchant_path(p.merchant.id) %>"><%= "#{p.merchant.name}" %></a>
       <a class="card-details" href=" <%= product_path(p.id) %>">Details</a>
->>>>>>> ea63c25aff665ec4293a76566d2b08d6ee4fc8b2
     </div>
   </div>
   <% end %>

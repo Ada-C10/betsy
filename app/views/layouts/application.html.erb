@@ -55,13 +55,25 @@
           <li class="nav-item">
             <a class="nav-link" href="<%=orders_path%>"> Find Order</a>
           </li>
-
-
         </ul>
 
 
-        <% if @logged_in_merchant %>
+
         <ul class="navbar-nav navbar-right">
+          <li>
+
+            <div class="input-group">
+            <%= form_tag(products_path, :method => "get", id: "search-form", class: "form-inline my-2 my-lg-0") do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Find your snack!", class: 'form-control mr-sm-2' %>
+              <span class="input-group-btn">
+                <%= submit_tag "Search", class: 'btn btn-sm btn-outline-secondary' %>
+              </span>
+            <% end %>
+          </div>
+
+          </li>
+
+        <% if @logged_in_merchant %>
           <li class="nav-item"><a class="nav-link" href="<%= merchant_account_path %>">My Account</a></li>
           <li class="nav-item"><a class="nav-link" href="/logout" data-method="delete">Logout</a></li>
           <% else %>
