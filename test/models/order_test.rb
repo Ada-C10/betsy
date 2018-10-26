@@ -6,11 +6,7 @@ describe Order do
   let(:russell) { orders(:ordrussell) }
   let(:future) { orders(:ordfuture) }
 
-
-
   describe "Custom Methods" do
-
-
     describe "Total Cost Method" do
       it "will calculate total cost of order" do
         total_cost = ciara.total_cost
@@ -20,10 +16,7 @@ describe Order do
     end
   end
 
-  valid_statuses = ['pending', 'cancelled', 'complete', 'paid']
-
-  describe "validations" do
-
+  describe "Validations" do
     it "must be valid" do
       expect(ciara.valid?).must_equal true
     end
@@ -86,16 +79,12 @@ describe Order do
     expect(legend.errors.messages).must_include :cvv
   end
 
-
-
   it "requires an expiration date" do
     legend.exp_date = nil
     valid = legend.save
     expect(valid).must_equal false
     expect(legend.errors.messages).must_include :exp_date
   end
-
-
 
   it "requires a zip code" do
     legend.zip = nil
@@ -104,8 +93,7 @@ describe Order do
     expect(legend.errors.messages).must_include :zip
   end
 
-  describe "relations" do
-
+  describe "Relationships" do
     it "has a list of order items" do
       ordlegend = orders(:ordlegend)
       ordlegend.must_respond_to :orderitems
@@ -121,6 +109,5 @@ describe Order do
         product.must_be_kind_of Product
       end
     end
-    
   end
 end

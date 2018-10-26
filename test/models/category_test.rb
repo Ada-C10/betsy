@@ -7,8 +7,7 @@ describe Category do
     expect(category).must_be :valid?
   end
 
-  describe "validations" do
-
+  describe "Validations" do
     it "requires a name" do
       category = categories(:bags)
       category.name = nil
@@ -25,7 +24,7 @@ describe Category do
     end
   end
 
-  describe "relationships" do
+  describe "Relationships" do
     it "has a list of products" do
       africa = categories(:africa)
       africa.must_respond_to :products

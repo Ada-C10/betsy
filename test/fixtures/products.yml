@@ -6,9 +6,8 @@ fannypack:
   description: I've got the world on a sling...
   active: true
   merchant: fred
-
-# orderone
-# orderthree
+  # orderone
+  # orderthree
 
 kilimanjaro:
   name: climb mt. kilimanjaro
@@ -18,8 +17,7 @@ kilimanjaro:
   description: Scatter ashes, or get engaged!
   active: true
   merchant: kiki
-
-# ordertwo
+  # ordertwo
 
 safari:
   name: savannah safari
@@ -29,5 +27,4 @@ safari:
   description: Ecological conservation education tour.
   active: true
   merchant: sally
-  
-# order two
+  # order two

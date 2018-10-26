@@ -1,7 +1,6 @@
 require "test_helper"
 
 describe Merchant do
-
   let(:merchant) { merchants(:fred) }
 
   it "must be valid" do
@@ -10,7 +9,6 @@ describe Merchant do
 
   describe "validations" do
     it "requires a name" do
-      #use let for merchant, make name invalid
       merchant = merchants(:fred)
       merchant.name = nil
 
@@ -54,7 +52,6 @@ describe Merchant do
   end
 
   describe "Relationships" do
-
     it "has a list of products" do
       kiki = merchants(:kiki)
       kiki.must_respond_to :products
@@ -70,6 +67,7 @@ describe Merchant do
         item.must_be_kind_of Orderitem
       end
     end
+  end
 
   describe "Custom Methods" do
     describe "items_by_status" do
@@ -186,4 +184,3 @@ describe Merchant do
       end
     end
   end
-end

@@ -1,10 +1,7 @@
 require "test_helper"
 
 describe SessionsController do
-
-
-  describe "logged in users" do
-
+  describe "Logged in users" do
     before do
       perform_login(merchants(:kiki))
     end
@@ -29,8 +26,7 @@ describe SessionsController do
     end
   end
 
-  describe "guest users" do
-
+  describe "Guest users" do
     describe "destroy" do
       it "cannot end a session" do
 

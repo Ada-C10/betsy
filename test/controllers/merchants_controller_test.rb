@@ -25,7 +25,7 @@ describe MerchantsController do
     end
   end
 
-  describe "guest users" do
+  describe "Guest users" do
 
     describe "dashboard" do
       it "a user that's not logged in cannot access dashboard" do
@@ -53,8 +53,7 @@ describe MerchantsController do
     end
   end
 
-  describe "logged in users" do
-
+  describe "Logged in users" do
     before do
       perform_login(fred)
     end
@@ -114,7 +113,6 @@ describe MerchantsController do
       end
 
       it "can change status from complete to paid" do
-        old_order = Order.find_by(id: order_complete.id) #ordrussell
         order_hash =   {
           order: {
             merchant_id: fred.id,
@@ -141,7 +139,7 @@ describe MerchantsController do
             status: "complete"
           }
         }
-        old_order = Order.find_by(id: order.id) #ordciara
+
         expect {
           patch merchant_ship_path, params: order_hash
         }.wont_change 'Order.count'
@@ -159,7 +157,7 @@ describe MerchantsController do
             status: "invalidstatus"
           }
         }
-        old_order = Order.find_by(id: order.id) #ordciara
+
         expect {
           patch merchant_ship_path, params: order_hash
         }.wont_change 'Order.count'

@@ -1,13 +1,12 @@
 require "test_helper"
+
 describe Product do
-
   let(:kilimanjaro) { products(:kilimanjaro) }
-  let (:fannypack) {products(:fannypack)}
-  let (:safari) {products(:safari)}
+  let(:fannypack) { products(:fannypack) }
+  let(:safari) { products(:safari) }
+  let(:product) { products(:kilimanjaro) }
 
-
-  describe "custom methods" do
-      let(:product) { products(:kilimanjaro) }
+  describe "Custom Methods" do
     it "adjust_inventory" do
       item = orderitems(:itemsone)
 
@@ -64,11 +63,12 @@ describe Product do
     end
   end
 
-  describe "validations" do
+  describe "Validations" do
 
     it "must be valid" do
       expect(kilimanjaro).must_be :valid?
     end
+
     it "requires a name" do
       kilimanjaro.name = nil
       valid = kilimanjaro.save
@@ -83,7 +83,6 @@ describe Product do
       expect(valid).must_equal false
       expect(kilimanjaro.errors.messages).must_include :name
     end
-
 
     it "requires a cost greater than zero" do
       kilimanjaro.cost = 0
@@ -110,7 +109,6 @@ describe Product do
       valid = fannypack.save
       expect(valid).must_equal false
       expect(fannypack.errors.messages).must_include :inventory
-
     end
 
     it "inventory must be an integer" do
@@ -130,75 +128,74 @@ describe Product do
       expect(fannypack.errors.messages).must_include :description
     end
 
-      it "active status can only be true or false" do
-        safari.active = true
-        fannypack.active = false
-        kilimanjaro.active = nil
-        safari.valid?.must_equal true
-        fannypack.valid?.must_equal true
-        kilimanjaro.valid?.must_equal false
-        expect(kilimanjaro.errors.messages).must_include :active
-      end
-
-      it "requires a image" do
-        fannypack.image_url = nil
-        fannypack.valid?.must_equal false
-        expect(fannypack.errors.messages).must_include :image_url
-      end
-
-
-    describe "custom methods" do
-      it "adjust_inventory" do
-        item = orderitems(:itemsone)
-
-        order_items = []
-        order_items << item
-
-        product = Product.find_by(id: item.product.id)
-        start_inventory = product.inventory
-
-        Product.adjust_inventory(order_items)
-
-        product = Product.find_by(id: item.product.id)
-        end_inventory = product.inventory
-
-        expect(start_inventory - end_inventory).must_equal item.quantity
-      end
+    it "active status can only be true or false" do
+      safari.active = true
+      fannypack.active = false
+      kilimanjaro.active = nil
+      safari.valid?.must_equal true
+      fannypack.valid?.must_equal true
+      kilimanjaro.valid?.must_equal false
+      expect(kilimanjaro.errors.messages).must_include :active
     end
 
-    describe "relations" do
-      it "has a list of reviews" do
-        fannypack = products(:fannypack)
-        fannypack.must_respond_to :reviews
-        fannypack.reviews.each do |review|
-          review.must_be_kind_of Review
-        end
+    it "requires a image" do
+      fannypack.image_url = nil
+      fannypack.valid?.must_equal false
+      expect(fannypack.errors.messages).must_include :image_url
+    end
+  end
+
+  describe "Custom Methods" do
+    it "adjust_inventory" do
+      item = orderitems(:itemsone)
+
+      order_items = []
+      order_items << item
+
+      product = Product.find_by(id: item.product.id)
+      start_inventory = product.inventory
+
+      Product.adjust_inventory(order_items)
+
+      product = Product.find_by(id: item.product.id)
+      end_inventory = product.inventory
+
+      expect(start_inventory - end_inventory).must_equal item.quantity
+    end
+  end
+
+  describe "Relationships" do
+    it "has a list of reviews" do
+      fannypack = products(:fannypack)
+      fannypack.must_respond_to :reviews
+      fannypack.reviews.each do |review|
+        review.must_be_kind_of Review
       end
-      it "has a merchant" do
-        fannypack = products(:fannypack)
-        fannypack.must_respond_to :merchant
-        fannypack.merchant.must_be_kind_of Merchant
+    end
+    it "has a merchant" do
+      fannypack = products(:fannypack)
+      fannypack.must_respond_to :merchant
+      fannypack.merchant.must_be_kind_of Merchant
+    end
+    it "has a list of order items" do
+      fannypack = products(:fannypack)
+      fannypack.must_respond_to :orderitems
+      fannypack.orderitems.each do |item|
+        item.must_be_kind_of Orderitem
       end
-      it "has a list of order items" do
-        fannypack = products(:fannypack)
-        fannypack.must_respond_to :orderitems
-        fannypack.orderitems.each do |item|
-          item.must_be_kind_of Orderitem
-        end
+    end
+    it "has a list of orders" do
+      fannypack = products(:fannypack)
+      fannypack.must_respond_to :orders
+      fannypack.orders.each do |item|
+        item.must_be_kind_of Order
       end
-      it "has a list of orders" do
-        fannypack = products(:fannypack)
-        fannypack.must_respond_to :orders
-        fannypack.orders.each do |item|
-          item.must_be_kind_of Order
-        end
-      end
-      it "has a list of categories" do
-        fannypack = products(:fannypack)
-        fannypack.must_respond_to :categories
-        fannypack.categories.each do |category|
-          category.must_be_kind_of Category
-        end
+    end
+    it "has a list of categories" do
+      fannypack = products(:fannypack)
+      fannypack.must_respond_to :categories
+      fannypack.categories.each do |category|
+        category.must_be_kind_of Category
       end
     end
   end

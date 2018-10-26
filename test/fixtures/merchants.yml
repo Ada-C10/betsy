@@ -4,7 +4,7 @@ fred:
   avatar_url: https://via.placeholder.com/200x200
   uid: 123
   provider: github
-# fannypack, ordlegend, ordrussell
+  # fannypack, ordlegend, ordrussell
 
 sally:
   name: Sally
@@ -12,7 +12,7 @@ sally:
   avatar_url: https://via.placeholder.com/200x200
   uid: 115
   provider: github
-# safari, ordciara
+  # safari, ordciara
 
 kiki:
   name: Kiki
@@ -20,7 +20,7 @@ kiki:
   avatar_url: https://via.placeholder.com/200x200
   uid: 135
   provider: github
-# kilimanjaro, ordciara
+  # kilimanjaro, ordciara
 
 bob:
   name: Bob

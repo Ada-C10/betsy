@@ -13,6 +13,7 @@ describe OrdersController do
       }
     }
   end
+
   let(:order_hash) do
     {
       order: {
@@ -77,13 +78,6 @@ describe OrdersController do
 
       must_respond_with :success
     end
-
-    # it "renders not found for an order with an invalid ID" do
-    #   # session[:order_id] = nil since no order was created
-    #   get confirmation_path
-    #
-    #   must_respond_with :not_found
-    # end
   end
 
   describe "edit" do

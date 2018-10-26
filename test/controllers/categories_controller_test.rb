@@ -24,6 +24,7 @@ describe CategoriesController do
         must_respond_with :success
       end
     end
+
     describe "show" do
       it "should get a category's show page" do
         id = category.id
@@ -42,24 +43,4 @@ describe CategoriesController do
       end
     end
   end
-
-  describe "show" do
-   it "should get a category's show page" do
-     id = category.id
-
-     get category_path(id)
-
-     must_respond_with :success
-   end
-
-   it "should respond with not found if given an invalid id" do
-     id = -1
-
-     get category_path(id)
-
-     must_respond_with :not_found
-   end
 end
-
-
-end 

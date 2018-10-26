@@ -12,11 +12,10 @@ describe Review do
       my_product = reviews(:fanreview)
       my_product.must_respond_to :product
       my_product.product.must_be_kind_of Product
-
     end
   end
 
-  describe "validations" do
+  describe "Validations" do
     it "requires a name" do
       review.name = nil
       review.valid?.must_equal false

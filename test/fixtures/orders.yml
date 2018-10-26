@@ -7,7 +7,7 @@ ordlegend:
   zip: 98122
   cvv: 232
   email: john@gmail.com
-# fannypack, fred
+  # fannypack, fred
 
 ordciara:
   status: paid
@@ -18,8 +18,8 @@ ordciara:
   zip: 98144
   cvv: 232
   email: ciara@gmail.com
-# kilimanjaro, kiki
-# safari, sally
+  # kilimanjaro, kiki
+  # safari, sally
 
 ordrussell:
   status: complete
@@ -30,7 +30,7 @@ ordrussell:
   zip: 98144
   cvv: 2322
   email: russell@gmail.com
-# fannypack, fred
+  # fannypack, fred
 
 ordfred:
   status: pending
@@ -41,7 +41,7 @@ ordfred:
   zip: 98144
   cvv: 2322
   email: fred@gmail.com
-# fannypack, fred
+  # fannypack, fred
 
 ordfuture:
   status: cancelled
