@@ -87,11 +87,22 @@ describe MerchantsController do
       end
 
 
-      it "if logged in merchants save for product status is not successful it gives an error message" do
+      it "if logged in merchants try to change a product status that doesn't exist." do
+        product = Product.first.id + 1
 
-        # binding.pry
-        post status_change_path(3333)
+
+        post status_change_path(product)
         must_respond_with :not_found
+
+      end
+
+      it "if logged in merchants status change doesn't work." do
+        product = Product.first
+        product.status = "fake"
+
+
+        post status_change_path(product)
+        expect(product.status).must_equal true
 
       end
 
