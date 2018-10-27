@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="jumbotron text-center">
+    <h7>New Sales</h7>
+  </div>
+</div>
+<br>
+
+<div class="container">
+  <% if @orderitems["paid"] %>
+    <div class="d-flex justify-content-between mb-3">
+    <h3>It's time to ship.</h3>
+      <button class="btn btn-info active mr-3" type="button" data-toggle="collapse" data-target="#collapseOrderDetails" aria-expanded="false" aria-controls="collapseOrderDetails">
+        1-page summary view
+      </button>
+    </div>
+
+    <div class="btn-group-vertical btn-block" role="group" aria-label="eachOrder">
+      <% @paiditems.each do |order_id, items| %>
+      <% order = Order.find_by(id: order_id) %>
+
+        <div class="list-group-item list-group-item-action list-group-item-dark my-2 d-flex" role="button" %>
+          <div>
+            <h5 class="ml-5">ORDER <%= order_id %></h5>
+          </div>
+          <div>
+            <ul class="quickview ml-3 mb-0">
+              <li><%= orderitems_total_quantity(items) %> total items</li>
+              <li><%= items.size %> products</li>
+              <li>Order placed on <%= readable_date(order.created_at) %></li>
+              <li>Total sales: <%= readable_cost(order.total_cost) %></li>
+            </ul>
+          </div>
+
+        <div class="ml-auto align-self-center">
+          <%= link_to image_tag("icons/icon-invoice.png", width: 50, alt: "invoice icon", class: "fulfillment-icon icon-invoice figure-img img-fluid rounded"), merchant_customer_path(@merchant.id, order_id) %>
+          <figcaption class="figure-caption text-center">Shipping Info</figcaption>
+        </div>
+        <div class="pl-5 mr-5 align-self-center">
+          <%= render partial: "checkbox", locals: { order: order }%>
+        </div>
+      </div>
+
+        <div class="collapse" id="collapseOrderDetails">
+          <div class="card card-body mb-0">
+            <ul class="quickview mb-0">
+              <% items.each do |item| %>
+              <li><%= item.product.name %> | Qty: <%= item.quantity %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+
+
+  <% else %>
+    <h3>You're all caught up!</h3>
+  <% end %>
+
+</div>

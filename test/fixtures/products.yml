@@ -1,0 +1,30 @@
+fannypack:
+  name: fanny pack
+  cost: 15.5
+  image_url: https://via.placeholder.com/200x200
+  inventory: 100
+  description: I've got the world on a sling...
+  active: true
+  merchant: fred
+  # orderone
+  # orderthree
+
+kilimanjaro:
+  name: climb mt. kilimanjaro
+  cost: 3000.0
+  image_url: https://via.placeholder.com/200x200
+  inventory: 10
+  description: Scatter ashes, or get engaged!
+  active: true
+  merchant: kiki
+  # ordertwo
+
+safari:
+  name: savannah safari
+  cost: 101.0
+  image_url: https://via.placeholder.com/200x200
+  inventory: 8
+  description: Ecological conservation education tour.
+  active: true
+  merchant: sally
+  # order two

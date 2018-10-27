@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="jumbotron text-center">
+    <h7>Order History</h7>
+  </div>
+</div>
+<br>
+<br>
+<% if @orderitems["complete"] %>
+<h4>We're grateful for sellers like you.</h4>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Order</th>
+      <th scope="col">Number of Items</th>
+      <th scope="col">Order Placed</th>
+      <th scope="col">Sales</th>
+      <th scope="col">Undo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @completeitems.each do |order_id, items| %>
+    <% order = Order.find_by(id: order_id) %>
+    <tr>
+      <td class="d-inline-flex flex-column"><%= link_to order.id, merchant_customer_path(@merchant.id, order_id) %><%= just_shipped_badge(order_id) %></td>
+      <td><%=orderitems_total_quantity(items)%></td>
+      <td><%= readable_date(order.created_at) %></td>
+      <td><%= readable_cost(order.total_cost) %></td>
+      <td><%= render partial: "checkbox",
+                      locals: { order: order }%></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+<% else %>
+  <p>You have no orders in your order history.</p>
+<% end %>

@@ -1,0 +1,34 @@
+itemsone:
+  quantity: 1
+  order: ordlegend
+  product: fannypack
+  # fred
+  # ordlegend
+
+itemstwo:
+  quantity: 2
+  order: ordciara
+  product: kilimanjaro
+  # kiki
+  # ordciara
+
+itemsthree:
+  quantity: 3
+  order: ordrussell
+  product: fannypack
+  # fred
+  # ordrussell
+
+itemsfour:
+  quantity: 4
+  order: ordciara
+  product: safari
+  # sally
+  # ordciara
+
+itemsfive:
+  quantity: 5
+  order: ordfred
+  product: kilimanjaro
+  # sally
+  # ordciara

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="jumbotron text-center"> <%#grey box%>
+      <h2>Browse by Categories</h2>
+  </div>
+</div>
+<br /><br /><br />
+
+<% @categories.each_slice(2) do |row| %>
+<div class="row mb-2">
+  <% row.each do |category| %>
+  <div class="col-sm-6 mb-4 text-center d-flex justify-content-around">
+    <div class="card" style="width: 35rem; height: 25rem">
+      <img src="<%= category.image_url %>" width="600" alt="<%= category.name %>" class="card-img-top">
+      <div class="card-img-overlay">
+        <div class="card-img-top">
+          <h1 class="card-title text-left half-spacing"><%= link_to category.name, category_path(category.id), class: "white-links" %></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+<% end %>

@@ -1,0 +1,12 @@
+bags:
+  name: bags
+  image_url: https://via.placeholder.com/200x200
+
+
+africa:
+  name: Africa
+  image_url: https://via.placeholder.com/200x200
+
+sale:
+  name: Sale
+  image_url: https://via.placeholder.com/200x200

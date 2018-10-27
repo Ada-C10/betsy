@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="jumbotron text-center">
+    <h7>Cancelled Orders</h7>
+  </div>
+</div>
+<br>
+<% if @orderitems["cancelled"] %>
+
+<h3>You have <%= @cancelleditems.size %> cancelled <%= readable_order(@cancelleditems.count) %> in your complete order history.</h3>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Order</th>
+      <th scope="col">Number of Items</th>
+      <th scope="col">Order Placed on</th>
+      <th scope="col">Order Cancelled on</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cancelleditems.each do |order_id, items| %>
+    <% order = Order.find_by(id: order_id) %>
+    <tr>
+      <td><%= link_to order.id, merchant_customer_path(@merchant.id, order_id) %></td>
+      <td><%=orderitems_total_quantity(items)%></td>
+      <td><%= readable_date(order.created_at) %></td>
+      <td><%= readable_date(order.updated_at) %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<% else %>
+<p>You have no cancelled orders.</p>
+<% end %>

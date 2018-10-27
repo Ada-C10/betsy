@@ -1,0 +1,333 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+/* Import scss content */
+@import "**/*";
+@import "font-awesome";
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+.home-page,
+.view {
+  height: 100%;
+}
+
+main {
+  min-height: 100vw;
+}
+
+.all-pages {
+  height: 20%;
+}
+
+.view {
+  background-image: url('https://s3.amazonaws.com/ada-student-project-noregretsy/splash/ggbridge.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.pt-md-5, .py-md-5 {
+  padding-top: 18rem !important;
+}
+
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 100vw;
+  }
+
+  .pt-md-5, .py-md-5 {
+    padding-top: 15rem !important;
+  }
+}
+
+h1 {
+  letter-spacing: 8px;
+}
+
+h3 {
+  align-self: center;
+}
+
+h5 {
+  letter-spacing: 3px;
+}
+
+h1.no-spacing, h5.no-spacing {
+  letter-spacing: 0;
+}
+
+h1.half-spacing {
+  letter-spacing: 4px;
+}
+
+footer {
+  bottom: 0;
+}
+
+a.white-links {
+  color: white;
+  text-decoration: none;
+}
+
+a.white-links:visited {
+  color: white;
+  text-decoration: none;
+}
+
+a.white-links:hover {
+  color: #52769D;
+  text-decoration: underline;
+}
+
+.card {
+  border: none;
+}
+
+.jumbotron{
+  background: url('https://s3.amazonaws.com/ada-student-project-noregretsy/jumotron.jpeg') no-repeat center center;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  font-weight: bold;
+  font-size: 50px;
+  color: white;
+  font-stretch: expanded;
+}
+
+.fifty {
+  width: 160px;
+  height: 120px;
+}
+
+.one-hundred {
+  width: 320px;
+  height: 240px;
+}
+
+.two-hundred {
+  width: 480px;
+  height: 360px;
+}
+
+.rating-block {
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px 15px 20px 15px;
+	border-radius:3px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.hr-light {
+  border-top: 3px solid #fff;
+  width: 80px;
+}
+
+.white, .home-page .navbar-dark .navbar-nav .nav-link {
+  color: white;
+}
+
+.all-pages .navbar-brand {
+  color: #4A4A4B;
+}
+
+div.field_with_errors {
+  display: none;
+}
+
+.nav-item {
+  padding: 1rem 1rem;
+}
+
+.navbar-right {
+  padding-right: 1rem;
+}
+
+.home-content, .home-body {
+  padding: 2rem;
+}
+
+.spacer {
+   padding-bottom: 1rem;
+ }
+
+ .transparent {
+   background-color:rgba(0,0,0,0.2);
+ }
+
+ .transparent::-webkit-input-placeholder {
+   color: white;
+ }
+
+.splash-search::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+  position: relative;
+  width: 36px;
+  font-size: 24px;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+  font-size: 0.75rem;
+  position: absolute;
+  top: -7px;
+  right: 4px;
+  font-family: sans-serif;
+}
+
+.badge-new-orders-header {
+  font-size: 0.75rem;
+  position: absolute;
+  top: 16px;
+  right: 165px;
+  font-family: sans-serif;
+}
+
+.black {
+  background-color: #182c39;
+}
+
+#myFooter {
+  background-color: #182c39;
+  color: white;
+  padding-top: 20px;
+}
+
+#myFooter .row {
+  margin: 0 85px;
+}
+
+#myFooter .footer-copyright {
+  background-color: #10222e;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: center;
+}
+
+#myFooter .footer-copyright p {
+  margin: 10px;
+  color: #ccc;
+}
+
+#myFooter .container {
+  width: auto;
+}
+
+#myFooter ul {
+  list-style-type: none;
+  padding-left: 0;
+  line-height: 1.7;
+}
+
+#myFooter h5 {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+#myFooter a {
+  color: #d2d1d1;
+  text-decoration: none;
+}
+
+#myFooter a:hover,
+#myFooter a:focus {
+  text-decoration: none;
+  color: white;
+}
+
+#myFooter .social-networks {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 38px;
+}
+
+#myFooter .fa {
+  font-size: 30px;
+  margin-right: 15px;
+  margin-left: 20px;
+  background-color: white;
+  color: #182c39;
+  border-radius: 51%;
+  padding: 10px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 31px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+#myFooter .fa-facebook:hover {
+  color: #2b55ff;
+}
+
+#myFooter .fa-facebook:focus {
+  color: #2b55ff;
+}
+
+#myFooter .fa-google-plus:hover {
+  color: red;
+}
+
+#myFooter .fa-google-plus:focus {
+  color: red;
+}
+
+#myFooter .fa-twitter:hover {
+  color: #00aced;
+}
+
+#myFooter .fa-twitter:focus {
+  color: #00aced;
+}
+
+@media screen and (max-width: 767px) {
+  #myFooter {
+    text-align: center;
+  }
+  #myFooter .row {
+    margin: 0;
+  }
+}
+
+.content{
+ flex: 1 0 auto;
+ -webkit-flex: 1 0 auto;
+ min-height: 200px;
+}
+
+#myFooter {
+ flex: 0 0 auto;
+ -webkit-flex: 0 0 auto;
+}

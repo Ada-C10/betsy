@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="jumbotron text-center">
+      <% if @merchant %>
+        <h2><%= "#{@merchant.name}'s Store" %></h2>
+      <% else %>
+        <h2>List of Products</h2>
+      <% end %>
+  </div>
+</div>
+
+<br /><br /><br />
+
+<% @products.each_slice(3) do |row| %>
+  <div class="row mb-5">
+    <% row.each do |product| %>
+      <div class="col-sm-4 mb-4 text-center d-flex justify-content-around">
+        <div class="card" style="width: 18rem;">
+          <div class="card-header">
+            <h5 class="no-spacing"><%= link_to product.name, product_path(product.id) %></h5>
+          </div>
+          <img src="<%= product.image_url %>" width="500" alt="<%= product.name %>" class="card-img-top">
+          <div class="card-body">
+            <p class="card-title">Sold by <%= link_to product.merchant.name, merchant_products_path(product.merchant_id) %></p>
+            <p class="card-text"><%= "Description: #{product.description}" %></p>
+            <p class="card-text"><%= readable_cost(product.cost) %></p>
+          </div>
+          <div class="card-footer text-muted">
+            <% if product.inventory == 0 %>
+              <p>Out of Stock</p>
+            <% elsif product.inventory <= 20 %>
+              <p>Hurry! Only a few left!</p>
+            <% end %>
+
+
+            <%= form_with model: @orderitem, url: orderitems_path, class: "product-form" do |f|%>
+
+              <%= f.label :quantity, 'Quantity' %>
+              <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: product.inventory, maxlength: 3 %>
+
+              <%= f.hidden_field :product_id, value: product.id %>
+
+              <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,37 @@
+<div class="container-fluid mx-1">
+  <div class="row" >
+    <div class="col-0 col-md-2">
+
+      <ul class="nav nav-pills d-block" id="myTab" role="tablist" aria-orientation="vertical">
+        <li class="nav-item">
+          <a class="nav-link active d-flex justify-content-between" id="fulfillment-tab" data-toggle="tab" href="#fulfillment" role="tab" aria-controls="fulfillment" aria-selected="true"><p class="d-inline m-0 p-0">New Sales</p><span class= "align-self-center"><%= new_orders_badge_sidebar %></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="products-tab" data-toggle="tab" href="#products" role="tab" aria-controls="products" aria-selected="false">Manage My Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="stats-tab" data-toggle="tab" href="#stats" role="tab" aria-controls="stats" aria-selected="false">My Stats</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex justify-content-between" id="order_history-tab" data-toggle="tab" href="#order_history" role="tab" aria-controls="order_history" aria-selected="false"><p class="d-inline m-0 p-0">Order History</p><span class= "align-self-center"><%= completed_order_badge %></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="cancelled-tab" data-toggle="tab" href="#cancelled" role="tab" aria-controls="cancelled" aria-selected="false">Cancelled Orders</a>
+        </li>
+      </ul>
+
+  </div>
+  <div class="col-12 col-md-10">
+
+    <div class="tab-content pl-3" id="myTabContent">
+      <div class="tab-pane fade show active" id="fulfillment" role="tabpanel" aria-labelledby="fulfillment-tab"><%= render 'order_fulfillment' %></div>
+      <div class="tab-pane fade" id="products" role="tabpanel" aria-labelledby="products-tab"><%= render 'manage_products' %></div>
+      <div class="tab-pane fade" id="stats" role="tabpanel" aria-labelledby="stats-tab"><%= render 'stats' %></div>
+      <div class="tab-pane fade" id="order_history" role="tabpanel" aria-labelledby="order_history-tab"><%= render 'order_history' %></div>
+      <div class="tab-pane fade" id="cancelled" role="tabpanel" aria-labelledby="cancelled-tab"><%= render 'cancelled_orders' %></div>
+    </div>
+
+
+  </div>
+</div>
+</div>
