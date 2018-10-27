@@ -1,0 +1,76 @@
+<h4>THANK YOU FOR SHOPPING AT BRAINEAZE!</h4>
+<h4>YOUR ORDER IS COMPLETE</h4>
+
+<p>
+  We're currently processing your order.
+  We will send you an email as soon as your order is shipped.
+</p>
+
+<h3>Order Details</h3>
+
+<div class="container">
+  <div class="row">
+    <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <address>
+            <strong><%= @order.cc_name %></strong>
+            <br>
+            <%= @order.mailing_address %>
+          </address>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+          <p>
+            <em><%= @order.created_at.strftime("%b %e, %Y") %></em>
+          </p>
+          <p>
+            <em>#<%= rand(1000..2000) %></em>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="text-center">
+          <h1>Receipt</h1>
+        </div>
+      </span>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% subtotal = 0 %>
+          <% total = 0 %>
+
+          <% @order.order_items.each do |order_item| %>
+          <% product = order_item.product %>
+          <% subtotal = (product.price * order_item.quantity) %>
+          <% total += subtotal %>
+          <tr>
+            <td class="col-md-9"><em><%= product.name %></em></h4></td>
+            <td class="col-md-1" style="text-align: center"><%= order_item.quantity %></td>
+            <td class="col-md-1 text-center"><%= product.price %></td>
+            <td class="col-md-1 text-center">$<%= subtotal %></td>
+          </tr>
+          <% end %>
+
+          <tr>
+            <td class="text-right"><h5><strong>Shipping: </strong></h5></td>
+            <td class="text-center"><h5><strong>$ <%= subtotal * 0.09 %></strong></h5></td>
+          </tr>
+          <tr>
+            <td class="text-right"><h4><strong>Total: </strong></h4></td>
+            <td class="text-center text-danger"><h4><strong>$<%= total +(subtotal * 0.09) %></strong></h4></td>
+          </tr>
+
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-info btn-lg btn-block"><%= link_to 'Return Home', root_path, :class => "btn"%><span class="glyphicon glyphicon-chevron-right"></span>
+      </button>
+    </div>
+  </div>
+</div>

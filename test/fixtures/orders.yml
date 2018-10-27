@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: aaa@gmail.com
+  mailing_address: 12345 A Street
+  cc: 1234123412341234
+  cc_name: Aaa Aaaaaa
+  cc_expiration: 10/22
+  cvv: 123
+  zip: 12345
+  status: paid
+
+two:
+  email: z@zmail.com
+  mailing_address: 90 Z Ave
+  cc: 1111222233334444
+  cc_name: Zebra Zee
+  cc_expiration: 12/20
+  cvv: 100
+  zip: 50100
+  status: completed
+
+three:
+  email: nil
+  mailing_address: nil
+  cc: nil
+  cc_name: nil
+  cc_expiration: nil
+  cvv: nil
+  zip: nil
+  status: cart
+
+four:
+  status: cart
+
+five:
+  status: cart

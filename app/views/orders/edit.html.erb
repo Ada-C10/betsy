@@ -1,0 +1,54 @@
+<h1>Billing Information</h1>
+<p>Enter your billing address</p>
+
+<%= form_with model: @shopping_cart, url: order_path(@shopping_cart.id) do |f| %>
+
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= f.label "Cardholder's Name" %>
+    <%= f.text_field :cc_name, class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= f.label :mailing_address %>
+    <%= f.text_field :mailing_address, class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+</div>
+
+
+<div class="form-row">
+  <div class="form-group col-md-4">
+    <%= f.label :Credit_Card %>
+    <%= f.text_field :cc, class: "form-control" %>
+  </div>
+
+  <div class="form-group col-md-2">
+    <%= f.label :Expiration_Date %>
+    <%= f.text_field :cc_expiration, class: "form-control" %>
+  </div>
+
+  <div class="form-group col-md-1">
+    <%= f.label :cvv %>
+    <%= f.text_field :cvv, class: "form-control" %>
+
+  </div>
+
+  <div class="form-group col-md-1">
+    <%= f.label :zip %>
+    <%= f.text_field :zip, class: "form-control" %>
+  </div>
+</div>
+</div>
+
+<button type="submit" class="btn btn-info">Continue</button>
+<% end %>
+</form>

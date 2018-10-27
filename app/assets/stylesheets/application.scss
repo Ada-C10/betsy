@@ -1,0 +1,133 @@
+@import "bootstrap";
+/* Import scss content */
+@import "**/*";
+
+// SITE WIDE
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
+a{
+  color: rgb(205, 205, 205);
+}
+
+a:hover{
+  color: rgb(124, 121, 121);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+button a, a:hover{
+  color: white;
+}
+
+// main{
+//   padding-left: 5%;
+//   padding-right: 5%;
+// }
+
+
+// NAVIGATION BAR
+header nav {
+  display: grid;
+  grid-column: 35% 15% 15% 15% auto;
+  grid-rows: 20px auto;
+  padding: 20px;
+  grid-gap: 10px;
+  background-color: rgb(42, 42, 42);
+  color: rgb(223, 223, 223);
+}
+
+.braineaze{
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.braineaze h1{
+  text-transform: uppercase;
+  background: linear-gradient(to right, #30CFD0 0%, #ff291d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hello{
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.login{
+  grid-column: 2 / 6;
+  grid-row: 1 / 2;
+  text-align: right;
+}
+
+.login #my_account{
+  margin-right: 20px;
+}
+
+.nav-option{
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+#products{
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+
+#category{
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+.dropdown-menu{
+  background-color: rgb(42, 42, 42);
+  border: none;
+  padding: 15px;
+}
+
+.dropdown-menu li{
+  padding-top: 10px;
+}
+
+
+#merchants{
+  grid-column: 4 / 5;
+  grid-row: 2 / 3;
+}
+
+#cart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 5 / 6;
+  grid-row: 2 / 3;
+}
+
+#cart .cart-photo{
+  width: 40px;
+  height:40px;
+}
+
+// BODY
+
+main{
+  padding-top: 30px;
+  padding-bottom: 100px;
+  background-color: rgb(252, 249, 244);
+}
+
+// FOOTER
+
+footer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(38, 38, 38);
+  color: rgb(223, 223, 223);
+}

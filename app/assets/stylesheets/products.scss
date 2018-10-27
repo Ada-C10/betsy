@@ -1,0 +1,126 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#home-container {
+  margin: 0;
+  padding: 5%;
+  margin-top: 50px;
+  background-color: rgb(226, 224, 218);
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-between;
+}
+
+.card {
+  margin-top: 2%;
+  margin-bottom: 3%;
+}
+
+.image-tag {
+  width: 300px;
+  height: 200px;
+}
+
+.title-page {
+  padding-bottom: 100px;
+  color: rgb(61, 61, 61);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.product-info {
+  text-align: center;
+}
+
+.product-thumbnail {
+  margin-top: 50px;
+  border: 1px solid green;
+}
+
+.page-container {
+  border: 1px solid black;
+}
+
+.image-show-tag {
+  padding-bottom: 8%;
+  width: 500px;
+  height: 400px;
+}
+
+.pagination {
+  .previous_page { background:#ffffff; color:white; padding: .5em; font-size: .8em; color: #35324d;}
+  .previous_page.disabled { background: white; color: #dedede; border: 2px solid #dedede;}
+  .current { background: #30CFD0; color: #ffffff; border: .4em solid #30CFD0;}
+  .next_page { background:#ffffff; color:white; padding: .5em; font-size: .8em; color: #35324d;}
+  .next_page.disabled { background: white; color: #dedede; border: 2px solid #dedede;}
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.pagination > *{
+  margin-left: 10px;
+  margin-right: 10px;
+
+}
+
+.blockquote {
+  font-style: italic;
+}
+
+.blockquote p:before {
+  content: open-quote;
+}
+
+.blockquote p:after {
+  content: close-quote;
+}
+
+.form-checkboxes{
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.label-checkbox{
+  margin-left: 100px;
+}
+
+.quote:before {
+  content: open-quote;
+}
+
+.quote:after {
+  content: close-quote;
+}
+
+#home-banner {
+  padding-top: 200px;
+}
+
+.text-info {
+  margin-top: 5%;
+  height: 200px;
+  font-size: 32px;
+  text-align: center;
+}
+
+.btn-link{
+  text-decoration: none;
+  color: rgb(88, 88, 88);
+
+}
+
+.btn-link:hover{
+  text-decoration: none;
+  font-style: italic;
+  color: rgb(32, 32, 32);
+}

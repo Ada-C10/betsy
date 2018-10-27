@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="favicon.ico" type="image/ico" >
+  <title>Braineaze</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <% if @current_merchant %>
+      <div>
+        Hello, <%= link_to @current_merchant.username, dashboard_path %>
+        <% else %>
+        Hello, Guest
+        <% end %>
+      </div>
+
+      <div class="login">
+        <% if @current_merchant %>
+        <button type="button" class="btn btn-info" id="my_account">
+          <%= link_to "My Account", dashboard_path%>
+        </button>
+        <button type="button" class="btn btn-info">
+          <%= link_to "Log Out", '/sessions/logout', method: "post" %></button>
+          <% else %>
+          <button type="button" class="btn btn-info"><%= link_to "Log In", '/auth/github' %>
+          </button>
+          <% end %>
+        </div>
+
+
+
+        <div class="braineaze">
+          <h1><%=link_to "Braineaze", root_path %></h1>
+        </div>
+
+        <div class="nav-option" id="products">
+          <%=link_to "Products", products_path %>
+        </div>
+
+        <div class="nav-option" id="category">
+          <class="dropdown">
+          <a href="#" data-toggle="dropdown" role="button" aria-haspopup="falsed" aria-expanded="false">Categories <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% Category.all.each do |category| %>
+            <li><a href="/category/category.id"></a>
+              <%=link_to category.name, category_products_path(category.id) %>
+            </li>
+            <% end %>
+          </ul>
+        </class>
+      </div>
+
+      <div class="nav-option" id="merchants">
+        <class="dropdown">
+        <a href="#" data-toggle="dropdown" role="button" aria-haspopup="falsed" aria-expanded="false">Merchants <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <% Merchant.all.each do |merchant| %>
+          <li><a href="/category/category.id"></a>
+            <%=link_to merchant.username, merchant_products_path(merchant.id) %>
+          </li>
+          <% end %>
+        </ul>
+      </class>
+    </div>
+
+    <div class="nav-option" id="cart">
+      <%= @shopping_cart.order_items.length %>
+      <%= link_to image_tag("cart.png", :class => 'cart-photo', :alt => 'cart photo'), cart_path %>
+
+    </div>
+  </nav>
+</header>
+
+<section class="flash-messages">
+  <% flash.each do | name, message | %>
+  <% if name == "messages" %>
+  <h4>Please check the following</h4>
+  <% flash[:messages].each do |field, error_messages| %>
+  <dt><strong><%= field.upcase %></strong></dt>
+  <% if error_messages.class == Array %>
+  <% error_messages.each do |error_message| %>
+  <dd> >> <%= error_message %></dd>
+  <% end %>
+  <% else %>
+  <dd> >> <%= error_messages %></dd>
+  <% end %>
+</li>
+<% end %>
+<% else %>
+<h4><%= message %></h4>
+<% end %>
+<% end %>
+</section>
+
+<main>
+  <%= yield %>
+</main>
+
+<footer class="footer">
+  <p>Customer Care  |  Privacy Policy  |  Terms of Service</p>
+  <p><%= "\u00A9" %> 2018 MAGS Ltd. All Rights Reserved</p>
+</footer>
+</body>
+</html>

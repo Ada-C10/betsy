@@ -1,0 +1,100 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <h4>Welcome <%= @current_merchant.username %>!</h4>
+</nav>
+
+<container class="general">
+  <section class="account-summary">
+    <div class="dasboard-container">
+      <div class="card" style="width: 20rem;">
+        <div class="card-header">
+          <h4>Account Summary</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Name: <%= @current_merchant.username %></li>
+          <li class="list-group-item">Joined site on: <%= @current_merchant.created_at.strftime("%B %d, %Y")%></li>
+          <li class="list-group-item">Total Revenue: $<%= @current_merchant.revenue %></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="new-add-buttons">
+    <div>
+      <button type="button" class="btn btn-info"> <%=link_to "New Product", new_merchant_product_path(@current_merchant.id)%>
+      </button>
+    </div>
+
+    <div>
+      <button type="button" class="btn btn-info"> <%=link_to "Add Category", new_category_path%>
+      </button>
+    </div>
+  </div>
+
+</container>
+
+<section class="orders-merchandise">
+  <table class="table">
+    <h3>Orders</h3>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Order #</th>
+        <th scope="col">Purchased Date</th>
+        <th scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Order Status</th>
+        <th scope="col"> </th>
+      </tr>
+    </thead>
+    <% if @order_items != []%>
+    <%@order_items.each do |item| %>
+    <% unless item == nil %>
+    <tr>
+      <td scope="row"><%=item.id%></td>
+      <td scope="row"><%=item.created_at.strftime("%m/%d/%Y")  %></td>
+      <td scope="row"><%=item.product.name%></td>
+      <td scope="row"><%=item.quantity%></td>
+      <td scope="row">$<%=item.quantity * item.product.price%></td>
+      <td scope="row"><%=item.status%></td>
+      <% if item.status == "paid" %>
+      <td scope="row">
+        <button type="button" class="btn btn-info">
+          <%=link_to "Ship", update_order_item_status_path(item.id, status: "shipped"), method: :patch %></button> <button type="button" class="btn btn-info"><%=link_to "Cancel", update_order_item_status_path(item.id, status: "cancelled"), method: :patch %>
+          </button>
+    </td>
+    <% end %>
+    </tr>
+    <%end%>
+    <%end%>
+    <%end%>
+  </table>
+
+
+  <table class="table">
+    <h3>Merchandise</h3>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Price</th>
+        <th scope="col">Status</th>
+        <th scope="col"> </th>
+      </tr>
+    </thead>
+    <%@products.each do |product| %>
+    <tr>
+      <td scope="row"><%=product.name%></td>
+      <td scope="row"><%=product.inventory%></td>
+      <td scope="row"><%= number_to_currency(product.price)%></td>
+      <td scope="row">
+        <%if product.is_active == true%>
+        <button type="button" class="btn btn-info"><%=link_to "Active", change_status_merchant_product_path(@current_merchant.id, product.id), method: :post %></button>
+        <%elsif%>
+        <button type="button" class="btn btn-info"><%=link_to "Retired", change_status_merchant_product_path(@current_merchant.id, product.id), method: :post %></button>
+        <%end%>
+      </td>
+      <td scope="row"><button type="button" class="btn btn-info"><%=link_to "Edit", edit_merchant_product_path(@current_merchant.id, product.id)%></button></td>
+    </tr>
+    <%end%>
+  </table>
+</section>

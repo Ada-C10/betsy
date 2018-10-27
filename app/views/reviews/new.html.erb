@@ -1,0 +1,43 @@
+<%= form_with model: @review, url: product_reviews_path(@review.product.id) do |f| %>
+
+<h3>Add A New Review</h3>
+</br>
+<span class="rating">
+  <label>
+    <%= f.radio_button :rating, '1', :checked => 1 %>
+    <span class="icon">★</span>
+  </label>
+  <label>
+    <%= f.radio_button :rating, '2', :checked => 2 %>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+  </label>
+  <label>
+    <%= f.radio_button :rating, '3', :checked => 3 %>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+  </label>
+  <label>
+    <%= f.radio_button :rating, '4', :checked => 4 %>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+  </label>
+  <label>
+    <%= f.radio_button :rating, '5', :checked => 5 %>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+    <span class="icon">★</span>
+  </label>
+</span>
+<div class="work-form">
+  <%= f.label :product_review %>
+  <%= f.text_area :description, :rows => 10, style: 'width:100%;' %>
+
+  <%= f.submit "Submit", class: "btn btn-info" %>
+  <% end %>
+</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+toy:
+  name: toy
+
+book:
+  name: book
+
+meditation:
+  name: meditation
+
+apparel:
+  name: apparel

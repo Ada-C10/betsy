@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+pending:
+  quantity: 1
+  status: pending
+  order: three
+  product: plushie
+
+paid:
+  quantity: 1
+  status: paid
+  order: two
+  product: puzzle
+
+shipped:
+  quantity: 1
+  status: shipped
+  order: one
+  product: puddy
+
+cancelled:
+  quantity: 1
+  status: cancelled
+  order: two
+  product: plushie
+
+many:
+  quantity: 20
+  status: pending
+  order: two
+  product: puzzle
+
+paid2:
+  quantity: 10
+  status: paid
+  order: two
+  product: puzzle
+
+pending2:
+  quantity: 5
+  status: pending
+  order: four
+  product: yoga

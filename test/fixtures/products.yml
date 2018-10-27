@@ -1,0 +1,38 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+plushie:
+  name: Brain Plushie
+  price: 15
+  description: A beautiful integlligent brain plushie
+  inventory: 10
+  merchant: one
+  categories: toy
+  is_active: true
+
+puzzle:
+  name: Brain Puzzle
+  price: 100
+  description: improve ur mind!
+  merchant: two
+  inventory: 2
+  categories: toy
+  is_active: true
+
+puddy:
+  name: Brain Puddy
+  price: 14
+  description: puddy for ur brain!
+  inventory: 5
+  merchant: two
+  categories: toy
+  is_active: true
+
+
+yoga:
+  name: Yoga mat
+  price: 475
+  description: puddy for ur brain!
+  inventory: 100
+  merchant: three
+  categories: meditation, apparel
+  is_active: true

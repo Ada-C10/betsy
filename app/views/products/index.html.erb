@@ -1,0 +1,30 @@
+<div id="home-container">
+
+  <% if params[:merchant_id] %>
+  <h2 class="title-page"><%=@merchant.username%>'s Products</h2>
+  <% elsif params[:category_id] %>
+  <h2 class="title-page"><%=@category.name%> Products</h2>
+  <% else %>
+
+  <h2 class="title-page">All Products</h2>
+
+  <% end %>
+
+  <div class="flex-container">
+    <% @products.each do |product| %>
+    <div class="card">
+      <%= link_to image_tag("#{product.image}", :alt => 'product-img', :class => 'image-tag'), product_path(product.id) %>
+      <div class="card-body">
+        <p class="card-text text-center">from: <%= link_to product.merchant.username, merchant_products_path(product.merchant_id)  %> </p>
+        <p class="card-text text-center"><%= number_to_currency(product.price) %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <% unless params[:merchant_id] || params[:category_id] %>
+  <%= will_paginate @products %>
+  <% end %>
+
+
+</div>
