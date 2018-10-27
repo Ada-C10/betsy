@@ -1,0 +1,51 @@
+<section class="main-body">
+
+
+<h3>Checkout</h3>
+
+<section>
+  <%= form_with model: @cart do |f| %>
+
+  <div class="form-group">
+    <%= f.label 'Credit Card Name' %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form_group">
+    <%= f.label 'Email Address' %>
+    <%= f.text_field :email, type: 'email', class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Address" %>
+    <%= f.text_field :address, placeholder: "ex. 1234 Snackelicious Dr. Yummy, WA 12345", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Credit Card Number' %>
+    <%= f.text_field :cc_num, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Expiration Date' %>
+    <%= f.select :exp_month, Order.months, {}%>
+    <%= f.select :exp_year, Order.years, {}%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Billing Zip Code' %>
+    <%= f.text_field :zip, class: "form-control"  %>
+  </div>
+
+  <div class="form-group cvv">
+    <%= f.label 'cvv' %>
+    <%= f.text_field :cvv, class: "form-control cvv"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit 'Review Order', class: "btn btn-info" %>
+  </div>
+  <% end %>
+</section>
+
+</section>

@@ -1,0 +1,130 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.app-carousel-container {
+  display: none;
+}
+
+.feature-headline-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding-right: 7rem;
+  padding-left: 7rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.feature-headline-image {
+  margin-right: 3rem;
+}
+
+.feature-about {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  align-items: center;
+  justify-content:center;
+}
+
+.button-to-products {
+  margin-top: 3rem;
+}
+.feature-text {
+  text-align: center;
+  color: #2d3142;
+}
+
+.feature-text p {
+  font-size: 15px;
+}
+
+.image-collage {
+  width: 25rem;
+  height: 25rem;
+}
+
+.product-details-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows:  1fr ;
+  grid-column-gap: 2rem;
+  margin-top: 7rem;
+  margin-right: 7rem;
+  margin-left: 5rem;
+}
+
+.product-details-info {
+  display: grid;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  padding: 1rem 1rem;
+}
+
+.product-image-container {
+  display: grid;
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.product-review-container ul {
+  list-style-type: none;
+}
+
+.review-details-container {
+  border-bottom: 2px solid lightgray;
+}
+
+.add-review-container {
+  display: flex;
+  flex-direction: column;
+  margin: 7rem;
+  justify-content: center;
+  border-top: 2px solid lightgray;
+  padding-top: 1rem;
+
+}
+
+.review-buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.review-buttons {
+  margin-top: 3rem;
+  margin-right: 30px;
+}
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  .card {
+    display: inline-block;
+    border: none;
+  }
+}
+
+.features .card {
+  border: none;
+  width: 18rem; margin:0 auto;
+}
+
+.text-center.top-rated, .newest {
+  color: #2d3142;
+}
+
+.blink{
+		color: rgb (0, 137, 226);
+
+		animation: blink 1s infinite;
+	 }
+
+	 @keyframes blink{
+		0%{opacity: 1;}
+		75%{opacity: 1;}
+		76%{ opacity: 0;}
+		100%{opacity: 0;}
+	 }

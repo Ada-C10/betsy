@@ -1,0 +1,63 @@
+<section class="main-body">
+
+<section>
+  <h3>Shopping Cart</h3>
+  <% if @cart %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Product Name</th>
+        <th>Item Price</th>
+        <th>Quantity</th>
+        <th>Item Total</th>
+        <th>Remove from Cart</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart.order_items.each do |order_item| %>
+
+      <tr>
+        <td><img src="<%= find_image_for(order_item.product) %>" alt="snack image", height="100", width="100"></td>
+        <td><%= link_to order_item.product.name, product_path(order_item.product.id) %></td>
+        <td><%= number_to_currency(order_item.product.price) %></td>
+        <td>
+          <%= form_with model: order_item do |f| %>
+          <%= f.label :quantity %>
+          <%= f.select :quantity, order_item.available_stock, {}, { value: order_item.quantity, onchange: 'this.form.submit();' }%>
+          <% end %>
+        </td>
+        <td>
+          <%= number_to_currency(order_item.item_total) %>
+        </td>
+        <td><%= link_to "Remove item", order_item_path(order_item), method: :delete, data: { confirm: "Are you sure you want to remove #{order_item.product.name} from the cart?" }, class: "btn btn-outline-danger" %>
+        </td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+
+  <br />
+
+<section class="order-costs">
+  <p class="end">Subtotal: <%= number_to_currency(@cart.subtotal) %></p>
+  <p class="end"> Taxes: <%= number_to_currency(@cart.taxes) %> </p>
+
+  <p class="end"> Total: <%= number_to_currency(@cart.total) %> </p>
+
+  <div class="end">
+    <%= link_to "Continue to checkout", edit_order_path(@order), method: :get, class: "btn btn-info" %>
+  </div>
+</section>
+
+  <% else %>
+  <p>
+    No snacks for you!
+  </p>
+
+  <% end %>
+
+</section>
+
+
+</section>

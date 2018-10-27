@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+review_one:
+  rating: 4
+  description: get in my belly
+  product: bread
+
+review_two:
+  rating: 1
+  description: dont get in my belly
+  product: steak

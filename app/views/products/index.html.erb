@@ -1,0 +1,19 @@
+<section class="main-body">
+
+<div class="jumbotron-container">
+  <div class="jumbotron jumbotron-fluid j-categories j-merchant j-all">
+    <div class="container">
+      <h1 class="display-4"> <%= "All Snacks" %> </h1>
+    </div>
+  </div>
+</div>
+
+
+<div class="card-columns">
+  <% @active_products.shuffle.each do |product| %>
+    <%= render partial: 'layouts/product_cards', locals: { product: product }%>
+  <% end %>
+</div>
+
+
+</section>

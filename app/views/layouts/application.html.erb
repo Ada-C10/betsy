@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Fibonoshi</title>
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <href="https://fonts.googleapis.com/css?family=Lora|Roboto:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+
+
+<body>
+
+  <header class="app-header">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
+
+      <a class="navbar-brand" href="<%= root_path %>">Fibonoshi</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Browse by Countries
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <% @categories.each do |c| %>
+              <a class="dropdown-item" href="<%= category_path(c.id) %>"><%= "#{c.name.capitalize}" %></a>
+              <% end %>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Browse by Merchants
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <% @merchants.each do |m| %>
+              <a class="dropdown-item" href="<%= merchant_path(m.id) %>"><%= "#{m.name.capitalize}" %></a>
+              <% end %>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= products_path%>"> All Products</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="<%=orders_path%>"> Find Order</a>
+          </li>
+        </ul>
+
+
+        <ul class="navbar-nav navbar-right">
+          <li>
+
+            <div class="input-group">
+            <%= form_tag(products_path, :method => "get", id: "search-form", class: "form-inline my-2 my-lg-0") do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Find your snack!", class: 'form-control mr-sm-2' %>
+              <span class="input-group-btn">
+                <%= submit_tag "Search", class: 'btn btn-sm btn-outline-secondary' %>
+              </span>
+            <% end %>
+          </div>
+
+          </li>
+
+        <% if @logged_in_merchant %>
+          <li class="nav-item"><a class="nav-link" href="<%= merchant_account_path %>">My Account</a></li>
+          <li class="nav-item"><a class="nav-link" href="/logout" data-method="delete">Logout</a></li>
+          <% else %>
+          <li class="nav-item"><a class="nav-link" href="/auth/github">Login</a></li>
+          <% end %>
+
+          <li class="nav-item">
+            <% if @cart %>
+            <a class="nav-link" href="<%= order_path(@cart) %>"><%= image_tag("shopping-cart.svg")%> <%= @order_items %></a>
+            <% else %>
+            <a class="nav-link" href="<%= nosnacks_path %>"><%= image_tag("shopping-cart.svg")%> <%= @order_items %></a>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+  </header>
+
+  <% if flash[:result_text] or flash[:messages] %>
+  <section class="alert__container">
+    <div class="alert alert-<%= flash[:status].to_s == 'failure' ? 'warning' : flash[:status] %>">
+      <span><%= flash[:status].to_s == "failure" ? "A problem occurred: " : "" %><%= flash[:result_text] %></span>
+      <% if flash[:messages] %>
+      <ul>
+        <% flash[:messages].each do |name, problems| %>
+        <% problems.each do |problem| %>
+        <li><%= name %>: <%= problem %></li>
+        <% end %>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
+  </section>
+  <% end %>
+
+
+
+
+  <main>
+    <%= yield %>
+  </main>
+
+
+
+
+  <footer class="page-footer font-small">
+    <div class="container text-center text-md-left">
+      <div class="row">
+
+        <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
+
+          <h5 class="font-weight-bold text-uppercase mb-4">FIBONOSHI</h5>
+          <p> As legit as this website may look, it is a totally fake student project for <%= link_to "Ada Developers Academy", "https://www.adadevelopersacademy.org/" %>.  Please don't give us your credit card information!</p>
+        </div>
+
+
+        <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
+          <h5 class="font-weight-bold text-uppercase mb-4">About</h5>
+
+
+          <ul class="list-unstyled">
+            <li>
+              <p>
+                <a href="#!">CAREERS</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <%= link_to "BYTE SQUAD", "/bytesquad" %>
+              </p>
+            </li>
+            <li>
+              <p>
+                <a href="#!">BLOG</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <a href="#!">IN THE NEWS</a>
+              </p>
+            </li>
+          </ul>
+
+        </div>
+
+
+        <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+
+          <h5 class="font-weight-bold text-uppercase mb-4">Address</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <p>
+                Seattle, WA 98161
+              </p>
+            </li>
+            <li>
+              <p>
+                hello@fibonoshi.com
+              </p>
+            </li>
+            <li>
+              <p>
+                1 555 555 5555
+              </p>
+            </li>
+            <li>
+              <p>
+                1 555 555 5555
+              </p>
+            </li>
+          </ul>
+
+        </div>
+
+
+
+        <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
+
+          <h5 class="font-weight-bold text-uppercase mb-4">Follow Us</h5>
+
+          <a class="fb-link" href="https://facebook.com/"> <%= image_tag("facebook.svg") %> </a>
+
+          <a class="twitter-link" href="https://twitter.com/"> <%= image_tag("twitter.svg") %> </a>
+
+          <a class="insta-link" href="https://instagram.com/"> <%= image_tag("instagram.svg") %> </a>
+
+          <a class="github-link" href="https://github.com"> <%= image_tag("github.svg") %> </a>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href=" <%= root_path %> ">DanDeeLions</a>
+    </div>
+
+  </footer>
+
+
+
+</body>
+
+</html>

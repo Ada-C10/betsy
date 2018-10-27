@@ -1,0 +1,47 @@
+<section class="main-body">
+
+<h3 class=merchant_title>Order fulfillment for Merchant: <%= @merchant.name %></h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Purchase Date</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Total Quantity</th>
+      <th scope="col">Order Status</th>
+      <th scope="col">Item Price</th>
+      <th scope="col">Item Revenue</th>
+      <th scope="col">Shipped?</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |order_item| %>
+    <tr>
+      <td><img src="<%= find_image_for(order_item.product) %>" alt="snack image", height="100", width="100"></td>
+      <td><%= link_to readable_date(order_item.created_at), summary_path(order_item.order.id) %></td>
+      <td><%= link_to order_item.product.name, product_path(order_item.product.id) %></td>
+      <td><%= order_item.quantity %></td>
+
+      <td><%= order_item.order_status %></td>
+      <td>$<%= order_item.product.price %></td>
+      <td>$<%= order_item.item_total %></td>
+      <% if order_item.status %>
+      <td><%= link_to "Shipped", ship_path(order_item.id), method: :post, class: "btn btn-outline-info" %></td>
+      <% else %>
+      <td><%= link_to "Not Shipped", ship_path(order_item.id), method: :post, class: "btn btn-danger" %></td>
+      <% end  %>
+    </tr>
+    <% end  %>
+  </tbody>
+</table>
+
+<p class="end">Subtotal: $<%= @merchant.order_total %></td>
+  <p class="end"> Tax: $<%= @merchant.tax %> </p>
+
+  <p class="end"> Total: <%= @merchant.total_tax %> </p>
+
+
+</section>

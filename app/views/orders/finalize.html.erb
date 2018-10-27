@@ -1,0 +1,74 @@
+<section class="main-body">
+
+<h2>Almost done! Here is your order summary:</h2>
+
+<section class="order-summary">
+  <p>
+    You must confirm or cancel your order below.
+  </p>
+
+  <h4>Order Summary</h4>
+
+  <table class="table order-info">
+    <thead>
+      <tr>
+        <th>Order Total Amount</th>
+        <th>Purchase Date</th>
+        <th>Current Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= number_to_currency(@cart.total) %>
+        </td>
+        <td>
+          <%= readable_date(@cart.order_placed) %>
+        </td>
+        <td>
+          <%= @cart.status.capitalize %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>My Snacks</h4>
+
+  <table class="table order-details">
+    <thead>
+      <tr>
+        <th>Snack</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Item Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart.order_items.each do |item| %>
+      <tr>
+        <td>
+          <%= link_to item.product_name, product_path(item.product)  %>
+        </td>
+        <td>
+          <%= number_to_currency(item.product.price) %>
+        </td>
+        <td>
+          <%= item.quantity %>
+        </td>
+        <td>
+          <%= number_to_currency(item.item_total) %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<nav>
+  <span>
+    <%=link_to "Cancel this order", order_path(@cart), method: :delete, data: { confirm: "Are you sure you want to cancel this order?" }, class: "btn btn-danger mx-1" %>
+    <%=link_to "Confirm this order", confirmation_path, method: :put, class: "btn btn-info mx-1" %>
+  </span>
+</nav>
+
+</section>

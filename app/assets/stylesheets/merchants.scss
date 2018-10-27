@@ -1,0 +1,40 @@
+// Place all the styles related to the Merchants controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.merchant_buttons ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  list-style-type: none;
+}
+
+
+.merchant_name  {
+  padding-bottom: 0;
+
+}
+
+
+.merchant_date  {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  padding-bottom: 5rem;
+
+}
+
+
+.merchant_title {
+  display: flex;
+  justify-content: center;
+
+}
+
+
+.end {
+  display: flex;
+  justify-content: flex-end;
+}

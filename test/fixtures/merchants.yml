@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+iron_chef:
+  name: Iron Chef
+  email: iron@chef.com
+  uid: 1
+  provider: github
+
+hells:
+  name: Hells Kitchen
+  email: hells@kitchen.com
+  uid: 2
+  provider: github
+
+bake_off:
+  name: Bake Off
+  email: bake@off.com
+  uid: 3
+  provider: github
+
+ugly:
+  name: Ugly Delicious
+  email: ugly@delicious.com
+  uid: 4
+  provider: github

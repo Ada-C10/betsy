@@ -1,0 +1,38 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+order_one:
+  email: email@email.com
+  address: 123 4th street, City, WA 12345
+  cc_num: 1234567812345678
+  order_placed: 2018-10-18 12:57:30
+  status: paid
+  zip: 12345
+  name: Mrs. Buttersworth
+  cvv: 123
+  exp_month: 10
+  exp_year: 2080
+
+order_two:
+  email: email@email.com
+  address: 123 4th street, City, WA 12345
+  cc_num: 1234567812345678
+  order_placed: 2018-10-17 12:57:30
+  status: paid
+  zip: 12345
+  name: Pepper Potts
+  cvv: 123
+  exp_month: 10
+  exp_year: 2080
+
+
+order_three:
+  email: email@email.com
+  address: 123 4th street, City, WA 12345
+  cc_num: 1234567812345678
+  order_placed: 2018-10-16 12:57:30
+  status: paid
+  zip: 12345
+  name: Mighty Oprah
+  cvv: 123
+  exp_month: 10
+  exp_year: 2080

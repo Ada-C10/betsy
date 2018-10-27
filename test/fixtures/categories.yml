@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+atlantis:
+  name: Atlantean
+  # products: thyme, donut, sherbert, pickle
+
+pandora:
+  name: Pandoran
+  # products: thyme, donut, sherbert, bread
+
+shangri:
+  name: Shangri-La
+  # products: sherbert, pickle
+
+asgard:
+  name: Asgardian
+  # products: butter, steak, sherbert, bread, taco

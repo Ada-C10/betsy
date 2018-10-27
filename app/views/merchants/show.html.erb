@@ -1,0 +1,20 @@
+<section class="main-body">
+
+<%= render partial: 'layouts/jumbotron',
+locals: {
+  model: @merchant
+}
+%>
+
+<p> Date Joined: <%= readable_date(@merchant.created_at) %></p>
+
+<div class="card-columns">
+  <% @merchant.products.each do |product| %>
+    <% if product.status %>
+      <%= render partial: 'layouts/product_cards', locals: { product: product }%>
+    <% end %>
+  <% end %>
+</div>
+
+
+</section>

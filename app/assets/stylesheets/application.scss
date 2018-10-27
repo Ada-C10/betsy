@@ -1,0 +1,183 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+/* Import scss content */
+@import "**/*";
+
+// Font-Family: 'Roboto', Sans-Serif;
+// Font-Size: 48px;
+// Font-Family: 'Lora', Serif;
+// Font-Size: 14px;
+
+
+// Header - Nav
+
+.navbar-custom {
+  background: white;
+}
+
+.navbar a {
+  color: #4f5d75 !important;
+  font-family: 'Roboto', Sans-Serif !important;
+}
+
+.nav-item {
+  list-style-type: none;
+}
+
+
+// Header - Carousel
+
+.app-carousel-container {
+  width: 100%;
+  display: inline-block;
+}
+
+.carousel-text {
+  color: white;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+  font-size: 6rem;
+  text-shadow: 2px 2px #2d3142;
+  padding-bottom: 12rem;
+}
+
+.carousel-sub-text {
+  font-size: 3rem;
+  color: white;
+  text-shadow: 2px 2px #2d3142;
+}
+
+// Header jumbotron
+
+.jumbotron-fluid {
+  margin-top: 1rem;
+  background-image: url(https://images.unsplash.com/photo-1517973187489-09dbf278c9a0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d883071fe628e8c953b0752e3c007002&auto=format&fit=crop&w=750&q=80);
+  background-size: cover;
+}
+
+.jumbotron-fluid-squad {
+  margin-top: 1rem;
+  background-image: url(https://images.unsplash.com/photo-1525251172010-e7472985a6ca?ixlib=rb-0.3.5&s=8772e677deedae628d92bb1485c557d5&auto=format&fit=crop&w=889&q=80);
+  background-size: cover;
+}
+
+.jumbotron-fluid-squad h1 {
+  color: white;
+  text-shadow: 2px 2px #2d3142;
+  font-size: 5rem;
+  font-weight: bold;
+  padding-top: 1rem;
+  display: inline-block;
+  width: 100%;
+}
+
+.jumbotron-fluid-squad p {
+  color: white;
+  text-shadow: 2px 2px #2d3142;
+  font-size: 1.5rem;
+}
+
+.jumbotron-fluid h1 {
+  color: white;
+  text-shadow: 2px 2px #2d3142;
+  font-size: 5rem;
+  font-weight: bold;
+  padding-top: 1rem;
+  display: inline-block;
+  width: 100%;
+}
+
+
+
+// Main
+
+
+.alert__container {
+  margin-top: 5rem;
+}
+
+.main-body {
+  padding: 7rem;
+}
+
+h1 {
+  font-family: 'Roboto', Sans-Serif;
+  font-weight: bold;
+  font-size: 5rem;
+  color: #2d3142;
+  text-align: center;
+  padding-bottom: 5rem;
+}
+
+// Category - Products - Cards
+
+h5, h6, .card-title, .card-subtitle {
+  font-family: 'Lora', Serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: #2d3142;
+}
+
+.card-text {
+  font-family: 'Lora', Serif;
+  font-size: 14px;
+  color: #2d3142;
+  padding-top: 1rem;
+}
+
+.card a {
+  color: #4f5d75;
+}
+
+.card a:hover {
+  color: #ef8354;
+  text-decoration: none;
+}
+
+.card-merchant {
+  border-right: 2px solid #bfc0c0;
+  padding-right: 1rem;
+}
+
+.card-details {
+  padding-left: 1rem;
+}
+
+
+// Footer
+
+footer {
+  margin-top: 10rem;
+  width: 100%;
+}
+
+footer, .text-uppercase {
+  background-color: #4f5d75;
+  color: #fff;
+  font-family: 'Roboto', Sans-Serif;
+}
+
+footer a, .footer-copyright {
+  color: #fff;
+  font-family: 'Lora', Sans-Serif;
+}
+
+footer a:hover {
+  color: #ef8354;
+  text-decoration: none;
+}
