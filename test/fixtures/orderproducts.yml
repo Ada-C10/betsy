@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+orderproduct1:
+  order: complete_order
+  product: lamb
+  quantity: 3
+  status: pending
+
+orderproduct2:
+  order: complete_order
+  product: lamb
+  quantity: 3
+  status: pending
+
+orderproduct3:
+  order: complete_order
+  product: lamb
+  quantity: 3
+  status: shipped
+
+orderproduct4:
+  order: complete_order2
+  product: lamb
+  quantity: 2
+  status: shipped
+
+orderproduct5:
+  order: complete_order3
+  product: unicorn
+  quantity: 1
+  status: shipped
+
+orderproduct6:
+  order: complete_order
+  product: goat
+  quantity: 2
+  status: pending
+
+orderproduct6:
+  order: complete_order
+  product: dragon
+  quantity: 1
+  status: shipped

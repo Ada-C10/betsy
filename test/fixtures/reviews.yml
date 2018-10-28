@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Maria
+  rating: 5
+  review: Best lamb ever
+  product: lamb
+
+two:
+  name: Bess
+  rating: 1
+  review: Worst lamb ever
+  product: lamb

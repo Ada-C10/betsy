@@ -1,0 +1,66 @@
+<h2 class="order_heading"> <%= @current_user.name %>'s Fulfillment Page: <%= status %></h2>
+<div class="dropdown show order_types">
+  <a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Filter Orders
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <%= link_to "Paid", paid_orders_path, class: "dropdown-item" %>
+    <%= link_to "Completed", completed_orders_path, class: "dropdown-item" %>
+    <%= link_to "Cancelled", cancelled_orders_path, class: "dropdown-item" %>
+    <%= link_to "All Adoptions", get_orders_path, class: "dropdown-item" %>
+  </div>
+  <br>
+  <br>
+</div>
+<br>
+<br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"> Creature </th>
+      <th scope="col"> Cost </th>
+      <th scope="col"> Count </th>
+      <th scope="col"> Paid </th>
+      <th scope="col"> Adoption Request Date </th>
+      <th scope="col"> Adoption Request # </th>
+      <th scope="col"> Creature Status </th>
+    </tr>
+  </thead>
+    <tbody>
+      <% @orderproducts.each do |orderproduct| %>
+              <tr>
+                <td>
+                  <%= link_to orderproduct.product.name, product_path(orderproduct.product.id) %>
+                </td>
+                <td>
+                  <%= money_display(orderproduct.product.price) %>
+                </td>
+                <td>
+                  <%= orderproduct.quantity %>
+                </td>
+                <td>
+                  <%= money_display(orderproduct.quantity * orderproduct.product.price) %>
+                </td>
+                <td>
+                  <%= readable_date(orderproduct.order.created_at) %>
+                </td>
+                <td>
+                  <%= link_to "#{orderproduct.order_id}", order_path(orderproduct.order_id) %>
+                </td>
+                <td>
+                  <%= form_with model: orderproduct do |f| %>
+                    <%= f.label :status %>
+                    <%= f.select :status, options_for_select(["pending", "shipped"], :selected => orderproduct.status) %>
+                  <%= f.submit "Change Status", class: "btn btn-outline-primary" %>
+                  <% end %>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+
+<section class="orders_details">
+  <h3> Adoption Requests Count: <%= @count %> </h3>
+  <h3> Fundraising Revenue for all <%= status %>: <%= money_display(@total_revenue) %> </h3>
+</section>

@@ -1,0 +1,47 @@
+<section class="main-content">
+
+  <%= form_with model: @product do |f|%>
+
+  <h2><%= page_title %></h2>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control", placeholder: "Enter name"%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :available_creatures_count %>
+    <%= f.text_field :stock_count, class: "form-control", placeholder: "Enter number of available creatures" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price %>
+    <%= f.text_field :price, class: "form-control", placeholder: "Enter price" %>
+  </div>
+
+  <div class="form-group">
+   <%= f.label :description %>
+   <%= f.text_area :description, class: "form-control", placeholder: "Add a description" %>
+  </div>
+
+  <div class="form-group">
+   <%= f.label :photo_url %>
+   <%= f.text_field :photo_url, class: "form-control", placeholder: "Photo url here" %>
+  </div>
+
+  <div class="form-check">
+  <%= f.label :categories, class: "form-check-label" %>
+  <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) do |b| %>
+      <%= b.label(class: "check_box") do %>
+      <%= b.check_box(class: "check_box") %>
+      <%= b.object.name %>
+      <% end %>
+  <% end %>
+
+  </div>
+
+  <%= f.hidden_field :user_id, :value => @current_user.id %>
+
+  <%= f.submit "Save Creature", class: "btn btn-outline-primary" %>
+
+  <% end %>

@@ -1,0 +1,353 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+* vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*/
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+/* Import scss content */
+@import "**/*";
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url('https://fonts.googleapis.com/css?family=Kirang+Haerang|Muli|Niramit|Inconsolata|Indie+Flower|KoHo|Rubik');
+
+body {
+  font-family: 'Muli', sans-serif;
+}
+
+a {
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+h1 {
+  text-align: center;
+  color: grey;
+  font-size: 2.5em;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+h4 {
+  font-size: 1em;
+}
+
+h2 {
+  padding-bottom: 1em;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  list-style: none;
+  margin-bottom: 0px;
+}
+
+#add_new_creature {
+  // padding-top: 1em;
+}
+
+
+#new-creature-form {
+  margin: 0%;
+}
+
+.header {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  // padding-bottom: 2rem;
+}
+
+.logo a:hover {
+  text-decoration: none;
+}
+
+.logo a:visited {
+  color: #FF8514;
+}
+
+header a {
+  color: gray;
+}
+
+header a:hover {
+  color: #FF8514;
+}
+
+nav li:first-child {
+  padding-right: 20px;
+}
+
+.nav-container {
+  background-color: white;
+}
+
+.header_container .container {
+  max-width: 100%;
+}
+
+.order-text {
+  padding: 1em;
+}
+
+.logo {
+  padding-top: 15px;
+  display: block;
+  padding-left: 1.5em;
+  position: relative;
+  box-sizing: border-box;
+  font-size: 4.5em;
+  color: #FF8514;
+  font-family: 'Indie Flower', cursive;
+}
+
+.form-control {
+  border: 1px solid #FF8514;
+  box-shadow: 0 0 0 1px #FF8514;
+}
+
+.search-order {
+  padding-left: 15px;
+}
+
+.bottom-nav {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-icon {
+  padding-right: 1em;
+}
+
+.cart-icon img {
+  height: 27px;
+  position: relative;
+}
+
+.top-nav {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: #F9F3E6;
+}
+
+.btn-outline-primary {
+  border-color: #FF8514;
+  margin: 1em;
+  color: #FF8514;
+}
+
+.btn-outline-primary:hover  {
+  background-color: #FF8514;
+}
+
+.card-title a {
+  color: black;
+
+}
+
+.card-title a:hover {
+  color: #FF8514;
+  list-style: none;
+}
+
+.main-content {
+  margin-left: 10%;
+  margin-right:10%;
+
+}
+
+
+#add-category {
+  margin-left: 10%;
+  margin-right:10%;
+  margin-top: 0;
+}
+
+.main-container {
+ margin: 0%;
+}
+
+#main-img {
+  object-fit: none;
+
+  img {
+    width: 80%;
+    height: 50%;
+  }
+}
+
+.all-products {
+  // margin-top: 8%;
+}
+
+.product-content {
+  // margin-top: 10%
+}
+
+.user-login {
+  margin-left: auto;
+  padding-right: 2rem;
+}
+
+.cart-img {
+  width: 150px;
+  height:  auto;
+}
+
+.alert {
+  margin-top: 1%;
+}
+
+.card-group-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 3em;
+}
+
+.card-container {
+  margin: 1em;
+}
+
+.checked {
+  color: black;
+}
+
+.notfound {
+  text-align: center;
+  align-self: center;
+  width: 70%;
+}
+
+.not_found {
+  font-size: 4rem;
+}
+
+.product-show-container {
+  display: grid;
+  grid-template: auto auto / 1fr 1fr;
+  justify-items: center;
+}
+
+.user-products-img img{
+  width: 200px;
+  height:  auto;
+  padding: 1em;
+}
+
+.user-products-flex {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.product-show-img-text {
+  grid-row: 1 / 1;
+  grid-column: 1 / 3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  border-bottom: solid lightgray;
+  padding-bottom: 3em;
+}
+
+.product-description {
+  padding-left: 2em;
+}
+
+.product-show-img img{
+  width: auto;
+  height:  300px;
+}
+
+.user-products-container, .reviews-container {
+  padding-top: 2em;
+}
+
+.reviews-container {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+  align-items: stretch;
+  padding-left: 10%;
+
+}
+
+.user-products-container {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+}
+
+.reviews-only-container, .only-user-products-container, .no-reviews-no-user-products {
+  grid-row: 2 / 3;
+  grid-column: 1 / 3;
+  padding-top: 2em;
+}
+
+.reviews ul {
+  list-style: none;
+  border-bottom: solid lightgray;
+  padding-bottom: 1em;
+  padding-top: 1em;
+}
+
+.cart-heading-padding {
+  padding-bottom: 1em;
+}
+
+.order_types {
+  float: right;
+}
+
+.orders_details {
+  float: right;
+  clear: both;
+  text-align: right;
+}
+
+.order_heading {
+  display: inline-block;
+}
+
+.more-from, .review-button {
+  text-align: center;
+  padding-top: 0.5em;
+}
+
+.parent-name {
+  padding-top: 2em;
+  padding-left: 3em;
+}
+
+label {
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.form-check-label {
+
+}

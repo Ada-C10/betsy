@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adoptsy</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= favicon_link_tag(source='favicon.png', options={}) %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <header class="header">
+        <section class="nav-container">  <!-- add fixed-top to this class for stickty nav-->
+          <nav class="top-nav">
+
+        <li><%= link_to "Creatures", products_path %></li>
+
+        <div class="parents">
+          <li class="nav-item dropdown" role="button" data-toggle="dropdown", aria-haspopup="true" aria-expanded="false">
+            <%= link_to "By Rescuer", users_path, class: "nav-link dropdown-toggle" %></li>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <% @users.each do |user| %>
+              <li class="dropdown-item"><%= link_to user.name, user_path(user) %></li>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="categories">
+            <li class="nav-item dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= link_to "By Category", categories_path, class: "nav-link dropdown-toggle" %></li>
+
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <% @categories.each do |cat| %>
+                <li class="dropdown-item"><%= link_to cat.name, category_path(cat) %></li>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="search-order">
+              <%= form_tag search_orders_path, method: :get do %>
+              <%= text_field_tag :id, nil, placeholder: "Search Adoption Request Id", class: 'form-control' %>
+              <% end %>
+            </div>
+
+          </nav>
+
+          <nav class="bottom-nav">
+
+            <div class="logo">
+              <%= link_to "Adoptsy", root_path, class: "menu-text" %>
+            </div>
+
+            <div class="user-login">
+              <% if logged_in? %>
+
+              <li "nav-item dropdown" role="button" data-toggle="dropdown", aria-haspopup="true" aria-expanded="false">
+                <%= link_to "#{@current_user.name}'s Dashboard", user_path(@current_user.id), class: "nav-link dropdown-toggle" %></li>
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li class="dropdown-item"><%= link_to "Creatures", user_path(@current_user.id) %></li>
+                  <li class="dropdown-item"><%= link_to "Add Creature", new_product_path %></li>
+                  <li class="dropdown-item"><%= link_to "Add Category", new_category_path %></li>
+                  <li class="dropdown-item"><%= link_to "Fulfillment Page", get_orders_path %></li>
+                  <div class="dropdown-divider"></div>
+                  <li class="dropdown-item"><%= link_to "Log Out", logout_path, method: :delete, data: { confirm: "Are you sure you want to log out?" } %></li>
+                  <% else %>
+                  <li><%= link_to "Log In", "/auth/github", class: "btn btn-outline-primary" %></li>
+                  <% end %>
+                </div>
+
+              </div>
+
+              <div class="cart-icon">
+                <li><%= link_to image_tag("shopping-bag.png"), cart_path %>
+                  <span><%= session[:cart].map { |product| product.values }.flatten.sum %></span>
+                </li>
+              </div>
+            </nav>
+          </section>
+
+        </header>
+
+
+        <main class="main-container">
+
+            <section class="alert">
+              <% if flash[:messages] %>
+              <div class="alert alert-danger">
+              <h3> Request count not be completed. </h3>
+              <ul>
+                <% flash[:messages].each do |name, problem| %>
+                    <% if !problem.empty? %>
+                    <li><%= name.capitalize %>:
+                      <ul>
+                        <% problem.each do |validation| %>
+                          <li>
+                          <%= validation.capitalize %>
+                          </li>
+                        <% end %>
+                      </ul>
+                    <% end %>
+                    </li>
+                <% end %>
+              </ul>
+              </div>
+              <% else %>
+                <% flash.each do |name, message| %>
+                <div class="alert alert-<%= name %>"><%= message %></div>
+                <% end %>
+              <% end %>
+            </section>
+            <%= yield %>
+
+        </main>
+      </body>
+      </html>

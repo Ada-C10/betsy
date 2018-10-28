@@ -1,0 +1,25 @@
+<section class="main-content">
+<h1>Leave a Review</h1>
+
+<%= form_with(model: @review, url: [@product, @review]) do |f| %>
+
+<div class="form-group">
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control", placeholder: "Enter name" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :rating %>
+  <%= f.select :rating, options_for_select([1, 2, 3, 4, 5]), class: "form form-group form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :review %>
+  <%= f.text_area :review, class: "form-control", placeholder: "Give a review" %>
+</div>
+
+<%= f.hidden_field :product_id, :value => @product.id %>
+
+<%= f.submit "Submit Review", class: "btn btn-outline-primary" %>
+<% end %>
+</section>

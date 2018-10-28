@@ -1,0 +1,20 @@
+<section id="add-category">
+<% if @current_user %>
+  <%= form_with model: @category do |f|%>
+
+    <h2>Add a category</h2>
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Enter name of new category here"  %>
+    </div>
+
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+
+    <%= f.submit "Add category", class: "btn btn-outline-primary" %>
+
+  <% end %>
+<% else %>
+  <h3> Hi You have to be signed in to add a category</h3>
+<% end %>
+</section>

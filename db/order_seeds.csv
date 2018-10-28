@@ -1,0 +1,5 @@
+name,email,mailing_address,zip_code,cc_number,cc_expiration,cc_cvv,status,total_cost
+Pam,pam89@yahoo.com,No:81 Queen Drive NY,14211,6554323,10/26/2019,322,"pending",3500
+Susan,susan_smith@yahoo.com,18422 Birch Drive WA,19822,2468261,11/20/2020,455,"paid",40000
+Timothy,t_green@hotmail.com,34 5th Avenue VA,98022,34726454,09/23/2021,233,"complete",2800
+David,david_duchovny@hotmail.com,Post Office OR,97033,467542365,10/18/2021,111,"cancelled",30000

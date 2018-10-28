@@ -1,0 +1,49 @@
+<section class="main-content">
+<h1 class="cart-heading-padding">Adoption Basket</h1>
+<% total = 0 %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Total</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Remove from Basket</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart_items.each do |cart_array| %>
+    <%
+    product =  cart_array[0]
+    quantity = cart_array[1]
+    option_values = product.stock_count > 1 ? [*1..product.stock_count] : [product.stock_count]
+    %>
+    <tr>
+      <td><%= image_tag product.photo_url, class: "cart-img"%></td>
+      <td><%= link_to product.name.capitalize, product_path(product.id) %></td>
+      <td><%= money_display(product.price)%></td>
+      <% total += (quantity * product.price) %>
+      <td><%= money_display(quantity * product.price) %> </td>
+      <td>
+        <%= form_with url: update_cart_path(product.id), method: :patch do |f| %>
+        <%= f.select :quantity, options_for_select(option_values, :selected => quantity) %>
+        <%= f.submit "Update", class: "btn btn-outline-primary"%>
+        <% end %>
+      </td>
+      <td><%= link_to "Remove from Basket", remove_from_cart_path(product.id), class: "btn btn-outline-primary"%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% if total > 0 %>
+<section>
+  <h3>Basket Total: <%= money_display(total) %></h3>
+  <p><%= link_to "Checkout Basket", new_order_path, class: "btn btn-outline-primary"%></p>
+</section>
+<% else %>
+<section>
+  <h3>Your basket is empty</h3>
+</section>
+<% end %>
+</section>

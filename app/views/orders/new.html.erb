@@ -1,0 +1,42 @@
+<section class="main-content">
+  <%= form_with model: @order do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name, "Name: " %>
+    <%= f.text_field :name, class: "form-control", placeholder: "Enter name" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email, "Email: " %>
+    <%= f.text_field :email, class: "form-control", placeholder: "Enter email" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :mailing_address, "Mailing Address: " %>
+    <%= f.text_field :mailing_address, class: "form-control", placeholder: "Type mailing address" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :zip_code, "Zip Code: " %>
+    <%= f.text_field :zip_code, class: "form-control", placeholder: "Enter zip code here" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :cc_number, "Credit Card Number: " %>
+    <%= f.text_field :cc_number, class: "form-control", placeholder: "Credit card number" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :cc_expiration, "Credit Card Expiration: " %>
+    <%= f.text_field :cc_expiration, class: "form-control", placeholder: "Expiration date" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :cc_cvv, "Credit Card Security Code (cvv): " %>
+    <%= f.text_field :cc_cvv, class: "form-control", placeholder: "Cvv" %>
+  </div>
+
+    <%= f.submit "Submit", class: "btn btn-outline-primary" %>
+
+  <% end %>
+</section>

@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+complete_order:
+  name: Monique Marie
+  email: testemail@gmail.com
+  mailing_address: 4150 Delridge Way SW
+  zip_code: 44903
+  cc_number: 8275928304958372
+  cc_expiration: 04/21
+  cc_cvv: 843
+  status: paid
+  total_cost: 8000.0
+
+pending_order:
+  name: nil
+  email: nil
+  mailing_address: nil
+  zip_code: nil
+  cc_number: nil
+  cc_expiration: nil
+  cc_cvv: nil
+  status: pending
+  total_cost: 0.0
+
+complete_order2:
+  name: Test User2
+  email: testemail@gmail.com
+  mailing_address: 4150 Delridge Way SW
+  zip_code: 44903
+  cc_number: 8275928304958372
+  cc_expiration: 04/21
+  cc_cvv: 843
+  status: completed
+  total_cost: 8000.0
+
+complete_order3:
+  name: Test User3
+  email: testemail@gmail.com
+  mailing_address: 4150 Delridge Way SW
+  zip_code: 44903
+  cc_number: 8275928304958372
+  cc_expiration: 04/21
+  cc_cvv: 843
+  status: cancelled
+  total_cost: 8000.0

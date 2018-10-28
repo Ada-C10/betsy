@@ -1,0 +1,13 @@
+<h1>Log In</h1>
+
+<%= form_with model: @user, class: "user-form", url: login_path, method: :post  do |f|%>
+  <p>Please enter login details: </p>
+
+<div class="form-group">
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control", placeholder: "Enter name please" %>
+</div>
+
+  <%= f.submit "Log In", class: "btn-outline-primary" %>
+
+<% end %>

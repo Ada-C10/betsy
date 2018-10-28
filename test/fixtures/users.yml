@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+kit:
+  name: kit
+  email: kit@gmail.com
+  uid: 2378
+  provider: github
+
+tan:
+  name: tan
+  email: tan@gmail.com
+  uid: 8769
+  provider: github

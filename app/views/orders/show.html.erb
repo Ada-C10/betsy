@@ -1,0 +1,46 @@
+<section class="main-content">
+
+<h1>Viewing Adoption Request #<%= @order.id %> </h1>
+<% if @current_user && (@current_user.orders.include? @order) %>
+<section class="order-text">
+<h3> Adoption Parent: <%= @order.name %></h3>
+<h3> Adoption Parent Email: <%= @order.email %></h3>
+<h3> Delivery Street Address: <%= @order.mailing_address %></h3>
+<h3> Delivery Zip Code: <%= @order.zip_code %></h3>
+<h3> Credit Card (Last Four Digits): <%= @order.cc_number.to_s.split("").last(4).join %></h3>
+<h3> Credit Card Expiration: <%= @order.cc_expiration %></h3>
+<h3> Adoption Request Date: <%= readable_date(@order.created_at) %></h3>
+<br>
+<% else %>
+<section class="order-text">
+<h3> Adoption Parent: <%= @order.name %></h3>
+<h3> Delivery Address: <%= @order.mailing_address %></h3>
+<h3> Adoption Total: <%= money_display(@order.total_cost) %></h3>
+<h3> Adoption Status: <%= @order.status %></h3>
+<h3> Adoption Request Date: <%= readable_date(@order.created_at) %></h3>
+<br>
+<% end %>
+
+<table class="table">
+
+  <thead>
+    <tr>
+      <th scope="col">Creature Name</th>
+      <th scope="col">Adoption Price</th>
+      <th scope="col">Number of Creatures</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+
+  <% @order.orderproducts.each do |orderproduct| %>
+    <tbody>
+      <td><%= link_to orderproduct.product.name, product_path(orderproduct.product.id) %></td>
+      <td><%= money_display(orderproduct.product.price) %></td>
+      <td><%= orderproduct.quantity %></td>
+      <td><%= money_display(orderproduct.product.price * orderproduct.quantity) %></td>
+    </tbody>
+  <% end %>
+</table>
+<br>
+<h3> Please contact customer support to cancel this adoption. </h3>
+</section>

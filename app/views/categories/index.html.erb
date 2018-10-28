@@ -1,0 +1,13 @@
+<section class="main-content">
+  <section class="all-products">
+    <h2>Categories:</h2>
+    <% @categories = Category.all %>
+    <% @categories.each do |cat| %>
+    <h2>
+      <a class="link-category" <%= link_to "#{cat.name}", category_path(cat.id) %></a>
+    </h2>
+    <% end %>
+
+    <a class="btn btn-outline-primary" <%= link_to "Add a category", new_category_path %></a>
+  </section>
+</section>

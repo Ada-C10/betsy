@@ -1,0 +1,46 @@
+<section class="all-products">
+  <h1><%= @category.name.capitalize %></h1>
+  <div class="card-group-container">
+    <% @category.products.each do |product| %>
+    <% in_cart = product.in_cart?(session[:cart]) %>
+    <% product_stock_select = product.stock_count > 1 ? [*1..product.stock_count] : [product.stock_count] %>
+    <% cart_adjust_quantity = product.cart_adjust_quantity(session[:cart]) if in_cart %>
+    <% cart_adjust_select = cart_adjust_quantity > 1 ? [*1..cart_adjust_quantity] : [cart_adjust_quantity] if in_cart%>
+    <% option_values = in_cart ? cart_adjust_select : product_stock_select %>
+
+    <% if product.stock_count > 0 %>
+    <div class="card w-25 card-container">
+      <%= image_tag product.photo_url, class: "card-img-top"%>
+      <div class="card-body card-container">
+        <h5 class="card-title"><%= link_to product.name.capitalize, product_path(product.id) %></h5>
+        <p class="card-text"><small class="text-muted"><%= product.user.name %></small></p>
+        <% if product.reviews.length > 0 %>
+        <p>
+          <% product.average_rating.times do %>
+          <span class="fa fa-star checked"></span>
+          <% end %>
+          <small class="text-muted">(<%= product.reviews.length %>)</small>
+        </p>
+        <% end %>
+        <p class="card-text"><%= money_display(product.price) %></p>
+        <% if option_values[0] > 0 %>
+        <p><%= form_with url: add_to_cart_path(product.id), method: :post do |f| %>
+          <%= f.select :quantity, options_for_select(option_values) %>
+          <%= f.submit "Add to Basket", class: "btn btn-outline-primary"%>
+          <% end %>
+        </p>
+        <% else %>
+        <h4 class="card-text">All the <%= product.name.capitalize.pluralize %> are in your cart!</h4>
+        <p><%= link_to "Remove from Basket", remove_from_cart_path(product.id), class: "btn btn-outline-primary"%></p>
+        <% end %>
+        <% if logged_in? %>
+        <% if current_user.id == product.user.id %>
+        <p class="card-text"><%= link_to "Update Creature", edit_product_path(product.id)%></p>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+</section>
