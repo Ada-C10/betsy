@@ -1,0 +1,30 @@
+<h1> Merchant List </h1>
+
+<% if @merchants.empty? %>
+  <h1> There are no merchants yet </h1>
+<% else %>
+  <table class="table">
+  <thead>
+    <tr>
+      <th>Storefront Image</th>
+      <th>Storefront Name</th>
+      <th>Joined</th>
+    </tr>
+  </thead>
+    <tbody>
+  <% @merchants.each do |merchant| %>
+  <tr>
+    <td>
+      <p> img goes here </p>
+    </td>
+    <td>
+      <%= link_to merchant.name, user_path(merchant.id) %>
+    </td>
+    <td>
+      <%= "#{merchant.created_at.strftime("%b. %d, %Y")}" %>
+    </td>
+  </tr>
+  <% end %>
+    </tbody>
+  </table>
+<% end %>

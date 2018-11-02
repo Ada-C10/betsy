@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+shirts:
+  quantity: 1
+  order: pending_order
+  product: shirt
+  status: pending
+
+dresses:
+  quantity: 2
+  order: pending_order
+  product: dress
+  status: pending

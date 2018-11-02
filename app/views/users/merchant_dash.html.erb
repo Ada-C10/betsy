@@ -1,0 +1,42 @@
+<article class="main-content container-fluid">
+  <div class="row">
+    <section class="col-sm">
+      <h3>Seller Summary</h3>
+      <p><h5><%= "Total orders: #{@current_user.order_products.count}" %></h5></p>
+      <h5><%= "Total revenue: #{format_money(@current_user.total_revenue)}" %></h5>
+      <ul>
+        <% ["pending", "paid", "shipped", "cancelled"].each do |status| %>
+          <li><%= "#{status.titleize}: #{format_money(@current_user.total_revenue_by_status(status))}" %></li>
+        <% end %>
+      </ul>
+      <hr>
+      <h3>Product Inventory</h3>
+      <ul>
+        <% @current_user.products.each do |product| %>
+          <li><%= link_to "#{product.name}", product_path(product.id) %>: <%= "#{product.stock}" %></li>
+        <% end %>
+      </ul>
+      <hr>
+      <p><%= link_to "Add a category", new_category_path, class: "btn btn-outline-secondary" %></p>
+      <p><%= link_to "Add a product", new_product_path, class: "btn btn-outline-secondary"%></p>
+    </section>
+
+    <section class="col-sm-9">
+      <div class="order-filters container-fluid">
+        <div class="btn-group-toggle" data-toggle="buttons">
+          <% ["pending", "paid", "shipped", "cancelled"].each do |op_status| %>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#filtered-<%= op_status %>" aria-expanded="false" aria-controls="filtered-<%= op_status %>">
+              <%= "#{op_status.titleize} orders (#{@current_user.num_orders_by_status(op_status)})" %>
+            </button>
+          <% end %>
+        </div>
+        <hr>
+        <% ["pending", "paid", "shipped", "cancelled"].each do |op_status| %>
+          <div class="collapse" id="filtered-<%= op_status %>">
+            <%= render partial: "filtered_orders", locals: { op_status: op_status } %>
+          </div>
+        <% end %>
+      </div>
+    </section>
+  </div>
+</article>

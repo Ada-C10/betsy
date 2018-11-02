@@ -1,0 +1,45 @@
+<article class="main-content">
+  <section>
+    <h2>Best of luck, comrade. We've placed your order!</h2>
+  </section>
+
+  <div class="cart container-fluid">
+    <div class="row">
+      <section class="cart col-sm-8">
+        <% @paid_order.order_products.each do |op| %>
+          <article class="cart card">
+            <div class="row">
+              <%= image_tag(op.product.photo_url, alt: op.product.name, class: "col-sm card-img") %>
+              <div class="col-sm-8 card-body">
+                <div>
+                  <h5 class="cart card-title"><%= op.product.name %></h5>
+                  <section class="card-text">
+                    <p>
+                      <%= "Price: #{format_money(op.product.price)}" %><br>
+                      <%= "Quantity: #{op.quantity}" %><br>
+                      <%= "Subtotal: #{format_money(op.subtotal)}" %><br>
+                      <strong><%= "Status: #{op.status.titleize}" %></strong>
+                    </p>
+                  </section>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer no-gutters order-product-actions">
+              <% unless op.status == "shipped" %>
+                <%= link_to "Cancel this product order", change_status_path(op.id, "cancelled"), method: :patch, class: "btn btn-outline-danger", data: { confirm: "Are you sure you want to cancel?"} %>
+              <% else %>
+                <%= link_to "Write a review", product_path(op.product.id), method: :get, class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          </article>
+        <% end %>
+      </section>
+      <article class="checkout-actions col-sm-4">
+        <p>Order number: <strong><%= "#{@paid_order.id}" %></strong></p>
+        <p>Submitted on: <strong><%= format_date(@paid_order.updated_at) %></strong></p>
+        <p>Status: <strong><%= "#{@paid_order.status.titleize}" %></strong></p>
+        <h3>Total: <strong><%= format_money(@paid_order.total) %></strong></h3>
+      </article>
+    </div>
+  </div>
+</article>

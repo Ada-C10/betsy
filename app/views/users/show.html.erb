@@ -1,0 +1,44 @@
+<!-- NEEDS WORK, MAYBE USE CURRENT USER? -->
+<% if @current_user.type == "Merchant" %>
+  <h1> <%= "#{@current_user.name}'s Good's Distribution Store" %> </h1> <!-- 'storefront if current_user is merchant' -->
+<% else %>
+  <h1> Profile Information </h1>
+<% end %>
+<p>
+  Joined site on <%= "#{@current_user.created_at.strftime ("%b. %d, %Y")}" %>
+</p>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+        <th>Product Picture</th>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Category</th>
+        <% if @current_user.type != Merchant  %> <!-- this is call to the helper method, not a variable.... -LR -->
+          <th>Add to Cart</th>
+        <% else %>
+          <th>Remove product</th>
+          <th>Edit stock</th>
+        <% end %>
+      </tr>
+  </thead>
+  <tbody>
+    <% @current_user.products.each do |product| %>
+    <tr>
+      <td> product image </td>
+      <td> <%= link_to "#{product.name}", product_path(product.id) %> </td>
+      <td> <%= "#{product.stock}" %> </td>
+      <td> <%= "#{product.categories}" %> </td>
+      <% if @current_user.id != product.user.id %> <!-- allows guess to 'add to cart' -->
+        <td> add to cart </td>
+      <% else %>
+        <td> delete product </td>
+        <td> increase stock </td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

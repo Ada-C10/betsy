@@ -1,0 +1,56 @@
+<article class="main-content">
+  <h2>Kindly hand over your personal information.</h2>
+  <hr>
+
+  <section>
+    <%= form_with model: @current_order, class: "form", locals: true do |f|%>
+      <%= f.fields_for :user do |u| %>
+        <section>
+          <h5>Shipping Information</h5>
+          <div class="form-group">
+            <%= u.label :name %>
+            <%= u.text_field :name, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= u.label :email %>
+            <%= u.text_field :email, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= u.label :address %>
+            <%= u.text_field :address, class: "form-control" %>
+          </div>
+        </section>
+
+        <br>
+
+        <section>
+          <h5>Payment Information</h5>
+
+          <div class="form-group">
+            <%= u.label "Credit card number" %>
+            <%= u.text_field :cc_num, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= u.label "Credit card CSV" %>
+            <%= u.text_field :cc_csv, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= u.label "Card expiration date" %>
+            <%= u.text_field :cc_exp, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= u.label "Billing zip code" %>
+            <%= u.text_field :bill_zip, class: "form-control" %>
+          </div>
+        </section>
+      <% end %>
+
+      <%= f.submit "Submit Order", class: "btn btn-secondary" %>
+    <% end %>
+  </section>
+</article>

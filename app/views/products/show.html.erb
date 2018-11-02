@@ -1,0 +1,44 @@
+<article class="main-content container-fluid">
+  <div class="row">
+    <%= render partial: "shopping_nav", local: true %>
+
+    <section class="col-sm-8 product-show">
+      <h2><%= @product.name %></h2>
+      <p>Sold by: <%= @product.user.name %></p>
+
+      <nav>
+        <% if @current_user.is_a_merchant? && @current_user.id == @product.user_id %>
+          <p>
+            <%= link_to "Edit product", edit_product_path(@product.id), method: :get %> |
+            <%= link_to "Retire product", retire_path(@product.id), method: :patch, data: { confirm: "Are you sure?"}%>
+          </p>
+        <% end %>
+      </nav>
+
+      <p>
+        <%= image_tag(@product.photo_url) %>
+      </p>
+
+      <p>
+        <% @product.categories.each do |cat| %>
+          <span class="badge badge-secondary category-tag"><%= cat.name %></span>
+        <% end %>
+      </p>
+
+      <% if @product.stock > 0 && @current_user != @product.user %>
+        <p>
+          <% if @op %>
+            <%= render partial: "order_products/form", locals: { button_title: "Update cart", op: @op, product_id: @product.id } %>
+          <% else %>
+            <%= render partial: "order_products/form", locals: { button_title: "Add to cart", op: @current_order.order_products.new, product_id: @product.id } %>
+          <% end %>
+        </p>
+      <%end%>
+
+      <p><%= @product.description%></p>
+      <p><h4><strong>Price: <%= format_money(@product.price) %></strong></h4></p>
+    </section>
+
+    <div class="col-sm-1"></div>
+  </div>
+</article>

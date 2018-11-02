@@ -1,0 +1,17 @@
+<nav class="col-sm">
+  <h5><%= link_to "All Products", products_path%></h5>
+
+  <h5>Shop by Category</h5>
+  <ul>
+  <% Category.all.each do |category|%>
+     <li><%= link_to "#{category.name.titleize}", bycategory_path(category.id) %></li>
+  <%end%>
+  </ul>
+
+  <h5>Shop by Merchant</h5>
+  <ul>
+  <% Merchant.all.each do |merchant|%>
+     <li><%= link_to "#{merchant.name}", bymerchant_path(merchant.id) %></li>
+  <%end%>
+  </ul>
+</nav>

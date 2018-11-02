@@ -1,0 +1,221 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+/* Import scss content */
+@import "**/*";
+
+/* Sovietski color scheme */
+$white: #fefdff;
+
+$dark-grey: #343a40;
+$light-grey: #d1d5d7;
+
+$dark-red: #b20023;
+$light-red: #d6798c;
+
+$dark-blue: #007ea7;
+$light-blue: #5cacc7;
+
+$dark-yellow: #f3ca40;
+$light-yellow: #f7dd85;
+
+
+/*
+Google Fonts:
+font-family: 'Bungee', cursive;
+font-family: 'Bungee Shade', cursive;
+font-family: 'Raleway', sans-serif;
+*/
+
+body {
+  background-color: $white;
+  color: $dark-grey;
+  font-family: 'Raleway', sans-serif;
+  margin-bottom: 2rem;
+}
+
+article.main-content {
+  padding-right: 2rem;
+  padding-left: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Material design icon styling */
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+#sovietski-header {
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+h1.sovietski-logo {
+  text-align: center;
+}
+
+a {
+  color: $dark-blue;
+}
+
+a:hover {
+  color: $light-blue;
+  text-decoration: none;
+}
+
+a.sovietski-logo {
+  font-family: 'Bungee', cursive;
+  font-size: 3rem;
+  color: $dark-grey;
+  text-decoration: none;
+  text-align: center;
+}
+
+a.cart-button {
+  background-color: $dark-yellow;
+  border-color: $dark-yellow;
+  color: $dark-grey;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: $dark-yellow;
+  border-color: $dark-yellow;
+  color: $dark-grey;
+}
+
+.btn-primary:hover, input.btn-primary:hover {
+  background-color: $light-yellow;
+  border-color: $light-yellow;
+  color: $dark-grey;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active {
+  background-color: $dark-blue;
+  border-color: $dark-blue;
+}
+
+div.cart-button {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+#shopping-cart-icon {
+  padding-right: 0.5rem;
+}
+
+nav ul {
+  list-style: none;
+}
+
+.nav-link {
+  color: $dark-grey;
+}
+
+.nav-link:hover {
+  color: $dark-yellow;
+}
+
+.dropdown-item:hover {
+  background-color: $dark-yellow;
+}
+
+li.user-nav {
+  margin-right: 1rem;
+}
+
+.btn-danger {
+  background-color: $dark-red;
+  border-color: $dark-red;
+  color: $white;
+}
+
+.btn-danger:hover {
+  background-color: $light-red;
+  border-color: $light-red;
+}
+
+.btn-secondary {
+  background-color: $dark-blue;
+  border-color: $dark-blue;
+  color: $white;
+}
+
+.btn-secondary:hover {
+  background-color: $light-blue;
+  border-color: $light-blue;
+}
+
+.btn-outline-danger {
+  border-color: $dark-red;
+  color: $dark-red;
+}
+
+.btn-outline-danger:hover {
+  background-color: $dark-red;
+  border-color: $dark-red;
+  color: $white;
+}
+
+.btn-outline-secondary {
+  border-color: $dark-blue;
+  color: $dark-blue;
+}
+
+.btn-outline-secondary:hover {
+  background-color: $dark-blue;
+  border-color: $dark-blue;
+  color: $white;
+}
+
+h5.cart.card-title {
+  font-weight: bold;
+}
+
+img.homepage-hero-img {
+  display: block;
+  width: 100%;
+}
+
+a.login-btn {
+  margin-right: 0.5rem;
+}
+
+footer {
+  padding: 1rem;
+  color: $light-grey;
+  text-align: center;
+}
+
+footer a {
+  color: $light-yellow;
+}
+
+footer a:hover {
+  color: $dark-yellow;
+  text-decoration: none;
+}

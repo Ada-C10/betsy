@@ -1,0 +1,42 @@
+<article class="main-content">
+  <h2>Shopping Cart</h2>
+  <div class="cart container-fluid">
+    <div class="row">
+      <% if @current_order.order_products.any? %>
+        <section class="cart col-sm-8">
+          <% @current_order.order_products.each do |op| %>
+            <article class="cart card">
+              <div class="row">
+                <%= image_tag(op.product.photo_url, alt: op.product.name, class: "col-sm card-img") %>
+                <div class="col-sm-8 card-body">
+                  <div>
+                    <h5 class="cart card-title"><%= op.product.name %></h5>
+                    <section class="card-text">
+                      <p>
+                        <%= "Price: #{format_money(op.product.price)}" %><br>
+                        <%= "Quantity: #{op.quantity}" %><br>
+                        <strong><%= "Subtotal: #{format_money(op.subtotal)}" %></strong>
+                      </p>
+                    </section>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer no-gutters order-product-actions">
+                <%= render partial: "order_products/form", locals: { button_title: "Update", op: op, product_id: op.product_id } %>
+                <%= link_to "Delete", order_product_path(op.id), method: :delete, class: "btn btn-outline-danger" %>
+              </div>
+            </article>
+          <% end %>
+        </section>
+        <article class="checkout-actions col-sm-4">
+          <h3>Total: <%= format_money(@current_order.total) %></h3>
+          <%= link_to "Continue to checkout", checkout_path, method: :get, class: "btn btn-secondary" %>
+        </article>
+      <% else %>
+        <section class="cart col-sm-8">
+          <p>Nothing to see here... no collusion!</p>
+        </section>
+      <% end %>
+    </div>
+  </div>
+</article>

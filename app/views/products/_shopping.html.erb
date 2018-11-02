@@ -1,0 +1,27 @@
+<article class="main-content container-fluid">
+  <div class="row">
+    <%= render partial: "shopping_nav", local: true %>
+
+    <section class="col-sm-9">
+      <div class="card-columns">
+        <% product_list.each do |product|%>
+          <div class="card">
+            <%= image_tag(product.photo_url, alt: product.name, class: "card-img-top") %>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to "#{product.name}", product_path(product.id) %></h5>
+              <div class="card-text">
+                Sold by: <%= link_to "#{product.user.name}", bymerchant_path(product.user.id) %><br>
+
+                <%= "#{format_money(product.price)}" %><br>
+
+                <% product.categories.each do |cat| %>
+                  <span class="badge badge-secondary"><%= cat.name %></span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </section>
+  </div>
+</article>

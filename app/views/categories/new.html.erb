@@ -1,0 +1,19 @@
+<article class="main-content">
+  <h2>Add a Category</h2>
+
+  <%= form_with model: @category, local: true do |f|%>
+    <p> More election categories? Excellent... </p>
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <% if @current_user.is_a_merchant? %>
+      <%= f.submit "Add category", class: "btn btn-primary" %>
+    <% else %>
+      <%= f.submit "Add category", class: "btn btn-primary", disabled: true %>
+    <% end %>
+
+  <% end %>
+</article>

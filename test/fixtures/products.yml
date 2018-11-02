@@ -1,0 +1,28 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+shirt:
+  user: merchant
+  name: "Shirt"
+  price: 1.5
+  description: "a nice shirt"
+  stock: 1
+  photo_url: "https://loremflickr.com/cache/resized/791_41048349621_da0130f444_300_300_nofilter.jpg"
+  status: true
+
+dress:
+  user: merchant
+  name: "Dress"
+  price: 1.5
+  description: "a nice dress"
+  stock: 5
+  photo_url: "https://loremflickr.com/cache/resized/791_41048349621_da0130f444_300_300_nofilter.jpg"
+  status: true
+
+mumu:
+  user: merchant
+  name: "Mumu"
+  price: 2
+  description: "a nice mumu"
+  stock: 5
+  photo_url: "https://loremflickr.com/cache/resized/791_41048349621_da0130f444_300_300_nofilter.jpg"
+  status: true

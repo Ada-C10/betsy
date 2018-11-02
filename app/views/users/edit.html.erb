@@ -1,0 +1,52 @@
+<article class="main-content">
+  <h2>Account Information</h2>
+  <hr>
+
+  <%= form_with model: @current_user, local: true do |f|%>
+    <section>
+      <h5>Shipping Information</h5>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :address %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+    </section>
+
+    <br>
+
+    <section>
+      <h5>Payment Information</h5>
+
+      <div class="form-group">
+        <%= f.label "Credit card number" %>
+        <%= f.text_field :cc_num, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Credit card CSV" %>
+        <%= f.text_field :cc_csv, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Card expiration date" %>
+        <%= f.text_field :cc_exp, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Billing zip code" %>
+        <%= f.text_field :bill_zip, class: "form-control" %>
+      </div>
+    </section>
+
+    <%= f.submit "Update", class: "btn btn-primary" %>
+  <% end %>
+</article>

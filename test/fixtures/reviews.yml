@@ -1,0 +1,12 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  # product: shirt
+  rating: 1
+  comment: MyString
+  # user: user1
+two:
+  # product: dress
+  rating: 2
+  comment: MyString
+  # user: user1

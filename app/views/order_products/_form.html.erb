@@ -1,0 +1,14 @@
+<section>
+  <% @op = op if op %>  <!-- if want to bring up existing order product in model, nil if product not in cart yet -->
+
+  <%= form_with model: @op, class: "form-inline product-quantity-form", locals: true do |f|%>
+    <div class="form-group">
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity, in: 0..(Product.find_by(id: product_id).stock), class: "form-control quantity-field" %>
+    </div>
+
+    <%= f.hidden_field :product_id, value: product_id %>
+
+    <%= f.submit button_title, class: "btn btn-primary" %>
+  <% end %>
+</section>

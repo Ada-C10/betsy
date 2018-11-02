@@ -1,0 +1,31 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.product-form {
+  display: flex;
+  flex-direction: column;
+
+  margin: 2%;
+}
+
+h4.category-badge {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+section.product-show {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+span.badge.category-tag {
+  font-size: 1rem;
+}
+
+div.form-check-inline > input {
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+}

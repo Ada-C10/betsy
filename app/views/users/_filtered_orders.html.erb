@@ -1,0 +1,33 @@
+<% if @current_user.orders_by_status(op_status).any? %>
+  <% @current_user.orders_by_status(op_status).each do |op| %>
+    <article class="cart card">
+      <div class="row">
+        <img src="https://vignette.wikia.nocookie.net/aceattorney/images/f/f7/Missile_AAI.png/revision/latest?cb=20180304065441" alt="Product" class="col-sm card-img">
+        <div class="col-sm-8 card-body">
+          <div>
+            <h5 class="cart card-title"><%= link_to "#{op.product.name}", product_path(op.product.id) %></h5>
+            <section class="card-text">
+              <p>
+                <%= "Price: #{format_money(op.product.price)}" %><br>
+                <%= "Quantity: #{op.quantity}" %><br>
+                <%= "Total: #{format_money(op.subtotal)}" %><br>
+                <strong><%= "Status: #{op.status.titleize}" %></strong>
+                <br><br>
+                <strong><%= "Order placed on #{format_date(op.created_at)} by #{op.order.user.name}" %></strong><br>
+                <%= "Email: #{op.order.user.email}" %><br>
+                <%= "Address: #{op.order.user.address}" %><br>
+                <%= "Payment: XXXXXXXX#{op.order.user.cc_num[-4..-1]} (expires #{format_date(op.order.user.cc_exp)})" %><br>
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+      <% if op.status == "paid" %>
+        <div class="card-footer no-gutters order-product-actions">
+          <%= link_to "Mark as shipped", change_status_path(op.id, "shipped"), method: :patch, class: "btn btn-primary" %>
+          <%= link_to "Cancel this order", change_status_path(op.id, "cancelled"), method: :patch, class: "btn btn-outline-danger", data: { confirm: "Are you sure you want to cancel?"} %>
+        </div>
+      <% end %>
+    </article>
+  <% end %>
+<% end %>

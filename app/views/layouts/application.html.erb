@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Soviétski</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Shade|Raleway:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  </head>
+
+  <body>
+    <header id="sovietski-header" class="container-fluid">
+      <div class="row align-items-center">
+        <nav class="nav dropdown product-nav col-sm">
+          <a class="nav-link dropdown-toggle btn btn-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">"Win" an election</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="<%= root_path %>">Home</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="<%= products_path %>">Shop elections</a>
+          </div>
+        </nav>
+
+        <h1 class="col-sm sovietski-logo"><%= link_to "Soviétski", root_path, class: "sovietski-logo" %></h1>
+
+        <nav class="main-actions-nav col-sm">
+          <ul class="nav float-right">
+            <% if session[:user_id] == @current_user.id %>
+              <li class="nav-item dropdown user-nav">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= "#{@current_user.name}" %></a>
+                <div class="dropdown-menu">
+                  <% if @current_user.type == "Merchant" %>
+                    <%= link_to "Merchant Dashboard", merchant_dash_path(@current_user.id), class: "dropdown-item" %>
+                  <% else %>
+                    <%= link_to "User Dashboard", user_path(@current_user.id), class: "dropdown-item" %>
+                  <% end %>
+                  <%= link_to "Edit profile", edit_user_path(@current_user.id), class: "dropdown-item" %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "Log out", logout_path, method: 'delete', class: "dropdown-item login-btn" %>
+                </div>
+              </li>
+            <% else %>
+              <li><%= link_to "Login with Github", "/auth/github", class: "nav-item btn btn-outline-dark login-btn" %></li>
+            <% end %>
+            <li>
+              <a href="<%= cart_path %>" role="button" class="nav-item btn btn-primary cart-button">
+                <div class="cart-button">
+                  <i class="material-icons" id="shopping-cart-icon">shopping_cart</i>
+                  <%= "#{@current_order.order_products.where(status: "pending").count} items" %>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="alert__container">
+        <%flash.each do |name, message|%>
+          <% if message.class == Array %>
+            <%message.each do |msg|%>
+              <div class="alert alert-<%= name %>" role="alert">
+              <strong> <%= "#{name}:" %> </strong> <%= " #{msg}"%>
+              </div>
+            <%end%>
+          <%else%>
+            <div class="alert alert-<%= name %>" role="alert">
+               <%= message %>
+            </div>
+          <%end%>
+        <%end%>
+      </section>
+      <%= yield %>
+    </main>
+    <footer>
+      <p>
+        This satirical e-commerce site is a version of <a href="https://github.com/Ada-C10/betsy">Betsy</a>, a pun-derful Etsy-inspired project of Ada Developers Academy.
+      </p>
+    </footer>
+  </body>
+</html>
