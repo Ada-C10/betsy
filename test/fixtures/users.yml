@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: 1
+  name: Linda
+  nickname: linda-lucy
+  email: linda-lucy@gmail.com
+  image_url: https://www.gstatic.com/webp/gallery3/2.sm.png
+  provider: github
+
+two:
+  uid: 2
+  name: John
+  nickname: john-johnny
+  email: john-johnny@gmail.com
+  image_url: https://www.gstatic.com/webp/gallery/4.sm.jpg
+  provider: Gmail
+
+june:
+  uid: 3
+  name: june
+  nickname: june-juny
+  email: june-juny@gmail.com
+  image_url: https://www.gstatic.com/webp/gallery3/1.sm.png
+  provider: Gmail

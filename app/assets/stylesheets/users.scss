@@ -1,0 +1,9 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+section .user-profile {
+  display: grid;
+  grid-template-areas:
+  "user-pic user-pic"
+  "user-product user-product";
+}

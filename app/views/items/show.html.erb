@@ -1,0 +1,75 @@
+<div class = "container">
+
+  <div class = "item-image"><img src= <%= @item.image %> >
+  </div>
+
+  <div class = "item-info">
+
+    <div class = "category-tag">
+      <%= @item_category %>
+    </div>
+
+    <div class = "item-name">
+      <h2><%= @item.name %></h2>
+    </div>
+
+    <div class = "price">
+      <h3>$<%= '%.2f' % @item.price %><h3>
+    </div>
+
+    <div class = "description">
+      <p><%= @item.description %></p>
+    </div>
+
+    <div class = "quantities">
+
+      <% if @order.order_items.find_by(item_id: @item.id).nil? %>
+
+        <%= form_with model: @order_item, method: :post, :url => item_order_items_path(@item.id) do |f| %>
+
+
+        <div class = "form-group">
+          <%= f.label "Quantity:" %>
+
+          (<%= @item.quantity_available %> available)
+
+
+          <%= f.select :quantity_per_item, @item.return_quantity_selection, {}, class: "form-control" %>
+        </div>
+
+        <div class = "form-group">
+          <%= f.submit "Add to Cart", class: "btn btn-light" %>
+        </div>
+
+        <% end %>
+        <% else %>
+
+        <%= form_with model: @order_item, method: :patch, :url => item_increment_quantity_path(@item.id) do |f| %>
+
+        <div class = "form-group">
+        <%= f.label "Quantity:" %>
+
+        (<%= @item.quantity_available %> available)
+        
+        <%= f.select :quantity_per_item, @item.return_quantity_selection, {}, class: "form-control" %>
+      </div>
+
+        <div class = "form-group">
+          <%= f.submit "Add to Cart", class: "btn btn-light"  %>
+        </div>
+
+
+        <% end %>
+
+
+      <% end %>
+
+
+
+
+    </div>
+
+
+  </div>
+
+</div>

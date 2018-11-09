@@ -1,0 +1,11 @@
+<h2>Edit Your Product</h2>
+
+
+<%= render partial: "item_form",
+locals: {
+  action_type: "Submit Changes",
+  form_title: "Submit Changes",
+  verb: :patch,
+  pathway: item_path
+  }
+%>

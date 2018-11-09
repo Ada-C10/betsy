@@ -1,0 +1,16 @@
+<main>
+  <section class="user-profile">
+    <div class="user-pic">
+    <%= image_tag "#{@user.image_url}", alt: "user image", title: "#{@user.name}'s profile'" %>
+  </div>
+  <div class="user-product">
+<h2><%=@user.name%>'s Shop</h2>
+      <h3> Product List</h3>
+      <ul>
+        <%@user.items.each do |item| %>
+        <li><strong>For sale: </strong><%=item.name%><%= link_to "(view)", item_path(item)%></li>
+        <% end %>
+      </ul>
+    </div>
+  </section>
+</main>

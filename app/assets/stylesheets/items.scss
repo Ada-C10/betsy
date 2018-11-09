@@ -1,0 +1,136 @@
+// Place all the styles related to the items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+  // [converter] extracted a&:hover, a&:focus, a&.active to a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active
+
+  // Image captions
+
+.container {
+  display: grid;
+  grid-template-columns: .2fr 8fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.item-image {
+  grid-row-start: 1;
+  grid-row-end: 7;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  margin-right: 1em;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.item-info {
+  grid-row-start: 1;
+  grid-row-end: 6;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  background-color: #ffd2d5;
+  margin: 0;
+  padding: 2em;
+  border-radius: 2em;
+}
+
+.category-tag {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  width: 10em;
+  padding: 5px 20px;
+  text-align: center;
+  background-color: #94dbd7;
+  border-radius: 120px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.item-name {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  margin-top: .5em;
+  color: #772f33;
+}
+
+.item-name h2 {
+  font-weight: bold;
+  font-size: 3em;
+}
+
+.price h3 {
+  color: #2a58a3;
+  font-size: .7em;
+  font-weight: bold;
+}
+
+.description p {
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+
+.price {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+  font-style: italic;
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+
+.description {
+  grid-row-start: 4;
+  grid-row-end: 5;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.quantities {
+  grid-row-start: 5;
+  grid-row-end: 6;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  width: 100%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.availability {
+  color: red;
+}
+
+
+.form-group .btn {
+  background-color: #fb8d96;
+  width: 100%;
+  grid-row-start: 6;
+  grid-row-end: 7;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  padding: .7em;
+  border-radius: 2em;
+  border: none;
+  margin-top: 1em;
+  color: white;
+  font-weight: bold;
+}
+
+.form-group .btn:hover {
+  background-color: #ab4652;
+}

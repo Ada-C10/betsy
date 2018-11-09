@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  email: MyString
+  mailing_address: MyString
+  name_on_card: MyString
+  credit_card_num: 1
+  credit_card_exp_month: 0
+  credit_card_exp_year: 0
+  cvv_num: 1
+  zipcode: 1
+  status: pending
+
+two:
+  name: MyString
+  email: MyString
+  mailing_address: MyString
+  name_on_card: MyString
+  credit_card_num: 1
+  credit_card_exp_month: 0
+  credit_card_exp_year: 0
+  cvv_num: 1
+  zipcode: 1
+  status: paid
+
+three:
+  name: MyString
+  email: MyString
+  mailing_address: MyString
+  name_on_card: MyString
+  credit_card_num: 1
+  credit_card_exp_month: 0
+  credit_card_exp_year: 0
+  cvv_num: 1
+  zipcode: 1
+  status: shipped

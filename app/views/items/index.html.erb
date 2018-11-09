@@ -1,0 +1,20 @@
+<article>
+  <h1>All Items</h1>
+</article>
+
+
+<% @items.each do |item| %>
+
+
+ <img src= <%= item.image %> class="img-thumbnail, item_show" >
+<td class = "table_grid"><%= item.name %></td>
+<td class = "table_grid"><%= item.price %></td>
+<td class = "table_grid"><%= item.quantity_available %></td>
+<td class = "table_grid"><%= item.avg_rating %></td>
+<td class = "table_grid"><%= item.description %></td>
+<br>
+<br>
+<% end %>
+
+
+</article>

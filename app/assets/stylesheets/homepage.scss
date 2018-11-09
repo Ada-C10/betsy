@@ -1,0 +1,45 @@
+// Place all the styles related to the homepage controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// .landing_page{
+//   padding: 110px;
+//   // display: flex;
+//   // flex-direction: column;
+// }
+
+img{
+  width: 350px;
+  height: 350px;
+  margin-right: 5vw;
+}
+
+.homepage_products{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  // justify-content: space-between;
+  overflow-x: auto;
+
+  img{
+    flex: 0 0 auto;
+  }
+}
+
+.scroll{
+  display: flex;
+  flex-direction: row;
+}
+
+.scroll_indicator{
+  text-align: center;
+  line-height: 350px;
+  color: grey;
+}
+
+.fa{
+  font-size:30px
+}
+
+article:nth-of-type(1), article:nth-of-type(2){
+  padding-bottom: 70px;
+}

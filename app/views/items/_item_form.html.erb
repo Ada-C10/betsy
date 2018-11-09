@@ -1,0 +1,24 @@
+<%= render partial: 'layouts/form_errors',
+locals: {
+  model: @item
+}
+%>
+
+<%= form_with model: @item, method: verb, :url => pathway do |f| %>
+
+<%= f.label :Name %> <br>
+<%= f.text_field :name %> <br>
+<%= f.label :price %> <br>
+<%= f.text_field :price %> <br>
+<%= f.label :quantity_available %> <br>
+<%= f.text_field :quantity_available %> <br>
+<%= f.label :image_url %> <br>
+<%= f.text_field :image %> <br>
+<%= f.label :active %> <br>
+<%= f.text_field :active %> <br>
+<%= f.label :category_id %> <br>
+<%= collection_select :item, :category_id, Category.all, :id, :category_type, {}, {:multiple => false} %> <br>
+<%= f.label :description %> <br>
+<%= f.text_area :description %>
+<%= f.submit action_type, class: "item-form-submit-button" %>
+<% end %>

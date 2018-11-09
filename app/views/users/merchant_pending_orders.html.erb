@@ -1,0 +1,34 @@
+
+<article class="">
+  <h2>Manage Orders</h2>
+
+  <% count = 1 %>
+  <% @pending_order_items.each do |order_item|%>
+
+  <%= count %>
+
+  <section class = "pending_order">
+    <div class="item_info">
+      <h5>Item Information</h5>
+      Order Date: <%= order_item.created_at.strftime("%B %d, %Y") %><br>
+      Item Name: <%= order_item.find_item_name(order_item.item_id) %><br>
+      Qty Ordered: <%= order_item.quantity_per_item %><br>
+      Status: <strong><%= order_item.status %></strong><br>
+
+        <%= link_to "Mark as Shipped", paid_path(order_item.id), method: :post %>
+
+    </div>
+
+
+    <div class="customer_info">
+      <h5>Customer Information:</h5>
+      <% order = Order.find_by(id: order_item.order_id) %>
+      Name: <%= order.name %><br>
+      Email: <%= order.email %><br>
+      Address: <%= order.mailing_address %><br>
+
+    </div>
+  </section>
+  <% count += 1 %>
+  <% end %>
+</article>

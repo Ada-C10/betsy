@@ -1,0 +1,38 @@
+<h2>Checkout</h2>
+
+<%= render partial: 'layouts/form_errors',
+locals: {
+  model: @order
+}
+%>
+
+<%= form_with model: @order, class: 'item-form' do |f| %>
+
+
+
+  <%= f.label :Name %>
+  <%= f.text_field :name %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :mailing_address %>
+  <%= f.text_field :mailing_address %>
+
+  <h2>Billing Information: </h2>
+
+  <%= f.label :name_on_card %>
+  <%= f.text_field :name_on_card %>
+  <%= f.label :credit_card_num %>
+  <%= f.text_field :credit_card_num %>
+  <%= f.label :credit_card_exp_month%>
+  <%= f.select :credit_card_exp_month, selections: Order::VALID_MONTHS %>
+  <%= f.label :credit_card_exp_year %>
+  <%= f.select :credit_card_exp_year, selections: Order.valid_years %>
+  <%= f.label :cvv_num %>
+  <%= f.text_area :cvv_num %>
+  <%= f.label :zipcode %>
+  <%= f.text_area :zipcode %>
+
+  <%= f.submit "Submit", class: "btn btn-success" %>
+
+
+<% end %>

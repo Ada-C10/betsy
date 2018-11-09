@@ -1,0 +1,46 @@
+
+
+<article id="cart">
+
+  <% cart_subtotal = [] %>
+
+  <strong><h1>Shopping Cart</h1></strong>
+
+  <% @order_items.order('created_at').each do |item| %>
+    <div class="item_display">
+
+      <section class="item_details">
+        <% x = Item.find_by(id: item.item_id) %>
+        <strong><%= x.name%></strong><br>
+        <img src="<%= x.image %>" alt="<%= x.description %>" class="cart_thumbnail"><br>
+        <%= link_to "Remove", order_item_path(item.id), method: :delete, data: { confirm: "are you sure you want to delete this item?" } %>
+      </section>
+
+      <section class="item_subtotal">
+        <div class="column">
+          Qty: <%= item.quantity_per_item %>
+
+          <%= form_with model: @order_item, method: :patch, :url => order_item_path(item.id) do |f| %>
+            <%= f.select :quantity_per_item, x.return_quantity_selection %><br>
+            <%= f.submit "update quantity" %>
+          <% end %>
+        </div>
+        <div class="column">
+          Item Price: $<%= '%.2f' % x.price %>
+        </div>
+        <div class="column">
+          <% item_sub = x.item_subtotal(x.price, item.quantity_per_item) %>
+          <% cart_subtotal << item_sub %>
+            Total: $<%= '%.2f' % item_sub %>
+        </div>
+
+      </section>
+
+    </div>
+  <% end %>
+  <div class="subtotal">
+    <h3>Subtotal: $<%= '%.2f' % cart_subtotal.sum %></h3><br>
+    <button type="button"><%= link_to "Checkout", edit_order_path(@current_shopper_order_id) %></button>
+  </div>
+
+</article>

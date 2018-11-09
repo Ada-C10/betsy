@@ -1,0 +1,88 @@
+// Place all the styles related to the category controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.item-by-category{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.item-block {
+  width: 20em;
+  height: 20em;
+  position: relative;
+  margin-top: 50px;
+}
+
+.item-block:hover .overlay {
+  display: block;
+  background: #fb8d96 ;opacity:0.8;
+}
+
+.item-block:hover .button {
+  opacity: 1;
+}
+
+.item-block:hover .title {
+  top: 10px;
+}
+
+.category-images {
+  width: 20em;
+  height: 20em;
+  position: absolute;
+}
+
+.title {
+  position: absolute;
+  left: 0;
+  top: 80px;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  z-index: 1;
+  transition: top .5s ease;
+  padding: 1em;
+  width: 100%
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.5s ease;
+}
+
+.button {
+  position: relative;
+  left:0;
+  top: 200px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.button a {
+  width: 200px;
+  padding: 12px 48px;
+  text-align: center;
+  background-color: #94dbd7;
+  border-radius: 120px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.button a:hover {
+  background-color: #429a95;
+}

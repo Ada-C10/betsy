@@ -1,0 +1,66 @@
+<main>
+
+  <section><!-- Merchant View & User View -->
+    <%= image_tag "#{@current_user.image_url}", alt: "user image", title: "#{@current_user.name}'s profile pic", style: 'float:right;'%>
+
+    <ul>
+      <li><strong>Id: </strong><%= @current_user.id %></li>
+      <li><strong>Name: </strong><%= @current_user.name %></li>
+      <li><strong>Username: </strong><%= @current_user.nickname %></li>
+      <li><strong>Contact: </strong><%= @current_user.email %></li>
+    </ul>
+  </section>
+
+  <%if @current_user.is_a_merchant?(@merchant_ids)%>
+  <section><!-- Merchant View Only-->
+    <h2><%=@current_user.name%>'s Shop</h2>
+    <div class="product">
+      <ul>
+        <li><%=link_to "Add New Product", new_item_path%></li>
+        <li><%= link_to "Manage Orders", pending_path %></li>
+      </ul>
+      <% count = 1 %>
+      <ul>
+        <%@current_user_items.each do |item| %>
+        <li><strong><%= count %>. For sale: </strong><%=item.name%><%= link_to "(details)", item_path(item)%><%= link_to "(edit)", edit_item_path(item)%><%= link_to "(delete)", item_path(item), method: :delete, data: { confirm: "Are you sure you want to delete this product: #{item.name}? You have #{item.quantity_available} of them"} %></li>
+        <li><strong>Stock: </strong><%=item.quantity_available%></li>
+        <li><strong>Price: </strong>$<%= '%.2f' % item.price%></li>
+        <li><strong>Category:  </strong><%=item.category_id%></li>
+        <p>---------------------------------------</p>
+        <% count +=1 %>
+        <% end %>
+      </ul>
+    </div>
+  </section>
+
+
+  <section>
+
+
+
+    <div class="">
+      <ul>
+
+        <li><% @current_merchant_unfulfilled_order_items.each do |order_item| %>
+          <li>Item Name<%=Item.find_by(id: order_item.item_id).name%></li>
+          <li>Num Ordered: <%=order_item.quantity_per_item %></li>
+          <li>Customer Name: <%=Order.find_by(id: order_item.order_id).name%></li>
+          <li>Customer Address: <%=Order.find_by(id: order_item.order_id).mailing_address%></li>
+          <% end %>
+        </li>
+
+      </ul>
+    </div>
+
+
+  </section>
+
+
+  <%else%>
+  <section><!-- Non Merchant View Only-->
+    <h2>Create your first product in your shop!</h2>
+    <p><%= link_to "Add Product", new_item_path %></p>
+  </section>
+  <%end%>
+
+</main>

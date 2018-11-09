@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+good:
+  description: It's great
+  rating: 5
+  user: one
+  item: luggage
+
+bad:
+  description: Terrible, just terrible
+  rating: 1
+  user: two
+  item: shoes

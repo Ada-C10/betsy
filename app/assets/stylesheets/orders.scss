@@ -1,0 +1,60 @@
+// Place all the styles related to the orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+h1{
+  color: black;
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+.cart_thumbnail{
+  height: 100px;
+  width: 100px;
+}
+
+#cart{
+  display: flex;
+  flex-direction: column;
+  // padding-left: 110px;
+}
+
+.item_display{
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+  width: 800px;
+  border: .5px solid lightgray;
+  padding: 30px;
+}
+
+.item_details{
+  // padding-right: 60px;
+  width: 250px;
+}
+
+input[type=text]{
+  width: 60px;
+}
+
+input[type=submit]{
+  font-size: 12px;
+  background-color: grey;
+  color: black;
+}
+
+.item_subtotal{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.column{
+  margin-right: 60px;
+
+}
+
+.subtotal{
+  width: 800px;
+  text-align: right;
+  padding-top: 20px;
+  padding-right: 40px;
+}

@@ -1,0 +1,8 @@
+<h2>View Previous Order</h2>
+
+<h3>Please enter Order Confirmation Number:</h3>
+
+<%= form_with url: detail_path do |form| %>
+  <%= form.text_field :id %>
+  <%= form.submit "Submit" %>
+<% end %>

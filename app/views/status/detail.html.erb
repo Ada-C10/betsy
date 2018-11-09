@@ -1,0 +1,14 @@
+<h2>Order Details</h2>
+
+<% if @order == nil %>
+  <h4>The order number you entered does not exist</h4>
+
+<% else %>
+
+  <h4>Order Date: <%= @order.created_at.strftime("%B %d, %Y") %></h4>
+
+  <% @order_info.each do |item, qty| %>
+    Qty: <%= qty %>, <%= item.name %> <br>
+  <% end %>
+
+<% end %>

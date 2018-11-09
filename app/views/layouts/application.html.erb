@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Betsy</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link href="https://fonts.googleapis.com/css?family=Mali|Quicksand" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <header>
+      <section class = "top_of_page">
+        <ul>
+          <li>
+            <%= link_to "View Order", status_findform_path, class: "header_links" %>
+          </li>
+
+          <li>
+            <%= link_to "Cart", order_path(@current_shopper_order_id), class: "header_links" %>
+          </li>
+
+<!-- User vs. Merchant Shop Views -->
+          <% if @current_user && !@current_user.is_a_merchant?(@merchant_ids)%>
+          <li>
+            <%= link_to "Become a Merchant", shop_path, class: "header_links" %>
+          </li>
+          <%elsif @current_user && @current_user.is_a_merchant?(@merchant_ids)%>
+          <li>
+            <%= link_to "Manage Shop", shop_path, class: "header_links" %>
+          </li>
+          <%end%>
+
+<!-- User vs Guest Login / Logout View -->
+          <% if @current_user %>
+          <li><p>
+            Welcome, <%= @current_user.nickname %>
+          </li></p>
+            <li>
+              <%= link_to "Log Out", logout_path, method: :post, class: "header_links" %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "Log In", "/auth/github", class: "header_links" %>
+            </li>
+          <% end %>
+
+
+        </ul>
+      </section>
+
+      <h1>Kawaii Travel Shop</h1>
+
+      <nav class="navbar navbar-expand-lg navbar-light ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" id="home_link" href="/">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categories
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                <% categories = Category.all %>
+                <% categories.each do |category| %>
+                  <a class="dropdown-item" href="#"><%= link_to "#{category.category_type}", category_path(category.id), class: "header_links"%></a>
+                <% end %>
+
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Merchants
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+               <% @merchant_ids.each do |id| %>
+
+
+
+                 <% merchant = User.find_by(id: id) %>
+
+               <% end %>
+             </div>
+           </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="flash">
+        <% flash.each do |key_word, message| %>
+        <div class="<%= key_word %>"><%=message%></div>
+        <% end %>
+      </section>
+      <section class = "body_main">
+        <%= yield %>
+      </section>
+
+    </main>
+
+    <footer>
+      <section class = "footer_left">
+        <ul>
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Careers</li>
+        </ul>
+      </section>
+
+      <section class = "footer_right">
+        <ul>
+          <li>Customer Service</li>
+          <li>Contact Us</li>
+        </ul>
+      </section>
+    </footer>
+
+  </body>
+</html>

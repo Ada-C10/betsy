@@ -1,0 +1,26 @@
+<section>
+
+  <h2>
+    <%=  @category.category_type.capitalize %>
+  </h2>
+
+  <div class="item-by-category">
+    <% @items_in_category.each do |item| %>
+
+    <div class = "item-block">
+      <img class = "category-images" src= "<%= item.image %>" alt="<%= item.name %>">
+
+      <p class="title"><%= item.name %></p>
+
+      <div class="overlay"></div>
+
+      <div class = "button">
+        <%= link_to "Details", item_path(item.id) %>
+      </div>
+
+    </div>
+
+    <% end %>
+  </div>
+
+</section>

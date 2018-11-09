@@ -1,0 +1,110 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+/* Import scss content */
+@import "**/*";
+
+body{
+  font-family: 'Quicksand', sans-serif;
+}
+
+.top_of_page{
+  padding-right: 100px;
+}
+
+.top_of_page > ul >li{
+  list-style-type: none;
+  float: right;
+  padding-right: 30px;
+}
+
+.fas, .header_links, #home_link{
+  color: grey;
+}
+
+.header_links:hover, .fas:hover, #home_link:hover{
+  color: #ffa791;
+  text-decoration: none;
+}
+
+header > h1{
+  color: grey;
+  text-align: center;
+  font-family: 'Mali', cursive;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  font-size: 3em;
+}
+
+.navbar{
+  background-color: none;
+  border-top: .25px solid lightgrey;
+  border-bottom: .25px solid lightgrey;
+  padding-left: 100px;
+}
+
+.dropdown-menu-right {
+    padding-left: 10px;
+}
+
+footer{
+  border-top: .25px solid lightgrey;
+  padding-left: 70px;
+  padding-right: 70px;
+  padding-top: 110px;
+  padding-bottom: 110px;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer_left, .footer_right{
+  display: block;
+}
+
+.footer_left{
+  margin-right: 5vw;
+}
+
+li{
+  list-style-type: none;
+}
+
+section .success, section .form_errors, section .error {
+  text-align: center;
+  padding: 0.75rem 1.25rem;
+  margin: 1em;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+section .success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+section .error, section .form_errors{
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+
+.body_main{
+  padding-left: 110px;
+  padding-right: 110px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}

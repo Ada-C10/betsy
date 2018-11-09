@@ -1,0 +1,10 @@
+<h2>Add a New Product</h2>
+
+<%= render partial: 'item_form',
+locals: {
+  action_type: "Submit",
+  form_title: "New!",
+  verb: :post,
+  pathway: items_path
+  }
+%>
