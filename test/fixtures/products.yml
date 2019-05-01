@@ -1,0 +1,32 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+cake1:
+
+  prod_name: a wedding cake
+  description: yum
+  price: 15.5
+  inv_qty: 5
+  user: laura
+
+cake2:
+
+  prod_name: chocolate goodness
+  description: the best
+  price: 19.5
+  inv_qty: 5
+  user: grace
+
+
+cake3:
+  prod_name: vanilla plains
+  description: real vanilla
+  price: 20.5
+  inv_qty: 3
+  user: grace
+
+brownie:
+  prod_name: chocolate brownie
+  description: decadent
+  price: 19.5
+  inv_qty: 0
+  user: ada

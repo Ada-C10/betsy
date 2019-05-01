@@ -1,0 +1,8 @@
+<%= render partial: "/layouts/flash_errs" %>
+<main class="main-container">
+  <h1>New Product</h1>
+
+  <%= render 'form', product: @product %>
+
+  <%= link_to 'Back', products_path %>
+</main>

@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: Paid
+  cust_name: Laura
+  cust_email: laura@gmail.com
+  mailing_address: 123 Front St.
+  cc_name: Laura Liz
+  cc_digit: 1111111111111111
+  cc_expiration: 2018-10-17
+  cc_cvv: 123
+  cc_zip: 98765
+
+two:
+  status: pending
+  cust_name: Grace
+  cust_email: grace@gmail.com
+  mailing_address: 123 Front St.
+  cc_name: Laura Liz
+  cc_digit: 1111111111111111
+  cc_expiration: 2018-10-17
+  cc_cvv: 1
+  cc_zip: 1
+
+three:
+  status: pending
+  cust_name: ada
+  cust_email: ada@gmail.com
+  mailing_address: 1
+  cc_name: MyString
+  cc_digit: 1111111111111111
+  cc_expiration: 2018-10-17
+  cc_cvv: 123
+  cc_zip: 98765
+
+three:
+  status: pending
+  cust_name: ada
+  cust_email: grace@gmail.com
+  mailing_address: 123 Front St.
+  cc_name: Laura Liz
+  cc_digit: 1111111111111111
+  cc_expiration: 2018-10-17
+  cc_cvv: 123
+  cc_zip: 98765

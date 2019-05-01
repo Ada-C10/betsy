@@ -1,0 +1,112 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css product.htm.erb">
+
+<% render partial: "layouts/form_errors", locals: { error_hash: @order } %>
+
+<%= form_with(model: order, local: true) do |form| %>
+  <%# render partial "/layouts/form_errors", locals: { error_hash: order}%>
+
+<div class="container">
+    <div class="row">
+        <!-- You can make it whatever width you want. I'm making it full width
+             on <= small devices and 4/12 page width on >= medium devices -->
+        <div class="col-xs-12 col-md-4">
+
+
+            <!-- CREDIT CARD FORM STARTS HERE -->
+            <div class="panel panel-default credit-card-box">
+                <div class="panel-heading display-table" >
+                    <div class="row display-tr" >
+                        <h3 class="panel-title display-td" >Payment Details</h3>
+                        <div class="display-td" >
+                            <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
+                         <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <%= form.label "NAME ON CARD" %>
+                                    <%= form.text_field :cc_name, class: "form-control", placeholder: "Ada Lovelace" %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                  <%= form.label "CREDIT CARD NUMBER" %>
+                                    <div class="input-group">
+                                          <%= form.number_field :cc_digit, class: "form-control", maxlength: "16", for:"cardExpiry", placeholder: "Add 16 DIGIT CARD NUMBER"%>
+                                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-7 col-md-7">
+                                <div class="form-group">
+                                  <%= form.label "Expiration Date" %>
+                                  <%= form.date_select :cc_expiration, class: "form-control"%>
+                                </div>
+                            </div>
+                            <div class="col-xs-5 col-md-5 pull-right">
+                                <div class="form-group">
+                                    <%= form.label "CVV", for: "cardCVC" %>
+                                    <%= form.number_field :cc_cvv, class: "form-control", placeholder: "435" %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="couponCode">COUPON CODE</label>
+                                    <input type="text" class="form-control" name="couponCode" placeholder="BAKERSDOZEN" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <%= form.submit "Confirm Order", class: "btn btn-primary"   %>
+                            </div>
+                        </div>
+                        <div class="row" style="display:none;">
+                            <div class="col-xs-12">
+                                <p class="payment-errors"></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- CREDIT CARD FORM ENDS HERE -->
+
+
+        </div>
+
+        <div class="col-xs-12 col-md-8" style="font-size: 12pt; line-height: 2em;">
+          <div class="form-group">
+            <%= form.label "Name" %>
+            <%= form.text_field :cust_name, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label "Email" %>
+            <%= form.text_field :cust_email, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :mailing_address %>
+            <%= form.text_field :mailing_address, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label "Zip Code" %>
+            <%= form.number_field :cc_zip, class: "form-control" %>
+          </div>
+
+        </div>
+
+    </div>
+</div>
+<% end %>
+</head>

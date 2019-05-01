@@ -1,0 +1,12 @@
+<%# render partial: "layouts/form_errors", locals: { error_hash: @category } %>
+<%= render partial: "layouts/flash_errs" %>
+<%= form_with(model: category, local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label :category %>
+    <%= form.text_field :category, class: "form-control"%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-primary"  %>
+  </div>
+<% end %>

@@ -1,0 +1,7 @@
+<%= render partial: "/layouts/flash_errs" %>
+<main class="main-container">
+
+    <h2 class="products"><%= @category.category.pluralize %></h2>
+    <%= render partial: "productslist", locals: { } %>
+
+</main>

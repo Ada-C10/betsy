@@ -1,0 +1,325 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+/* Import scss content */
+@import "**/*";
+
+.main-container {
+  padding: 2rem 2rem;
+}
+
+
+h1, h2, h3, h4 {
+  font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+p {
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.navbar {
+  font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.navbar-brand {
+  color: #8ff9f6  !important;
+  font-weight: bold;
+}
+
+.navbar-brand:hover {
+  color: #0abab5  !important;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: lightgray;
+  line-height: 12px;
+}
+
+.nav-link:hover {
+  color: white !important;
+}
+
+.right-items {
+  height: 40px;
+}
+
+.login {
+  width: 25px;
+  padding-top: .5rem;
+  opacity: .5;
+}
+
+.login:hover {
+  opacity: 1;
+}
+
+.main-cart {
+  padding-left: 1.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.logout {
+  width: 25px;
+  padding-top: .5rem;
+  opacity: .5;
+}
+
+.logout:hover {
+  opacity: 1;
+}
+
+.fa-github-square {
+    font-size: 1.75em;
+    color: lightgrey;
+    padding-right: .75rem;
+    padding-left: .75rem;
+    padding-top: .5rem;
+}
+
+.fa-github-square:hover {
+    color: white;
+}
+
+.fa-sign-in-alt {
+  font-size: 1.5em;
+  color: lightgrey;
+}
+
+.fa-sign-in-alt:hover {
+  color: white;
+}
+
+.fa-sign-out-alt {
+    font-size: 1.5rem;
+    color: lightgrey;
+    padding-right: .75rem;
+    padding-left: .75rem;
+}
+
+.fa-sign-out-alt:hover {
+  color: white;
+}
+
+.fa-shopping-cart {
+  color: lightgray;
+}
+
+#navfa {
+  font-size: 1.75em !important;
+  color: lightgrey;
+  padding-top: .20rem;
+  padding-right: .75em;
+}
+
+#navfa:hover {
+  color: #8ff9f6  !important;
+}
+
+.fa-shopping-cart:hover {
+  color: white;
+}
+
+.right {
+  padding-right: 13px;
+}
+
+.fa-stack[data-count]:after{
+  position: absolute;
+  right: 0%;
+  top: 0%;
+  content: attr(data-count);
+  font-size: 35%;
+  padding: .6em;
+  border-radius: 999px;
+  line-height: .75em;
+  color: white;
+  text-align: center;
+  min-width: 2em;
+  font-weight: bold;
+  background: #0abab5;
+
+}
+
+.form-group {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.star {
+    font-size: 25px;
+    color: gold;
+    padding: 3px;
+  }
+
+.btn {
+  background-color: #0abab5;
+  border: #0abab5;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.75;
+  background-color: #0abab5;
+  border: #0abab5;
+
+}
+
+.page-footer {
+  color: #8ff9f6  !important;
+  // font-weight: bold;
+  background: #343a40 !important;
+  bottom:0;
+}
+
+.list-unstyled > li > a {
+  list-style: none;
+  color: white;
+}
+
+.list-unstyled > li > a:hover {
+  text-decoration: none;
+  color: #8ff9f6  !important;
+}
+
+.footer-copyright p {
+  color: lightgray;
+}
+
+.footer-copyright a {
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 16px;
+  color: #8ff9f6;
+  text-decoration: none;
+}
+
+.footer-copyright a:hover {
+  color: white;
+}
+
+.brand {
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 24px;
+}
+
+#fotp {
+  color: lightgray;
+}
+
+.message {
+  padding-top: 8rem;
+  text-align: center;
+  padding-bottom: 8rem;
+}
+
+.merchant {
+  background-image: url("41250510-rough-wooden-used-cutting-board-background-with-vertical-lines-and-cutting-traces.jpg");
+  margin: 0;
+}
+
+.merchant-actions, .cart-actions {
+  margin-top: 5rem;
+  margin-bottom: 10rem;
+}
+
+.merchant-card{
+  padding: 3rem;
+  padding-bottom: 5rem;
+  color: #333a40;
+
+}
+
+.merchant-card div, .customer-card div{
+  border-width: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.merchant-prod-list, .merchant-order-list, .merchant-rev-list {
+  margin: 5rem;
+}
+
+.merchant-btn:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
+}
+
+.merchant-btn {
+  color: #2E2F30;
+  background-color: #5efef9;
+}
+
+.merchant-btn .btn-retire{
+  background-color: #fec603;
+}
+
+.merchant-card .card-title{
+  background-color: #5efef9;
+}
+
+.merchant table,.merchant-table{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.order-details {
+  background-image: url("pexels-photo-239581.jpeg");
+  margin: 0;
+}
+
+.customer-card {
+  padding: 5rem;
+}
+
+.sm-date {
+  font-size: small;
+}
+
+.back-btn{
+  margin-left: 23rem;
+}
+
+.order-h2{
+  color: #fec603;
+  background-color: rgba(119,136,142,0.79);
+  text-align: center;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 40px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+
+
+.cart-details {
+  margin: 5rem;
+}
+
+.action-btn:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
+}
+
+.empty-table-txt{
+  color: #fec603;
+  background-color: rgba(119,136,142,0.79);
+  text-align: center;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 40px 0 rgba(0, 0, 0, 0.19);
+}
+
+span#price-show {
+  text-decoration: none;
+}

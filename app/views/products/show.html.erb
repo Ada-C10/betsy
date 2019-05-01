@@ -1,0 +1,118 @@
+<%= render partial: "/layouts/flash_errs" %>
+<!-- //#### trying bootstrap  -->
+<main class="main-container">
+  <div id="product-section">
+    <div class="row">
+     <div class="col-md-6 col-lg-4">
+       <!-- <%#=link_to image_tag("#{@product.image}", alt: "#{@product.description}"), product_path(@product.id) %></a> -->
+       <img src="<%= @product.image %>", class="product-img-show"></a>
+     </div>
+     <div class="col-md-6">
+         <div class="row">
+           <div class="col-md-12">
+             <h4><%= @product.prod_name %></h4>
+           </div>
+         </div><!-- end row-->
+         <div class="row">
+          <div class="col-md-12">
+            <% @product.categories.each do |cat| %>
+           <span class="label label-primary"><%= cat.category.capitalize %></span>
+           <% end %>
+           <span class="monospaced"><%@product.id%></span>
+          </div>
+         </div><!-- end row -->
+
+         <div class="row">
+          <div class="col-md-12">
+           <p class="description">
+            Tasting Notes: <%= @product.description %>
+          </div>
+         </div><!-- end row -->
+
+         <div class="row">
+           <div class="col-md-3 rating-stars">
+             <% if @product.reviews.length >= 1 %>
+               <% @product.avg_rating.round.times do %>
+               <img src="https://cdn4.iconfinder.com/data/icons/pretty_office_3/256/Star-Full.png" alt="rating star" height="25" width="25">
+              <% end %>
+              <% end %>
+           </div>
+           <div class="col-md-3 add-review-btn">
+            <span><%= link_to "Write A Review", new_product_review_path(@product), class:"btn btn-danger" %>
+              </span>
+           </div>
+          </div><!-- end row -->
+
+          <div class="row">
+   <div class="col-md-12 bottom-rule">
+    <h2 class="product-price"><%= format_price(@product.price) %></h2>
+   </div>
+  </div><!-- end row -->
+
+  <%if @product.inv_qty > 0 %>
+  <div class="row add-to-cart">
+   <div class="col-md-5 product-qty">
+    <%= form_with model: @order_item do |f| %>
+      <%= f.label :qty %>
+      <%= f.select :qty, (1..@product.inv_qty).to_a %>
+      <%= f.hidden_field :product_id, :value => @product.id %>
+      <%= f.hidden_field :shipped, :value => false %>
+   <!-- </div>
+   <div class="col-md-4"> -->
+      <%= f.submit "Add to cart", class: "btn btn-sm btn-brand btn-full-width" %>
+    <% end %>
+   </div>
+  </div><!-- end row -->
+  <%end%>
+
+  <div class="row">
+   <div class="col-md-4 text-center">
+     <%if @product.inv_qty > 0 %>
+      <span class="monospaced">In Stock</span>
+     <%else %>
+      <span class="monospaced">Out of Stock</span>
+     <%end%>
+   </div>
+  </div><!-- end row -->
+  <div class="row">
+   <div class="col-md-12 bottom-rule top-10"></div>
+  </div><!-- end row -->
+
+     </div>
+    </div><!-- end row -->
+   </div><!-- end container -->
+
+
+
+  <div class="reviews">
+  <h2>Reviews</h2>
+   <section class="rating">Average Rating:
+     <% if @product.reviews.length >= 1 %>
+       <% @product.avg_rating.round.times do %>
+       <img src="https://cdn4.iconfinder.com/data/icons/pretty_office_3/256/Star-Full.png" alt="rating star" height="25" width="25">
+      <% end %>
+      <% end %>
+  </section>
+
+  <div class="table-responsive-md">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Rating</th>
+        <th scope="col">Review</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @product.reviews.each do |review| %>
+        <td><%= review.rating%></td>
+        <td> <%= review.description%></td>
+        <td><%= link_to 'Edit', edit_review_path(review) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  </div>
+</main>

@@ -1,0 +1,143 @@
+<div class="merchant">
+<%= render partial: "/layouts/flash_errs" %>
+<section class="merchant-card">
+<div class="card float-right border-info" style="width: 18rem;" >
+
+  <%= image_tag  "making-bakery-in-the-kitchen_1101-153.jpg", :alt => 'making bakes', class: "card-img-top"%>
+  <div class="card-body">
+    <h3 class="card-title text-center"><%= @user.username %></h3>
+    <h6 class="card-text text-center">AVG RATING: <span class="badge badge-secondary">4</span>
+      <span class="sr-only">average rating</span></h6>
+    <p class="card-text text-center"><strong><%= @user.email %></strong></p>
+    <p class="card-text text-center"><strong>USER ID: <%= @user.uid %></strong></p>
+  </div>
+</div>
+</section>
+
+
+
+
+<article class="merchant-actions d-flex justify-content-around">
+  <%= link_to 'View Your Bakes', user_products_path(@user.id), class: "merchant-btn btn btn-info" %>
+  <%= link_to 'List a New Bake', new_user_product_path(@user), class: "merchant-btn sell-link btn btn-info" %>
+  <%= link_to 'View Categories', categories_path, class: "merchant-btn btn btn-info" %>
+</article>
+
+<article class="merchant-prod-list">
+  <h2>LISTED BAKES</h2>
+  <table class="show_table table text-center table-light align-center table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th class="h4">NAME</th>
+        <th class="h4">PRICE</th>
+        <th class="h4">QUANTITY</th>
+        <th class="h4">RATING</th>
+        <th class="h4">STATUS</th>
+        <th class="h4">      </th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% if @user.products.empty? %>
+      <p class="empty-table-txt h3"><%= "No Products Have Been Listed to Sell" %></p>
+    <% else %>
+      <% @user.products.each do |product| %>
+        <tr>
+          <td> <%= link_to "#{product.prod_name}", edit_product_path(product.id)%></td>
+          <td> <%= format_price(product.price)%></td>
+          <td> <%= product.inv_qty %></td>
+          <td> <%= product.avg_rating %></td>
+           <% if product.active %>
+              <td>ACTIVE</td>
+              <td><%= link_to "RETIRE", product_status_path(product), class: "merchant-btn btn btn-retire", method: :patch%></td>
+            <% else %>
+              <td>RETIRED</td>
+              <td><%= link_to "ACTIVATE", product_status_path(product), class: "merchant-btn btn btn-activate", method: :patch%></td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</article>
+
+
+
+<article class="merchant-order-list">
+  <h2>ORDER FULFILLMENT</h2>
+  <table class="show_table table text-center table-light align-center table-hover">
+    <tr class="bg-info">
+      <th class="h4">ORDER #</th>
+      <th class="h4">ITEM</th>
+      <th class="h4">PRICE</th>
+      <th class="h4">QUANTITY</th>
+      <th class="h4">SUBTOTAL</th>
+      <th class="h4">ITEM STATUS</th>
+      <th class="h4">ORDER STATUS</th>
+    </tr>
+
+    <tbody>
+      <% ordered_items = @user.find_ordered_items %>
+      <% if ordered_items.empty? %>
+      <p class="empty-table-txt h3"><%= "No Products Have Sold" %></p>
+      <% else %>
+        <% ordered_items.sort_by {|item| item.updated_at }.each do |item| %>
+          <tr>
+            <td> <%= link_to "#{item.order.id}", order_path(item.order.id) %>
+              <br> <p class="sm-date"><%= item.order.date_of_order %></p></td>
+            <td> <%= link_to "#{item.product.prod_name}", edit_product_path(item.product.id)%></td>
+            <td> <%= format_price(item.product.price)%></td>
+            <td> <%= item.qty %></td>
+            <td> <%= format_price(item.product.price * item.qty)  %></td>
+                 <% if !item.shipped && item.order.status == "Paid"%>
+                      <td>PAID<br>
+                      <%= link_to "CONFIRM SHIPPED", ship_item_path(item.order_id), class: "merchant-btn btn btn-outline-info btn-sm ", method: :patch%></td>
+                 <% elsif item.shipped %>
+                     <td>SHIPPED</td>
+                 <% else %>
+                   <td>PENDING PAYMENT</td>
+                 <% end %>
+            <% ord = Order.find_by(id: item.order.id) %>
+            <% if ord.status.nil? %>
+              <td>PENDING PAYMENT</td>
+              <% else %>
+             <td><%= ord.status.upcase %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</article>
+
+<article class="merchant-rev-list">
+  <h2>REVENUE</h2>
+  <table class="show_table table table-bordered table-light table-sm text-center align-center">
+    <thead class="thead-dark">
+      <tr>
+        <th class="h4">PENDING</th>
+        <th class="h4">PAID</th>
+        <th class="h4">COMPLETE</th>
+        <th class="h4">CANCELLED</th>
+        <th class="h4">TOTAL</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% sold = @user.find_ordered_items %>
+    <% if sold.empty? %>
+      <%= "No Products Have Sold" %>
+    <% else %>
+        <tr>
+          <td> <%= format_price(@user.revenue("Pending")) %></td>
+          <td> <%= format_price(@user.revenue("Paid")) %></td>
+          <td> <%= format_price(@user.revenue("Complete"))%></td>
+          <td class="text-danger"> <%= format_price(@user.revenue("Cancelled")) %></td>
+          <td class="text-success"> <%= format_price(@user.revenue("Total")) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</main>
+
+
+  <%= link_to 'Back', root_path %>

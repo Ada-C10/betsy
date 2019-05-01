@@ -1,0 +1,31 @@
+<main class="main-container">
+
+  <h1>Order #<%=@order.id %> Details</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order_items.each do |order_item| %>
+      <tr>
+        <td><%= link_to "#{order_item.product.prod_name}", product_path(order_item.product.id) %></td>
+        <td><%= order_item.product.price %></td>
+        <td><%= order_item.qty %></td>
+        <td><%= order_item.subtotal %></td>
+        <% if order_item.subtotal == true %>
+          <td>Shipped</td>
+        <% else %>
+          <td>Pending</td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</main>

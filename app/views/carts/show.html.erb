@@ -1,0 +1,46 @@
+
+<div class="cart">
+
+<h1 class="cart-title">Your Cart</h1>
+<table class = "table table-light">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Item</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+      <th>Remove Item</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order_items.each do |order_item| %>
+    <tr>
+      <td><div class="center"><%=link_to image_tag("#{order_item.product.image}", alt: "#{order_item.product.description}"), product_url, class: "imgsize"%></div></td>
+      <td><%= link_to "#{order_item.product.prod_name}", product_path(order_item.product.id) %><br><%=order_item.product.description%></td>
+      <td><%= format_price(order_item.product.price) %></td>
+      <%if order_item.product.inv_qty > 0 %>
+        <%= form_with model: order_item do |f| %>
+        <td><%= f.select :qty, (1..order_item.product.inv_qty).to_a %>
+            <%= f.hidden_field :product_id, :value => order_item.product.id %>
+            <%= f.submit 'Update', class: "btn btn-primary" %>
+          <% end %>
+        </td>
+      <% else %>
+        <td><span>Out of Stock </span></td>
+      <%end%>
+      <td><%= format_price(order_item.subtotal) %></td>
+      <td><%= link_to "Remove", order_item_path(order_item.id), method: :delete, class: "btn btn-outline-danger" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+  </div>
+
+<div class="d-flex justify-content-between">
+  <%= link_to "Continue Shopping", products_path, class: "btn btn-primary   " %>
+  <%= link_to "Checkout", edit_order_path(@current_order.id), class: "btn btn-primary" %>
+</div>
+
+</div>

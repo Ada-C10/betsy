@@ -1,0 +1,285 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//
+// Base styles
+
+
+.category {
+  object-position: center; /* Center the image within the element */
+  width: 100%;
+  height: auto;
+}
+
+.parent {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 15px;
+}
+
+.child {
+  flex: 1 0 25%; /* explanation below */
+  margin: 5px;
+  height: auto;
+}
+
+.reviews > h2 {
+  text-align: center;
+  padding-top: 2em;
+}
+
+.rating-stars {
+  display: flex;
+}
+
+.add-review-btn {
+  margin-left: 2rem;
+}
+
+.table-responsive-md {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.rating {
+  text-align: center;
+}
+
+
+//############ Review Button ##############
+.inline{
+  text-align: center;
+}
+
+.inline > .buttonContainer {
+  display: inline-block;
+}
+
+.buttonContainer{
+	margin-top:45px;
+	// text-align:center;
+  padding-bottom: 2em;
+}
+
+a.button{
+  display:inline-block;
+
+	font:normal normal 300 1.3em 'Open Sans';
+	text-decoration:none;
+
+	color:rgba(28, 190, 131, 1);
+	brackground-color:transparent;
+	border:1px solid rgba(28, 190, 131, 1);
+	border-radius:100px;
+
+	padding: .3em 1.2em;
+	margin:5px;
+
+	background-size: 200% 100%;
+	background-image: linear-gradient(to right, transparent 50%, rgba(28, 190, 131, 1) 50%);
+	transition: background-position .3s cubic-bezier(0.19, 1, 0.22, 1) .1s, color .5s ease 0s, background-color .5s ease;
+}
+
+a.button:hover{
+	color:rgba(255, 255, 255, 1);
+	background-color:rgba(28, 190, 131, 1);
+	background-position: -100% 100%;
+}
+
+.passenger-form {
+  margin-top: 3em;
+  margin-right: 3em;
+  margin-left: 3em;
+  padding-top: 1em;
+  padding-bottom: 2.5em;
+  text-align: center;
+  background: #67D4C4;
+}
+
+.passenger-button:hover {
+  background: blue;
+  border-radius: 15%;
+  color: white;
+  cursor: pointer;
+}
+
+.parah {
+  font-size: 1.25em;
+}
+
+.header_font {
+  text-transform: capitalize;
+  background: lightgrey;
+  position: sticky;
+  top: 0;
+}
+
+
+//###########body grid for index page############
+
+.product-grid6,.product-grid6 .product-image6{overflow:hidden}
+.product-grid6{font-family:'Open Sans',sans-serif;text-align:center;position:relative;transition:all .5s ease 0s}
+.product-grid6:hover{box-shadow:0 0 10px rgba(0,0,0,.3)}
+.product-grid6 .product-image6 a{display:block}
+.product-grid6 .product-image6 img{width:100%;height:auto;transition:all .5s ease 0s}
+.product-grid6:hover .product-image6 img{transform:scale(1.1)}
+.product-grid6 .product-content{padding:12px 12px 15px;transition:all .5s ease 0s}
+.product-grid6:hover .product-content{opacity:0}
+.product-grid6 .title{font-size:20px;font-weight:600;text-transform:capitalize;margin:0 0 10px;transition:all .3s ease 0s}
+.product-grid6 .title a{color:#000}
+.product-grid6 .title a:hover{color:#2e86de}
+.product-grid6 .price{font-size:18px;font-weight:600;color:#2e86de}
+.product-grid6 .price span{color:#999;font-size:15px;font-weight:400;text-decoration:line-through;margin-left:7px;display:inline-block}
+.product-grid6 .social{background-color:#fff;width:100%;padding:0;margin:0;list-style:none;opacity:0;transform:translateX(-50%);position:absolute;bottom:-50%;left:50%;z-index:1;transition:all .5s ease 0s}
+.product-grid6:hover .social{opacity:1;bottom:20px}
+.product-grid6 .social li{display:inline-block}
+.product-grid6 .social li a{color:#909090;font-size:16px;line-height:45px;text-align:center;height:45px;width:45px;margin:0 7px;border:1px solid #909090;border-radius:50px;display:block;position:relative;transition:all .3s ease-in-out}
+.product-grid6 .social li a:hover{color:#fff;background-color:#2e86de;width:80px}
+.product-grid6 .social li a:after,.product-grid6 .social li a:before{content:attr(data-tip);color:#fff;background-color:#2e86de;font-size:12px;letter-spacing:1px;line-height:20px;padding:1px 5px;border-radius:5px;white-space:nowrap;opacity:0;transform:translateX(-50%);position:absolute;left:50%;top:-30px}
+.product-grid6 .social li a:after{content:'';height:15px;width:15px;border-radius:0;transform:translateX(-50%) rotate(45deg);top:-20px;z-index:-1}
+.product-grid6 .social li a:hover:after,.product-grid6 .social li a:hover:before{opacity:1}
+@media only screen and (max-width:990px){.product-grid6{margin-bottom:30px}
+}
+
+.col-sm-6{
+  padding-bottom: 1em;
+}
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+/*homepage for products
+
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+
+#myCarousel {
+  margin: auto;
+  margin-bottom: 3rem;
+}
+
+#seasonal {
+  font-family: 'Charmonman', cursive;
+  font-size: 40px;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 32rem;
+  background-color: #777;
+}
+
+// .carousel-item > img {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   min-width: 100%;
+//   height: 32rem;
+// }
+
+.carousel-item img {
+  object-position: center; /* Center the image within the element */
+  width: 100%;
+  // opacity: .75;
+}
+
+.rounded-circle {
+  width: 220px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h4 {
+  font-weight: 400;
+}
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.05rem;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    color: white;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 7rem;
+  }
+}
+
+
+#product-section {
+  padding-top: 2rem;
+}
+
+// .product-image6 {
+//   width: 240px;
+//   height: 360px;
+//   // overflow: hidden;
+// }
+//
+// // .product-img {
+// //   // object-position: center; /* Center the image within the element */
+// //   width: 240px;
+// //   height: 360px;
+// //   object-fit: cover;
+// // }
+
+.product-img-show {
+  object-position: center; /* Center the image within the element */
+  width: 350px;
+  height: 100%;
+  overflow: hidden;
+  padding-left: 2rem;
+}

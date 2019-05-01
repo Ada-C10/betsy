@@ -1,0 +1,21 @@
+<main class="main-container">
+  <h1>New Review</h1>
+
+  <%#= render 'form', review: @review %>
+  <%= form_for [@product, @review] do |form| %>
+
+  <div class="form-group">
+    <%= form.label :rating %>
+    <%= form.number_field :rating, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_field :description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit class: "btn btn-primary"%>
+  </div>
+  <% end %>
+</main>

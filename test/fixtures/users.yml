@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+laura:
+  provider: github
+  uid: 13371338
+  email: lbird@ada.com
+  username: Lady Bird
+
+
+ada:
+  provider: github
+  uid: 2354234
+  email: ada@lovelace.com
+  username: countess_ada
+
+
+grace:
+  provider: github
+  uid: 13371337
+  email: grace@hopper.com
+  username: graceful_hopps

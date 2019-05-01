@@ -1,0 +1,14 @@
+<section class="form_errors text-center">
+  <% if error_hash.errors.any? %>
+    <div id="error_explanation" >
+      <div class="alert alert-danger">
+        The form contains <%= pluralize(error_hash.errors.count, "error") %>.
+      </div>
+      <ul>
+        <% error_hash.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</section>

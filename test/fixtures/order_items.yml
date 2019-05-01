@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+line1:
+  order: one
+  product: cake1
+  qty: 2
+  shipped: false
+
+line2:
+  order: two
+  product: cake2
+  qty: 2
+  shipped: false

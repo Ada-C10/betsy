@@ -1,0 +1,70 @@
+<div class="order-details d-flex justify-content-around">
+
+  <section class="customer-card">
+    <div class="card border-secondary mb-3" style="max-width: 18rem;">
+      <div class="card-header text-center"><h1>ORDER #<%=@order.id %></h1>
+      <div class="card-body text-secondary">
+        <h5 class="card-title">CUSTOMER INFORMATION</h5>
+        <p class="card-text"><strong>Status: </strong><%= @order.status %></p>
+        <p class="card-text"><strong>Customer name: </strong><%= @order.cust_name %></p>
+        <p class="card-text"><strong>Customer email: </strong><%= @order.cust_email %></p>
+        <p class="card-text"><strong>Mailing address: </strong><%= @order.mailing_address %></p>
+        <p class="card-text"><strong>Card name: </strong><%= @order.cc_name %></p>
+        <p class="card-text"><strong>Card last 4: </strong>XXXX XXXX XXXX <%= @order.cc_digit %></p>
+        <p class="card-text"><strong>Card expiration: </strong><%= @order.cc_expiration %></p>
+        <p class="card-text"><strong>Card CVV: </strong><%= @order.cc_cvv %></p>
+        <p class="card-text"><strong>Card zip code:</strong><%= @order.cc_zip %></p>
+      </div>
+    </div>
+  </section>
+
+  <article class="merchant-order-list ">
+    <h2 class="order-h2">ORDERED ITEMS</h2>
+    <table class="show_table table text-center table-light align-center merchant-table table-hover">
+      <tr>
+        <th class="h4">ORDER #</th>
+        <th class="h4">ITEM</th>
+        <th class="h4">PRICE</th>
+        <th class="h4">QUANTITY</th>
+        <th class="h4">SUBTOTAL</th>
+        <th class="h4">ITEM STATUS</th>
+        <th class="h4">ORDER DATE</th>
+      </tr>
+
+      <tbody>
+      <% ordered_items = @login_user.find_ordered_items %>
+        <% ordered_items.each do |item| %>
+            <% if item.order.id == @order.id %>
+              <tr>
+                <td> <%= "#{item.order.id}" %></td>
+                <td> <%= link_to "#{item.product.prod_name}", edit_product_path(item.product.id)%></td>
+                <td> <%= format_price(item.product.price)%></td>
+                <td> <%= item.qty %></td>
+                <td> <%= format_price(item.product.price * item.qty)  %></td>
+                <% if item.shipped %>
+                  <td>SHIPPED</td>
+                <% elsif !item.shipped && item.order.status == "Paid"%>
+                  <td>PAID<br>
+                    <%= link_to "CONFIRM SHIPPED", ship_item_path(item.product), class: "merchant-btn btn btn-outline-info btn-sm ", method: :patch%>
+                  </td>
+                <% else %>
+                  <td>PENDING PAYMENT</td>
+                <% end %>
+                <% ord = Order.find(item.order.id) %>
+                <td><%= ord.date_of_order %></td>
+              </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'Back', user_path(session[:user_id]), class: "back-btn btn btn-primary merchant-btn" %>
+  </article>
+</div>
+
+
+
+
+
+
+
+

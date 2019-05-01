@@ -1,0 +1,12 @@
+rails generate scaffold user uid:integer username:string email:string
+
+rails generate scaffold product category:string prod_name:string description:string price:float inv_qty:integer
+
+rails generate scaffold order status:string cust_name:string cust_email:string mailing_address:integer cc_name:string cc_digit:integer cc_expiration:date cc_cvv:integer cc_zip:integer
+
+rails generate scaffold review rating:integer description:string
+
+
+rails g migration CreateCategoriesProductsJoin
+
+rails db:migrate

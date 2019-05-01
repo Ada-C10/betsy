@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Betsy</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Charmonman" rel="stylesheet">
+  </head>
+
+  <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
+
+        <a class="navbar-brand" href="/">BAKESY</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <%= link_to "Home", root_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "All Products", products_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown">Shop by Category</a>
+              <div class="dropdown-menu" >
+                <% @categories.each do |category| %>
+                  <%= link_to "#{category.category}", category_path(category.id), class: "dropdown-item" %>
+                <% end %>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown">Shop by Merchant</a>
+              <div class="dropdown-menu" >
+                <% @users.each do |user| %>
+                  <%= link_to "#{user.username}", merchant_path(user.id), class: "dropdown-item" %>
+                <% end %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <% if session[:user_id] %>
+                <%= link_to "Dashboard: #{session[:username]}", user_path(session[:user_id]), class: "nav-link center-items" %>
+              <% end %>
+            </li>
+          </ul>
+          <ul class="nav app-header__user-nav-container right-items">
+            <% if session[:user_id] %>
+              <li class="nav-item">
+                <%= link_to image_tag("sign-out-alt-solid.svg", class: "logout"), logout_path, method: "delete" %></li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to image_tag("github-square-brands.svg", class: "login"), "/auth/github" %></li>
+            <% end %>
+              <li class="nav-item">
+                <% if session[:order_id] %>
+                  <a href="/carts/<%=session[:order_id]%>">
+                  <span class="fa-stack fa-2x has-badge" data-count="<%= @current_order.items_in_cart %>"><i class="fa fa-shopping-cart fa-stack main-cart"></i></span></a>
+                <% else %>
+                  <a href="/carts/new"><i class="fa fa-shopping-cart fa-stack main-cart"></i></a>
+                <% end %>
+              </li>
+          </ul>
+        </div>
+  </nav>
+
+
+  <body>
+    
+    <%= yield %>
+  </body>
+
+  <!-- Footer -->
+  <footer class="page-footer font-small blue pt-4">
+
+      <!-- Footer Links -->
+      <div class="container-fluid text-center text-md-left">
+
+        <!-- Grid row -->
+        <div class="row">
+
+          <!-- Grid column -->
+          <div class="col-md-6 mt-md-0 mt-3">
+
+            <!-- Content -->
+            <h5 class="brand">Bakesy</h5>
+            <p id="fotp">"Everything is better with a little bit of Sugar and Spice". Bakesy started at the Ada Developer's incubator with four individuals who inspired to share local seasonal baked goods to the community.</p>
+
+          </div>
+          <!-- Grid column -->
+
+          <hr class="clearfix w-100 d-md-none pb-3">
+
+          <!-- Grid column -->
+          <div class="col-md-3 mb-md-0 mb-3">
+
+              <!-- Links -->
+
+              <nav class="nav flex-column navbar navbar-expand-md navbar-dark bg-dark">
+                <%= link_to "Home", root_path, class: "nav-link" %>
+                <%= link_to "All Products", products_path, class: "nav-link" %>
+                <%= link_to "Login with Github", "/auth/github", class: "nav-link" %>
+                <% if session[:order_id] %>
+                  <%= link_to "Shopping Cart", cart_path(@current_order.id), class: "nav-link" %>
+                <% else %>
+                  <%= link_to "Shopping Cart", new_cart_path, class: "nav-link" %>
+                <% end %>
+              </nav>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+
+              <!-- Links -->
+              <h5 class="text-uppercase"></h5>
+
+              <nav class="nav flex-column navbar navbar-expand-md navbar-dark bg-dark">
+                <div class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown">Shop by Merchant</a>
+                    <div class="dropdown-menu" >
+                      <% @users.each do |user| %>
+                        <%= link_to "#{user.username}", merchant_path(user.id), class: "dropdown-item" %>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown">Shop by Category</a>
+                    <div class="dropdown-menu" >
+                      <% @categories.each do |category| %>
+                        <%= link_to "#{category.category}", category_path(category.id), class: "dropdown-item" %>
+                        <% end %>
+                      </div>
+                  </div>
+                  <%= form_tag(orders_path, method: :get) do %>
+                    <%= text_field_tag :id, params[:id], placeholder: "Order ID" %>
+                    <%= submit_tag("Search", name: nil) %>
+                  <% end %>
+
+              </nav>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+      </div>
+      <!-- Footer Links -->
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3"><p>© 2018 Copyright:
+        <a href="https://mdbootstrap.com/bootstrap-tutorial/"> Sugar & Spice.com</a></p>
+      </div>
+      <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
+</html>
